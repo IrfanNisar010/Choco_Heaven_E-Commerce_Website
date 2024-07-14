@@ -1,0 +1,147 @@
+<%- include('../layouts/loginHeader') %>
+<% if(typeof message !== "undefined"){ %>
+  <div class="msg msg-danger show" role="alert">
+    <span class="glyphicon glyphicon-remove"></span> <%= message %> 
+  </div>
+<% } %>
+<% if(typeof warning !== "undefined"){ %>
+  <div class="msg msg-warning show" role="alert" style="color: black;">
+    <span class="glyphicon glyphicon-warning-sign" style="color: rgb(250, 142, 35);"></span> <%= warning %>
+  </div>
+<% } %>
+<!-- Rest of your login page content here -->
+<div id="firejet-html-app">
+  <div class="sign-in-wrapper">
+    <div class="sign-in-sign-in">
+      <main class="sign-up-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem">
+        <div class="sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem">
+          <div class="sign-up-t-choco-heaven">
+            <div class="sign-up-choco-heaven">CHOCO HEAVEN</div>
+          </div>
+        </div>
+      </main>
+      <h1 class="sign-in-sign-in-1">Sign In</h1>
+      <aside class="sign-in-enter-your-email-to-sign-in-for-this-app">
+        Enter your email to sign In for this app
+      </aside>
+      <form action="/verifyLogin" method="post" id="contactForm" novalidate="novalidate">
+        <div class="sign-in-t-field">
+          <div class="sign-in-field">
+            <input
+              placeholder="email@domain.com"
+              id="email"
+              name="email"
+              type="email"
+              class="sign-in-label"
+            />
+          </div>
+        </div>
+        <div class="sign-in-t-field-1">
+          <div class="sign-in-field-1">
+            <input
+              placeholder="Password"
+              id="password"
+              name="password"
+              type="password"
+              class="sign-in-label-1"
+            />
+          </div>
+        </div>
+        <div class="sign-in-t-button">
+          <button class="sign-in-sign-up-with-email" type="submit" value="submit">Sign up with email</button>
+        </div>
+        <footer class="sign-in-reset-password">Reset password</footer>
+        <div class="sign-in-tt-divider-or-continue-with-divider">
+          <div class="sign-in-t-divider-or-continue-with-divider">
+            <div class="sign-in-divider"></div>
+            <div class="sign-in-or-continue-with">or continue with</div>
+            <div class="sign-in-divider-1"></div>
+          </div>
+        </div>
+        <div class="sign-in-t-button-1">
+          <button class="sign-in-button">
+            <div class="sign-in-t-google-continue-with-google">
+              <object
+                data="/assets/Google.svg"
+                class="sign-in-google"
+              ></object>
+              <div class="sign-in-continue-with-google">
+                <a href="/passportAuth/googleAuth" style="text-decoration: none; color: black;">Continue with Google</a>
+              </div>
+            </div>
+          </button>
+        </div>
+        <div class="sign-in-t-button-2">
+          <div class="sign-in-button-1">
+            <div class="sign-in-t-apple-logo-continue-with-apple">
+              <div class="sign-in-apple-logo"></div>
+              <div class="sign-in-continue-with-apple">
+                Continue with Apple
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <footer class="sign-in-create-an-account"><a href="/signUp" style="color: #9f9e9e; text-decoration: none;">Create an account</a></footer>
+      <div class="sign-in-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy">
+        <footer class="sign-in-text">
+          By clicking continue, you agree to our
+          Terms of Service <span class="sign-in-text-1">and </span>Privacy
+          Policy
+        </footer>
+      </div>
+      <div class="sign-in-t-footer">
+        <div class="sign-in-footer">
+          <div class="sign-in-tt-choco-heaven-tcompany-info-tquick-links-tmy-account">
+            <div class="sign-in-t-choco-heaven-1">
+              <div class="sign-in-choco-heaven-1">CHOCO HEAVEN</div>
+            </div>
+            <div class="sign-in-t-company-info">
+              <div class="sign-in-company-info">Company Info</div>
+            </div>
+            <div class="sign-in-t-quick-links">
+              <div class="sign-in-quick-links">Quick Links</div>
+            </div>
+            <div class="sign-in-t-my-account">
+              <div class="sign-in-my-account">MY ACCOUNT</div>
+            </div>
+          </div>
+          <div class="sign-in-ttt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop">
+            <div class="sign-in-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop">
+              <div class="sign-in-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop">
+                Mazia Store is a premium theme with advanced admin module. It’s extremely customizable, easy to use and fully responsive and retina ready.
+              </div>
+              <div class="sign-in-about-us">About Us</div>
+              <div class="sign-in-special-offers">Special Offers</div>
+              <div class="sign-in-my-account-1">My Account</div>
+              <div class="sign-in-careers-business-with-us">Careers / Business With Us</div>
+              <div class="sign-in-gift-cards">Gift Cards</div>
+              <div class="sign-in-f21red-tcheckout-shop">F21Red / Checkout Shop</div>
+            </div>
+          </div>
+        </div>
+        <div class="sign-in-t-follow-us-on-social">
+          <div class="sign-in-follow-us-on-social">Follow Us on Social</div>
+        </div>
+        <div class="sign-in-t-facebook-twitter-instagram-tiktok-youtube">
+          <div class="sign-in-t-facebook-twitter-instagram-tiktok-youtube">
+            <div class="sign-in-facebook"></div>
+            <div class="sign-in-twitter"></div>
+            <div class="sign-in-instagram"></div>
+            <div class="sign-in-tiktok"></div>
+            <div class="sign-in-youtube"></div>
+          </div>
+        </div>
+        <div class="sign-in-t-2021-maziastore-privacypolicy-termsconditions-ttuser-agreement-site-map">
+          <div class="sign-in-tt-2021-maziastore-privacypolicy-termsconditions-ttuser-agreement-site-map">
+            <div class="sign-in-2021-maziastore-privacypolicy-termsconditions-ttuser-agreement-site-map">
+              © 2021 MaziaStore. Privacy Policy Terms & Conditions User Agreement Site Map
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../layouts/loginFooter') %>

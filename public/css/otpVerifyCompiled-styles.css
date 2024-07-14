@@ -1,0 +1,736 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600");
+@import url("https://api.fontshare.com/css?f[]=poppins@400,500,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Font Awesome 5 Free:wght@400");
+@import url("https://api.fontshare.com/css?f[]=font awesome 5 free@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=inter@400,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=rubik@400,500&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-19,
+.verify-email-otp-choco-heaven,
+.verify-email-otp-choco-heaven-1 {
+  text-transform: capitalize;
+  letter-spacing: 0.19em;
+  line-height: 12px;
+}
+
+.common-18,
+.verify-email-otp-field,
+.verify-email-otp-field-1,
+.verify-email-otp-field-2,
+.verify-email-otp-field-3 {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(224, 224, 224, 1);
+}
+
+.common-7,
+.verify-email-otp-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.verify-email-otp-tt-choco-heaven-ttcompany-info-quick-links-tmy-account,
+.verify-email-otp-tt-about-us-tcareers-business-with-us-find-astore-teams-of-use-tspecial-offers-tgift-cards-f21red-privacy-policy-teams-of-use-ttmy-account-tcheckout-shop-wishlist-frequently {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-8,
+.verify-email-otp-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.verify-email-otp-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.common-9,
+.verify-email-otp-t-item-1,
+.verify-email-otp-t-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.common-10,
+.verify-email-otp-t-about-us-tcareers-business-with-us-find-astore-teams-of-use,
+.verify-email-otp-t-careers-business-with-us,
+.verify-email-otp-t-special-offers-tgift-cards-f21red-privacy-policy-teams-of-use,
+.verify-email-otp-t-gift-cards-f21red {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.common-11,
+.verify-email-otp-tt-home-horizontal-divider-ticon,
+.verify-email-otp-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.verify-email-otp-t-resend-otp-tvector-tframe,
+.verify-email-otp-t-company-info-quick-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-12,
+.verify-email-otp-t-icon-1,
+.verify-email-otp-t-icon-2,
+.verify-email-otp-t-icon-3,
+.verify-email-otp-t-icon-4 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-13,
+.verify-email-otp-tt-field-field-field-field,
+.verify-email-otp-t-button,
+.verify-email-otp-tt-resend-otp-tvector-tframe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack items vertically */
+}
+
+.verify-email-otp-t-resend-otp-tvector-tframe {
+  margin-bottom: 10px; /* Spacing between button and timer */
+}
+
+.verify-email-otp-component-2 {
+  background-color: #3478f6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.verify-email-otp-expiry {
+  font-size: 14px; /* Adjust font size as needed */
+  color: grey; 
+  max-width: 300px;
+}
+
+.common-14,
+.verify-email-otp-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.verify-email-otp-tt-company-info-quick-links-tmy-account,
+.verify-email-otp-tt-choco-heaven-is-the-pinnacle-of-luxury-in-the-chocolate-world-our-online-store-boasts-ameticulously-curated-selection-of-the-finest-chocolates-experience-unparalleled-customization-and-flawless-responsiveness-across-all-devices-ensuring-an-indulgent-shopping-experience-that-is-as-exquisite-as-our-chocolates-ttabout-us-tcareers-business-with-us-find-astore-teams-of-use-tspecial-offers-tgift-cards-f21red-privacy-policy-teams-of-use-ttmy-account-tcheckout-shop-wishlist-frequently {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.common-15,
+.verify-email-otp-ttt-home-horizontal-divider-ticon,
+.verify-email-otp-t-my-account,
+.verify-email-otp-t-choco-heaven-is-the-pinnacle-of-luxury-in-the-chocolate-world-our-online-store-boasts-ameticulously-curated-selection-of-the-finest-chocolates-experience-unparalleled-customization-and-flawless-responsiveness-across-all-devices-ensuring-an-indulgent-shopping-experience-that-is-as-exquisite-as-our-chocolates,
+.verify-email-otp-t-my-account-tcheckout-shop-wishlist-frequently,
+.verify-email-otp-t-checkout-shop {
+  display: flex;
+  flex-direction: column;
+}
+
+.common-16,
+.verify-email-otp-t-item,
+.verify-email-otp-tt-my-account-tcheckout-shop-wishlist-frequently {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.common-17,
+.verify-email-otp-t-icon,
+.verify-email-otp-t-gifting,
+.verify-email-otp-t-new-launches,
+.verify-email-otp-t-brands,
+.verify-email-otp-t-link-contact,
+.verify-email-otp-my-account,
+.verify-email-otp-choco-heaven-is-the-pinnacle-of-luxury-in-the-chocolate-world-our-online-store-boasts-ameticulously-curated-selection-of-the-finest-chocolates-experience-unparalleled-customization-and-flawless-responsiveness-across-all-devices-ensuring-an-indulgent-shopping-experience-that-is-as-exquisite-as-our-chocolates {
+  display: flex;
+  align-items: center;
+}
+
+.common-6,
+.verify-email-otp-your-code-was-send-to-you-via-email,
+.verify-email-otp-verify-1 {
+  font-size: 14px;
+  text-align: center;
+}
+
+.common-1,
+.verify-email-otp-wrapper,
+.verify-email-otp-verify-email-otp {
+  display: flex;
+  width: 100%;
+}
+
+.common-2,
+.verify-email-otp-tt-vector-titem-ticon-t0ticon-t5titem,
+.verify-email-otp-t-field-field-field-field {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  font-family: poppins;
+}
+
+.common-3,
+.verify-email-otp-icon,
+.verify-email-otp-icon-1,
+.verify-email-otp-icon-2,
+.verify-email-otp-icon-3 {
+  width: 7px;
+  height: 14px;
+}
+
+.common-4,
+.verify-email-otp-field,
+.verify-email-otp-field-1,
+.verify-email-otp-field-2,
+.verify-email-otp-field-3 {
+  width: 45px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.common-5,
+.verify-email-otp-verify-1,
+.verify-email-otp-component-2 {
+  background-color: rgb(0, 0, 0);
+  color: rgba(255, 255, 255, 1);
+}
+
+.verify-email-otp-verify-email-otp {
+  flex-shrink: 0;
+  height: 100%;
+  flex-direction: column;
+  row-gap: 2px;
+  background-color: rgba(250, 250, 250, 1);
+  align-items: center;
+  overflow: clip;
+  line-height: 25px;
+  letter-spacing: 0em;
+}
+
+.verify-email-otp-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+  align-self: stretch;
+  padding-bottom: 25px;
+  padding-top: 23px;
+  padding-right: 38px;
+  padding-left: 37px;
+  background-color: #fafafa
+  backdrop-filter: blur(95px);
+}
+
+.verify-email-otp-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+  flex-shrink: 0;
+  height: 32px;
+  column-gap: 244px;
+  row-gap: 11px;
+  font-family: Poppins;
+  font-weight: 500;
+}
+
+.verify-email-otp-t-choco-heaven {
+  padding-top: 10px;
+}
+
+.verify-email-otp-choco-heaven {
+  font-size: 22px;
+  font-family: 'poppins';
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+}
+
+.verify-email-otp-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+  column-gap: 24px;
+  row-gap: 13px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.verify-email-otp-ttt-home-horizontal-divider-ticon {
+  flex-shrink: 0;
+  width: 55px;
+}
+
+.verify-email-otp-tt-home-horizontal-divider-ticon {
+  flex-grow: 1;
+}
+
+.verify-email-otp-t-home-horizontal-divider {
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+.verify-email-otp-home {
+  color: rgba(255, 116, 155, 1);
+}
+
+.verify-email-otp-horizontal-divider {
+  height: 2px;
+  background-color: rgba(255, 116, 155, 1);
+}
+
+.verify-email-otp-t-icon {
+  flex-shrink: 0;
+  width: 0px;
+}
+
+.verify-email-otp-icon {
+  flex-shrink: 0;
+  margin-left: -7px;
+}
+
+.verify-email-otp-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+  flex-grow: 1;
+  column-gap: 1px;
+  color: rgba(59, 59, 59, 1);
+}
+
+.verify-email-otp-t-shop {
+  align-self: stretch;
+}
+
+.verify-email-otp-t-icon-1 {
+  padding-left: 3.7px;
+}
+
+.verify-email-otp-icon-1 {
+  flex-shrink: 0;
+}
+
+.verify-email-otp-t-gifting {
+  padding-left: 15px;
+  align-self: stretch;
+}
+
+.verify-email-otp-gifting {
+  flex-grow: 1;
+}
+
+.verify-email-otp-vector {
+  flex-shrink: 0;
+  height: 4px;
+  width: 9px;
+}
+
+.verify-email-otp-t-new-launches {
+  padding-left: 11px;
+  align-self: stretch;
+}
+
+.verify-email-otp-new-launches {
+  flex-grow: 1;
+}
+
+.verify-email-otp-icon-2 {
+  margin-left: 3px;
+}
+
+.verify-email-otp-t-brands {
+  padding-left: 7px;
+  align-self: stretch;
+}
+
+.verify-email-otp-brands {
+  flex-grow: 1;
+}
+
+.verify-email-otp-t-icon-2 {
+  padding-left: 4px;
+}
+
+.verify-email-otp-icon-3 {
+  flex-shrink: 0;
+}
+
+.verify-email-otp-t-link-contact {
+  padding-left: 6px;
+  align-self: stretch;
+}
+
+.verify-email-otp-link-contact {
+  flex-grow: 1;
+}
+
+.verify-email-otp-tt-vector-titem-ticon-t0ticon-t5titem {
+  justify-content: center;
+  column-gap: 1px;
+  margin-bottom: 4px;
+  align-items: center;
+  font-family: Font Awesome 5 Free;
+  font-size: 12px;
+  color: rgba(59, 59, 59, 1);
+  line-height: 12px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.verify-email-otp-vector-1 {
+  height: 19px;
+  width: 24px;
+}
+
+.verify-email-otp-t-item {
+  padding-left: 13px;
+  align-self: stretch;
+  align-items: flex-end;
+}
+
+.verify-email-otp-item {
+  flex-shrink: 0;
+  height: 30px;
+  width: 44px;
+}
+
+.verify-email-otp-t-icon-3 {
+  padding-left: 15px;
+}
+
+.verify-email-otp-icon-4 {
+  flex-shrink: 0;
+  height: 18px;
+  width: 18px;
+}
+
+.verify-email-otp-component {
+  padding-bottom: 7px;
+}
+
+.verify-email-otp-t-icon-4 {
+  padding-left: 21px;
+}
+
+.verify-email-otp-icon-5 {
+  flex-shrink: 0;
+  height: 18px;
+  width: 16px;
+}
+
+.verify-email-otp-component-1 {
+  padding-bottom: 7px;
+  padding-left: 2.3px;
+}
+
+.verify-email-otp-t-item-1 {
+  padding-left: 5.8px;
+  align-self: stretch;
+  align-items: flex-end;
+}
+
+.verify-email-otp-item-1 {
+  flex-shrink: 0;
+  height: 30px;
+  width: 41px;
+}
+
+.verify-email-otp-verify {
+  align-self: stretch;
+  padding-top: 150px;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 600;
+  font-size: 21px;
+  font-family: Poppins;
+}
+
+.verify-email-otp-your-code-was-send-to-you-via-email {
+  font-family: Poppins;
+  line-height: 1.5;
+}
+
+.verify-email-otp-tt-field-field-field-field {
+  flex-shrink: 0;
+  height: 72px;
+  align-self: stretch;
+}
+
+.verify-email-otp-t-field-field-field-field {
+  flex-shrink: 0;
+  justify-content: center;
+  width: 234px;
+  column-gap: 18px;
+}
+
+.verify-email-otp-field {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.verify-email-otp-field-1 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.verify-email-otp-field-2 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.verify-email-otp-field-3 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.verify-email-otp-t-button {
+  padding-top: 30px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.verify-email-otp-verify-1 {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 77px;
+  padding-left: 77px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  line-height: 1.4;
+  font-weight: 500;
+  font-family: Inter;
+}
+
+.verify-email-otp-tt-resend-otp-tvector-tframe {
+  padding-top: 25px;
+  padding-right: 682px;
+  padding-left: 672px;
+  align-self: stretch;
+}
+
+.verify-email-otp-t-resend-otp-tvector-tframe {
+  padding-left: 5px;
+  height: 21px;
+  column-gap: 9px;
+  font-family: Poppins;
+}
+
+.verify-email-otp-resend-otp {
+  font-size: 13px;
+  color: rgba(0, 122, 255, 1);
+  line-height: 1.4;
+  width: 78px;
+}
+
+.verify-email-otp-vector-2 {
+  height: 11px;
+  width: 6px;
+}
+
+.verify-email-otp-component-2 {
+  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-right: 16px;
+  padding-left: 15px;
+  margin-left: 6px;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  text-align: center;
+  width: 100px;
+  line-height: 1.5;
+  font-size: 10px;
+}
+
+.verify-email-otp-t-footer {
+  padding-top: 351px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.verify-email-otp-footer {
+  padding-top: 79px;
+  padding-right: 239px;
+  padding-left: 71px;
+  padding-bottom: 88px;
+  row-gap: 21px;
+  background-color: rgba(0, 0, 0, 1);
+  font-family: Rubik;
+}
+
+.verify-email-otp-tt-choco-heaven-ttcompany-info-quick-links-tmy-account {
+  flex-shrink: 0;
+  height: 25px;
+  column-gap: 321px;
+  row-gap: 11px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+}
+
+.verify-email-otp-t-choco-heaven-1 {
+  padding-top: 17px;
+  height: 29px;
+  margin-bottom: 2px;
+}
+
+.verify-email-otp-choco-heaven-1 {
+  font-family: Poppins;
+  font-size: 28px;
+}
+
+.verify-email-otp-tt-company-info-quick-links-tmy-account {
+  column-gap: 152px;
+  row-gap: 7.8px;
+  font-size: 13px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.verify-email-otp-t-company-info-quick-links {
+  column-gap: 131px;
+}
+
+.verify-email-otp-t-my-account {
+  flex-shrink: 0;
+  width: 131px;
+}
+
+.verify-email-otp-my-account {
+  flex-grow: 1;
+}
+
+.verify-email-otp-tt-choco-heaven-is-the-pinnacle-of-luxury-in-the-chocolate-world-our-online-store-boasts-ameticulously-curated-selection-of-the-finest-chocolates-experience-unparalleled-customization-and-flawless-responsiveness-across-all-devices-ensuring-an-indulgent-shopping-experience-that-is-as-exquisite-as-our-chocolates-ttabout-us-tcareers-business-with-us-find-astore-teams-of-use-tspecial-offers-tgift-cards-f21red-privacy-policy-teams-of-use-ttmy-account-tcheckout-shop-wishlist-frequently {
+  padding-right: 12px;
+  column-gap: 173px;
+  row-gap: 38px;
+  align-items: flex-start;
+  color: rgba(196, 196, 196, 1);
+}
+
+.verify-email-otp-t-choco-heaven-is-the-pinnacle-of-luxury-in-the-chocolate-world-our-online-store-boasts-ameticulously-curated-selection-of-the-finest-chocolates-experience-unparalleled-customization-and-flawless-responsiveness-across-all-devices-ensuring-an-indulgent-shopping-experience-that-is-as-exquisite-as-our-chocolates {
+  flex-shrink: 0;
+  padding-top: 0.28px;
+  width: 439px;
+}
+
+.verify-email-otp-choco-heaven-is-the-pinnacle-of-luxury-in-the-chocolate-world-our-online-store-boasts-ameticulously-curated-selection-of-the-finest-chocolates-experience-unparalleled-customization-and-flawless-responsiveness-across-all-devices-ensuring-an-indulgent-shopping-experience-that-is-as-exquisite-as-our-chocolates {
+  flex-grow: 1;
+  font-size: 11px;
+}
+
+.verify-email-otp-tt-about-us-tcareers-business-with-us-find-astore-teams-of-use-tspecial-offers-tgift-cards-f21red-privacy-policy-teams-of-use-ttmy-account-tcheckout-shop-wishlist-frequently {
+  height: 160px;
+  column-gap: 116px;
+  row-gap: 79px;
+  font-size: 14px;
+}
+
+.verify-email-otp-t-about-us-tcareers-business-with-us-find-astore-teams-of-use {
+  align-self: stretch;
+  row-gap: 8px;
+}
+
+.verify-email-otp-t-careers-business-with-us {
+  align-self: stretch;
+  row-gap: 8px;
+}
+
+.verify-email-otp-business-with-us {
+  align-self: stretch;
+}
+
+.verify-email-otp-t-special-offers-tgift-cards-f21red-privacy-policy-teams-of-use {
+  align-self: stretch;
+  row-gap: 8px;
+}
+
+.verify-email-otp-special-offers {
+  text-align: center;
+  align-self: stretch;
+}
+
+.verify-email-otp-t-gift-cards-f21red {
+  align-self: stretch;
+  row-gap: 8px;
+}
+
+.verify-email-otp-gift-cards {
+  align-self: stretch;
+}
+
+.verify-email-otp-privacy-policy {
+  text-align: center;
+  align-self: stretch;
+}
+
+.verify-email-otp-tt-my-account-tcheckout-shop-wishlist-frequently {
+  flex-shrink: 0;
+  padding-left: 25px;
+  padding-bottom: 6px;
+  height: 163px;
+  width: 144px;
+  margin-top: 1.5px;
+}
+
+.verify-email-otp-t-my-account-tcheckout-shop-wishlist-frequently {
+  flex-grow: 1;
+  row-gap: 8px;
+}
+
+.verify-email-otp-t-checkout-shop {
+  row-gap: 8px;
+}
+
+.verify-email-otp-shop-1 {
+  width: 53px;
+}
+
+.verify-email-otp-wishlist {
+  width: 78px;
+}
+
+.verify-email-otp-frequently {
+  width: 111px;
+}
+@media (min-width: 1502px) {
+  .verify-email-otp-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+    flex-wrap: nowrap;
+  }
+  .verify-email-otp-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+    flex-wrap: nowrap;
+  }
+  .verify-email-otp-tt-choco-heaven-ttcompany-info-quick-links-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .verify-email-otp-tt-company-info-quick-links-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .verify-email-otp-tt-choco-heaven-is-the-pinnacle-of-luxury-in-the-chocolate-world-our-online-store-boasts-ameticulously-curated-selection-of-the-finest-chocolates-experience-unparalleled-customization-and-flawless-responsiveness-across-all-devices-ensuring-an-indulgent-shopping-experience-that-is-as-exquisite-as-our-chocolates-ttabout-us-tcareers-business-with-us-find-astore-teams-of-use-tspecial-offers-tgift-cards-f21red-privacy-policy-teams-of-use-ttmy-account-tcheckout-shop-wishlist-frequently {
+    flex-wrap: nowrap;
+  }
+  .verify-email-otp-tt-about-us-tcareers-business-with-us-find-astore-teams-of-use-tspecial-offers-tgift-cards-f21red-privacy-policy-teams-of-use-ttmy-account-tcheckout-shop-wishlist-frequently {
+    flex-wrap: nowrap;
+  }
+}

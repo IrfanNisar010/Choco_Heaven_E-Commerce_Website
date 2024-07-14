@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500"
+    />
+    <title>Admin Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/Loginstyles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/compiled-styles.css" />
+  </head>
+  <body style="margin: 0px">
+
+<div id="firejet-html-app">
+  <div class="sign-in-wrapper">
+    <div class="sign-in-sign-in">
+      <main class="sign-up-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem" >
+        <div class="sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem" >
+          <div class="sign-up-t-choco-heaven">
+            <div class="sign-up-choco-heaven">CHOCO HEAVEN</div>
+          </div>
+      </main>
+      <h1 class="sign-in-sign-in-1">Admin Login</h1>
+      <aside class="sign-in-enter-your-email-to-sign-in-for-this-app">
+        Enter your email to sign In to Dashboard
+      </aside>
+      <form action="/admin/verifyLogin" method="post" >
+      <div class="sign-in-t-field">
+        <div class="sign-in-field">
+          <input
+            placeholder="email@domain.com"
+            id="email"
+            name="email"
+            type="email"
+            class="sign-in-label"
+          />
+        </div>
+      </div>
+      <div class="sign-in-t-field-1">
+        <div class="sign-in-field-1">
+          <input
+            placeholder="Password"
+            id="password"
+            name="password"
+            type="password"
+            class="sign-in-label-1"
+          />
+        </div>
+      </div>
+      <% if(typeof message !== "undefined"){
+        %>
+       <p style="color: red;"><%=message%></p> 
+      <%
+       }
+      %>
+      <div class="sign-in-t-button">
+        <button class="sign-in-sign-up-with-email" type="submit" value="submit">Sign up with email</button>
+      </div>
+      <footer class="sign-in-reset-password">Reset password</footer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

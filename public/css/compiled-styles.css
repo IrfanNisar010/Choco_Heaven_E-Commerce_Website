@@ -1,0 +1,1134 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600");
+@import url("https://api.fontshare.com/css?f[]=poppins@400,500,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Font Awesome 5 Free:wght@400");
+@import url("https://api.fontshare.com/css?f[]=font awesome 5 free@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=inter@400,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=rubik@400,500&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-30,
+.sign-in-footer,
+.sign-in-t-bg-choco-heaven-portfolio-press-talent {
+  position: relative;
+  z-index: 0;
+}
+
+.common-31,
+.sign-in-tt-bg-choco-heaven-portfolio-press-talent,
+.sign-in-bg-choco-heaven,
+.sign-in-portfolio {
+  position: absolute;
+  z-index: 0;
+}
+
+.common-27,
+.sign-in-choco-heaven,
+.sign-in-choco-heaven-1 {
+  text-transform: capitalize;
+  letter-spacing: 0.19em;
+  line-height: 12px;
+}
+
+.common-28,
+.sign-in-tt-vector-titem-ticon-t0ticon-t5titem,
+.sign-in-bg-choco-heaven {
+  text-transform: capitalize;
+  line-height: 12px;
+}
+
+.common-29,
+.sign-in-company-info,
+.sign-in-quick-links {
+  text-transform: uppercase;
+  line-height: 16px;
+}
+
+.common-26,
+.sign-in-field,
+.sign-in-field-1 {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(224, 224, 224, 1);
+}
+
+.common-14,
+.sign-in-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.sign-in-t-special-offers-tmy-account,
+.sign-in-tt-paypal-png-tttfind-astore-tprivacy-policy-twishlist-ttteams-of-use-tteams-of-use-tfrequently {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-15,
+.sign-in-t-item-1,
+.sign-in-t-footer,
+.sign-in-ttt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop,
+.sign-in-t-careers-business-with-us {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.common-16,
+.sign-in-tt-home-horizontal-divider-ticon,
+.sign-in-t-divider-or-continue-with-divider,
+.sign-in-button,
+.sign-in-t-google-continue-with-google,
+.sign-in-t-apple-logo-continue-with-apple,
+.sign-in-bg-choco-heaven {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-17,
+.sign-in-t-icon-1,
+.sign-in-t-icon-2,
+.sign-in-t-icon-3,
+.sign-in-t-icon-4 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-18,
+.sign-in-tt-divider-or-continue-with-divider,
+.sign-in-tt-bg-choco-heaven-portfolio-press-talent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.common-19,
+.sign-in-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.sign-in-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop,
+.sign-in-tt-about-us-tspecial-offers-tmy-account,
+.sign-in-tt-teams-of-use-tteams-of-use-tfrequently {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.common-20,
+.sign-in-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.sign-in-ttt-home-horizontal-divider-ticon,
+.sign-in-t-my-account,
+.sign-in-t-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready,
+.sign-in-ttt-about-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop,
+.sign-in-t-my-account-1,
+.sign-in-t-gift-cards-f21red,
+.sign-in-t-checkout-shop,
+.sign-in-t-paypal-png,
+.sign-in-ttt-find-astore-tprivacy-policy-twishlist-ttteams-of-use-tteams-of-use-tfrequently,
+.sign-in-t-wishlist,
+.sign-in-t-frequently {
+  display: flex;
+  flex-direction: column;
+}
+
+.common-21,
+.sign-in-t-item,
+.sign-in-tt-gift-cards-f21red {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.common-22,
+.sign-in-t-field,
+.sign-in-t-field-1,
+.sign-in-t-button,
+.sign-in-t-button-1,
+.sign-in-t-button-2,
+.sign-in-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy {
+  display: flex;
+  justify-content: center;
+}
+
+.common-23,
+.sign-in-t-icon,
+.sign-in-t-gifting,
+.sign-in-t-new-launches,
+.sign-in-t-brands,
+.sign-in-t-link-contact,
+.sign-in-t-bg-choco-heaven-portfolio-press-talent,
+.sign-in-press-talent,
+.sign-in-t-company-info,
+.sign-in-t-quick-links,
+.sign-in-my-account,
+.sign-in-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready,
+.sign-in-t-privacy-policy,
+.sign-in-wishlist,
+.sign-in-t-teams-of-use-1,
+.sign-in-frequently {
+  display: flex;
+  align-items: center;
+}
+
+.common-24,
+.sign-in-tt-careers-business-with-us-ttgift-cards-f21red-tcheckout-shop,
+.sign-in-tt-find-astore-tprivacy-policy-twishlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.common-25,
+.sign-in-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.sign-in-tt-vector-titem-ticon-t0ticon-t5titem,
+.sign-in-sign-up-with-email,
+.sign-in-button-1,
+.sign-in-tt-choco-heaven-tcompany-info-tquick-links-tmy-account {
+  justify-content: center;
+  align-items: center;
+}
+
+.common-9,
+.sign-in-sign-up-with-email,
+.sign-in-continue-with-apple {
+  color: rgba(255, 255, 255, 1);
+  font-family: Inter;
+  font-weight: 500;
+}
+
+.common-10,
+.sign-in-reset-password,
+.sign-in-create-an-account {
+  color: rgba(130, 130, 130, 1);
+  font-family: Inter;
+  text-align: center;
+}
+
+.common-11,
+.sign-in-label,
+.sign-in-label-1,
+.sign-in-or-continue-with {
+  color: rgba(130, 130, 130, 1);
+  font-family: Inter;
+}
+
+.common-12,
+.sign-in-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.sign-in-bg-choco-heaven {
+  font-family: Poppins;
+  font-weight: 500;
+}
+
+.common-13,
+.sign-in-sign-in-1,
+.sign-in-enter-your-email-to-sign-in-for-this-app {
+  font-family: Poppins;
+  text-align: center;
+}
+
+.common-1,
+.sign-in-field,
+.sign-in-field-1 {
+  display: flex;
+  width: 327px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.common-2,
+.sign-in-divider,
+.sign-in-divider-1 {
+  width: 102px;
+  height: 1px;
+  background-color: rgba(230, 230, 230, 1);
+}
+
+.common-3,
+.sign-in-wrapper,
+.sign-in-sign-in {
+  display: flex;
+  width: 100%;
+}
+
+.common-4,
+.sign-in-portfolio,
+.sign-in-tt-choco-heaven-tcompany-info-tquick-links-tmy-account {
+  display: flex;
+  height: 25px;
+}
+
+.common-5,
+.sign-in-sign-up-with-email,
+.sign-in-button-1,
+.sign-in-footer {
+  display: flex;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.common-6,
+.sign-in-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.sign-in-tt-vector-titem-ticon-t0ticon-t5titem {
+  display: flex;
+  color: rgba(59, 59, 59, 1);
+}
+
+.common-7,
+.sign-in-icon,
+.sign-in-icon-1,
+.sign-in-icon-2,
+.sign-in-icon-3 {
+  width: 7px;
+  height: 14px;
+}
+
+.common-8,
+.sign-in-google,
+.sign-in-apple-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.sign-in-sign-in {
+  flex-shrink: 0;
+  height: 100vh;
+  flex-direction: column;
+  row-gap: 2px;
+  background-color: rgba(250, 250, 250, 1);
+  align-items: center;
+  overflow: clip;
+  font-size: 14px;
+  letter-spacing: 0em;
+}
+
+.sign-in-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+  align-self: stretch;
+  padding-bottom: 25px;
+  padding-top: 23px;
+  padding-right: 38px;
+  padding-left: 37px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(95px);
+  justify-content: center;
+}
+
+.sign-in-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+  flex-shrink: 0;
+  height: 32px;
+  column-gap: 244px;
+  row-gap: 11px;
+}
+
+.sign-in-t-choco-heaven {
+  padding-top: 10px;
+}
+
+.sign-in-choco-heaven {
+  font-size: 22px;
+}
+
+.sign-up-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+  align-self: stretch;
+  padding-bottom: 25px;
+  padding-top: 23px;
+  padding-right: 38px;
+  display: flex;
+  padding-left: 37px;
+  font-family: poppins;
+  text-transform: capitalize;
+  letter-spacing: 0.19em;
+  line-height: 12px;
+  font-size: 23px;
+  background-color: #FAFAFA;
+  backdrop-filter: blur(95px);
+  justify-content: center;
+}
+
+.sign-in-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+  column-gap: 24px;
+  row-gap: 13px;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.sign-in-ttt-home-horizontal-divider-ticon {
+  flex-shrink: 0;
+  width: 55px;
+}
+
+.sign-in-tt-home-horizontal-divider-ticon {
+  flex-grow: 1;
+}
+
+.sign-in-t-home-horizontal-divider {
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+.sign-in-home {
+  color: rgba(255, 116, 155, 1);
+}
+
+.sign-in-horizontal-divider {
+  height: 2px;
+  background-color: rgba(255, 116, 155, 1);
+}
+
+.sign-in-t-icon {
+  flex-shrink: 0;
+  width: 0px;
+}
+
+.sign-in-icon {
+  flex-shrink: 0;
+  margin-left: -7px;
+}
+
+.sign-in-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+  flex-grow: 1;
+  column-gap: 1px;
+}
+
+.sign-in-t-shop {
+  align-self: stretch;
+}
+
+.sign-in-t-icon-1 {
+  padding-left: 3.7px;
+}
+
+.sign-in-icon-1 {
+  flex-shrink: 0;
+}
+
+.sign-in-t-gifting {
+  padding-left: 15px;
+  align-self: stretch;
+}
+
+.sign-in-gifting {
+  flex-grow: 1;
+}
+
+.sign-in-vector {
+  flex-shrink: 0;
+  height: 4px;
+  width: 9px;
+}
+
+.sign-in-t-new-launches {
+  padding-left: 11px;
+  align-self: stretch;
+}
+
+.sign-in-new-launches {
+  flex-grow: 1;
+}
+
+.sign-in-icon-2 {
+  margin-left: 3px;
+}
+
+.sign-in-t-brands {
+  padding-left: 7px;
+  align-self: stretch;
+}
+
+.sign-in-brands {
+  flex-grow: 1;
+}
+
+.sign-in-t-icon-2 {
+  padding-left: 4px;
+}
+
+.sign-in-icon-3 {
+  flex-shrink: 0;
+}
+
+.sign-in-t-link-contact {
+  padding-left: 6px;
+  align-self: stretch;
+}
+
+.sign-in-link-contact {
+  flex-grow: 1;
+}
+
+.sign-in-tt-vector-titem-ticon-t0ticon-t5titem {
+  height: 40px;
+  column-gap: 1px;
+  margin-bottom: 4px;
+  font-family: Font Awesome 5 Free;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sign-in-vector-1 {
+  height: 19px;
+  width: 24px;
+}
+
+.sign-in-t-item {
+  padding-left: 13px;
+  align-self: stretch;
+  align-items: flex-end;
+}
+
+.sign-in-item {
+  flex-shrink: 0;
+  height: 30px;
+  width: 44px;
+}
+
+.sign-in-t-icon-3 {
+  padding-left: 15px;
+}
+
+.sign-in-icon-4 {
+  flex-shrink: 0;
+  height: 18px;
+  width: 18px;
+}
+
+.sign-in-component {
+  padding-bottom: 7px;
+}
+
+.sign-in-t-icon-4 {
+  padding-left: 21px;
+}
+
+.sign-in-icon-5 {
+  flex-shrink: 0;
+  height: 18px;
+  width: 16px;
+}
+
+.sign-in-component-1 {
+  padding-bottom: 7px;
+  padding-left: 2.3px;
+}
+
+.sign-in-t-item-1 {
+  padding-left: 5.8px;
+  align-self: stretch;
+  align-items: flex-end;
+}
+
+.sign-in-item-1 {
+  flex-shrink: 0;
+  height: 30px;
+  width: 41px;
+}
+
+.sign-in-sign-in-1 {
+  align-self: stretch;
+  padding-top: 117px;
+  line-height: 1.5;
+  font-weight: 600;
+  font-size: 21px;
+}
+
+.sign-in-enter-your-email-to-sign-in-for-this-app {
+  line-height: 1.5;
+}
+
+.sign-in-t-field {
+  padding-top: 16px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-in-field {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-in-label {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.sign-in-t-field-1 {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-in-field-1 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-in-label-1 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.sign-in-t-button {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-in-sign-up-with-email {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 103px;
+  padding-left: 103px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.sign-in-reset-password {
+  align-self: stretch;
+  padding-top: 16px;
+  line-height: 1.4;
+}
+
+.sign-in-tt-divider-or-continue-with-divider {
+  flex-shrink: 0;
+  padding-right: 1px;
+  height: 36px;
+  align-self: stretch;
+}
+
+.sign-in-t-divider-or-continue-with-divider {
+  flex-shrink: 0;
+  height: 20px;
+  width: 327px;
+  column-gap: 8px;
+}
+
+.sign-in-divider {
+  flex-shrink: 0;
+}
+
+.sign-in-or-continue-with {
+  line-height: 1.4;
+}
+
+.sign-in-divider-1 {
+  flex-shrink: 0;
+}
+
+.sign-in-t-button-1 {
+  padding-top: 16px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-in-button {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 10px;
+  padding-right: 77px;
+  padding-left: 78px;
+  padding-bottom: 10px;
+  background-color: white;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-in-t-google-continue-with-google {
+  column-gap: 8px;
+}
+
+.sign-in-google {
+  flex-shrink: 0;
+}
+
+.sign-in-continue-with-google {
+  font-family: Inter;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.sign-in-t-button-2 {
+  padding-top: 16px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-in-button-1 {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 10px;
+  padding-right: 81px;
+  padding-left: 83px;
+  padding-bottom: 10px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-in-t-apple-logo-continue-with-apple {
+  column-gap: 7px;
+}
+
+.sign-in-apple-logo {
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/assets/apple-logo.png);
+}
+
+.sign-in-continue-with-apple {
+  line-height: 1.4;
+}
+
+.sign-in-create-an-account {
+  align-self: stretch;
+  padding-top: 16px;
+  line-height: 1.4;
+}
+
+.sign-in-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy {
+  align-self: stretch;
+  padding-top: 16px;
+  padding-right: 593px;
+  padding-left: 592px;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 12px;
+  font-family: Inter;
+}
+
+.sign-in-text {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-in-text-1 {
+  color: rgba(130, 130, 130, 1);
+}
+
+/* Base styles */
+.sign-in-t-footer {
+  padding-top: 227px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-in-footer {
+  justify-content: center;
+  padding-top: 79px;
+  padding-right: 239px;
+  padding-left: 71px;
+  padding-bottom: 85px;
+  flex-direction: column;
+  row-gap: 2px;
+  align-items: flex-start;
+  font-family: Rubik;
+  color: rgba(196, 196, 196, 1);
+  line-height: 25px;
+}
+
+.sign-in-tt-bg-choco-heaven-portfolio-press-talent {
+  flex-shrink: 0;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  padding-top: 120px;
+  padding-right: 52px;
+  padding-left: 52px;
+  padding-bottom: 52px;
+  height: 197px;
+}
+
+/* Media query for screens smaller than 1500px */
+@media (max-width: 1500px) {
+  .sign-in-t-footer {
+    padding-top: 150px;
+    padding-right: 10px;
+  }
+
+  .sign-in-footer {
+    padding-top: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 40px;
+    row-gap: 10px;
+    align-items: center; /* Center the items to avoid clutter */
+    font-size: 14px; /* Reduce font size if necessary */
+  }
+
+  .sign-in-tt-bg-choco-heaven-portfolio-press-talent {
+    padding-top: 60px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    height: auto; /* Adjust height as needed */
+  }
+}
+
+/* Media query for screens smaller than 1000px */
+@media (max-width: 1000px) {
+  .sign-in-t-footer {
+    padding-top: 100px;
+    padding-right: 5px;
+  }
+
+  .sign-in-footer {
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    row-gap: 5px;
+    align-items: center; /* Center the items to avoid clutter */
+    font-size: 12px; /* Reduce font size if necessary */
+  }
+
+  .sign-in-tt-bg-choco-heaven-portfolio-press-talent {
+    padding-top: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    height: auto; /* Adjust height as needed */
+  }
+}
+
+.sign-in-t-bg-choco-heaven-portfolio-press-talent {
+  flex-shrink: 0;
+  width: 379px;
+}
+
+.sign-in-bg-choco-heaven {
+  right: -566px;
+  left: -566px;
+  bottom: -189px;
+  text-align: center;
+  height: 334px;
+  font-size: 175px;
+  color: rgba(255, 255, 255, 0.09);
+  letter-spacing: 0.06em;
+}
+
+.sign-in-press-talent {
+  z-index: 1;
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+.sign-in-portfolio {
+  flex-shrink: 0;
+  top: -3px;
+  right: -53px;
+  align-items: center;
+  width: 88px;
+}
+
+.sign-in-tt-choco-heaven-tcompany-info-tquick-links-tmy-account {
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-self: stretch;
+  column-gap: 152px;
+  row-gap: 9.3px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+}
+
+.sign-in-t-choco-heaven-1 {
+  padding-top: 14px;
+  height: 26px;
+  margin-bottom: 0.5px;
+}
+
+.sign-in-choco-heaven-1 {
+  font-family: Poppins;
+  font-size: 28px;
+}
+
+.sign-in-t-company-info {
+  padding-top: 3px;
+  padding-left: 52px;
+}
+
+.sign-in-company-info {
+  flex-grow: 1;
+  font-size: 13px;
+}
+
+.sign-in-t-quick-links {
+  padding-left: 96px;
+  padding-bottom: 3px;
+}
+
+.sign-in-quick-links {
+  flex-grow: 1;
+  font-size: 13px;
+}
+
+.sign-in-t-my-account {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 131px;
+}
+
+.sign-in-my-account {
+  flex-grow: 1;
+}
+
+.sign-in-ttt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+  z-index: 2;
+  padding-top: 19px;
+  padding-right: 12px;
+  align-self: stretch;
+}
+
+.sign-in-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+  flex-grow: 1;
+  column-gap: 56px;
+  row-gap: 38px;
+  align-items: flex-start;
+}
+
+.sign-in-t-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready {
+  flex-shrink: 0;
+  padding-top: 0.28px;
+  width: 439px;
+}
+
+.sign-in-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready {
+  flex-grow: 1;
+}
+
+.sign-in-ttt-about-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+  align-self: stretch;
+  row-gap: 2px;
+}
+
+.sign-in-tt-about-us-tspecial-offers-tmy-account {
+  column-gap: 285px;
+  row-gap: 16px;
+}
+
+.sign-in-t-about-us {
+  padding-top: 6px;
+}
+
+.sign-in-t-special-offers-tmy-account {
+  column-gap: 141px;
+  row-gap: 13px;
+}
+
+.sign-in-t-my-account-1 {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 119px;
+}
+
+.sign-in-tt-careers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+  column-gap: 166px;
+  row-gap: 29px;
+}
+
+.sign-in-t-careers-business-with-us {
+  row-gap: 8px;
+  align-items: flex-start;
+}
+
+.sign-in-business-with-us {
+  align-self: stretch;
+}
+
+.sign-in-tt-gift-cards-f21red {
+  padding-left: 67px;
+}
+
+.sign-in-t-gift-cards-f21red {
+  row-gap: 8px;
+  align-items: flex-start;
+}
+
+.sign-in-gift-cards {
+  align-self: stretch;
+}
+
+.sign-in-t-checkout-shop {
+  flex-shrink: 0;
+  width: 98px;
+  row-gap: 8px;
+}
+
+.sign-in-shop-1 {
+  width: 53px;
+}
+
+.sign-in-tt-paypal-png-tttfind-astore-tprivacy-policy-twishlist-ttteams-of-use-tteams-of-use-tfrequently {
+  z-index: 3;
+  padding-right: 20px;
+  align-self: stretch;
+  column-gap: 213px;
+  row-gap: 22px;
+}
+
+.sign-in-t-paypal-png {
+  flex-shrink: 0;
+  height: 43px;
+  width: 282px;
+  align-items: center;
+}
+
+.sign-in-paypal-png {
+  flex-shrink: 0;
+  height: 25px;
+  width: 282px;
+  max-height: 100%;
+  max-width: 100%;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: 100% 100%;
+  background-image: url(/assets/paypal-png.png);
+}
+
+.sign-in-ttt-find-astore-tprivacy-policy-twishlist-ttteams-of-use-tteams-of-use-tfrequently {
+  align-self: stretch;
+  row-gap: 2px;
+}
+
+.sign-in-tt-find-astore-tprivacy-policy-twishlist {
+  column-gap: 141px;
+  row-gap: 13px;
+}
+
+.sign-in-t-find-astore {
+  padding-top: 6px;
+}
+
+.sign-in-t-privacy-policy {
+  padding-left: 125px;
+}
+
+.sign-in-privacy-policy {
+  flex-grow: 1;
+}
+
+.sign-in-t-wishlist {
+  flex-shrink: 0;
+  width: 78px;
+}
+
+.sign-in-wishlist {
+  flex-grow: 1;
+}
+
+.sign-in-tt-teams-of-use-tteams-of-use-tfrequently {
+  column-gap: 144px;
+  row-gap: 13px;
+}
+
+.sign-in-t-teams-of-use {
+  padding-top: 6px;
+}
+
+.sign-in-t-teams-of-use-1 {
+  padding-left: 113px;
+}
+
+.sign-in-teams-of-use-1 {
+  flex-grow: 1;
+}
+
+.sign-in-t-frequently {
+  flex-shrink: 0;
+  width: 111px;
+}
+
+.sign-in-frequently {
+  flex-grow: 1;
+}
+
+.sign-in-field:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.sign-in-label:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-in-field-1:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.sign-in-label-1:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+@media (min-width: 1502px) {
+  .sign-in-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tt-choco-heaven-tcompany-info-tquick-links-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tt-about-us-tspecial-offers-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .sign-in-t-special-offers-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tt-careers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tt-paypal-png-tttfind-astore-tprivacy-policy-twishlist-ttteams-of-use-tteams-of-use-tfrequently {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tt-find-astore-tprivacy-policy-twishlist {
+    flex-wrap: nowrap;
+  }
+  .sign-in-tt-teams-of-use-tteams-of-use-tfrequently {
+    flex-wrap: nowrap;
+  }
+}

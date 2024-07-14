@@ -1,0 +1,158 @@
+<%- include('../layouts/verifyOTPHeader') %>
+<div id="firejet-html-app">
+    <div class="verify-email-otp-wrapper">
+        <div class="verify-email-otp-verify-email-otp">
+            <div class="verify-email-otp-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem">
+                <div class="verify-email-otp-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact">
+                    <div class="verify-email-otp-t-choco-heaven">
+                        <div class="verify-email-otp-choco-heaven">CHOCO HEAVEN</div>
+                        <div class="verify-email-otp-tt-vector-titem-ticon-t0ticon-t5titem"></div>
+                    </div>
+                </div>
+            </div>
+            <heading class="verify-email-otp-verify"><a href="/verfifyOtp" style="text-decoration: none; color: black;">Verify</a></heading>
+            <heading class="verify-email-otp-your-code-was-send-to-you-via-email">Your code was sent to you via email</heading>
+            <div class="verify-email-otp-tt-field-field-field-field">
+                <form action="/otpVerify" method="post" id="contactForm" novalidate="novalidate">
+                    <div class="verify-email-otp-t-field-field-field-field">
+                        <input type="text" name="verifyOtp" maxlength="1" id="otp1" class="verify-email-otp-field" style="text-align: center; border: 1px solid #ccc;" onfocus="this.style.borderColor='#3478f6';" />
+                        <input type="text" name="verifyOtp" maxlength="1" id="otp2" class="verify-email-otp-field" style="text-align: center; border: 1px solid #ccc;" onfocus="this.style.borderColor='#3478f6';" />
+                        <input type="text" name="verifyOtp" maxlength="1" id="otp3" class="verify-email-otp-field" style="text-align: center; border: 1px solid #ccc;" onfocus="this.style.borderColor='#3478f6';" />
+                        <input type="text" name="verifyOtp" maxlength="1" id="otp4" class="verify-email-otp-field" style="text-align: center; border: 1px solid #ccc;" onfocus="this.style.borderColor='#3478f6';" />
+                    </div>
+                </div>
+
+                <div class="verify-email-otp-t-button">
+                    <button type="button" class="verify-email-otp-verify-1" id="verifyBtn">Verify</button>
+                </div>
+                <div class="verify-email-otp-tt-resend-otp-tvector-tframe">
+                  <div class="verify-email-otp-t-resend-otp-tvector-tframe">
+                      <button class="verify-email-otp-component-2"><a href="/resendOTP" style="text-decoration: none; color: white;">Resend code</a></button>
+                  </div>
+                </div>              
+                <div id="otp-timer" class="verify-email-otp-expiry">Expires at: <span id="time"></span></div>
+            </form>
+            <div class="verify-email-otp-t-footer"></div>
+        </div>
+    </div>
+</div>
+
+<% if (typeof incorrectOtp !== 'undefined' && incorrectOtp) { %>
+    <!-- Incorrect OTP Modal HTML -->
+    <div id="otpModal" class="modal fade show" style="display: block;">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>
+                    <h4 class="modal-title w-100">Incorrect OTP!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Your OTP is incorrect. Please go back and try again.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-block" data-dismiss="modal"><a href="/verifyOtp" style="color: white; text-decoration: none;">Go back</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<!-- OTP Input Empty model -->
+<div id="otpModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <h4 class="modal-title w-100">Invalid OTP!</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Your OTP is incorrect. Please go back and try again.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger btn-block" data-dismiss="modal"><a href="/verifyOtp" style="color: white; text-decoration: none;">Go back</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const otpFields = document.querySelectorAll('.verify-email-otp-field');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const contactForm = document.getElementById('contactForm');
+    const otpTimerElement = document.getElementById('otp-timer');
+    const timeElement = document.getElementById('time');
+    let timerDuration = 59; // 1 minute in seconds
+    let timer;
+
+const startTimer = (duration, display) => {
+    let timer = duration, minutes, seconds;
+    setInterval(() => {
+        minutes = parseInt(timer / 59, 10);
+        seconds = parseInt(timer % 59, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = 0;
+            // Disable the verify button if time runs out
+            verifyBtn.disabled = true;
+            otpFields.forEach(field => field.disabled = true);
+        }
+    }, 1000);
+};
+
+    window.onload = () => {
+        startTimer(timerDuration, timeElement);
+    };
+
+    verifyBtn.addEventListener('click', () => {
+        let otpFilled = true;
+        otpFields.forEach(field => {
+            if (field.value === '') {
+                otpFilled = false;
+            }
+        });
+
+        if (otpFilled) {
+            contactForm.submit();
+        } else {
+            $('#otpModal').modal('show');
+        }
+    });
+
+    otpFields.forEach((field, index) => {
+        field.addEventListener('keydown', (event) => {
+            if (event.key === 'Backspace') {
+                if (field.value === '') {
+                    if (index > 0) {
+                        otpFields[index - 1].focus();
+                    }
+                }
+            } else {
+                if (index < otpFields.length - 1 && field.value !== '') {
+                    otpFields[index + 1].focus();
+                }
+            }
+        });
+
+        field.addEventListener('input', () => {
+            let value = field.value;
+            for (let i = index + 1; i < otpFields.length; i++) {
+                otpFields[i].value = '';
+            }
+            for (let i = index; i < otpFields.length; i++) {
+                if (value !== '') {
+                    otpFields[i].value = value.charAt(i - index);
+                }
+            }
+        });
+    });
+</script>
+<%- include('../layouts/loginFooter') %>

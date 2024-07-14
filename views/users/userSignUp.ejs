@@ -1,0 +1,216 @@
+<%- include('../layouts/signUpHeader') %>
+<% if(typeof message !== "undefined"){ %>
+  <div class="msg msg-danger show" role="alert">
+    <span class="glyphicon glyphicon-remove"></span> <%= message %> 
+  </div>
+<% } %>
+<div id="firejet-html-app">
+      <div class="sign-up-wrapper">
+        <div class="sign-up-sign-up">
+          <div class="sign-up-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem" >
+            <div class="sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem" >
+              <div class="sign-up-t-choco-heaven">
+                <heading class="sign-up-choco-heaven">CHOCO HEAVEN</heading>
+              </div>
+            </div>
+          </div>
+          <heading class="sign-up-create-an-account">Create an account</heading
+          ><heading class="sign-up-enter-your-email-to-sign-up-for-this-app" >Enter your email to sign up for this app</heading>
+          <form action="/signUp" method="post" id="signUpForm" onsubmit="checkPassword(event)">
+            <div class="sign-up-t-field">
+              <div class="sign-up-field">
+                <input
+                  name="firstName"
+                  placeholder="First Name"
+                  id="firstName"
+                  type="text"
+                  class="sign-up-label"
+                />
+              </div>
+            </div>
+            <div class="sign-up-t-field-1">
+              <div class="sign-up-field-1">
+                <input
+                  name="lastName"
+                  placeholder="Last Name"
+                  id="lastName"
+                  type="text"
+                  class="sign-up-label-1"
+                />
+              </div>
+            </div>
+            <div class="sign-up-t-field-2">
+              <div class="sign-up-field-2">
+                <input
+                  name="email"
+                  placeholder="email@domain.com"
+                  id="email"
+                  type="email"
+                  class="sign-up-label-2"
+                />
+              </div>
+            </div>
+            <div class="sign-up-t-field-3">
+              <div class="sign-up-field-3">
+                <input
+                  name="password"
+                  placeholder="Password"
+                  id="password"
+                  type="password"
+                  class="sign-up-label-3"
+                />
+              </div>
+            </div>
+            <div class="sign-up-t-field-4">
+              <div class="sign-up-field-4">
+                <input
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  id="confirmPassword"
+                  type="password"
+                  class="sign-up-label-4"
+                />
+              </div>
+            </div>
+            <div class="sign-up-t-button">
+              <button type="submit" value="submit" class="sign-up-sign-up-with-email">Sign up with email</button>
+            </div>
+          </form>
+          
+          <div class="sign-up-tt-divider-or-continue-with-divider">
+            <div class="sign-up-t-divider-or-continue-with-divider">
+              <div class="sign-up-divider"></div>
+              <div class="sign-up-or-continue-with">or continue with</div>
+              <div class="sign-up-divider-1"></div>
+            </div>
+          </div>
+          <div class="sign-up-t-button-1">
+            <div class="sign-up-t-google-continue-with-google">
+              <object
+                data="/assets/Google.svg"
+                class="sign-up-google"
+              ></object>
+              <div class="sign-up-continue-with-google">
+                Continue with Google
+              </div>
+            </div>
+          </div>
+          <div class="sign-up-t-button-2">
+            <div class="sign-up-t-apple-logo-continue-with-apple">
+              <div class="sign-up-apple-logo"></div>
+              <div class="sign-up-continue-with-apple">Continue with Apple</div>
+            </div>
+          </div>
+          <div class="sign-up-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy" >
+            <p>
+              <span class="sign-up-text" >By clicking continue, you agree to our </span
+              >Terms of Service <span class="sign-up-text-1">and </span>Privacy
+              Policy
+            </p>
+          </div>
+          <div class="sign-up-t-footer">
+            <footer class="sign-up-footer">
+              <section class="sign-up-tttt-choco-heaven-tcompany-info-tquick-links-tmy-account-tttmazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop-ttpaypal-png-tfind-astore-tprivacy-policy-twishlist-tttteams-of-use-tteams-of-use-tfrequently" >
+                <section class="sign-up-ttt-choco-heaven-tcompany-info-tquick-links-tmy-account-tttmazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop-ttpaypal-png-tfind-astore-tprivacy-policy-twishlist" >
+                  <div class="sign-up-tt-choco-heaven-tcompany-info-tquick-links-tmy-account" >
+                    <div class="sign-up-t-choco-heaven-1">
+                      <div class="sign-up-choco-heaven-1">CHOCO HEAVEN</div>
+                    </div>
+                    <div class="sign-up-t-company-info">
+                      <div class="sign-up-company-info">Company Info</div>
+                    </div>
+                    <div class="sign-up-t-quick-links">
+                      <div class="sign-up-quick-links">Quick Links</div>
+                    </div>
+                    <div class="sign-up-t-my-account">
+                      <div class="sign-up-my-account">MY ACCOUNT</div>
+                    </div>
+                  </div>
+                  <section class="sign-up-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop" >
+                    <div class="sign-up-t-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready" >
+                      <div class="sign-up-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready" >
+                        <span
+                          ><p>
+                            Mazia store is a premium theme with advanced admin
+                            module. It’s
+                          </p>
+                          <p>
+                            extremely customizable, easy to use and fully
+                            responsive and retina
+                          </p>
+                          <p>ready.</p></span
+                        >
+                      </div>
+                    </div>
+                    <div class="sign-up-ttt-about-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop" >
+                      <div class="sign-up-tt-about-us-tspecial-offers-tmy-account" >
+                        <div class="sign-up-t-about-us">
+                          <div>About us</div>
+                        </div>
+                        <div class="sign-up-t-special-offers-tmy-account">
+                          <div>Special Offers</div>
+                          <div class="sign-up-t-my-account-1">
+                            <div class="sign-up-my-account">My account</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sign-up-tt-careers-business-with-us-ttgift-cards-f21red-tcheckout-shop" >
+                        <div class="sign-up-t-careers-business-with-us">
+                          <div>Careers</div>
+                          <div class="sign-up-business-with-us">
+                            Business With Us
+                          </div>
+                        </div>
+                        <div class="sign-up-tt-gift-cards-f21red">
+                          <div class="sign-up-t-gift-cards-f21red">
+                            <div class="sign-up-gift-cards">Gift Cards</div>
+                            <div>F21 Red</div>
+                          </div>
+                        </div>
+                        <div class="sign-up-t-checkout-shop">
+                          <div>Checkout</div>
+                          <div class="sign-up-shop-1">Shop</div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="sign-up-tt-paypal-png-tfind-astore-tprivacy-policy-twishlist" >
+                    <div class="sign-up-t-paypal-png">
+                      <div class="sign-up-paypal-png"></div>
+                    </div>
+                    <div class="sign-up-t-find-astore">
+                      <div class="sign-up-find-astore">Find a Store</div>
+                    </div>
+                    <div class="sign-up-t-privacy-policy">
+                      <div class="sign-up-privacy-policy">Privacy Policy</div>
+                    </div>
+                    <div class="sign-up-t-wishlist">
+                      <div class="sign-up-wishlist">Wishlist</div>
+                    </div>
+                  </section>
+                </section>
+                <section class="sign-up-tt-teams-of-use-tteams-of-use-tfrequently" >
+                  <div class="sign-up-t-teams-of-use">
+                    <div>Teams of Use</div>
+                  </div>
+                  <div class="sign-up-t-teams-of-use-1">
+                    <div class="sign-up-teams-of-use-1">Teams of Use</div>
+                  </div>
+                  <div class="sign-up-t-frequently">
+                    <div class="sign-up-frequently">Frequently</div>
+                  </div>
+                </section>
+              </section>
+              <div class="sign-up-ttt-bg-choco-heaven-portfolio-press-talent">
+                <div class="sign-up-tt-bg-choco-heaven-portfolio-press-talent">
+                  <div class="sign-up-t-bg-choco-heaven-portfolio-press-talent">
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <%- include('../layouts/loginFooter') %>

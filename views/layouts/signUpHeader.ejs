@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500"
+    />
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="/css/signUpStyles.css" />
+    <link rel="stylesheet" type="text/css" href="/css//signUpCompiled-styles.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="/js/validation.js"></script> -->
+</head>
+  <style>
+    .msg {
+      background: white;
+      color: #fe4343;
+      font-weight: 300;
+      font-family: "poppins";
+      font-size: small;
+      padding: 17px;
+      padding-left: 18px;
+      border-top: solid 3px #CCCCCC;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      -webkit-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+         -moz-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+              box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+      position: fixed;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: top 0.8s ease-in-out, opacity 0.8s ease-in;
+      z-index: 1000;
+    }
+    
+    .msg.show {
+      top: 15px;
+      opacity: 1;
+    }
+
+    .msg-clear {
+      border-color: #fefefe;
+      -webkit-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+         -moz-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+              box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+    }
+    .msg-info {
+      border-color: #b8dbf2;
+    }
+    .msg-success {
+      border-color: #cef2b8;
+    }
+    .msg-warning {
+      border-color: rgba(255,165,0,.5);
+    }
+    .msg-danger {
+      border-color: #f84741;
+    }
+    .msg-primary {
+      border-color: #9ca6f1;
+    }
+    .msg-magick {
+      border-color: #e0b8f2;
+    }
+    .msg-info-text {
+      color: #39b3d7;
+    }
+    .msg-success-text {
+      color: #80d651;
+    }
+    .msg-warning-text {
+      color: #db9e34;
+    }
+    .msg-danger-text {
+      color: #c9302c;
+    }
+    .msg-primary-text {
+      color: rgba(47,106,215,.9);
+    }
+    .msg-magick-text {
+      color: #bb39d7;
+    }
+  </style>
+  <script>
+    // checking email
+function validateEmail(email) {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(String(email).toLowerCase());
+}
+
+    $(document).ready(function() {
+    if ($('.msg').length) {
+      $('.msg').addClass('show');
+      setTimeout(function() {
+        $('.msg').removeClass('show');
+      }, 4000);
+    }
+  });
+  </script>
+  <body style="margin: 0px">

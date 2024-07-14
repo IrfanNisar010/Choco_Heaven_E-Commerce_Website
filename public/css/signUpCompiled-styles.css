@@ -1,0 +1,1187 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600");
+@import url("https://api.fontshare.com/css?f[]=poppins@400,500,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Font Awesome 5 Free:wght@400");
+@import url("https://api.fontshare.com/css?f[]=font awesome 5 free@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=inter@400,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=rubik@400,500&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-31,
+.sign-up-footer,
+.sign-up-t-bg-choco-heaven-portfolio-press-talent {
+  position: relative;
+  z-index: 0;
+}
+
+.common-32,
+.sign-up-tttt-choco-heaven-tcompany-info-tquick-links-tmy-account-tttmazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop-ttpaypal-png-tfind-astore-tprivacy-policy-twishlist-tttteams-of-use-tteams-of-use-tfrequently,
+.sign-up-bg-choco-heaven,
+.sign-up-portfolio {
+  position: absolute;
+  z-index: 0;
+}
+
+.common-28,
+.sign-up-choco-heaven,
+.sign-up-choco-heaven-1 {
+  text-transform: capitalize;
+  letter-spacing: 0.19em;
+  line-height: 12px;
+}
+
+.common-29,
+.sign-up-tt-vector-titem-ticon-t0ticon-t5titem,
+.sign-up-bg-choco-heaven {
+  text-transform: capitalize;
+  line-height: 12px;
+}
+
+.common-30,
+.sign-up-company-info,
+.sign-up-quick-links {
+  text-transform: uppercase;
+  line-height: 16px;
+}
+
+.common-27,
+.sign-up-field,
+.sign-up-field-1,
+.sign-up-field-2,
+.sign-up-field-3,
+.sign-up-field-4 {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(224, 224, 224, 1);
+}
+
+.common-15,
+.sign-up-t-item-1,
+.sign-up-t-footer,
+.sign-up-t-careers-business-with-us,
+.sign-up-t-paypal-png {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.common-16,
+.sign-up-tt-home-horizontal-divider-ticon,
+.sign-up-t-divider-or-continue-with-divider,
+.sign-up-t-google-continue-with-google,
+.sign-up-t-special-offers-tmy-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-17,
+.sign-up-t-icon-1,
+.sign-up-t-icon-2,
+.sign-up-t-icon-3,
+.sign-up-t-icon-4 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-18,
+.sign-up-t-field,
+.sign-up-tt-divider-or-continue-with-divider,
+.sign-up-t-button-1,
+.sign-up-t-button-2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.common-19,
+.sign-up-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.sign-up-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop,
+.sign-up-tt-about-us-tspecial-offers-tmy-account,
+.sign-up-tt-teams-of-use-tteams-of-use-tfrequently {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.common-20,
+.sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.sign-up-tt-choco-heaven-tcompany-info-tquick-links-tmy-account {
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-21,
+.sign-up-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.sign-up-ttt-home-horizontal-divider-ticon,
+.sign-up-tttt-choco-heaven-tcompany-info-tquick-links-tmy-account-tttmazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop-ttpaypal-png-tfind-astore-tprivacy-policy-twishlist-tttteams-of-use-tteams-of-use-tfrequently,
+.sign-up-ttt-choco-heaven-tcompany-info-tquick-links-tmy-account-tttmazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop-ttpaypal-png-tfind-astore-tprivacy-policy-twishlist,
+.sign-up-t-my-account,
+.sign-up-t-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready,
+.sign-up-ttt-about-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop,
+.sign-up-t-my-account-1,
+.sign-up-t-gift-cards-f21red,
+.sign-up-t-checkout-shop,
+.sign-up-t-wishlist,
+.sign-up-t-frequently {
+  display: flex;
+  flex-direction: column;
+}
+
+.common-22,
+.sign-up-t-item,
+.sign-up-tt-gift-cards-f21red {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.common-23,
+.sign-up-t-field-1,
+.sign-up-t-field-2,
+.sign-up-t-field-3,
+.sign-up-t-field-4,
+.sign-up-t-button,
+.sign-up-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy {
+  display: flex;
+  justify-content: center;
+}
+
+.common-24,
+.sign-up-t-icon,
+.sign-up-t-gifting,
+.sign-up-t-new-launches,
+.sign-up-t-brands,
+.sign-up-t-link-contact,
+.sign-up-t-company-info,
+.sign-up-t-quick-links,
+.sign-up-my-account,
+.sign-up-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready,
+.sign-up-t-find-astore,
+.sign-up-t-privacy-policy,
+.sign-up-wishlist,
+.sign-up-t-teams-of-use-1,
+.sign-up-frequently,
+.sign-up-t-bg-choco-heaven-portfolio-press-talent,
+.sign-up-press-talent {
+  display: flex;
+  align-items: center;
+}
+
+.common-25,
+.sign-up-sign-up,
+.sign-up-footer {
+  flex-direction: column;
+  align-items: center;
+}
+
+.common-26,
+.sign-up-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.sign-up-tt-vector-titem-ticon-t0ticon-t5titem,
+.sign-up-sign-up-with-email,
+.sign-up-t-apple-logo-continue-with-apple,
+.sign-up-bg-choco-heaven {
+  justify-content: center;
+  align-items: center;
+}
+
+.common-11,
+.sign-up-sign-up-with-email,
+.sign-up-continue-with-apple {
+  color: rgba(255, 255, 255, 1);
+  font-family: Inter;
+  font-weight: 500;
+}
+
+.common-12,
+.sign-up-label,
+.sign-up-label-1,
+.sign-up-label-2,
+.sign-up-label-3,
+.sign-up-label-4,
+.sign-up-or-continue-with {
+  color: rgba(130, 130, 130, 1);
+  font-family: Inter;
+}
+
+.common-13,
+.sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.sign-up-bg-choco-heaven {
+  font-family: Poppins;
+  font-weight: 500;
+}
+
+.common-14,
+.sign-up-create-an-account,
+.sign-up-enter-your-email-to-sign-up-for-this-app {
+  font-family: Poppins;
+  text-align: center;
+}
+
+.common-1,
+.sign-up-field,
+.sign-up-field-1,
+.sign-up-field-2,
+.sign-up-field-3,
+.sign-up-field-4 {
+  display: flex;
+  width: 327px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.common-2,
+.sign-up-divider,
+.sign-up-divider-1 {
+  width: 102px;
+  height: 1px;
+  background-color: rgba(230, 230, 230, 1);
+}
+
+.common-3,
+.sign-up-wrapper,
+.sign-up-sign-up {
+  display: flex;
+  width: 100%;
+}
+
+.common-4,
+.sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem,
+.sign-up-tt-paypal-png-tfind-astore-tprivacy-policy-twishlist {
+  display: flex;
+  height: 32px;
+}
+
+.common-5,
+.sign-up-tt-choco-heaven-tcompany-info-tquick-links-tmy-account,
+.sign-up-portfolio {
+  display: flex;
+  height: 25px;
+}
+
+.common-6,
+.sign-up-tt-bg-choco-heaven-portfolio-press-talent,
+.sign-up-bg-choco-heaven {
+  display: flex;
+  height: 334px;
+}
+
+.common-7,
+.sign-up-sign-up-with-email,
+.sign-up-t-apple-logo-continue-with-apple,
+.sign-up-footer {
+  display: flex;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.common-8,
+.sign-up-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact,
+.sign-up-tt-vector-titem-ticon-t0ticon-t5titem {
+  display: flex;
+  color: rgba(59, 59, 59, 1);
+}
+
+.common-9,
+.sign-up-icon,
+.sign-up-icon-1,
+.sign-up-icon-2,
+.sign-up-icon-3 {
+  width: 7px;
+  height: 14px;
+}
+
+.common-10,
+.sign-up-google,
+.sign-up-apple-logo {
+  width: 20px;
+  height: 20px;
+}
+
+.sign-up-sign-up {
+  flex-shrink: 0;
+  height: 100%;
+  row-gap: 2px;
+  background-color: rgba(250, 250, 250, 1);
+  overflow: clip;
+  font-size: 14px;
+  letter-spacing: 0em;
+}
+
+.sign-up-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+  align-self: stretch;
+  padding-bottom: 25px;
+  padding-top: 23px;
+  padding-right: 38px;
+  display: flex;
+  padding-left: 37px;
+  background-color: #FAFAFA;
+  backdrop-filter: blur(95px);
+  justify-content: start;
+}
+
+.sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+  flex-shrink: 0;
+  column-gap: 244px;
+  row-gap: 11px;
+}
+
+.sign-up-t-choco-heaven {
+  padding-top: 10px;
+}
+
+.sign-up-choco-heaven {
+  font-size: 22px;
+}
+
+.sign-up-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+  column-gap: 24px;
+  row-gap: 13px;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.sign-up-ttt-home-horizontal-divider-ticon {
+  flex-shrink: 0;
+  width: 55px;
+}
+
+.sign-up-tt-home-horizontal-divider-ticon {
+  flex-grow: 1;
+}
+
+.sign-up-t-home-horizontal-divider {
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+.sign-up-home {
+  color: rgba(255, 116, 155, 1);
+}
+
+.sign-up-horizontal-divider {
+  height: 2px;
+  background-color: rgba(255, 116, 155, 1);
+}
+
+.sign-up-t-icon {
+  flex-shrink: 0;
+  width: 0px;
+}
+
+.sign-up-icon {
+  flex-shrink: 0;
+  margin-left: -7px;
+}
+
+.sign-up-tt-shop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+  flex-grow: 1;
+  column-gap: 1px;
+}
+
+.sign-up-t-shop {
+  align-self: stretch;
+}
+
+.sign-up-t-icon-1 {
+  padding-left: 3.7px;
+}
+
+.sign-up-icon-1 {
+  flex-shrink: 0;
+}
+
+.sign-up-t-gifting {
+  padding-left: 15px;
+  align-self: stretch;
+}
+
+.sign-up-gifting {
+  flex-grow: 1;
+}
+
+.sign-up-vector {
+  flex-shrink: 0;
+  height: 4px;
+  width: 9px;
+}
+
+.sign-up-t-new-launches {
+  padding-left: 11px;
+  align-self: stretch;
+}
+
+.sign-up-new-launches {
+  flex-grow: 1;
+}
+
+.sign-up-icon-2 {
+  margin-left: 3px;
+}
+
+.sign-up-t-brands {
+  padding-left: 7px;
+  align-self: stretch;
+}
+
+.sign-up-brands {
+  flex-grow: 1;
+}
+
+.sign-up-t-icon-2 {
+  padding-left: 4px;
+}
+
+.sign-up-icon-3 {
+  flex-shrink: 0;
+}
+
+.sign-up-t-link-contact {
+  padding-left: 6px;
+  align-self: stretch;
+}
+
+.sign-up-link-contact {
+  flex-grow: 1;
+}
+
+.sign-up-tt-vector-titem-ticon-t0ticon-t5titem {
+  height: 40px;
+  column-gap: 1px;
+  margin-bottom: 4px;
+  font-family: Font Awesome 5 Free;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sign-up-vector-1 {
+  height: 19px;
+  width: 24px;
+}
+
+.sign-up-t-item {
+  padding-left: 13px;
+  align-self: stretch;
+  align-items: flex-end;
+}
+
+.sign-up-item {
+  flex-shrink: 0;
+  height: 30px;
+  width: 44px;
+}
+
+.sign-up-t-icon-3 {
+  padding-left: 15px;
+}
+
+.sign-up-icon-4 {
+  flex-shrink: 0;
+  height: 18px;
+  width: 18px;
+}
+
+.sign-up-component {
+  padding-bottom: 7px;
+}
+
+.sign-up-t-icon-4 {
+  padding-left: 21px;
+}
+
+.sign-up-icon-5 {
+  flex-shrink: 0;
+  height: 18px;
+  width: 16px;
+}
+
+.sign-up-component-1 {
+  padding-bottom: 7px;
+  padding-left: 2.3px;
+}
+
+.sign-up-t-item-1 {
+  padding-left: 5.8px;
+  align-self: stretch;
+  align-items: flex-end;
+}
+
+.sign-up-item-1 {
+  flex-shrink: 0;
+  height: 30px;
+  width: 41px;
+}
+
+.sign-up-create-an-account {
+  align-self: stretch;
+  padding-top: 56px;
+  line-height: 1.5;
+  font-weight: 600;
+  font-size: 21px;
+}
+
+.sign-up-enter-your-email-to-sign-up-for-this-app {
+  line-height: 1.5;
+}
+
+.sign-up-t-field {
+  padding-top: 22px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-field {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-up-label {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.sign-up-t-field-1 {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-field-1 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-up-label-1 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.sign-up-t-field-2 {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-field-2 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-up-label-2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.sign-up-t-field-3 {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-field-3 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-up-label-3 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.sign-up-t-field-4 {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-field-4 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.sign-up-label-4 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.sign-up-t-button {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-sign-up-with-email {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 103px;
+  padding-left: 103px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.sign-up-tt-divider-or-continue-with-divider {
+  flex-shrink: 0;
+  padding-right: 1px;
+  height: 42px;
+  align-self: stretch;
+}
+
+.sign-up-t-divider-or-continue-with-divider {
+  flex-shrink: 0;
+  height: 20px;
+  width: 327px;
+  column-gap: 8px;
+}
+
+.sign-up-divider {
+  flex-shrink: 0;
+}
+
+.sign-up-or-continue-with {
+  line-height: 1.4;
+}
+
+.sign-up-divider-1 {
+  flex-shrink: 0;
+}
+
+.sign-up-t-button-1 {
+  padding-top: 22px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-t-google-continue-with-google {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 77px;
+  padding-left: 78px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: white;
+  column-gap: 8px;
+}
+
+.sign-up-google {
+  flex-shrink: 0;
+}
+
+.sign-up-continue-with-google {
+  font-family: Inter;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.sign-up-t-button-2 {
+  padding-top: 22px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.sign-up-t-apple-logo-continue-with-apple {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 81px;
+  padding-left: 83px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  column-gap: 7px;
+}
+
+.sign-up-apple-logo {
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(/assets/apple-logo.png);
+}
+
+.sign-up-continue-with-apple {
+  line-height: 1.4;
+}
+
+.sign-up-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy {
+  align-self: stretch;
+  padding-top: 22px;
+  padding-right: 593px;
+  padding-left: 592px;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 12px;
+  font-family: Inter;
+}
+
+.sign-up-text {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-up-text-1 {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-up-t-footer {
+  flex-shrink: 0;
+  padding-right: 1px;
+  height: 539px;
+  align-self: stretch;
+}
+
+.sign-up-footer {
+  flex-shrink: 0;
+  justify-content: flex-end;
+  height: 373px;
+  font-family: Rubik;
+  color: rgba(196, 196, 196, 1);
+  line-height: 25px;
+}
+
+.sign-up-tttt-choco-heaven-tcompany-info-tquick-links-tmy-account-tttmazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop-ttpaypal-png-tfind-astore-tprivacy-policy-twishlist-tttteams-of-use-tteams-of-use-tfrequently {
+  top: 79px;
+  left: 71px;
+  bottom: 85px;
+  width: 1201px;
+  row-gap: 0.7px;
+  align-items: flex-end;
+}
+
+.sign-up-ttt-choco-heaven-tcompany-info-tquick-links-tmy-account-tttmazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop-ttpaypal-png-tfind-astore-tprivacy-policy-twishlist {
+  flex-grow: 1;
+  align-self: stretch;
+  row-gap: 2px;
+}
+
+.sign-up-tt-choco-heaven-tcompany-info-tquick-links-tmy-account {
+  flex-shrink: 0;
+  column-gap: 152px;
+  row-gap: 9.3px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+}
+
+.sign-up-t-choco-heaven-1 {
+  padding-top: 14px;
+  height: 26px;
+  margin-bottom: 0.5px;
+}
+
+.sign-up-choco-heaven-1 {
+  font-family: Poppins;
+  font-size: 28px;
+}
+
+.sign-up-t-company-info {
+  padding-top: 3px;
+  padding-left: 52px;
+}
+
+.sign-up-company-info {
+  flex-grow: 1;
+  font-size: 13px;
+}
+
+.sign-up-t-quick-links {
+  padding-left: 96px;
+  padding-bottom: 3px;
+}
+
+.sign-up-quick-links {
+  flex-grow: 1;
+  font-size: 13px;
+}
+
+.sign-up-t-my-account {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 131px;
+}
+
+.sign-up-my-account {
+  flex-grow: 1;
+}
+
+.sign-up-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+  padding-top: 19px;
+  padding-right: 12px;
+  align-items: flex-start;
+  column-gap: 56px;
+  row-gap: 38px;
+}
+
+.sign-up-t-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready {
+  flex-shrink: 0;
+  padding-top: 0.28px;
+  width: 439px;
+}
+
+.sign-up-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready {
+  flex-grow: 1;
+}
+
+.sign-up-ttt-about-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+  align-self: stretch;
+  row-gap: 2px;
+}
+
+.sign-up-tt-about-us-tspecial-offers-tmy-account {
+  column-gap: 285px;
+  row-gap: 16px;
+}
+
+.sign-up-t-about-us {
+  padding-top: 6px;
+}
+
+.sign-up-t-special-offers-tmy-account {
+  flex-wrap: wrap;
+  column-gap: 141px;
+  row-gap: 13px;
+}
+
+.sign-up-t-my-account-1 {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 119px;
+}
+
+.sign-up-tt-careers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 166px;
+  row-gap: 29px;
+}
+
+.sign-up-t-careers-business-with-us {
+  row-gap: 8px;
+  align-items: flex-start;
+}
+
+.sign-up-business-with-us {
+  align-self: stretch;
+}
+
+.sign-up-tt-gift-cards-f21red {
+  padding-left: 67px;
+}
+
+.sign-up-t-gift-cards-f21red {
+  row-gap: 8px;
+  align-items: flex-start;
+}
+
+.sign-up-gift-cards {
+  align-self: stretch;
+}
+
+.sign-up-t-checkout-shop {
+  flex-shrink: 0;
+  width: 98px;
+  row-gap: 8px;
+}
+
+.sign-up-shop-1 {
+  width: 53px;
+}
+
+.sign-up-tt-paypal-png-tfind-astore-tprivacy-policy-twishlist {
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  column-gap: 141px;
+  row-gap: 14px;
+  align-items: center;
+}
+
+.sign-up-t-paypal-png {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 282px;
+  align-items: center;
+}
+
+.sign-up-paypal-png {
+  flex-shrink: 0;
+  height: 25px;
+  width: 282px;
+  max-height: 100%;
+  max-width: 100%;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: 100% 100%;
+  background-image: url(/assets/paypal-png.png);
+}
+
+.sign-up-t-find-astore {
+  padding-top: 3px;
+  padding-left: 72px;
+  align-self: stretch;
+}
+
+.sign-up-find-astore {
+  flex-grow: 1;
+}
+
+.sign-up-t-privacy-policy {
+  padding-left: 125px;
+  padding-bottom: 3px;
+  align-self: stretch;
+}
+
+.sign-up-privacy-policy {
+  flex-grow: 1;
+}
+
+.sign-up-t-wishlist {
+  flex-shrink: 0;
+  height: 34px;
+  width: 78px;
+  margin-top: 0.85px;
+}
+
+.sign-up-wishlist {
+  flex-grow: 1;
+}
+
+.sign-up-tt-teams-of-use-tteams-of-use-tfrequently {
+  padding-right: 20px;
+  column-gap: 144px;
+  row-gap: 13px;
+}
+
+.sign-up-t-teams-of-use {
+  padding-top: 6px;
+}
+
+.sign-up-t-teams-of-use-1 {
+  padding-left: 113px;
+}
+
+.sign-up-teams-of-use-1 {
+  flex-grow: 1;
+}
+
+.sign-up-t-frequently {
+  flex-shrink: 0;
+  width: 111px;
+}
+
+.sign-up-frequently {
+  flex-grow: 1;
+}
+
+.sign-up-ttt-bg-choco-heaven-portfolio-press-talent {
+  flex-shrink: 0;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  padding-top: 197px;
+  padding-left: 1511px;
+  height: 197px;
+  width: 1511px;
+}
+
+.sign-up-tt-bg-choco-heaven-portfolio-press-talent {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: -137px;
+  justify-content: center;
+  padding-top: 120px;
+  padding-right: 120px;
+  padding-left: 120px;
+  padding-bottom: 120px;
+  align-items: flex-start;
+}
+
+.sign-up-t-bg-choco-heaven-portfolio-press-talent {
+  flex-shrink: 0;
+  width: 379px;
+}
+
+.sign-up-bg-choco-heaven {
+  right: -566px;
+  left: -566px;
+  bottom: -189px;
+  text-align: center;
+  font-size: 175px;
+  color: rgba(255, 255, 255, 0.09);
+  letter-spacing: 0.06em;
+}
+
+.sign-up-press-talent {
+  z-index: 1;
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+.sign-up-portfolio {
+  flex-shrink: 0;
+  top: -3px;
+  right: -53px;
+  align-items: center;
+  width: 88px;
+}
+
+.sign-up-field:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.sign-up-label:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-up-field-1:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.sign-up-label-1:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-up-field-2:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.sign-up-label-2:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-up-field-3:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.sign-up-label-3:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+
+.sign-up-field-4:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.sign-up-label-4:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+@media (min-width: 1502px) {
+  .sign-up-tt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
+    flex-wrap: nowrap;
+  }
+  .sign-up-tttt-home-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact {
+    flex-wrap: nowrap;
+  }
+  .sign-up-tt-choco-heaven-tcompany-info-tquick-links-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .sign-up-tt-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready-tttabout-us-tspecial-offers-tmy-account-ttcareers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+    flex-wrap: nowrap;
+  }
+  .sign-up-tt-about-us-tspecial-offers-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .sign-up-t-special-offers-tmy-account {
+    flex-wrap: nowrap;
+  }
+  .sign-up-tt-careers-business-with-us-ttgift-cards-f21red-tcheckout-shop {
+    flex-wrap: nowrap;
+  }
+  .sign-up-tt-paypal-png-tfind-astore-tprivacy-policy-twishlist {
+    flex-wrap: nowrap;
+  }
+  .sign-up-tt-teams-of-use-tteams-of-use-tfrequently {
+    flex-wrap: nowrap;
+  }
+}
