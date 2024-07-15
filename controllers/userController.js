@@ -475,16 +475,6 @@ const verifyLogin = async (req, res, next) => {
     }
 };
 
-const userLogout = async (req, res, next) => {
-    try {
-        req.session.destroy();
-        res.redirect('/home')
-    } catch (error) {
-        next(error)
-    }
-}
-
-
 // google authentication
 const googleAuth = async (req, res) => {
     try {
@@ -518,6 +508,14 @@ const googleAuth = async (req, res) => {
     }
 };
 
+const userLogout = async (req, res, next) => {
+    try {
+        req.session.destroy();
+        res.redirect('/home')
+    } catch (error) {
+        next(error)
+    }
+}
 
 module.exports = {
     loadSignUp,
@@ -525,7 +523,6 @@ module.exports = {
     securePassword,
     otpLoad,
     verifyOtp,
-    userLogout,
     googleAuth,
     forgotPasswordOtp,
     loadHome,
@@ -533,5 +530,6 @@ module.exports = {
     loadProduct,
     ResendOtp,
     verifyLogin,
+    userLogout,
     addUser
 }

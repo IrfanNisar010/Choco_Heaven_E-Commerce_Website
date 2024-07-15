@@ -17,7 +17,7 @@ const loginCheck = async (req, res, next) => {
       if (req.session.userId) {
           next();
       } else {
-          res.redirect('/userLogout');
+          res.redirect('/home');
       }
   } catch (error) {
       console.log(error.message);

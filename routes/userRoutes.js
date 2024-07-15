@@ -44,6 +44,6 @@ user_route.post('/verifyLogin', userController.verifyLogin);
 user_route.get('/passportAuth/googleAuth',passport.authenticate('google',{scope:['profile','email']}));
 user_route.get('/passportAuth/googleAuth/callback',passport.authenticate('google',{failureRedirect:'/login'}),userController.googleAuth)
 
-user_route.get('/logout' , userAuth.loginCheck, userController.userLogout);
+user_route.get('/logout',userAuth.loginCheck,userController.userLogout);
 
 module.exports = user_route;

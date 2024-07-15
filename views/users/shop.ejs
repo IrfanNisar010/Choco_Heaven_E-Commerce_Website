@@ -23,10 +23,9 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/responsive.css">
 </head>
-
 <body>
-    <!-- header section start -->
-    <header class="header pt-4 header-sticky">
+      <!-- header section start -->
+      <header class="header pt-3 header-sticky" style="height: 4rem;">
         <div class="container-fluid">
             <div class="header-nav  position-relative">
                 <div class="row align-items-center">
@@ -37,53 +36,38 @@
                     </div>
 
                     <div class="col-xl-6 col-lg-8 hidden-md position-static">
-                        <div class="header-nav header-nav-2">
-                            <nav>
+                        <div class="header-nav header-nav-2 pl-100">
+                            <nav class="d-flex justify-content-center align-content-center"> 
                                 <ul>
-                                    <li><a href="javascript:void(0)" ><span>Home <i
-                                                    class="fas fa-angle-down"></i></span></a>
-
-                                        <ul class="submenu">
-                                            <li><a href="index.html">Offers</a></li>
-                                            <li><a href="index2.html">Famous brand</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="position-static"><a href="/loadShop" class="active"><span>Shop <i
-                                                    class="fas fa-angle-down"></i></span></a>
-                                        <div class="mega-menu">
-                                            <div class="col-xl-7 pl-0 position-static">
+                                    <li><a href="javascript:void(0)" ><span>Home </span></a></li>
+                                    <li><a href="/loadShop" class="active"><span>Shop <i class="fas fa-angle-down"></i></span></a>
+                                            <div class="submenu" style="border-radius: 13px;">
                                                 <ul>
                                                     <li><a href="#">All Products </a></li>
                                                     <li><a href="#">Trending</a></li>
                                                     <li><a href="#">Best Seller</a></li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="javascript:void(0)"><span>Blog <i class="fas fa-angle-down"></i></span>
+                                        </li>
+                                    <li><a href="javascript:void(0)"><span>Best Deals</span>
                                         </a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">Grid layout</a></li>
-                                            <li><a href="blog2.html">Large image</a></li>
-                                            <li><a href="blog3.html">Left Sidebar</a></li>
-                                            <li><a href="blog4.html">Right Sidebar</a></li>
-                                            <li><a href="blog5.html">No sidebar</a></li>
-                                        </ul>
                                     </li>
-                                    <li><a href="javascript:void(0)"><span>Portfolio <i
+                                    <li><a href="javascript:void(0)"><span>Top Brands <i
                                                     class="fas fa-angle-down"></i></span> </a>
-                                        <ul class="submenu">
-                                            <li><a href="portfolio.html">Single project</a></li>
-                                            <li><a href="portfolio2.html">Two Columns</a></li>
-                                            <li><a href="portfolio3.html">Three Columns</a></li>
+                                        <ul class="submenu" style="border-radius: 13px;">
+                                            <li><a href="portfolio.html">Lindt</a></li>
+                                            <li><a href="portfolio2.html">Whittaker's</a></li>
+                                            <li><a href="portfolio3.html">Buttlers's</a></li>
+                                            <li><a href="portfolio3.html">Milka</a></li>
+                                            <li><a href="portfolio3.html">Ferrero</a></li>
+                                            <li><a href="portfolio3.html">Cadbury</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="javascript:void(0)"><span>Page</span> <i
+                                    <li><a href="javascript:void(0)"><span>Gifting</span> <i
                                                 class="fas fa-angle-down"></i></a>
-                                        <ul class="submenu">
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="question.html">Frequently Questions</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                        <ul class="submenu" style="border-radius: 13px;">
+                                            <li><a href="about.html">Gift Hampers</a></li>
+                                            <li><a href="contact.html">Bulk Orders</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html"><span>Contact</span></a></li>
@@ -92,20 +76,24 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-lg-3 col-6 col-md-6 col-sm-6 col-9">
+                    <div class="col-xl-4 col-lg-3 col-6 col-md-6 col-sm-6 col-9 hidden-md">
                         <div class="header-right">
                             <ul class="text-right">
+                                <% if (locals.user) { %>
                                 <li><a href="/login" class="account"><img src="/assets/Icon2.svg" style="width: 20px; height: 18px;">
                                         <article class="account-registar d-inline-block">
                                             Login/Sign up
                                         </article>
                                     </a></li>
+                                    <% }else{ %>
+                                        
+                                        <% } %>
                                 <li><a href="javascript:void(0)"><img src="/assets/Vector1.svg" style="padding-top: 6px; width: 35px; height: 32px;"></a>
 
                                     <!-- search popup -->
                                     <div id="search-popup">
                                         <div class="close-search-popup">
-                                            <img src="/assets/Vector.svg" style="width: 20px; height: 18px;">
+                                            <img src="/assets/Vector.svg" style="width: 25px; height: 24px;">
                                         </div>
                                         <div class="search-popup-inner mt-135">
                                             <div class="search-title text-center">
@@ -128,7 +116,7 @@
                                                 <div class="search-form mt-35">
                                                     <form action="#" method="post">
                                                         <input type="text" placeholder="Search Products...">
-                                                        <button type="submit"> <img src="/assets/Vector1.svg" style="width: 20px; height: 18px;"></button>                                                    </form>
+                                                        <button type="submit"> <img src="/assets/Vector1.svg" style="width: 22px; height: 20px;"></button>                                                    </form>
                                                 </div>
 
                                                 <div class="search-result-list">
@@ -201,7 +189,7 @@
                                 </li>
                                 <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
                                         title="view wishlist"><img src="/assets/Item.svg" style="width: 18px; height: 18px; margin-bottom: 3px;"></a></li>
-                                <li><a href="javascript:void(0)"><li><a href="/cart"> <img src="/assets/Icon3.svg" style="width: 18px; height: 18px; margin-bottom: 6px;"><span></span></i></a>
+                                <li><a href="javascript:void(0)"><li><a href="/cart"> <img src="/assets/Icon3.svg" style="width: 18px; height: 18px; margin-bottom: 4px;"><span></span></i></a>
                                     <!-- <div class="minicart">
                                         <div class="minicart-body">
                                             <div class="minicart-content">
@@ -267,15 +255,25 @@
                                         </div>
                                     </div>
                                 </li> -->
+                                <% if (locals.user) { %>
                                 <li><a href="javascript:void(0)"> <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; margin-top: 2px;"></i></a>
                                     <ul class="submenu text-right">
                                         <li><a href="login.html">My profile</a></li>
                                         <li><a href="checkout.html">My address</a></li>
                                         <li><a href="/loadShop">Orders</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="/logout">Sign out</a>
-                                    
+                                        <li><a href="/logout">Sign up</a>
                                 </li>
+                                <% }else{ %>
+                                    <li><a href="javascript:void(0)"> <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; margin-top: 2px;"></i></a>
+                                        <ul class="submenu text-right">
+                                            <li><a href="login.html">My profile</a></li>
+                                            <li><a href="checkout.html">My address</a></li>
+                                            <li><a href="/loadShop">Orders</a></li>
+                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/logout">Sign out</a>
+                                    </li>
+                                    <% } %>
                             </ul>
                         </div>
                     </div>
@@ -284,35 +282,21 @@
             <div class="mobile-menu visible-sm">
                 <div id="mobile-menu">
                     <ul>
-                        <li><a class="pl-3" href="javascript:void(0)">Home</a>
-                            <ul class="pl-4">
-                                <li><a href="/shop">Offers</a></li>
-                                <li><a href="/brands">Brands</a></li>
-                                
-                            </ul>
-                        </li>
+                        <li><a class="pl-3" href="javascript:void(0)">Home</a></li>
                         <li><a class="pl-3" href="javascript:void(0)">Shop</a>
                             <ul>
-                                <li><a href="shop.html">Shop Layout</a></li>
-                                <li><a href="shop4.html">Masonry – Grid</a></li>
-                                <li><a href="shop3.html">Pagination</a></li>
-                                <li><a href="single-product-6.html">Thumbnail Botttom</a></li>
+                                <li><a href="#">All Products </a></li>
+                                <li><a href="#">Trending</a></li>
+                                <li><a href="#">Best Seller</a></li>
                             </ul>
                         </li>
-                        <li><a href="javascript:void(0)">Blog</a>
-                            <ul>
-                                <li><a href="blog.html">Grid layout</a></li>
-                                <li><a href="blog2.html">Large image</a></li>
-                                <li><a href="blog3.html">Left Sidebar</a></li>
-                                <li><a href="blog4.html">Right Sidebar</a></li>
-                                <li><a href="blog5.html">No sidebar</a></li>
-                            </ul>
+                        <li><a href="javascript:void(0)">Best Deals</a>
                         </li>
-                        <li><a href="javascript:void(0)">Portfolio</a>
+                        <li><a href="javascript:void(0)">Gifting</a>
                             <ul>
-                                <li><a href="portfolio.html">Single project</a></li>
-                                <li><a href="portfolio2.html">Two Columns</a></li>
-                                <li><a href="portfolio3.html">Three Columns</a></li>
+                                <li><a href="portfolio.html">Gifting</a></li>
+                                <li><a href="portfolio2.html">Bundle Hamper</a></li>
+                                <li><a href="portfolio3.html">Bulk Orders</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
@@ -323,6 +307,7 @@
         </div>
     </header>
     <!-- header section end -->
+
 
 
         <div class="has-breadcrumb-bg " data-background="img/bg/3.jpg">
