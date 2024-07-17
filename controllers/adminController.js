@@ -1,10 +1,8 @@
 const User = require('../models/userModel');
-// const Products = require('../models/productModel');
-// const Category = require('../model/categoryModel');
 
 const loginLoad = async (req, res) => {
     try {
-        res.render('adminLogin'); 
+        res.render('adminLogin');
     } catch (error) {
         console.log(error.message);
     }
@@ -42,34 +40,43 @@ const loadHome = async (req, res) => {
 
 const loadUserManagement = async (req, res, next) => {
     try {
-        res.render('userManagement')
+        const currentPage = parseInt(req.query.page) || 1;
+        const userPerPage = 10;
+        const skip = (currentPage - 1) * userPerPage;
+
+        const users = await User.find().skip(skip).limit(userPerPage);
+
+        const totalProduct = await User.countDocuments();
+        const totalPages = Math.ceil(totalProduct / userPerPage);
+
+        res.render('userManagement', { users, currentPage, totalPages });
 
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
+
 const blockAndUnblockUser = async (req, res, next) => {
     try {
-        const id = req.query.id;
-        const userData = await User.findById({ _id: id })
-        userData.is_block = !userData.is_block
-        await userData.save()
-
-        if (userData.is_block) {
-            delete req.session.userId;
+        const userId = req.query.id;
+        const userData = await User.findById(userId);
+        
+        if (!userData) {
+            return res.status(404).json({ message: "User not found" });
         }
 
-        let message = userData.is_block ? "User Blocked successfully" : "User Unblocked successfully";
+        userData.is_block = !userData.is_block;
+        await userData.save();
 
-        res.status(200).json({ message })
+        let message = userData.is_block ? "User Blocked successfully" : "User Unblocked successfully";
+        res.status(200).json({ message });
 
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
-
+};
 
 module.exports = {
     loginLoad,

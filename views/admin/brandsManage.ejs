@@ -1,0 +1,217 @@
+<%- include('../layouts/brandsHeader') %>
+
+<nav class="t-header">
+    <div class="t-header-brand-wrapper">
+      <a href="index.html">
+        <img class="logo" src="/public/assets/images/logo.png" alt="">
+        <img class="logo-mini" src="/public/assets/images/logo_mini.png" alt="">
+      </a>
+    </div>
+    <div class="t-header-content-wrapper">
+      <div class="t-header-content">
+        <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+          <i class="mdi mdi-menu"></i>
+        </button>
+        <form action="#" class="t-header-search-box">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+            <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="page-body">
+    <!-- partial:partials/_sidebar.html -->
+    <div class="sidebar">
+      <div class="user-profile">
+        <div class="display-avatar animated-avatar">
+          <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
+        </div>
+        <div class="info-wrapper">
+          <p class="user-name">Irfan Nisar</p>
+          <h6 class="display-income">₹3,400,00</h6>
+        </div>
+      </div>
+      <ul class="navigation-menu">
+        <li class="nav-category-divider">MAIN</li>
+        <li>
+          <a href="/admin/userManage">
+            <span class="link-title">Users</span>
+            <i class="mdi mdi-account-multiple link-icon"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/brandManage">
+            <span class="link-title">Brands</span>
+            <i class="mdi mdi-tag-multiple link-icon"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#orders" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Orders</span>
+            <i class="mdi mdi-cart link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="orders">
+            <li>
+              <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
+            </li>
+            <li>
+              <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#return" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Return</span>
+            <i class="mdi mdi-undo-variant link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="return">
+            <li>
+              <a href="pages/ui-components/buttons.html">Return Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Return Details</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Dropdowns</span>
+            <i class="mdi mdi-menu-down link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="dropdowns">
+            <li>
+              <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Dropdown Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#products" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Products</span>
+            <i class="mdi mdi-package-variant-closed link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="products">
+            <li>
+              <a href="pages/ui-components/buttons.html">Product Unlisted</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Listed</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#banners" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Banners</span>
+            <i class="mdi mdi-flag-variant link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="banners">
+            <li>
+              <a href="pages/ui-components/tables.html">Banners Add</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Banners Edit</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#coupons" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Coupons</span>
+            <i class="mdi mdi-ticket-percent link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="coupons">
+            <li>
+              <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Coupons Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="pages/charts/chartjs.html">
+            <span class="link-title">Reports</span>
+            <i class="mdi mdi-chart-bar link-icon"></i>
+          </a>
+        </li>
+        <!-- Logout button -->
+    <li>
+      <a href="/logout">
+        <span class="link-title">Logout</span>
+        <i class="mdi mdi-logout link-icon"></i>
+      </a>
+    </li>
+      </ul>
+    </div>
+    <!-- partial -->
+    <div class="page-content-wrapper">
+      <div class="page-content-wrapper-inner">
+        <div class="content-viewport">
+          <div class="row">
+            <div class="col-12 pb-3">
+              <h4>Add Brands</h4>
+              <p class="text-gray">Input details of new Brands</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 equel-grid">
+              <div class="grid">
+                <div class="grid-body py-3">
+                  <p class="card-title ml-n1">Brands</p>
+                </div>
+                <div class="container">
+                  <div class="row">
+                    <% if (brands.length > 0) { %>
+                      <% for (let i = 0; i < brands.length; i++) { %>
+                        <div class="col-md-4">
+                          <div class="card">
+                            <h2 class="card-title" style="display: flex; justify-content: center; margin-top: 10px; "><%= brands[i].name %></h2>
+                            <div class="card-body">
+                              <img src="/assets/img/brands/<%= brands[i].imageUrl %>" alt="<%= brands[i].name %>" style="width: 283px; height: 350px; border-radius: 13px;" >
+                              <p class="card-text"><%= brands[i].description %></p>
+                              <a href="/admin/editBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary">Edit</a>
+                              <a href="/admin/softDeleteBrands?brandId=<%= brands[i]._id %>" class="btn btn-danger">Delete</a>
+                            </div>
+                          </div>
+                        </div>
+                      <% } %>
+                    <% } else { %>
+                      <p>No brands found</p>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="../assets/vendor/js/menu.js"></script>
+<!-- Vendors JS -->
+<script src="../assets/vendor/libs/masonry/masonry.js"></script>
+
+<!-- Main JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Page JS -->
+
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+          <%- include('../layouts/dashboardFooter') %>

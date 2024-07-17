@@ -1,0 +1,249 @@
+<%- include('../layouts/addBrandsHeader') %>
+
+<nav class="t-header">
+    <div class="t-header-brand-wrapper">
+      <a href="index.html">
+        <img class="logo" src="/public/assets/images/logo.png" alt="">
+        <img class="logo-mini" src="/public/assets/images/logo_mini.png" alt="">
+      </a>
+    </div>
+    <div class="t-header-content-wrapper">
+      <div class="t-header-content">
+        <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+          <i class="mdi mdi-menu"></i>
+        </button>
+        <form action="#" class="t-header-search-box">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+            <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="page-body">
+    <!-- partial:partials/_sidebar.html -->
+    <div class="sidebar">
+      <div class="user-profile">
+        <div class="display-avatar animated-avatar">
+          <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
+        </div>
+        <div class="info-wrapper">
+          <p class="user-name">Irfan Nisar</p>
+          <h6 class="display-income">₹3,400,00</h6>
+        </div>
+      </div>
+      <ul class="navigation-menu">
+        <li class="nav-category-divider">MAIN</li>
+        <li>
+          <a href="/admin/userManage">
+            <span class="link-title">Users</span>
+            <i class="mdi mdi-account-multiple link-icon"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/brandManage">
+            <span class="link-title">Brands</span>
+            <i class="mdi mdi-tag-multiple link-icon"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#orders" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Orders</span>
+            <i class="mdi mdi-cart link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="orders">
+            <li>
+              <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
+            </li>
+            <li>
+              <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#return" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Return</span>
+            <i class="mdi mdi-undo-variant link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="return">
+            <li>
+              <a href="pages/ui-components/buttons.html">Return Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Return Details</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Dropdowns</span>
+            <i class="mdi mdi-menu-down link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="dropdowns">
+            <li>
+              <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Dropdown Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#products" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Products</span>
+            <i class="mdi mdi-package-variant-closed link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="products">
+            <li>
+              <a href="pages/ui-components/buttons.html">Product Unlisted</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Listed</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#banners" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Banners</span>
+            <i class="mdi mdi-flag-variant link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="banners">
+            <li>
+              <a href="pages/ui-components/tables.html">Banners Add</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Banners Edit</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#coupons" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Coupons</span>
+            <i class="mdi mdi-ticket-percent link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="coupons">
+            <li>
+              <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Coupons Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="pages/charts/chartjs.html">
+            <span class="link-title">Reports</span>
+            <i class="mdi mdi-chart-bar link-icon"></i>
+          </a>
+        </li>
+        <!-- Logout button -->
+    <li>
+      <a href="/logout">
+        <span class="link-title">Logout</span>
+        <i class="mdi mdi-logout link-icon"></i>
+      </a>
+    </li>
+      </ul>
+    </div>
+    <!-- partial -->
+    <div class="page-content-wrapper">
+      <div class="page-content-wrapper-inner">
+        <div class="content-viewport">
+          <div class="row">
+            <div class="col-12 pb-3">
+              <h4>Add Brands</h4>
+              <p class="text-gray">Input details of new Brands</p>
+            </div>
+          </div>
+          <div class="col-xl">
+            <div class="card mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Add Info</h5>
+              </div>
+              <div class="card-body">
+                  <div class="mb-3">
+                    <form action="/admin/editBrands" method="post" id="myForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <label class="form-label" for="brandName"><%= brand.name %></label>
+                          <div class="form-group">
+                            <div class="input-group input-group-merge">
+                              <span id="brandNameIcon" class="input-group-text"><i class="bx bx-buildings"></i></span>
+                              <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Lindt" aria-describedby="brandNameIcon" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="image" class="form-label"><%= brand.imageUrl %></label>
+                          <input class="form-control" type="file" id="formFile" name="brandsImage" accept="image/png, image/jpeg, image/webp" onchange="updateLabelImg(this)" />
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" name="isAvailable" value="1" id="isAvailable" <%= brand.status ? 'checked' : '' %>>
+                          <label class="form-check-label" for="isAvailable" >Is Available</label>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="description"><%= brand.description %></label>
+                          <div class="input-group input-group-merge">
+                            <span id="descriptionIcon" class="input-group-text"><i class="bx bx-comment"></i></span>
+                            <textarea class="form-control" id="description" name="description" placeholder="Most luxury Chocolate brand" aria-describedby="descriptionIcon"></textarea>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 169px;">Add</button>
+                        <button type="button" class="btn btn-white" style="width: 140px;" onclick="clearForm()">Cancel</button>
+                        <% if(typeof message !== "undefined"){
+                            %>
+                            <p style="color: brown;"><%=message%></p> 
+                            <%
+                          }
+                          %>
+                      </form>                      
+            </div>
+            </div>
+          </div>
+
+          <script>
+            document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const form = document.getElementById('myForm');
+                const formData = new FormData(form);
+            
+                fetch('/admin/editBrands', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: "Brand updated",
+                            text: "Brand updated Successfully",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.href = '/admin/brandsManage';
+                        });
+                    } else {
+                        const validationMessage = document.getElementById('validationMessages');
+                        validationMessage.style.display = 'block';
+                        validationMessage.innerHTML = data.message;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error Editing Brand');
+                });
+            });
+            </script>
+            
+          
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+          <%- include('../layouts/addBrandsFooter') %>  

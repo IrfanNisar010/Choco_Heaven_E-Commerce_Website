@@ -4,24 +4,25 @@ const isLogin = async (req, res, next) => {
       if (req.session.userId) {
           next();
       } else {
-          res.redirect("/userLogin");
+          res.redirect('/login');
       }
   } catch (error) {
       console.log(error.message);
   }
 }
 
-// Middleware for checking if the user is logged in and redirecting to logout if not
-const loginCheck = async (req, res, next) => {
-  try {
-      if (req.session.userId) {
-          next();
-      } else {
-          res.redirect('/home');
-      }
-  } catch (error) {
-      console.log(error.message);
-  }
+//middleware for is login
+const loginCheck =async(req,res,next)=>{
+    try {
+        if(req.session.userId){
+            next()
+        }else{
+            res.redirect('/logout')
+        }
+        
+    } catch (error) {
+        console.log();
+    }
 }
 
 // Middleware for checking if the user is logged out

@@ -58,15 +58,18 @@
                     <div class="col-xl-4 col-lg-3 col-6 col-md-6 col-sm-6 col-9 hidden-md">
                         <div class="header-right">
                             <ul class="text-right">
-                                <% if (locals.user) { %>
-                                <li><a href="/login" class="account"><img src="/assets/Icon2.svg" style="width: 20px; height: 18px;">
-                                        <article class="account-registar d-inline-block">
-                                            Login/Sign up
-                                        </article>
-                                    </a></li>
-                                    <% }else{ %>
-                                        
-                                        <% } %>
+                                <% if (!locals.user) { %>
+                                    <li>
+                                        <a href="/login" class="account">
+                                            <img src="/assets/Icon2.svg" style="width: 20px; height: 18px;">
+                                            <article class="account-registar d-inline-block">
+                                                Login/Sign up
+                                            </article>
+                                        </a>
+                                    </li>
+                                <% } else { %>
+                                    <p>hsghfshsfh</p>
+                                <% } %>                                
                                 <li><a href="javascript:void(0)"><img src="/assets/Vector1.svg" style="padding-top: 6px; width: 35px; height: 32px;"></a>
 
                                     <!-- search popup -->
@@ -234,25 +237,26 @@
                                         </div>
                                     </div>
                                 </li> -->
-                                <% if (locals.user) { %>
-                                <li><a href="javascript:void(0)"> <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; margin-top: 2px;"></i></a>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; margin-top: 2px;">
+                                    </a>
                                     <ul class="submenu text-right">
-                                        <li><a href="login.html">My profile</a></li>
-                                        <li><a href="checkout.html">My address</a></li>
-                                        <li><a href="/loadShop">Orders</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="/login">Sign up</a>
-                                </li>
-                                <% }else{ %>
-                                    <li><a href="javascript:void(0)"> <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; margin-top: 2px;"></i></a>
-                                        <ul class="submenu text-right">
+                                        <% if (locals.user) { %>
                                             <li><a href="login.html">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="/logout">Sign out</a>
-                                    </li>
-                                    <% } %>
+                                            <li><a href="/logout">logout</a></li>
+                                        <% } else { %>
+                                            <li><a href="login.html">My profile</a></li>
+                                            <li><a href="checkout.html">My address</a></li>
+                                            <li><a href="/loadShop">Orders</a></li>
+                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/login">Sign</a></li>
+                                        <% } %>
+                                    </ul>
+                                </li> 
                             </ul>
                         </div>
                     </div>

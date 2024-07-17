@@ -2,9 +2,9 @@
     <!-- partial:partials/_header.html -->
     <nav class="t-header">
       <div class="t-header-brand-wrapper">
-        <a href="index.html">
-          <img class="logo" src="/assets/images/logo.png" alt="">
-          <img class="logo-mini" src="/assets/images/logo_mini.png" alt="">
+        <a href="/admin/dashboard">
+          <img class="logo" src="/assets/logo.png" >
+          <img class="logo-mini" src="/assets/images/logo_mini.png" >
         </a>
       </div>
       <div class="t-header-content-wrapper">
@@ -13,7 +13,6 @@
             <i class="mdi mdi-menu"></i>
           </button>
           <form action="#" class="t-header-search-box">
-            <div class="input-group">
               <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
               <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
             </div>
@@ -161,17 +160,34 @@
         <ul class="navigation-menu">
           <li class="nav-category-divider">MAIN</li>
           <li>
-            <a href="/userManage">
+            <a href="/admin/userManage">
               <span class="link-title">Users</span>
-              <i class="mdi mdi-gauge link-icon"></i>
+              <i class="mdi mdi-account-multiple link-icon"></i>
             </a>
           </li>
           <li>
-            <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
-              <span class="link-title">Orders</span>
-              <i class="mdi mdi-flask link-icon"></i>
+            <a href="#brands" data-toggle="collapse" aria-expanded="false">
+                <span class="link-title">Brands</span>
+                <i class="mdi mdi-tag-multiple link-icon"></i>
             </a>
-            <ul class="collapse navigation-submenu" id="sample-pages">
+            <ul class="collapse navigation-submenu" id="brands">
+                <li>
+                    <a href="/admin/brandsManage">List brands</a>
+                </li>
+                <li>
+                    <a href="/admin/addBrands">Add brands</a>
+                </li>
+                <li>
+                    <a href="/admin/editBrands">Edit brands</a>
+                </li>
+            </ul>
+        </li>        
+          <li>
+            <a href="#orders" data-toggle="collapse" aria-expanded="false">
+              <span class="link-title">Orders</span>
+              <i class="mdi mdi-cart link-icon"></i>
+            </a>
+            <ul class="collapse navigation-submenu" id="orders">
               <li>
                 <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
               </li>
@@ -181,11 +197,11 @@
             </ul>
           </li>
           <li>
-            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
+            <a href="#return" data-toggle="collapse" aria-expanded="false">
               <span class="link-title">Return</span>
-              <i class="mdi mdi-bullseye link-icon"></i>
+              <i class="mdi mdi-undo-variant link-icon"></i>
             </a>
-            <ul class="collapse navigation-submenu" id="ui-elements">
+            <ul class="collapse navigation-submenu" id="return">
               <li>
                 <a href="pages/ui-components/buttons.html">Return Edit</a>
               </li>
@@ -195,11 +211,11 @@
             </ul>
           </li>
           <li>
-            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
+            <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
               <span class="link-title">Dropdowns</span>
-              <i class="mdi mdi-bullseye link-icon"></i>
+              <i class="mdi mdi-menu-down link-icon"></i>
             </a>
-            <ul class="collapse navigation-submenu" id="ui-elements">
+            <ul class="collapse navigation-submenu" id="dropdowns">
               <li>
                 <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
               </li>
@@ -209,11 +225,11 @@
             </ul>
           </li>
           <li>
-            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
+            <a href="#products" data-toggle="collapse" aria-expanded="false">
               <span class="link-title">Products</span>
-              <i class="mdi mdi-bullseye link-icon"></i>
+              <i class="mdi mdi-package-variant-closed link-icon"></i>
             </a>
-            <ul class="collapse navigation-submenu" id="ui-elements">
+            <ul class="collapse navigation-submenu" id="products">
               <li>
                 <a href="pages/ui-components/buttons.html">Product Unlisted</a>
               </li>
@@ -224,16 +240,16 @@
                 <a href="pages/ui-components/tables.html">Product Edit</a>
               </li>
               <li>
-                <a href="pages/ui-components/tables.html">Product Add</a>
+                <a href="/admin/addProduct">Product Add</a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
+            <a href="#banners" data-toggle="collapse" aria-expanded="false">
               <span class="link-title">Banners</span>
-              <i class="mdi mdi-bullseye link-icon"></i>
+              <i class="mdi mdi-flag-variant link-icon"></i>
             </a>
-            <ul class="collapse navigation-submenu" id="ui-elements">
+            <ul class="collapse navigation-submenu" id="banners">
               <li>
                 <a href="pages/ui-components/tables.html">Banners Add</a>
               </li>
@@ -246,11 +262,11 @@
             </ul>
           </li>
           <li>
-            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false">
+            <a href="#coupons" data-toggle="collapse" aria-expanded="false">
               <span class="link-title">Coupons</span>
-              <i class="mdi mdi-bullseye link-icon"></i>
+              <i class="mdi mdi-ticket-percent link-icon"></i>
             </a>
-            <ul class="collapse navigation-submenu" id="ui-elements">
+            <ul class="collapse navigation-submenu" id="coupons">
               <li>
                 <a href="pages/ui-components/buttons.html">Coupons Edit</a>
               </li>
@@ -262,11 +278,17 @@
           <li>
             <a href="pages/charts/chartjs.html">
               <span class="link-title">Reports</span>
-              <i class="mdi mdi-chart-donut link-icon"></i>
+              <i class="mdi mdi-chart-bar link-icon"></i>
             </a>
           </li>
+          <!-- Logout button -->
+      <li>
+        <a href="/logout">
+          <span class="link-title">Logout</span>
+          <i class="mdi mdi-logout link-icon"></i>
+        </a>
+      </li>
         </ul>
-        
       </div>
       <!-- partial -->
       <div class="page-content-wrapper">
@@ -638,22 +660,6 @@
             </div>
           </div>
         </div>
-        <!-- content viewport ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="row">
-            <div class="col-sm-6 text-center text-sm-right order-sm-1">
-              <ul class="text-gray">
-                <li><a href="#">Terms of use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-              </ul>
-            </div>
-            <div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">
-              <small class="text-muted d-block">Copyright © 2019 <a href="http://www.uxcandy.co" target="_blank">UXCANDY</a>. All rights reserved</small>
-              <small class="text-gray mt-2">Handcrafted With <i class="mdi mdi-heart text-danger"></i></small>
-            </div>
-          </div>
-        </footer>
         <!-- partial -->
       </div>
       <!-- page content ends -->

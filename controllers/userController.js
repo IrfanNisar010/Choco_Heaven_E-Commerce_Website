@@ -451,29 +451,33 @@ const verifyLogin = async (req, res, next) => {
             return res.render('userLogin', { warning: "Please enter both email and password to sign in." });
         }
 
+        // Find the user by email
         const userData = await User.findOne({ email: email });
 
         if (userData) {
+            // Compare provided password with stored hash
             const passwordMatch = await bcrypt.compare(password, userData.password);
             if (passwordMatch) {
                 if (userData.is_block === false) {
+                    // Set session data for logged in user
                     req.session.userId = userData._id;
                     return res.redirect('/home');
                 } else {
-                    return res.render('userLogin', { message: "Your Account is Blocked" });
+                    return res.render('userLogin', { message: "Your account is blocked." });
                 }
             } else {
-                return res.render('userLogin', { message: "User email or password is incorrect" });
+                return res.render('userLogin', { message: "User email or password is incorrect." });
             }
         } else {
-            return res.render('userLogin', { message: "User email or password is incorrect" });
+            return res.render('userLogin', { message: "User email or password is incorrect." });
         }
 
     } catch (error) {
         console.log(error.message);
-        next(error);
+        next(error); // Pass the error to the error-handling middleware
     }
 };
+
 
 // google authentication
 const googleAuth = async (req, res) => {
