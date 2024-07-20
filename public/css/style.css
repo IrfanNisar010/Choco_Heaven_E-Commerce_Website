@@ -2991,16 +2991,8 @@ div#accordionExample > div{
 .footer-top.red-content .service-box-content::after {
   color: #fff;
 }
-.service .service-item:nth-child(1) .service-box-content::after {
-  content: "\f0ac";
-}
 
-.service .service-item:nth-child(2) .service-box-content::after {
-  content: "\f879";
-}
-.service .service-item:nth-child(3) .service-box-content::after {
-  content: "\f4c5";
-}
+
 .service-box-content:hover::after {
   animation-name: service-animation;
   animation-duration: 0.5s;
@@ -4387,4 +4379,21 @@ a.replay:hover{
 }
 .sidebar-list {
 	display: none;
+}
+
+.signup-button {
+  width: 90px;
+  height: 35px;
+  background-color: #000;
+  color: white;
+  border-radius: 50px;
+  text-align: center;
+  border: none;
+  font-size: 13px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #f9dce5;
+  color: black;
 }

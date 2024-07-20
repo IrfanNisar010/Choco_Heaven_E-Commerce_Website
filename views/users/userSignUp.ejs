@@ -76,26 +76,44 @@
             </div>
             <div class="sign-up-t-field-3">
               <div class="sign-up-field-3">
-                <input
-                  name="password"
-                  placeholder="Password"
-                  id="password"
-                  type="password"
-                  class="sign-up-label-3"
-                />
+                  <input
+                      name="password"
+                      placeholder="Password"
+                      id="password"
+                      type="password"
+                      class="sign-up-label-3"
+                  />
+                  <lord-icon
+                      src="https://cdn.lordicon.com/ktsahwvc.json"
+                      trigger="click"
+                      state="out-reveal"
+                      colors="primary:#000000"
+                      style="width:22px;height:20px"
+                      id="togglePassword"
+                  >
+                  </lord-icon>
               </div>
-            </div>
-            <div class="sign-up-t-field-4">
+          </div>
+          <div class="sign-up-t-field-4">
               <div class="sign-up-field-4">
-                <input
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  id="confirmPassword"
-                  type="password"
-                  class="sign-up-label-4"
-                />
+                  <input
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                      id="confirmPassword"
+                      type="password"
+                      class="sign-up-label-4"
+                  />
+                  <lord-icon
+                      src="https://cdn.lordicon.com/ktsahwvc.json"
+                      trigger="click"
+                      state="out-reveal"
+                      colors="primary:#000000"
+                      style="width:22px;height:20px"
+                      id="toggleConfirmPassword"
+                  >
+                  </lord-icon>
               </div>
-            </div>
+          </div>          
             <div class="sign-up-t-button">
               <button type="submit" value="submit" class="sign-up-sign-up-with-email">Sign up with email</button>
             </div>
@@ -236,5 +254,23 @@
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const togglePassword = document.getElementById('togglePassword');
+          const password = document.getElementById('password');
+          const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+          const confirmPassword = document.getElementById('confirmPassword');
+  
+          togglePassword.addEventListener('click', function() {
+              const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+              password.setAttribute('type', type);
+          });
+  
+          toggleConfirmPassword.addEventListener('click', function() {
+              const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+              confirmPassword.setAttribute('type', type);
+          });
+      });
+  </script>
   
     <%- include('../layouts/loginFooter') %>
