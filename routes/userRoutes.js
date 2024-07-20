@@ -37,7 +37,7 @@ user_route.get('/home', userController.loadHome);
 
 user_route.get('/loadShop', userController.loadShop);
 
-user_route.get('/product-1', userController.loadProduct);
+user_route.get('/singleProduct', userController.loadProduct);
 
 user_route.post('/verifyLogin', userController.verifyLogin);
 

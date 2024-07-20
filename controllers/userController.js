@@ -7,6 +7,8 @@ const bcrypt = require('bcrypt');
 const { default: mongoose } = require("mongoose");
 const { json } = require("express");
 const Otp = require('../models/Otp');
+const Brands = require('../models/brandsModel');
+const Products = require('../models/productModel');
 
 // otp verification function
 const otpGenrator = () => {
@@ -266,14 +268,14 @@ const resetPassword = async (req, res, next) => {
 const loadHome = async (req, res) => {
     try {
         let userId = req.session.userId ? req.session.userId : '';
-        // const productData = await Products.find({ isDeleted: false }).sort({ createdAt: -1 })
-        // const categoryData = await Category.find({ isDeleted: false })
+        const productData = await Products.find({ isDeleted: false }).sort({ createdAt: -1 })
+        const brandsData = await Brands.find({ isDeleted: false })
         if (req.session.userId) {
             const userData = await User.findById({ _id: userId });
-            res.render('userHome')
+            res.render('userHome', { user: userData, products: productData, brands: brandsData })
         }
         else {
-            res.render('userHome')
+            res.render('userHome', { products: productData, brands: brandsData })
         }
     } catch (error) {
         console.log(error.message);
@@ -294,12 +296,16 @@ const loadShop = async (req, res) => {
     try {
         let userId = req.session.userId
 
+        const productData = await Products.find({ isDeleted: false })
+        const brandsData = await Brands.find({ isDeleted: false })
+        const allProduct = await Products.find({ isDeleted: false })
+
 
         if (req.session.userId) {
             const userData = await User.findById({ _id: userId })
-            res.render('shop')
+            res.render('shop', { user: userData, products: productData, brands:brandsData,allProduct })
         } else {
-            res.render('shop')
+            res.render('shop', { products: productData, allProduct, brands:brandsData, allProduct })
         }
 
     } catch (error) {
@@ -307,24 +313,24 @@ const loadShop = async (req, res) => {
     }
 }
 
-const loadProduct = async (req, res) => {
+const loadProduct = async (req, res, next) => {
     try {
-        let userId = req.session.userId
-
+        const id = req.query.id;
+        const productData = await Products.findOne({ _id: id, isDeleted: false });
+        const products = await Products.find({ isDeleted: false }); 
+        let price = productData.discountPrice;
 
         if (req.session.userId) {
-            const userData = await User.findById({ _id: userId })
-            res.render('singleProduct')
+            const userData = await User.findById({ _id: req.session.userId });
+            res.render('singleProduct', { user: userData, product: productData, price, products });
         } else {
-            res.render('singleProduct')
+            res.render('singleProduct', { product: productData, price, products });
         }
-
     } catch (error) {
         console.log(error.message);
+        next(error);
     }
-}
-
-
+};
 
 const generateOTP = () => {
     return crypto.randomBytes(3).toString('hex'); 
@@ -347,7 +353,7 @@ const addUser = async (req, res, next) => {
 
         // Check if passwords match
         if (req.body.password !== req.body.confirmPassword) {
-            return res.render('userSignUp', { message: "Passwords do not match, please try again" });
+            return res.render('userSignUp', { password: "Passwords do not match, please try again" });
         }
 
         // Check if email is already taken
@@ -364,7 +370,6 @@ const addUser = async (req, res, next) => {
             lastName: req.body.lastName,
             email: req.body.email,
             password: spassword,
-            is_Verified: false,
             is_is_Admin: false
 
         })
@@ -432,7 +437,7 @@ const verifyOtp = async (req, res, next) => {
             userData.is_Verified = true
             await User.create(userData)
 
-            res.render('userLogin')
+            res.render('userLogin' , {success: "OTP verified! You can now log in."})
         } else {
             return res.status(400).render('verifyOtp', { userEmail, incorrectOtp: true });
         }

@@ -1,0 +1,592 @@
+<%- include('../layouts/editProductHeader') %>
+
+<nav class="t-header">
+    <div class="t-header-brand-wrapper">
+      <a href="/admin/dashboard">
+        <img class="logo" src="/assets/logo.png" >
+        <img class="logo-mini" src="/assets/images/logo_mini.png" >
+      </a>
+    </div>
+    <div class="t-header-content-wrapper">
+      <div class="t-header-content">
+        <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+          <i class="mdi mdi-menu"></i>
+        </button>
+        <form action="#" class="t-header-search-box">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+            <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+          </div>
+        </form>
+        <ul class="nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-bell-outline mdi-1x"></i>
+            </a>
+            <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
+              <div class="dropdown-header">
+                <h6 class="dropdown-title">Notifications</h6>
+                <p class="dropdown-title-text">You have 4 unread notification</p>
+              </div>
+              <div class="dropdown-body">
+                <div class="dropdown-list">
+                  <div class="icon-wrapper rounded-circle bg-inverse-primary text-primary">
+                    <i class="mdi mdi-alert"></i>
+                  </div>
+                  <div class="content-wrapper">
+                    <small class="name">Storage Full</small>
+                    <small class="content-text">Server storage almost full</small>
+                  </div>
+                </div>
+                <div class="dropdown-list">
+                  <div class="icon-wrapper rounded-circle bg-inverse-success text-success">
+                    <i class="mdi mdi-cloud-upload"></i>
+                  </div>
+                  <div class="content-wrapper">
+                    <small class="name">Upload Completed</small>
+                    <small class="content-text">3 Files uploded successfully</small>
+                  </div>
+                </div>
+                <div class="dropdown-list">
+                  <div class="icon-wrapper rounded-circle bg-inverse-warning text-warning">
+                    <i class="mdi mdi-security"></i>
+                  </div>
+                  <div class="content-wrapper">
+                    <small class="name">Authentication Required</small>
+                    <small class="content-text">Please verify your password to continue using cloud services</small>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-footer">
+                <a href="#">View All</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-message-outline mdi-1x"></i>
+              <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span>
+            </a>
+            <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
+              <div class="dropdown-header">
+                <h6 class="dropdown-title">Messages</h6>
+                <p class="dropdown-title-text">You have 4 unread messages</p>
+              </div>
+              <div class="dropdown-body">
+                <div class="dropdown-list">
+                  <div class="image-wrapper">
+                    <img class="profile-img" src="/assets/images/profile/male/image_1.png" alt="profile image">
+                    <div class="status-indicator rounded-indicator bg-success"></div>
+                  </div>
+                  <div class="content-wrapper">
+                    <small class="name">Clifford Gordon</small>
+                    <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                  </div>
+                </div>
+                <div class="dropdown-list">
+                  <div class="image-wrapper">
+                    <img class="profile-img" src="/assets/images/profile/female/image_2.png" alt="profile image">
+                    <div class="status-indicator rounded-indicator bg-success"></div>
+                  </div>
+                  <div class="content-wrapper">
+                    <small class="name">Rachel Doyle</small>
+                    <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                  </div>
+                </div>
+                <div class="dropdown-list">
+                  <div class="image-wrapper">
+                    <img class="profile-img" src="/public/assets/images/profile/male/image_3.png" alt="profile image">
+                    <div class="status-indicator rounded-indicator bg-warning"></div>
+                  </div>
+                  <div class="content-wrapper">
+                    <small class="name">Lewis Guzman</small>
+                    <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-footer">
+                <a href="#">View All</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-apps mdi-1x"></i>
+            </a>
+            <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
+              <div class="dropdown-header">
+                <h6 class="dropdown-title">Apps</h6>
+                <p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
+              </div>
+              <div class="dropdown-body border-top pt-0">
+                <a class="dropdown-grid">
+                  <i class="grid-icon mdi mdi-jira mdi-2x"></i>
+                  <span class="grid-tittle">Jira</span>
+                </a>
+                <a class="dropdown-grid">
+                  <i class="grid-icon mdi mdi-trello mdi-2x"></i>
+                  <span class="grid-tittle">Trello</span>
+                </a>
+                <a class="dropdown-grid">
+                  <i class="grid-icon mdi mdi-artstation mdi-2x"></i>
+                  <span class="grid-tittle">Artstation</span>
+                </a>
+                <a class="dropdown-grid">
+                  <i class="grid-icon mdi mdi-bitbucket mdi-2x"></i>
+                  <span class="grid-tittle">Bitbucket</span>
+                </a>
+              </div>
+              <div class="dropdown-footer">
+                <a href="#">View All</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="page-body">
+    <!-- partial:partials/_sidebar.html -->
+    <div class="sidebar">
+      <div class="user-profile">
+        <div class="display-avatar animated-avatar">
+          <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
+        </div>
+        <div class="info-wrapper">
+          <p class="user-name">Irfan Nisar</p>
+          <h6 class="display-income">₹3,400,00</h6>
+        </div>
+      </div>
+      <ul class="navigation-menu">
+        <li class="nav-category-divider">MAIN</li>
+        <li>
+          <a href="/admin/userManage">
+            <span class="link-title">Users</span>
+            <i class="mdi mdi-account-multiple link-icon"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#brands" data-toggle="collapse" aria-expanded="false">
+              <span class="link-title">Brands</span>
+              <i class="mdi mdi-tag-multiple link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="brands">
+              <li>
+                  <a href="/admin/brandsManage">List brands</a>
+              </li>
+              <li>
+                  <a href="/admin/addBrands">Add brands</a>
+              </li>
+              <li>
+                  <a href="/admin/editBrands">Edit brands</a>
+              </li>
+          </ul>
+      </li>        
+        <li>
+          <a href="#orders" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Orders</span>
+            <i class="mdi mdi-cart link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="orders">
+            <li>
+              <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
+            </li>
+            <li>
+              <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#return" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Return</span>
+            <i class="mdi mdi-undo-variant link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="return">
+            <li>
+              <a href="pages/ui-components/buttons.html">Return Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Return Details</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Dropdowns</span>
+            <i class="mdi mdi-menu-down link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="dropdowns">
+            <li>
+              <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Dropdown Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#products" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Products</span>
+            <i class="mdi mdi-package-variant-closed link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="products">
+            <li>
+              <a href="pages/ui-components/buttons.html">Product Unlisted</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Listed</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Product Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#banners" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Banners</span>
+            <i class="mdi mdi-flag-variant link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="banners">
+            <li>
+              <a href="pages/ui-components/tables.html">Banners Add</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Banners Edit</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#coupons" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Coupons</span>
+            <i class="mdi mdi-ticket-percent link-icon"></i>
+          </a>
+          <ul class="collapse navigation-submenu" id="coupons">
+            <li>
+              <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+            </li>
+            <li>
+              <a href="pages/ui-components/tables.html">Coupons Add</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="pages/charts/chartjs.html">
+            <span class="link-title">Reports</span>
+            <i class="mdi mdi-chart-bar link-icon"></i>
+          </a>
+        </li>
+        <!-- Logout button -->
+    <li>
+      <a href="/logout">
+        <span class="link-title">Logout</span>
+        <i class="mdi mdi-logout link-icon"></i>
+      </a>
+    </li>
+      </ul>
+    </div>
+          <!-- partial -->
+          <div class="page-content-wrapper">
+            <div class="page-content-wrapper-inner">
+              <div class="content-viewport">
+                <div class="row">
+                  <div class="col-12 pb-3">
+                    <h4>Edit Products</h4>
+                    <p class="text-gray">Modify and manage product information</p>
+                  </div>
+                </div>
+      <!-- partial -->
+
+<div class="card mb-4">
+    <h5 class="card-header">Product Details</h5>
+    <!-- Account -->
+    <form action="/admin/editProduct" method="post" id="myForm" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="<%= product._id %>">
+      <div class="card-body">
+          <div class="d-flex align-items-start align-items-sm-center gap-4">
+              <% if (product.image[0]) { %>
+                  <img src="/assets/img/brands/<%= product.image[0] %>" class="d-block rounded image-preview" height="100" width="100" id="preview-1" onclick="triggerInput('file-input-1')"/>
+              <% } else { %>
+                  <i class="fa fa-image" id="preview-1" onclick="triggerInput('file-input-1')"></i>
+              <% } %>
+  
+              <% if (product.image[1]) { %>
+                  <img src="/assets/img/brands/<%= product.image[1] %>" class="d-block rounded image-preview" height="100" width="100" id="preview-2" onclick="triggerInput('file-input-2')"/>
+              <% } else { %>
+                  <i class="fa fa-image" id="preview-2" onclick="triggerInput('file-input-2')"></i>
+              <% } %>
+  
+              <% if (product.image[2]) { %>
+                  <img src="/assets/img/brands/<%= product.image[2] %>" class="d-block rounded image-preview" height="100" width="100" id="preview-3" onclick="triggerInput('file-input-3')"/>
+              <% } else { %>
+                  <i class="fa fa-image" id="preview-3" onclick="triggerInput('file-input-3')"></i>
+              <% } %>
+  
+              <% if (product.image[3]) { %>
+                  <img src="/assets/img/brands/<%= product.image[3] %>" class="d-block rounded image-preview" height="100" width="100" id="preview-4" onclick="triggerInput('file-input-4')"/>
+              <% } else { %>
+                  <i class="fa fa-image" id="preview-4" onclick="triggerInput('file-input-4')"></i>
+              <% } %>
+  
+              <div class="button-wrapper">
+                  <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                      <span class="d-none d-sm-block">Upload new photo</span>
+                      <i class="bx bx-upload d-block d-sm-none"></i>
+                      <input id="file-input-1" type="file" name="productImage1" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-1')" required/>
+                      <input id="file-input-2" type="file" name="productImage2" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-2')" required/>
+                      <input id="file-input-3" type="file" name="productImage3" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-3')" required/>
+                      <input id="file-input-4" type="file" name="productImage4" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-4')" required/>
+                  </label>
+                    <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="resetImages()">
+                        <i class="bx bx-reset d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Reset</span>
+                    </button>
+                    <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                    <% if(typeof message !== "undefined"){ %>
+                
+                        <p style="color: brown;"><%=message%></p> 
+                        
+                        <% }  %>
+                </div>
+            </div>
+        </div>
+        <!-- Cropper Modal -->
+        <div id="cropperModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
+            <div style="background:#fff; padding:20px; border-radius:14px; position:relative;">
+                <img id="image-to-crop" style="max-width:100%; max-height:80vh; margin-bottom: 20px;">
+                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="cropImage()">
+                    <i class="bx bx-reset d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Crop</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="closeCropper()">
+                    <i class="bx bx-reset d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Cancel</span>
+                </button>
+            </div>
+        </div>
+    <hr class="my-0" />
+    <div class="card-body">
+        <div class="row">
+          <div class="mb-3 col-md-6">
+            <label for="firstName" class="form-label">Product Name</label>
+            <input
+              class="form-control"
+              type="text"
+              id="productName"
+              name="productName"
+              value="<%=product.productName %>" 
+              autofocus
+            />
+          </div>
+          <div class="mb-3 col-md-6">
+            <label for="brands" class="form-label">Brands</label>
+            <select id="brands" name="brands" class="select2 form-select">
+                <% if (brands && brands.length > 0) { %>
+                    <% for(let i = 0; i < brands.length; i++) { %> 
+                        <option value="<%= brands[i].name %>"><%= brands[i].name %></option>
+                    <% } %>
+                <% } else { %>
+                    <option value="">No brands available</option>
+                <% } %>
+            </select>
+        </div>
+        
+          <div class="mb-3 col-md-6">
+            <label for="organization" class="form-label">Model</label>
+            <input
+              type="text"
+              class="form-control"
+              id="model"
+              name="model"
+              value="<%=product.model %>"
+            />
+          </div>
+          <div class="mb-3 col-md-6">
+            <label for="organization" class="form-label">Size</label>
+            <input
+              type="text"
+              class="form-control"
+              id="size"
+              name="size"
+              value="<%=product.size %>"
+            />
+          </div>
+          <div class="mb-3 col-md-6">
+          <div class="input-group">
+            <span class="input-group-text">₹</span>
+            <input
+              type="text"
+              class="form-control"
+              id="mrp"  
+              name="mrp" 
+              value="<%=product.price %>"
+            />
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+          <div class="mb-3 col-md-6">
+            <div class="input-group">
+                <span class="input-group-text">₹</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="discountPrice" 
+                  name="discountPrice" 
+                  value="<%=product.discountPrice %>" 
+                  onkeyup="calculateDiscount()"
+                  aria-label="Amount (to the nearest Indian Rupee)"
+                />
+                <span class="input-group-text">.00</span>
+              </div>          
+            </div>
+          <div class="mb-3 col-md-6">
+            <label for="discountPrice" class="form-label">Discount(%)</label>
+            <input class="form-control" type="text"  id="discount" name="discount" value="<%=product.discount %>" readonly/>
+          </div>
+          <div class="mb-3 col-md-6">
+            <label for="inStock" class="form-label">Stock</label>
+            <input
+            type="number"
+            class="form-control"
+            id="inStock"
+            name="inStock"
+            placeholder="Stock"
+          />
+          </div>
+
+          <label for="description" class="form-label">Description</label>
+
+          <div class="input-group input-group-merge speech-to-text">
+            <input class="form-control" id="description" value="<%= product.description %>" name="description" placeholder="Luxury brands handcrafted" rows="2"></input>
+          </div>
+        <div class="mt-2">
+          <button type="submit"  id="sbmtbtn" class="btn btn-primary me-2">Add product</button>
+          <button type="button" onclick="clearForm()" class="btn btn-outline-secondary">Cancel</button>
+        </div>
+        
+      </form>
+    </div>
+    <!-- /Account -->
+  </div>
+</div>
+</div>
+<!-- partial -->
+</div>
+<!-- page content ends -->
+</div>
+<!--page body ends -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+<script>
+let currentPreviewId;
+let cropper;
+
+function openCropper(event, previewId) {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const modal = document.getElementById('cropperModal');
+            modal.style.display = 'flex';
+            const imageElement = document.getElementById('image-to-crop');
+            imageElement.src = e.target.result;
+            currentPreviewId = previewId;
+
+            if (cropper) {
+                cropper.destroy();
+            }
+            cropper = new Cropper(imageElement, {
+                aspectRatio: 1,
+                viewMode: 1
+            });
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function cropImage() {
+    const canvas = cropper.getCroppedCanvas();
+    const preview = document.getElementById(currentPreviewId);
+    preview.src = canvas.toDataURL();
+    closeCropper();
+}
+
+function closeCropper() {
+    cropper.destroy();
+    document.getElementById('cropperModal').style.display = 'none';
+}
+
+function removeImage(previewId) {
+    const preview = document.getElementById(previewId);
+    preview.src = '';
+}
+
+function resetImages() {
+    for (let i = 1; i <= 4; i++) {
+        removeImage(`preview-${i}`);
+    }
+}
+
+function calculateDiscount() {
+    const discountPrice = parseFloat(document.getElementById('discountPrice').value);
+    const discount = parseFloat(document.getElementById('discount').value);
+
+    if (isNaN(discountPrice) || isNaN(discount) || discountPrice <= 0 || discount < 0) {
+        document.getElementById('discount').value = '';
+        return;
+    }
+
+    const discountPercentage = ((discountPrice - discount) / discountPrice) * 100;
+    document.getElementById('discount').value = discountPercentage.toFixed(2);
+}
+
+// Add an event listener to the original price field to recalculate the discount when the original price changes
+document.getElementById('discountPrice').addEventListener('keyup', calculateDiscount);
+
+function triggerInput(inputId) {
+    document.getElementById(inputId).click();
+}
+
+// edit product
+document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const form = document.getElementById('myForm');
+                const formData = new FormData(form);
+            
+                fetch('/admin/editProduct', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: "Product Updated",
+                            text: "Product modified successful",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.href = '/admin/productManage';
+                        });
+                    } else {
+                        const validationMessage = document.getElementById('validationMessages');
+                        validationMessage.style.display = 'block';
+                        validationMessage.innerHTML = data.message;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error Adding Brand');
+                });
+            });
+            
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  
+
+<%- include('../layouts/addBrandsFooter') %>

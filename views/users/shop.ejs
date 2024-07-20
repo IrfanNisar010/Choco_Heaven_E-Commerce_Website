@@ -331,59 +331,19 @@
                     <div class="col-xl-3 hidden-xl">
                         <!-- widget -->
                         <div class="widget">
-                            <h4 class="mb-30">Brand Categories</h4>
+                            <h4 class="mb-30">Brands Categories</h4>
                             <div class="accordion" id="accordionExample">
+                                <% products.forEach(product => { %>
                                 <div class="list">
-                                    <a href="javascript:void(0)">Lindt <span>(5)</span></a>
-                                    <button class="float-right text-right" type="button" data-toggle="collapse"
-                                        data-target="#collapse-1">
+                                    <a href="javascript:void(0)"><%= product.brand %> (<%= product.inStock %>)</a>
+                                    <button class="float-right text-right" type="button" data-toggle="collapse" data-target="#collapse-<%= product._id %>">
                                         <span class="float-right"><i class="fas fa-angle-right"></i></span>
                                     </button>
                                 </div>
-
-                                <div class="list">
-                                    <a href="javascript:void(0)">Butler's <span>(6)</span></a>
-                                    <button class="float-right text-right" type="button" data-toggle="collapse"
-                                        data-target="#collapse-2">
-                                        <span class="float-right"><i class="fas fa-angle-right"></i></span>
-                                    </button>
-                                </div>
-
-                                <div class="list">
-                                    <a href="javascript:void(0)">Ferrero <span>(4)</span></a>
-                                    <button class="float-right text-right" type="button" data-toggle="collapse"
-                                        data-target="#collapse-3">
-                                        <span class="float-right"><i class="fas fa-angle-right"></i></span>
-                                    </button>
-                                    <div id="collapse-3" class="collapse">
-                                        <div class="sidebar-list">
-                                            <ul>
-                                                <li><a href="shop4.html">Camerass <span>(1)</span></a></li>
-                                                <li><a href="shop4.html">Gift Cards <span>(5)</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="list">
-                                    <a href="javascript:void(0)">Cadburry <span>(15)</span></a>
-                                    <button class="float-right text-right" type="button" data-toggle="collapse"
-                                        data-target="#collapse-4">
-                                        <span class="float-right"><i class="fas fa-angle-right"></i></span>
-                                    </button>
-                                    <div id="collapse-4" class="collapse">
-                                        <div class="sidebar-list">
-                                            <ul>
-                                                <li><a href="shop3.html">Lightings <span>(1)</span></a></li>
-                                                <li><a href="shop3.html">Managed <span>(5)</span></a></li>
-                                                <li><a href="shop3.html">Printers <span>(32)</span></a></li>
-                                                <li><a href="shop3.html">Shoes <span>(32)</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <% }); %>
                             </div>
                         </div>
+                        
                         <div class="widget mt-50">
                             <h4 class="mb-30">Filter By Price</h4>
                             <form action="#">
@@ -406,19 +366,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="widget mt-50">
-                            <h4 class="mb-30">Filter By Color</h4>
-                            <ul class="color-list">
-                                <li style="background-color: #000;"></li>
-                                <li style="background-color: #1E73BE;"></li>
-                                <li style="background-color: #FFD700;"></li>
-                                <li style="background-color: #C9C9C9;"></li>
-                                <li style="background-color: #008000;"></li>
-                                <li style="background-color: #FFFF00;"></li>
-                                <li style="background-color: #FFFFFF;"></li>
-                                <li style="background-color: #DD3333;"></li>
-                            </ul>
                         </div>
                         <div class="widget mt-50">
                             <h4 class="mb-30">Filter By Size</h4>
@@ -532,23 +479,6 @@
                                         <div class="filter-popup">
                                             <div class="row">
                                                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-                                                    <div class="filter-popup-item">
-                                                        <div class="widget">
-                                                            <h4 class="mb-30">Filter By Color</h4>
-                                                            <ul class="color-list">
-                                                                <li style="background-color: #000;"></li>
-                                                                <li style="background-color: #1E73BE;"></li>
-                                                                <li style="background-color: #FFD700;"></li>
-                                                                <li style="background-color: #C9C9C9;"></li>
-                                                                <li style="background-color: #008000;"></li>
-                                                                <li style="background-color: #FFFF00;"></li>
-                                                                <li style="background-color: #FFFFFF;"></li>
-                                                                <li style="background-color: #DD3333;"></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                                                     <div class="widget">
                                                         <h4 class="mb-30">Filter By Size</h4>
                                                         <div class="size-link">
@@ -612,21 +542,27 @@
                         <!-- /. filter heading -->
                         <div class="filter-content">
                             <div class="tab-content">
+                                <% if (products.length > 0) { %>
                                 <div class="tab-pane fade show active" id="shop-tab-1">
+                                    <% for (let row = 0; row < 3; row++) { %>
                                     <div class="product-wrapper mt-55">
                                         <div class="row">
+                                            <% for (let col = 0; col < 4; col++) { 
+                                                let index = row * 4 + col;
+                                                if (index >= products.length) break;
+                                            %>
                                             <div class="col-6">
                                                 <div class="product-box mb-40">
                                                     <div class="product-box-wrapper">
                                                         <div class="product-img">
-                                                            <img src="/assets/img/product/P-1.webp" class="w-100" alt="">
-                                                            <a href="/product-1" class="d-block">
+                                                            <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
+                                                            <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
                                                                 <div class="second-img">
-                                                                    <img src="/assets/img/product/Hover-P-1.webp" alt=""
+                                                                    <img src="/assets/img/brands/<%= products[index].image[1] %>" alt=""
                                                                         class="w-100">
                                                                 </div>
                                                             </a>
-                                                            <a href="/product-1"
+                                                            <a href="/singleProduct?id=<%= products[index]._id %>"
                                                                 class="product-img-link quick-view-1 text-capitalize">Quick
                                                                 view</a>
                                                         </div>
@@ -634,16 +570,15 @@
                                                         <div class="product-desc pb-20">
                                                             <div class="product-desc-top">
                                                                 <div class="categories">
-                                                                    <a href="/product-1"
-                                                                        class="product-category"><span>Butler's</span></a>
+                                                                    <a href="/singleProduct?id=<%= products[index]._id %>"
+                                                                        class="product-category"><span><%= products[index].brand %></span></a>
                                                                 </div>
                                                                 <a href="wishlist.html" class="wishlist float-right"><span><i
                                                                             class="fas fa-heart"></i></span></a>
                                                             </div>
-                                                            <a href="/product-1" class="product-title">Butlers White Salted Almond & Butterscotch 
-                                                                Tasty Pieces Pouch 120g</a>
+                                                            <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title"> <%= products[index].productName %></a>
                                                             <div class="price-switcher">
-                                                                <span class="price switcher-item">₹995.00</span>
+                                                                <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
                                                                 <a href="cart.html"
                                                                     class="add-cart text-capitalize switcher-item">+add
                                                                     to cart</a>
@@ -652,194 +587,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="product-box mb-40">
-                                                    <div class="product-box-wrapper">
-                                                        <div class="product-img">
-                                                            <img src="/assets/img/product/P-2.webp" class="w-100" alt="">
-                                                            <a href="single-product-4.html" class="d-block">
-                                                                <div class="second-img">
-                                                                    <img src="/assets/img/product/Hover-P-2.webp" alt=""
-                                                                        class="w-100">
-                                                                </div>
-                                                            </a>
-                                                            <a href="javascript:void(0)"
-                                                                class="product-img-link quick-view-1 text-capitalize">Quick
-                                                                view</a>
-                                                        </div>
-
-                                                        <div class="product-desc pb-20">
-                                                            <div class="product-desc-top">
-                                                                <div class="categories">
-                                                                    <a href="shop2.html"
-                                                                        class="product-category"><span>Lindt</span></a>
-                                                                </div>
-                                                                <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                                            class="fas fa-heart"></i></span></a>
-                                                            </div>
-                                                            <a href="single-product-4.html" class="product-title">Lindt Excellence 70% Cocoa Bar
-                                                                100g</a>
-                                                            <div class="price-switcher">
-                                                                <span class="price switcher-item">₹450.00</span>
-                                                                <a href="cart.html"
-                                                                    class="add-cart text-capitalize switcher-item">+add
-                                                                    to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-box mb-40">
-                                                    <div class="product-box-wrapper">
-                                                        <div class="product-img">
-                                                            <img src="/assets/img/product/P-3.webp" class="w-100" alt="">
-                                                            <a href="single-product-4.html" class="d-block">
-                                                                <div class="second-img">
-                                                                    <img src="/assets/img/product/Hover-P-3.webp" alt=""
-                                                                        class="w-100">
-                                                                </div>
-                                                            </a>
-                                                            <a href="javascript:void(0)"
-                                                                class="product-img-link quick-view-1 text-capitalize">Quick
-                                                                view</a>
-                                                        </div>
-
-                                                        <div class="product-desc pb-20">
-                                                            <div class="product-desc-top">
-                                                                <div class="categories">
-                                                                    <a href="shop2.html"
-                                                                        class="product-category"><span>Leonidas</span></a>
-                                                                </div>
-                                                                <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                                            class="fas fa-heart"></i></span></a>
-                                                            </div>
-                                                            <a href="single-product-4.html" class="product-title">Leonidas Dark 54% Raspberry Bar 
-                                                                100g</a>
-                                                            <div class="price-switcher">
-                                                                <span class="price switcher-item">₹695.00</span>
-                                                                <a href="cart.html"
-                                                                    class="add-cart text-capitalize switcher-item">+add
-                                                                    to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="product-box mb-40">
-                                                    <div class="product-box-wrapper">
-                                                        <div class="product-img">
-                                                            <img src="/assets/img/product/P-4.webp" class="w-100" alt="">
-                                                            <a href="single-product-4.html" class="d-block">
-                                                                <div class="second-img">
-                                                                    <img src="/assets/img/product/Hover-P-4.webp" alt=""
-                                                                        class="w-100">
-                                                                </div>
-                                                            </a>
-                                                            <a href="javascript:void(0)"
-                                                                class="product-img-link quick-view-1 text-capitalize">Quick
-                                                                view</a>
-                                                        </div>
-
-                                                        <div class="product-desc pb-20">
-                                                            <div class="product-desc-top">
-                                                                <div class="categories">
-                                                                    <a href="shop2.html"
-                                                                        class="product-category"><span>Ferrero</span></a>
-                                                                </div>
-                                                                <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                                            class="fas fa-heart"></i></span></a>
-                                                            </div>
-                                                            <a href="single-product-4.html" class="product-title">Ferrero Rocher T30 375g</a>
-                                                            <div class="price-switcher">
-                                                                <span class="price switcher-item">₹ 2,155.00</span>
-                                                                <a href="cart.html"
-                                                                    class="add-cart text-capitalize switcher-item">+add
-                                                                    to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-box mb-40">
-                                                    <div class="product-box-wrapper">
-                                                        <div class="product-img">
-                                                            <img src="/assets/img/product/P-5.webp" class="w-100" alt="">
-                                                            <a href="single-product-4.html" class="d-block">
-                                                                <div class="second-img">
-                                                                    <img src="/assets/img/product/Hover-P-5.jpg" alt=""
-                                                                        class="w-100">
-                                                                </div>
-                                                            </a>
-                                                            <a href="javascript:void(0)"
-                                                                class="product-img-link quick-view-1 text-capitalize">Quick
-                                                                view</a>
-                                                        </div>
-
-                                                        <div class="product-desc pb-20">
-                                                            <div class="product-desc-top">
-                                                                <div class="categories">
-                                                                    <a href="shop2.html"
-                                                                        class="product-category"><span>Whittakers</span></a>
-                                                                </div>
-                                                                <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                                            class="fas fa-heart"></i></span></a>
-                                                            </div>
-                                                            <a href="single-product-4.html" class="product-title">Whittakers Almond Gold Bar 
-                                                                250g</a>
-                                                            <div class="price-switcher">
-                                                                <span class="price switcher-item">₹995.00</span>
-                                                                <a href="cart.html"
-                                                                    class="add-cart text-capitalize switcher-item">+add
-                                                                    to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-box mb-40">
-                                                    <div class="product-box-wrapper">
-                                                        <div class="product-img">
-                                                            <img src="/assets/img/product/P-6.webp" class="w-100" alt="">
-                                                            <a href="single-product-4.html" class="d-block">
-                                                                <div class="second-img">
-                                                                    <img src="/assets/img/product/Hover-P-6.webp" alt=""
-                                                                        class="w-100">
-                                                                </div>
-                                                            </a>
-                                                            <a href="javascript:void(0)"
-                                                                class="product-img-link quick-view-1 text-capitalize">Quick
-                                                                view</a>
-                                                            <span class="sale bg-red text-white">-10%</span>
-                                                        </div>
-
-                                                        <div class="product-desc pb-20">
-                                                            <div class="product-desc-top">
-                                                                <div class="categories">
-                                                                    <a href="shop2.html"
-                                                                        class="product-category"><span>Milka</span></a>
-                                                                </div>
-                                                                <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                                            class="fas fa-heart"></i></span></a>
-                                                            </div>
-                                                            <a href="single-product-4.html" class="product-title">Milka Strawberry Milk Chocolate Bar 
-                                                                100g</a>
-                                                            <div class="price-switcher">
-                                                                <span class="price switcher-item">₹ 247.00 - ₹ 275.00</span>
-                                                                <a href="cart.html"
-                                                                    class="add-cart text-capitalize switcher-item">+add
-                                                                    to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <% } %>
                                         </div>
-                                        
+                                        <% } %>
+                                    </div>
+                                    <% } %>
+                                </div>
+
+                                         
                                         <div class="text-center mt-20">
                                            <a href="/loadShop" class="load-more">View more</a>
                                         </div>

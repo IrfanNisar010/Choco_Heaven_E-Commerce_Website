@@ -16,7 +16,7 @@ const verifyLogin = async (req, res) => {
 
         if (isUser.email === email) {
             if (isUser.password === password) {
-                req.session.admin = { email: isUser.email };
+                req.session.admin = { email: isUser.email }
                 res.redirect('/admin/dashboard');
             } else {
                 return res.render('adminLogin', { message: "Please enter a valid User Name and Password" });
@@ -32,6 +32,7 @@ const verifyLogin = async (req, res) => {
 
 const loadHome = async (req, res) => {
     try {
+        console.log(req.session.loadHome)
         res.render('dashboard');
     } catch (error) {
         console.log(error.message);
@@ -78,10 +79,46 @@ const blockAndUnblockUser = async (req, res, next) => {
     }
 };
 
+const searchUser = async (req, res, next) => {
+    try {
+        let users = [];
+        const currentPage = parseInt(req.query.page)
+        const userPerPage = 10
+        const skip = (currentPage - 1) * userPerPage;
+
+        const totalProduct = await User.countDocuments()
+        const totalPages = Math.ceil(totalProduct / userPerPage)
+
+
+        if (req.query.search) {
+
+            users = await User.find({ firstName: { $regex: req.query.search, $options: 'i' } }).skip(skip).limit(userPerPage)
+        } else {
+            users = await User.find().skip(skip).limit(userPerPage)
+        }
+        res.render('userManagement', { users: users, currentPage, totalPages })
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+
+
+const logout = async (req, res) => {
+    try {
+        req.session.destroy()
+        res.redirect('/admin')
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports = {
     loginLoad,
     verifyLogin,
     loadHome,
     loadUserManagement,
-    blockAndUnblockUser
+    blockAndUnblockUser,
+    searchUser,
+    logout
 };

@@ -64,8 +64,8 @@
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="icon-box">
-                    <i class="material-icons">&#xE5CD;</i>
+                <div class="icon-box" style="display: flex; justify-content: center; align-items: center;">
+                    <lord-icon src="https://cdn.lordicon.com/nqtddedc.json" trigger="in" delay="100" state="in-cross" colors="primary:white" style="width:85px;height:85px;"></lord-icon>
                 </div>
                 <h4 class="modal-title w-100">Invalid OTP!</h4>
             </div>
@@ -73,11 +73,14 @@
                 <p class="text-center">Your OTP is incorrect. Please go back and try again.</p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger btn-block" data-dismiss="modal"><a href="/verifyOtp" style="color: white; text-decoration: none;">Go back</a></button>
+                <button class="btn btn-danger btn-block" data-dismiss="modal">
+                    <a href="/verifyOtp" style="color: white; text-decoration: none;">Go back</a>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     const otpFields = document.querySelectorAll('.verify-email-otp-field');

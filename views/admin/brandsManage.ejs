@@ -1,172 +1,308 @@
 <%- include('../layouts/brandsHeader') %>
 
 <nav class="t-header">
-    <div class="t-header-brand-wrapper">
-      <a href="index.html">
-        <img class="logo" src="/public/assets/images/logo.png" alt="">
-        <img class="logo-mini" src="/public/assets/images/logo_mini.png" alt="">
-      </a>
-    </div>
-    <div class="t-header-content-wrapper">
-      <div class="t-header-content">
-        <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
-          <i class="mdi mdi-menu"></i>
-        </button>
-        <form action="#" class="t-header-search-box">
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
-            <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+  <div class="t-header-brand-wrapper">
+    <a href="/admin/dashboard">
+      <img class="logo" src="/assets/logo.png" >
+      <img class="logo-mini" src="/assets/images/logo_mini.png" >
+    </a>
+  </div>
+  <div class="t-header-content-wrapper">
+    <div class="t-header-content">
+      <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+        <i class="mdi mdi-menu"></i>
+      </button>
+      <form action="#" class="t-header-search-box">
+        <div class="input-group">
+          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+          <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+        </div>
+      </form>
+      <ul class="nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-bell-outline mdi-1x"></i>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Notifications</h6>
+              <p class="dropdown-title-text">You have 4 unread notifications</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-primary text-primary">
+                  <i class="mdi mdi-alert"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Storage Full</small>
+                  <small class="content-text">Server storage almost full</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-success text-success">
+                  <i class="mdi mdi-cloud-upload"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Upload Completed</small>
+                  <small class="content-text">3 Files uploaded successfully</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-warning text-warning">
+                  <i class="mdi mdi-security"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Authentication Required</small>
+                  <small class="content-text">Please verify your password to continue using cloud services</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </nav>
-  <!-- partial -->
-  <div class="page-body">
-    <!-- partial:partials/_sidebar.html -->
-    <div class="sidebar">
-      <div class="user-profile">
-        <div class="display-avatar animated-avatar">
-          <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
-        </div>
-        <div class="info-wrapper">
-          <p class="user-name">Irfan Nisar</p>
-          <h6 class="display-income">₹3,400,00</h6>
-        </div>
-      </div>
-      <ul class="navigation-menu">
-        <li class="nav-category-divider">MAIN</li>
-        <li>
-          <a href="/admin/userManage">
-            <span class="link-title">Users</span>
-            <i class="mdi mdi-account-multiple link-icon"></i>
-          </a>
         </li>
-        <li>
-          <a href="/admin/brandManage">
-            <span class="link-title">Brands</span>
-            <i class="mdi mdi-tag-multiple link-icon"></i>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-message-outline mdi-1x"></i>
+            <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span>
           </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Messages</h6>
+              <p class="dropdown-title-text">You have 4 unread messages</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/male/image_1.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Clifford Gordon</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/female/image_2.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Rachel Doyle</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/public/assets/images/profile/male/image_3.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-warning"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Lewis Guzman</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
         </li>
-        <li>
-          <a href="#orders" data-toggle="collapse" aria-expanded="false">
-            <span class="link-title">Orders</span>
-            <i class="mdi mdi-cart link-icon"></i>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-apps mdi-1x"></i>
           </a>
-          <ul class="collapse navigation-submenu" id="orders">
-            <li>
-              <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
-            </li>
-            <li>
-              <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
-            </li>
-          </ul>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Apps</h6>
+              <p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
+            </div>
+            <div class="dropdown-body border-top pt-0">
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-jira mdi-2x"></i>
+                <span class="grid-title">Jira</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-trello mdi-2x"></i>
+                <span class="grid-title">Trello</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-artstation mdi-2x"></i>
+                <span class="grid-title">Artstation</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-bitbucket mdi-2x"></i>
+                <span class="grid-title">Bitbucket</span>
+              </a>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
         </li>
-        <li>
-          <a href="#return" data-toggle="collapse" aria-expanded="false">
-            <span class="link-title">Return</span>
-            <i class="mdi mdi-undo-variant link-icon"></i>
-          </a>
-          <ul class="collapse navigation-submenu" id="return">
-            <li>
-              <a href="pages/ui-components/buttons.html">Return Edit</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/tables.html">Return Details</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
-            <span class="link-title">Dropdowns</span>
-            <i class="mdi mdi-menu-down link-icon"></i>
-          </a>
-          <ul class="collapse navigation-submenu" id="dropdowns">
-            <li>
-              <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/tables.html">Dropdown Add</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#products" data-toggle="collapse" aria-expanded="false">
-            <span class="link-title">Products</span>
-            <i class="mdi mdi-package-variant-closed link-icon"></i>
-          </a>
-          <ul class="collapse navigation-submenu" id="products">
-            <li>
-              <a href="pages/ui-components/buttons.html">Product Unlisted</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/tables.html">Product Listed</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/tables.html">Product Edit</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/tables.html">Product Add</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#banners" data-toggle="collapse" aria-expanded="false">
-            <span class="link-title">Banners</span>
-            <i class="mdi mdi-flag-variant link-icon"></i>
-          </a>
-          <ul class="collapse navigation-submenu" id="banners">
-            <li>
-              <a href="pages/ui-components/tables.html">Banners Add</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/tables.html">Banners Edit</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#coupons" data-toggle="collapse" aria-expanded="false">
-            <span class="link-title">Coupons</span>
-            <i class="mdi mdi-ticket-percent link-icon"></i>
-          </a>
-          <ul class="collapse navigation-submenu" id="coupons">
-            <li>
-              <a href="pages/ui-components/buttons.html">Coupons Edit</a>
-            </li>
-            <li>
-              <a href="pages/ui-components/tables.html">Coupons Add</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="pages/charts/chartjs.html">
-            <span class="link-title">Reports</span>
-            <i class="mdi mdi-chart-bar link-icon"></i>
-          </a>
-        </li>
-        <!-- Logout button -->
-    <li>
-      <a href="/logout">
-        <span class="link-title">Logout</span>
-        <i class="mdi mdi-logout link-icon"></i>
-      </a>
-    </li>
       </ul>
     </div>
-    <!-- partial -->
+  </div>
+</nav>
+<!-- partial -->
+<div class="page-body">
+  <!-- partial:partials/_sidebar.html -->
+  <div class="sidebar">
+    <div class="user-profile">
+      <div class="display-avatar animated-avatar">
+        <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
+      </div>
+      <div class="info-wrapper">
+        <p class="user-name">Irfan Nisar</p>
+        <h6 class="display-income">₹3,400,00</h6>
+      </div>
+    </div>
+    <ul class="navigation-menu">
+      <li class="nav-category-divider">MAIN</li>
+      <li>
+        <a href="/admin/userManage">
+          <span class="link-title">Users</span>
+          <i class="mdi mdi-account-multiple link-icon"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#brands" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Brands</span>
+            <i class="mdi mdi-tag-multiple link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="brands">
+            <li>
+                <a href="/admin/brandsManage">List brands</a>
+            </li>
+            <li>
+                <a href="/admin/addBrands">Add brands</a>
+            </li>
+            <li>
+                <a href="/admin/editBrands">Edit brands</a>
+            </li>
+        </ul>
+    </li>        
+      <li>
+        <a href="#orders" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Orders</span>
+          <i class="mdi mdi-cart link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="orders">
+          <li>
+            <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
+          </li>
+          <li>
+            <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#return" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Return</span>
+          <i class="mdi mdi-undo-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="return">
+          <li>
+            <a href="pages/ui-components/buttons.html">Return Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Return Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Dropdowns</span>
+          <i class="mdi mdi-menu-down link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="dropdowns">
+          <li>
+            <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Dropdown Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#products" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Products</span>
+          <i class="mdi mdi-package-variant-closed link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="products">
+          <li>
+            <a href="pages/ui-components/buttons.html">Product Unlisted</a>
+          </li>
+          <li>
+            <a href="/admin/productManage">Product Listed</a>
+          </li>
+          <li>
+            <a href="/admin/editProduct">Product Edit</a>
+          </li>
+          <li>
+            <a href="/admin/addProduct">Product Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#banners" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Banners</span>
+          <i class="mdi mdi-flag-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="banners">
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Add</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Edit</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#coupons" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Coupons</span>
+          <i class="mdi mdi-ticket-percent link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="coupons">
+          <li>
+            <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Coupons Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="pages/charts/chartjs.html">
+          <span class="link-title">Reports</span>
+          <i class="mdi mdi-chart-bar link-icon"></i>
+        </a>
+      </li>
+      <!-- Logout button -->
+  <li>
+    <a href="/admin/logout">
+      <span class="link-title">Logout</span>
+      <i class="mdi mdi-logout link-icon"></i>
+    </a>
+  </li>
+    </ul>
+  </div>
+  <!-- partial -->
     <div class="page-content-wrapper">
       <div class="page-content-wrapper-inner">
         <div class="content-viewport">
           <div class="row">
             <div class="col-12 pb-3">
-              <h4>Add Brands</h4>
-              <p class="text-gray">Input details of new Brands</p>
+              <h4>Brands</h4>
+              <p class="text-gray">Available brands</p>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-12 equel-grid">
+            <div class="col-12 equel-grid">
               <div class="grid">
                 <div class="grid-body py-3">
                   <p class="card-title ml-n1">Brands</p>
@@ -175,26 +311,52 @@
                   <div class="row">
                     <% if (brands.length > 0) { %>
                       <% for (let i = 0; i < brands.length; i++) { %>
-                        <div class="col-md-4">
-                          <div class="card">
-                            <h2 class="card-title" style="display: flex; justify-content: center; margin-top: 10px; "><%= brands[i].name %></h2>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                          <div class="card h-100">
+                            <h2 class="card-title text-center my-3" style="font-weight: 300; font-size: 20px;"><%= brands[i].name %></h2>
                             <div class="card-body">
-                              <img src="/assets/img/brands/<%= brands[i].imageUrl %>" alt="<%= brands[i].name %>" style="width: 283px; height: 350px; border-radius: 13px;" >
-                              <p class="card-text"><%= brands[i].description %></p>
-                              <a href="/admin/editBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary">Edit</a>
-                              <a href="/admin/softDeleteBrands?brandId=<%= brands[i]._id %>" class="btn btn-danger">Delete</a>
+                              <img src="/assets/img/brands/<%= brands[i].imageUrl %>" alt="<%= brands[i].name %>" class="img-fluid rounded" style="max-height: 350px;">
+                              <p class="card-text mt-3 text-truncate-3"><%= brands[i].description %></p>
+                              <% if (brands[i].isDeleted) { %>
+                                <a href="/admin/restoreBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary btn-block" style="border-radius: 50px;" >Restore</a>
+                              <% } else { %>
+                                <a href="/admin/editBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary btn-block"  style="border-radius: 50px;"  >Edit</a>
+                                <a href="/admin/softDeleteBrands?brandId=<%= brands[i]._id %>" class="btn btn-danger btn-block"  style="border-radius: 50px;"  >Delete</a>
+                              <% } %>
                             </div>
                           </div>
                         </div>
                       <% } %>
                     <% } else { %>
-                      <p>No brands found</p>
+                      <div class="col-12">
+                        <p>No brands found</p>
+                      </div>
                     <% } %>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          
+          <style>
+          .text-truncate-3 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-clamp: 3;
+            box-orient: vertical;
+          }
+          .card-hover {
+          transition: transform 0.3s, box-shadow 0.3s;
+          }
+
+          .card-hover:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+           }
+          </style>
+          
       </div>
     </div>
   </div>
@@ -214,4 +376,4 @@
 
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-          <%- include('../layouts/dashboardFooter') %>
+<%- include('../layouts/dashboardFooter') %>

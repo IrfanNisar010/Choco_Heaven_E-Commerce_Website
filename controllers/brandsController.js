@@ -173,7 +173,7 @@ const editBrands = async (req, res, next) => {
 
 const restoreBrands = async (req, res, next) => {
     try {
-        const id = req.query.id;
+        const id = req.query.brandId;
         if (id) {
             await Brands.findByIdAndUpdate(id, { isDeleted: false });
             return res.redirect('/admin/brandsManage');

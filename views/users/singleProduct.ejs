@@ -1,31 +1,4 @@
-<!doctype html>
-<html class="no-js" lang="">
-
-
-<!-- Mirrored from wphix.com/template/mazia/single-product-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jul 2024 03:34:25 GMT -->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Product: Details</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/logo/Chocolate_icon.png">
-
-  <!-- CSS here -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">    <link rel="stylesheet" href="/css/animate.min.css">
-  <link rel="stylesheet" href="/css/magnific-popup.css">
-  <link rel="stylesheet" href="/css/meanmenu.css">
-  <link rel="stylesheet" href="/css/slick.css">
-  <link rel="stylesheet" href="/css/default.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/responsive.css">
-</head>
-
-<body>
+<%- include('../layouts/singleProductHeader') %>
         <!-- header section start -->
         <header class="header pt-3 header-sticky" style="height: 4rem;">
             <div class="container-fluid">
@@ -334,16 +307,16 @@
                                         <div class="nav nav-pills" id="v-pills-tab" role="tablist"
                                             aria-orientation="vertical">
                                             <a class="active" data-toggle="pill" href="#tab-1">
-                                                <img src="/assets/img/product/P-4.webp" class="w-100" alt="">
+                                                <img src="/assets/img/brands/<%= product.image[0] %>" class="w-100" alt="">
                                             </a>
                                             <a class="popup-images" data-toggle="pill" href="#tab-2">
-                                                <img src="/assets/img/product/Hover-2-P-4.webp" class="w-100" alt="">
+                                                <img src="/assets/img/brands/<%= product.image[1] %>" class="w-100" alt="">
                                             </a>
                                             <a class="popup-images" data-toggle="pill" href="#tab-3">
-                                                <img src="/assets/img/product/Hover-3-P-4.webp" class="w-100 mt-5-px" alt="">
+                                                <img src="/assets/img/brands/<%= product.image[2] %>" class="w-100 mt-5-px" alt="">
                                             </a>
                                             <a class="popup-images" data-toggle="pill" href="#tab-4">
-                                                <img src="/assets/img/product/Hover-6-P-4.webp" class="w-100 mt-5-px" alt="">
+                                                <img src="/assets/img/brands/<%= product.image[3] %>" class="w-100 mt-5-px" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -352,25 +325,25 @@
                                             <div class="tab-pane fade show active" id="tab-1">
                                                 <div class="product-img">
                                                     <a class="popup-image" href="img/product/farniture-7.jpg"><img
-                                                            src="/assets/img/product/P-4.webp" class="w-100" alt=""></a>
+                                                            src="/assets/img/brands/<%= product.image[0] %>" class="w-100" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab-2">
                                                 <div class="product-img">
                                                     <a class="popup-image" href="img/product/farniture-8.jpg"><img
-                                                            src="/assets/img/product/Hover-2-P-4.webp" class="w-100" alt=""></a>
+                                                            src="/assets/img/brands/<%= product.image[1] %>" class="w-100" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab-3">
                                                 <div class="product-img">
                                                     <a class="popup-image" href="img/product/farniture-9.jpg"><img
-                                                            src="/assets/img/product/Hover-3-P-4.webp" class="w-100" alt=""></a>
+                                                            src="/assets/img/brands/<%= product.image[2] %>" class="w-100" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab-4">
                                                 <div class="product-img">
                                                     <a class="popup-image" href="img/product/farniture-10.jpg"><img
-                                                            src="/assets/img/product/Hover-6-P-4.webp" class="w-100" alt=""></a>
+                                                            src="/assets/img/brands/<%= product.image[3] %>" class="w-100" alt=""></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -383,31 +356,33 @@
                             <div class="single-product-sidebar">
                                 <div class="product-content">
                                     <div class="single-product-title">
-                                        <h2>Ferrero Rocher T30 375g</h2>
+                                        <h2><%= product.productName %></h2>
                                     </div>
                                     <div class="single-product-price">
                                         <span style="color: #c09844;">₹</span>
-                                        <span style="color: #c09844;">2,155.00</span>
+                                        <span style="color: #c09844;"><%= product.discountPrice %></span>
                                         <span style="color: #9c9c9c;"> – </span>
-                                        <span style="color: #9c9c9c;"><del>₹2,395.00</del></span>
+                                        <span style="color: #9c9c9c;"><del><%= product.price %></del></span>
                                       </div>                                    
                                       <div class="single-product-desc mb-25">
-                                        <p>Ferrero Rocher offers a unique taste experience of contrasting layers: 
-                                            a whole crunchy hazelnut in the heart, a delicious creamy hazelnut filling, 
-                                            a crisp wafer shell covered with chocolate and gently roasted pieces.
+                                        <p><%= product.description %>
                                             […]</p>
+                                            <% if (product.inStock){ %> 
+                                                <p><span>Availability</span><span class="text-success">  : In Stock</span></p>
+                                            <% } else { %> 
+                                                <p><span>Availability</span><span class="text-danger"> : Out Of Stock</span></p>
+                                            <%} %>
                                         <div class="product-list single-product-list">
                                             <ul>
-                                                <li>– Country of Origin - ITALY</li>
+                                                <li>– <%= product.brand %></li>
                                             </ul>
                                         </div>
                                     </div>
                                     
                                     <div class="single-product-component mt-15">
                                         <div class="size">
-                                            <h6>Quantity: <span></span></h6>                                            <form action="#">
-                                                <label for="t-xl" class="active">340g</label>
-                                            </form>
+                                            <h6>Quantity: <span></span></h6>                                            
+                                                <label for="t-xl" class="active"><%= product.size %></label>
                                         </div>
                                     </div>
                                     <div class="quick-quantity mt-60">
@@ -421,18 +396,15 @@
                                     </div>
                                     <div class="single-product-action mt-35">
                                         <ul>
-                                            <li><a href="wishlist.html"><i class="fal fa-heart"></i> add to wishlist</a></li>
-                                            <li><a href="cart.html"><i class="fal fa-abacus"></i> add to compare</a></li>
+                                            <li><a href="wishlist.html"><i class="fas fa-heart"></i> add to wishlist</a></li>
                                         </ul>
                                     </div>
                                     <div class="sku"><span>Sku: </span> <strong>M-Hat-8</strong></div>
                                     <div class="single-product-category">
                                         <ul>
-                                            <li class="mb-0"><a href="javascript:void(0)" class="title">Categories: </a>
+                                            <li class="mb-0"><a href="javascript:void(0)" class="title">Brand: </a>
                                             </li>
-                                            <li class="mb-0"><a href="shop4.html">Chair &amp; Table</a></li>
-                                            <li class="mb-0"><a href="shop4.html">Chairs</a></li>
-                                            <li class="mb-0"><a href="shop4.html">Handbeg</a></li>
+                                            <li class="mb-0"><a href="shop4.html"><%= product.brand %></a></li>
                                         </ul>
                                     </div>
                                     <div class="share-product mt-20">
@@ -577,289 +549,49 @@
             <div class="generic-title text-center">
                 <h2 class="mb-20">You May Also Like</h2>
             </div>
-            <div class="main-product-carousel owl-carousel red-nav mt-50">
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-1.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-1-hover.jpg" alt="" class="w-100">
+            <% if (products.length > 0) { %>
+                <div class="main-product-carousel owl-carousel red-nav mt-50">
+                    <% for (let row = 0; row < Math.ceil(products.length / 1); row++) { %>
+                    <div class="carousel-single-item">
+                        <div class="row">
+                            <% for (let col = 0; col < 6; col++) { 
+                                let index = row * 5 + col;
+                                if (index >= products.length) break;
+                            %>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="product-box">
+                                    <div class="product-box-wrapper">
+                                        <div class="product-img">
+                                            <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
+                                            <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
+                                                <div class="second-img">
+                                                    <img src="/assets/img/brands/<%= products[index].image[1] %>" alt="" class="w-100">
+                                                </div>
+                                            </a>
+                                            <a href="javascript:void(0)" class="product-img-link quick-view-1 text-capitalize">Quick view</a>
                                         </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Woman</span></a>
+                                        <div class="product-desc pb-20">
+                                            <div class="product-desc-top">
+                                                <div class="categories">
+                                                    <a href="shop3.html" class="product-category"><span><%= products[index].brand %></span></a>
+                                                </div>
+                                                <a href="wishlist.html" class="wishlist float-right"><span><i class="fas fa-heart"></i></span></a>
+                                            </div>
+                                            <a href="single-product-3.html" class="product-title"><%= products[index].productName %></a>
+                                            <div class="price-switcher">
+                                                <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
+                                                <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to cart</a>
+                                            </div>
                                         </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Light green crewneck
-                                        sweatshir</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$58.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-2.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-2-hover.jpg" alt="" class="w-100">
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Woman</span></a>
-                                        </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Light green crewneck
-                                        sweatshir</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$58.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
                                     </div>
                                 </div>
                             </div>
+                            <% } %>
                         </div>
                     </div>
+                    <% } %>
                 </div>
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-4.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-4-hover.jpg" alt="" class="w-100">
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Woman</span></a>
-                                        </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Tassels Pendant Earrings</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$85.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box mb-40">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-5.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-5-hover.jpg" alt="" class="w-100">
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Shoes</span></a>
-                                            <a href="shop3.html" class="product-category"><span>Sneaker</span></a>
-                                            <a href="shop3.html" class="product-category"><span>Women</span></a>
-                                        </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Leather Courriere duffle
-                                        bag</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$3.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box mb-40">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-6.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-6-hover.jpg" alt="" class="w-100">
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                    <span class="sale bg-red text-white">sale!</span>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Shoes</span></a>
-                                            <a href="shop3.html" class="product-category"><span>Sneaker</span></a>
-                                        </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Wood design bedroom clook</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$45-$10.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box mb-40">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-7.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-7-hover.jpg" alt="" class="w-100">
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                    <span class="sale bg-red text-white">sale!</span>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Woman</span></a>
-                                        </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Capitalize on low hanging
-                                        fruit to</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$250.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box mb-40">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-8.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-8-hover.jpg" alt="" class="w-100">
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Woman</span></a>
-                                        </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Light green crewneck
-                                        sweatshir</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$58.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-single-item">
-                    <div class="col-12">
-                        <div class="product-box mb-40">
-                            <div class="product-box-wrapper">
-                                <div class="product-img">
-                                    <img src="img/product/farniture-9.jpg" class="w-100" alt="">
-                                    <a href="single-product-3.html" class="d-block">
-                                        <div class="second-img">
-                                            <img src="img/product/farniture-9-hover.jpg" alt="" class="w-100">
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)"
-                                        class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                </div>
-
-                                <div class="product-desc pb-20">
-                                    <div class="product-desc-top">
-                                        <div class="categories">
-                                            <a href="shop3.html" class="product-category"><span>Woman</span></a>
-                                        </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                    class="fal fa-heart"></i></span></a>
-                                    </div>
-                                    <a href="single-product-3.html" class="product-title">Tassels Pendant Earrings</a>
-                                    <div class="price-switcher">
-                                        <span class="price switcher-item">$85.00</span>
-                                        <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to
-                                            cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <% } %>
             </div>
         </div>
     </section>
@@ -1421,24 +1153,4 @@
         </div>
     </section>
     <!-- startup popup end -->
-
-    <!-- JS here -->
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/one-page-nav-min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/jquery.meanmenu.min.js"></script>
-    <script src="js/ajax-form.js"></script>
-    <script src="js/fontawesome.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+    <%- include('../layouts/singleProductFooter') %>

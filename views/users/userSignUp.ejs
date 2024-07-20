@@ -1,8 +1,32 @@
 <%- include('../layouts/signUpHeader') %>
 <% if(typeof message !== "undefined"){ %>
-  <div class="msg msg-danger show" role="alert">
-    <span class="glyphicon glyphicon-remove"></span> <%= message %> 
+  <div class="msg msg-danger show d-flex align-items-center justify-content-center text-center" role="alert">
+    <div class="d-flex align-items-center justify-content-center">
+    <lord-icon
+    src="https://cdn.lordicon.com/nqtddedc.json"
+    trigger="in"
+    delay="100"
+    state="in-cross"
+    colors="primary:#e83a30"
+    style="width:50px;height:50px">
+</lord-icon> 
+</div>
+<%= message %> 
   </div>
+<% } %>
+<% if(typeof warning !== "undefined"){ %>
+  <div class="msg msg-warning show d-flex align-items-center justify-content-center text-center" role="alert" style="color: black;">
+    <div class="d-flex align-items-center justify-content-center">
+      <lord-icon
+        src="https://cdn.lordicon.com/ygvjgdmk.json"
+        trigger="in"
+        delay="100"
+        colors="primary:#e88c30"
+        style="width:50px;height:50px;">
+      </lord-icon>
+    </div>
+      <%= warning %>
+  </div>  
 <% } %>
 <div id="firejet-html-app">
       <div class="sign-up-wrapper">

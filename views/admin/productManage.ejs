@@ -1,0 +1,430 @@
+<%- include('../layouts/addProductHeader') %>
+<nav class="t-header">
+  <div class="t-header-brand-wrapper">
+    <a href="/admin/dashboard">
+      <img class="logo" src="/assets/logo.png" >
+      <img class="logo-mini" src="/assets/images/logo_mini.png" >
+    </a>
+  </div>
+  <div class="t-header-content-wrapper">
+    <div class="t-header-content">
+      <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+        <i class="mdi mdi-menu"></i>
+      </button>
+      <form action="#" class="t-header-search-box">
+        <div class="input-group">
+          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+          <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+        </div>
+      </form>
+      <ul class="nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-bell-outline mdi-1x"></i>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Notifications</h6>
+              <p class="dropdown-title-text">You have 4 unread notifications</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-primary text-primary">
+                  <i class="mdi mdi-alert"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Storage Full</small>
+                  <small class="content-text">Server storage almost full</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-success text-success">
+                  <i class="mdi mdi-cloud-upload"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Upload Completed</small>
+                  <small class="content-text">3 Files uploaded successfully</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-warning text-warning">
+                  <i class="mdi mdi-security"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Authentication Required</small>
+                  <small class="content-text">Please verify your password to continue using cloud services</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-message-outline mdi-1x"></i>
+            <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Messages</h6>
+              <p class="dropdown-title-text">You have 4 unread messages</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/male/image_1.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Clifford Gordon</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/female/image_2.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Rachel Doyle</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/public/assets/images/profile/male/image_3.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-warning"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Lewis Guzman</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-apps mdi-1x"></i>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Apps</h6>
+              <p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
+            </div>
+            <div class="dropdown-body border-top pt-0">
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-jira mdi-2x"></i>
+                <span class="grid-title">Jira</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-trello mdi-2x"></i>
+                <span class="grid-title">Trello</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-artstation mdi-2x"></i>
+                <span class="grid-title">Artstation</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-bitbucket mdi-2x"></i>
+                <span class="grid-title">Bitbucket</span>
+              </a>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- partial -->
+<div class="page-body">
+  <!-- partial:partials/_sidebar.html -->
+  <div class="sidebar">
+    <div class="user-profile">
+      <div class="display-avatar animated-avatar">
+        <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
+      </div>
+      <div class="info-wrapper">
+        <p class="user-name">Irfan Nisar</p>
+        <h6 class="display-income">₹3,400,00</h6>
+      </div>
+    </div>
+    <ul class="navigation-menu">
+      <li class="nav-category-divider">MAIN</li>
+      <li>
+        <a href="/admin/userManage">
+          <span class="link-title">Users</span>
+          <i class="mdi mdi-account-multiple link-icon"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#brands" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Brands</span>
+            <i class="mdi mdi-tag-multiple link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="brands">
+            <li>
+                <a href="/admin/brandsManage">List brands</a>
+            </li>
+            <li>
+                <a href="/admin/addBrands">Add brands</a>
+            </li>
+            <li>
+                <a href="/admin/editBrands">Edit brands</a>
+            </li>
+        </ul>
+    </li>        
+      <li>
+        <a href="#orders" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Orders</span>
+          <i class="mdi mdi-cart link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="orders">
+          <li>
+            <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
+          </li>
+          <li>
+            <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#return" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Return</span>
+          <i class="mdi mdi-undo-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="return">
+          <li>
+            <a href="pages/ui-components/buttons.html">Return Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Return Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Dropdowns</span>
+          <i class="mdi mdi-menu-down link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="dropdowns">
+          <li>
+            <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Dropdown Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#products" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Products</span>
+          <i class="mdi mdi-package-variant-closed link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="products">
+          <li>
+            <a href="/admin/productManage">Product Listed</a>
+          </li>
+          <li>
+            <a href="/admin/editProduct">Product Edit</a>
+          </li>
+          <li>
+            <a href="/admin/addProduct">Product Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#banners" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Banners</span>
+          <i class="mdi mdi-flag-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="banners">
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Add</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Edit</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#coupons" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Coupons</span>
+          <i class="mdi mdi-ticket-percent link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="coupons">
+          <li>
+            <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Coupons Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="pages/charts/chartjs.html">
+          <span class="link-title">Reports</span>
+          <i class="mdi mdi-chart-bar link-icon"></i>
+        </a>
+      </li>
+      <!-- Logout button -->
+  <li>
+    <a href="/admin/logout">
+      <span class="link-title">Logout</span>
+      <i class="mdi mdi-logout link-icon"></i>
+    </a>
+  </li>
+    </ul>
+  </div>
+  <!-- partial -->
+      <div class="page-content-wrapper">
+        <div class="page-content-wrapper-inner">
+          <div class="content-viewport">
+            <div class="row">
+              <div class="col-12 pb-3">
+                <h4>Product Listed</h4>
+                <p class="text-gray">Here are the product listed</p>
+              </div>
+            </div>
+            
+
+     <!-- Product listing -->
+     <table class="table table-striped">
+        <thead>
+          <tr class="table-info">
+            <th scope="col">image</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Price</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead> 
+        <tbody>
+          <% if (product.length > 0) { %>
+            <% for(let i = 0; i < product.length; i++) { %>
+              <tr>
+                <td><img style="height: 70px; width: 70px;" src="/assets/img/brands/<%= product[i].image[0] %>" alt="Image"></td>                <td><%= product[i].productName %></td>
+                <td><%= product[i].brand %></td>
+                <% if(product[i].inStock > 0) { %>
+                  <td><%= product[i].inStock %></td>
+                <% } else { %>
+                  <td><p class="text-danger">Out of Stock</p></td>
+                <% } %>
+                <td>₹ <%= product[i].discountPrice %></td>
+                <td class="text-success"><%= product[i].discount %> %</td>
+                <% if(product[i].isDeleted) { %>
+                  <td>
+                    <button type="button" class="btn btn-success relist-button" style="background-color: #5db65e;" data-product-id="<%= product[i]._id %>">
+                      Relist Product
+                    </button>
+                  </td>
+                <% } else { %>
+                  <td>
+                    <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-primary w-25 p-0 h-25 me-2">
+                      <i class="fa fa-edit"></i> Edit
+                    </a>
+                    <button type="button" class="btn btn-outline-danger unlist-button" data-product-id="<%= product[i]._id %>">
+                      Unlist Product
+                    </button>
+                  </td>
+                <% } %>
+                </tr>
+                <% } %>
+                <% } else { %>
+                <tr>
+                  <td colspan="7" class="text-center">
+                    <h3>No Products Found</h3>
+                  </td>
+                </tr>
+                <% } %>
+                
+          
+        </tbody>
+      </table>
+
+    <!-- partial -->
+  </div>
+  <!-- page content ends -->
+</div>
+<!--page body ends -->
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".relist-button").forEach(button => {
+    button.addEventListener("click", function() {
+      const productId = button.getAttribute("data-product-id");
+      listAndUnlistProduct(productId, true);
+    });
+  });
+
+  document.querySelectorAll(".unlist-button").forEach(button => {
+    button.addEventListener("click", function() {
+      const productId = button.getAttribute("data-product-id");
+      listAndUnlistProduct(productId, false);
+    });
+  });
+});
+
+function listAndUnlistProduct(productId, status) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: status ? "Yes, List Product!" : "Yes, Unlist Product!",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`/admin/listAndUnlistProduct?id=${productId}`, {
+        method: 'GET'
+      })
+      .then(response => {
+        if (response.ok) {
+          Swal.fire({
+            title: status ? "Product Listed!" : "Product Unlisted!",
+            text: status ? "The Product has been listed." : "The Product has been unlisted.",
+            icon: "success"
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "An error occurred while changing the product status.",
+            icon: "error"
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        Swal.fire({
+          title: "Error",
+          text: "An error occurred while changing the product status.",
+          icon: "error"
+        });
+      });
+    }
+  });
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
+<%- include('../layouts/dashboardFooter') %>
+<%- include('../layouts/addBrandsFooter') %>

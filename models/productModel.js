@@ -13,7 +13,7 @@ const productSchema = mongoose.Schema({
         type:String,
         requred:true
     },
-    category:{
+    size:{
         type:String,
         requred:true
     },
@@ -27,15 +27,15 @@ const productSchema = mongoose.Schema({
     },
     discountPrice:{
         type:Number,
-        requred:true
+        requred:false
     },
     discount:{
         type:Number,
-        requred:true
+        required:false
     },
     image:[{
         type:String,
-        requred:true
+        required:true
     }],
     status:{
         type:Boolean,
@@ -46,6 +46,10 @@ const productSchema = mongoose.Schema({
         requred:true
     },
     popularProduct:{
+        type:Boolean,
+        default:false
+    },
+    bestSellerProduct:{
         type:Boolean,
         default:false
     },

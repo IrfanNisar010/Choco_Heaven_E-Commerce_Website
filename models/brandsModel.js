@@ -18,6 +18,10 @@ const BrandSchema = new Schema({
   website: {
     type: String // If the brand has a website, you can store it here
   },
+  isDeleted: { 
+    type: Boolean,
+    default: false
+  },
   created_at: {
     type: Date,
     default: Date.now
