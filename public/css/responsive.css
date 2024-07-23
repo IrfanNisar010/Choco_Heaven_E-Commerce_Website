@@ -245,6 +245,7 @@
   }
   .logo img {
     transform: translateY(-8px) translateX(60px);
+    padding-top: 30px;
   }
   .visible-sm {
     display: block !important;

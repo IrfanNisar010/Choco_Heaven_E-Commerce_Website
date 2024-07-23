@@ -292,69 +292,80 @@
         <div class="page-content-wrapper-inner">
           <div class="content-viewport">
             <div class="row">
-              <div class="col-12 pb-3">
+              <div class="col-6 pb-3">
                 <h4>Product Listed</h4>
-                <p class="text-gray">Here are the product listed</p>
+                <p class="text-gray">Here are the products listed</p>
+              </div>
+              <div class="col-6 pb-3 d-flex justify-content-end align-items-center">
+                <button class="btn add-btn d-flex align-items-center justify-content-center" style="width: 150px; height: 40px;">
+                  <lord-icon
+                    src="https://cdn.lordicon.com/hqymfzvj.json"
+                    trigger="hover"
+                    colors="primary:#000000"
+                    style="width:25px;height:25px">
+                  </lord-icon>
+                  <a href="/admin/addProduct">
+                  <span class="ml-2" style="font-size: 13px; color: black; font-weight: 500;">Add more</span></a>
+                </button>
               </div>
             </div>
-            
-
      <!-- Product listing -->
      <table class="table table-striped">
-        <thead>
+      <thead>
           <tr class="table-info">
-            <th scope="col">image</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Price</th>
-            <th scope="col">Discount</th>
-            <th scope="col">Action</th>
+              <th scope="col">No:</th> 
+              <th scope="col">Image</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Price</th>
+              <th scope="col">Discount</th>
+              <th scope="col">Action</th>
           </tr>
-        </thead> 
-        <tbody>
+      </thead>
+      <tbody>
           <% if (product.length > 0) { %>
-            <% for(let i = 0; i < product.length; i++) { %>
+              <% for(let i = 0; i < product.length; i++) { %>
+                  <tr>
+                      <td><%= i + 1 %></td> <!-- Display product number -->
+                      <td><img style="height: 70px; width: 70px;" src="/assets/img/brands/<%= product[i].image[0] %>" alt="Image"></td>
+                      <td><%= product[i].productName %></td>
+                      <td><%= product[i].brand %></td>
+                      <% if(product[i].inStock > 0) { %>
+                          <td><%= product[i].inStock %></td>
+                      <% } else { %>
+                          <td><p class="text-danger">Out of Stock</p></td>
+                      <% } %>
+                      <td>₹ <%= product[i].discountPrice %></td>
+                      <td class="text-success"><%= product[i].discount %> %</td>
+                      <% if(product[i].isDeleted) { %>
+                          <td>
+                              <button type="button" class="btn btn-success relist-button" style="background-color: #5db65e;" data-product-id="<%= product[i]._id %>">
+                                  Relist Product
+                              </button>
+                          </td>
+                      <% } else { %>
+                          <td>
+                              <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-primary w-25 p-0 h-25 me-2">
+                                  <i class="fa fa-edit"></i> Edit
+                              </a>
+                              <button type="button" class="btn btn-outline-danger unlist-button" data-product-id="<%= product[i]._id %>">
+                                  Unlist Product
+                              </button>
+                          </td>
+                      <% } %>
+                  </tr>
+              <% } %>
+          <% } else { %>
               <tr>
-                <td><img style="height: 70px; width: 70px;" src="/assets/img/brands/<%= product[i].image[0] %>" alt="Image"></td>                <td><%= product[i].productName %></td>
-                <td><%= product[i].brand %></td>
-                <% if(product[i].inStock > 0) { %>
-                  <td><%= product[i].inStock %></td>
-                <% } else { %>
-                  <td><p class="text-danger">Out of Stock</p></td>
-                <% } %>
-                <td>₹ <%= product[i].discountPrice %></td>
-                <td class="text-success"><%= product[i].discount %> %</td>
-                <% if(product[i].isDeleted) { %>
-                  <td>
-                    <button type="button" class="btn btn-success relist-button" style="background-color: #5db65e;" data-product-id="<%= product[i]._id %>">
-                      Relist Product
-                    </button>
+                  <td colspan="8" class="text-center">
+                      <h3>No Products Found</h3>
                   </td>
-                <% } else { %>
-                  <td>
-                    <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-primary w-25 p-0 h-25 me-2">
-                      <i class="fa fa-edit"></i> Edit
-                    </a>
-                    <button type="button" class="btn btn-outline-danger unlist-button" data-product-id="<%= product[i]._id %>">
-                      Unlist Product
-                    </button>
-                  </td>
-                <% } %>
-                </tr>
-                <% } %>
-                <% } else { %>
-                <tr>
-                  <td colspan="7" class="text-center">
-                    <h3>No Products Found</h3>
-                  </td>
-                </tr>
-                <% } %>
-                
-          
-        </tbody>
-      </table>
-
+              </tr>
+          <% } %>
+      </tbody>
+  </table>
+  
     <!-- partial -->
   </div>
   <!-- page content ends -->
@@ -425,6 +436,6 @@ function listAndUnlistProduct(productId, status) {
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
 <%- include('../layouts/dashboardFooter') %>
 <%- include('../layouts/addBrandsFooter') %>

@@ -68,17 +68,17 @@
                                                 src="https://cdn.lordicon.com/kthelypq.json"
                                                 trigger="hover"
                                                 colors="primary:#000000"
-                                                style="width:22px;height:22px; padding-top: 2px;">
+                                                style="width:22px;height:22px; padding-top: 6px;">
                                             </lord-icon>
                                         </a>
                                     </li>
                                 <% } else { %>
-                                    <a href="/profile" class="account">
+                                    <a href="/profileDetails" class="account">
                                         <lord-icon
                                             src="https://cdn.lordicon.com/kthelypq.json"
                                             trigger="hover"
                                             colors="primary:#000000"
-                                            style="width:23px;height:23px; padding-top: 3px;">
+                                            style="width:23px;height:23px; padding-top: 6px;">
                                         </lord-icon>
                                     </a>
                                 <% } %>                                
@@ -86,7 +86,7 @@
                                     src="https://cdn.lordicon.com/kkvxgpti.json"
                                     trigger="hover"
                                     colors="primary:#000000"
-                                    style="width:20px;height:20px">
+                                    style="width:22px;height:22px; padding-top: 4.5px; padding-left: 2px;">
                                 </lord-icon>
 
                                     <!-- search popup -->
@@ -96,7 +96,7 @@
                                             src="https://cdn.lordicon.com/kkvxgpti.json"
                                             trigger="hover"
                                             colors="primary:#000000"
-                                            style="width:20px;height:20px">
+                                            style="width:20px;height:20px;">
                                         </lord-icon>
                                         </div>
                                         <div class="search-popup-inner mt-135">
@@ -196,13 +196,13 @@
                                         src="https://cdn.lordicon.com/xyboiuok.json"
                                         trigger="hover"
                                         colors="primary:#000000"
-                                        style="width:23px;height:23px">
+                                        style="width:24px;height:24px; padding-top: 4.8px;">
                                     </lord-icon></a></li>
                                 <li><a href="/cart"> <lord-icon
                                     src="https://cdn.lordicon.com/mfmkufkr.json"
                                     trigger="hover"
                                     colors="primary:#000000"
-                                    style="width:23px;height:23px">
+                                    style="width:23px;height:23px; padding-top: 4.2px;">
                                 </lord-icon><span></span></i></a>
                                     <!-- <div class="minicart">
                                         <div class="minicart-body">
@@ -271,17 +271,17 @@
                                 </li> -->
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; margin-bottom: 5px;">
+                                        <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; ">
                                     </a>
-                                    <ul class="submenu text-right">
+                                    <ul class="submenu text-right" style="border-radius: 13px;">
                                         <% if (locals.user) { %>
-                                            <li><a href="login.html">My profile</a></li>
+                                            <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
-                                            <li><a href="login.html">My profile</a></li>
+                                            <li><a href="/login">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
@@ -341,8 +341,7 @@
                                 <p class="mt-20 mb-0">Explore Our Latest Arrivals. Shop the Collection Now</p>
                             </div>
                             <div class="slider-link" data-animation="fadeInUp" data-delay=".8s">
-                                <a href="/loadShop" class="generic-btn mt-50 red-hover-btn text-uppercase">Discover
-                                    now</a>
+                                <a href="/loadShop" class="generic-btn mt-50 red-hover-btn text-uppercase">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -360,8 +359,7 @@
                                 <p class="mt-35 mb-0">Celebrate special moments with our luxurious chocolate gift hampers.</p>
                             </div>
                             <div class="slider-link" data-animation="fadeInUp" data-delay=".8s">
-                                <a href="/loadShop" class="generic-btn mt-70 red-hover-btn text-uppercase">Discover
-                                    now</a>
+                                <a href="/loadShop" class="generic-btn mt-70 red-hover-btn text-uppercase">Shop Now</a>
                             </div>
                         </div>
                     </div>

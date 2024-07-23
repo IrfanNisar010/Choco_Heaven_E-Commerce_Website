@@ -1,0 +1,373 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400");
+@import url("https://api.fontshare.com/css?f[]=roboto@400&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-6,
+.frame-t-manage-address-frame,
+.frame-ttt-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-673019ttedit-address-vector-tdata,
+.frame-ttt-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-673019ttedit-address-vector-tdata-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.common-7,
+.frame-frame-1,
+.frame-tt-edit-address-vector-tdata,
+.frame-t-edit-address-vector,
+.frame-tt-edit-address-vector-tdata-1,
+.frame-t-edit-address-vector-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.address-container {
+  display: flex;
+  font-family: "poppins", Arial, Helvetica, sans-serif;
+  flex-direction: column;
+  align-items: start; /* Center cards horizontally */
+  width: 400px;
+  padding: 16px; /* Add padding to container */
+  padding-top: 0;
+}
+
+.address-card {
+  width: 100%;
+  max-width: 600px; /* Adjust based on desired card width */
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  box-shadow: 0 6px 9px rgba(23, 23, 23, 0.1);
+  margin-bottom: 16px; /* Space between cards */
+  padding: 16px;
+  background: #fff;
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+.address-header {
+  margin-bottom: 12px; 
+}
+
+.address-body {
+  margin-bottom: 16px; 
+}
+
+.address-detail {
+  margin-bottom: 8px; 
+}
+
+.address-footer {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  width: 100%; /* Ensure footer takes full width of container */
+}
+
+.edit-address-btn,
+.remove-address-btn {
+  display: flex;
+  align-items: center; 
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  flex: 1;
+}
+
+.icon {
+  width: 18px; 
+  height: 18px; 
+  padding-left: 5px;
+}
+
+.remove-address-btn .icon {
+  width: 20px; 
+  height: 20px; 
+  padding-left: 5px;
+}
+
+.edit-address-btn,
+.remove-address-btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.btn-text {
+  font-size: 14px;
+}
+
+.frame-t-data {
+  display: flex;
+  align-items: center;
+}
+
+.common-5,
+.frame-address,
+.frame-address-1 {
+  color: rgba(156, 156, 156, 1);
+  font-size: 12px;
+}
+.common-5,
+.frame-address-2,
+.frame-address-1 {
+  color: rgba(156, 156, 156, 1);
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+}
+
+.common-1,
+.frame-frame-2,
+.frame-frame-3 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.common-2,
+.frame-t-address-847kozhikode-skyline-apt-174kozhikode-in-kerela,
+.frame-t-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-1 {
+  display: flex;
+  color: rgba(103, 102, 102, 1);
+}
+
+.common-3,
+.frame-vector,
+.frame-vector-1 {
+  width: 8px;
+  height: 14px;
+}
+
+.common-4,
+.frame-data,
+.frame-data-1 {
+  width: 57px;
+  height: 106px;
+}
+
+.frame-frame {
+  width: 100%;
+  display: flex;
+  border-top-right-radius: 11px;
+  border-top-left-radius: 11px;
+  padding-top: 26px;
+  padding-right: 44px;
+  padding-left: 45px;
+  padding-bottom: 240px;
+  flex-direction: column;
+  row-gap: 26px;
+  background-color: rgba(250, 250, 250, 1);
+  border-bottom-right-radius: 11px;
+  border-bottom-left-radius: 11px;
+  font-family: Roboto;
+  letter-spacing: 0em;
+}
+
+.frame-t-manage-address-frame {
+  padding-left: 5px;
+  column-gap: 647px;
+  row-gap: 19px;
+  line-height: 1.4;
+}
+
+.frame-manage-address {
+  font-size: 17px;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+.edit-address-btn {
+  border: none;
+  justify-content: start;
+  width: 105px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+.remove-address-btn {
+  border: none;
+  justify-content: start;
+  width: 75px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.frame-frame-1 {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding-top: 10px;
+  padding-right: 18px;
+  padding-left: 19px;
+  padding-bottom: 10px;
+  border-radius: 7px;
+  width: 120px;
+  height: 40px;
+  align-self: stretch;
+  background-color: rgba(0, 0, 0, 1);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: none;
+}
+
+.frame-add-new {
+  text-align: center;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  flex-grow: 1;
+  color: rgba(255, 255, 255, 1);
+}
+
+.frame-wrapper {
+  margin-top: 12px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+}
+
+.frame-frame-2 {
+  flex-shrink: 0;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  justify-content: center;
+  padding-left: 25px;
+  overflow: clip;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.frame-ttt-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-673019ttedit-address-vector-tdata {
+  flex-grow: 1;
+  column-gap: 531px;
+  row-gap: 45px;
+}
+
+.frame-t-address-847kozhikode-skyline-apt-174kozhikode-in-kerela {
+  padding-bottom: 2px;
+  row-gap: 2px;
+  line-height: 19px;
+  font-size: 14px;
+}
+
+.frame-kozhikode-skyline-apt {
+  align-self: stretch;
+}
+
+.frame-tt-edit-address-vector-tdata {
+  align-self: stretch;
+  column-gap: 39px;
+}
+
+.frame-t-edit-address-vector {
+  column-gap: 9px;
+}
+
+.frame-edit-address {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.frame-vector {
+  flex-shrink: 0;
+}
+
+.frame-t-data {
+  align-self: stretch;
+}
+
+.frame-wrapper-1 {
+  display: flex;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.frame-frame-3 {
+  flex-shrink: 0;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  justify-content: center;
+  padding-left: 25px;
+  overflow: clip;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.frame-ttt-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-673019ttedit-address-vector-tdata-1 {
+  flex-grow: 1;
+  column-gap: 531px;
+  row-gap: 45px;
+}
+
+.frame-t-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-1 {
+  padding-bottom: 2px;
+  row-gap: 2px;
+  line-height: 19px;
+  font-size: 14px;
+}
+
+.frame-kozhikode-skyline-apt-1 {
+  align-self: stretch;
+}
+
+.frame-tt-edit-address-vector-tdata-1 {
+  align-self: stretch;
+  column-gap: 39px;
+}
+
+.frame-t-edit-address-vector-1 {
+  column-gap: 9px;
+}
+
+.frame-edit-address-1 {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.frame-vector-1 {
+  flex-shrink: 0;
+}
+
+.frame-t-data-1 {
+  align-self: stretch;
+}
+
+@media (min-width: 1069px) {
+  .frame-t-manage-address-frame {
+    flex-wrap: nowrap;
+  }
+  .frame-ttt-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-673019ttedit-address-vector-tdata {
+    flex-wrap: nowrap;
+  }
+  .frame-ttt-address-847kozhikode-skyline-apt-174kozhikode-in-kerela-673019ttedit-address-vector-tdata-1 {
+    flex-wrap: nowrap;
+  }
+}

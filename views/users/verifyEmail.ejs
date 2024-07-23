@@ -1,5 +1,3 @@
-<%- include('../layouts/changePasswordHeader') %>
-
 <%- include('../layouts/loginHeader') %>
 <% if(typeof message !== "undefined"){ %>
   <div class="msg msg-danger show d-flex align-items-center justify-content-center text-center" role="alert">
@@ -57,101 +55,34 @@
           </div>
         </div>
       </main>
-      <h1 class="sign-in-sign-in-1">New password</h1>
+      <h1 class="sign-in-sign-in-1">Forgot password ?</h1>
       <aside class="sign-in-enter-your-email-to-sign-in-for-this-app">
-        Enter your new password 
+        Enter your email to reset your password
       </aside>
-      <form action="/resetPassword" method="post" id="resetPassword" novalidate="novalidate">
-        <div class="sign-in-t-field-1">
-          <div class="sign-in-field-1">
+      <form action="/verifyEmail" method="post" id="contactForm" novalidate="novalidate">
+        <div class="sign-in-t-field">
+          <div class="sign-in-field">
             <input
-              placeholder="New password"
-              id="newPassword"
-              name="newPassword"
-              type="password"
-              class="sign-in-label-1"
+              placeholder="email@domain.com"
+              id="email"
+              name="email"
+              type="email"
+              class="sign-in-label"
             />
-            <lord-icon
-            src="https://cdn.lordicon.com/ktsahwvc.json"
-            trigger="click"
-            state="out-reveal"
-            colors="primary:#000000"
-            style="width:22px;height:20px"
-            id="togglePassword"
-        >
-        </lord-icon>
-          </div>
-        </div>
-        <div class="sign-in-t-field-1">
-          <div class="sign-in-field-1">
-            <input
-              placeholder="Confirm password"
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              class="sign-in-label-1"
-            />
-            <lord-icon
-            src="https://cdn.lordicon.com/ktsahwvc.json"
-            trigger="click"
-            state="out-reveal"
-            colors="primary:#000000"
-            style="width:22px;height:20px"
-            id="toggleConfirmPassword"
-        >
-        </lord-icon>
           </div>
         </div>
         <div class="sign-in-t-button">
-          <button class="sign-in-sign-up-with-email" type="submit" value="submit">Reset password</button>
+          <button class="sign-in-sign-up-with-email" type="submit" value="submit">Request OTP</button>
         </div>
-      </form>
+        <footer class="sign-in-reset-password">Reset password</footer>
+      </form>     
     </div>
   </div>
 </div>
 <script>
-
-document.getElementById('resetPassword').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const form = document.getElementById('resetPassword');
-        const formData = new FormData(form);
-        const jsonObject = {};
-        formData.forEach((value, key) => {
-          jsonObject[key] = value;
-        });
-
-        fetch('/resetPassword', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsonObject)
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-              Swal.fire({
-                  title: "Reset Successful",
-                  text: "Your password has been successfully reset.",
-                  icon: "success"
-              }).then(() => {
-                  window.location.href = `/login`; 
-              });
-          } else {
-            const validationMessage = document.getElementById("passwordMsg")
-            validationMessage.style.display = 'block'
-            validationMessage.innerHTML = `${data.message}`
-          }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error in reset Password');
-        });
-  });
-
         document.addEventListener('DOMContentLoaded', function() {
           const togglePassword = document.getElementById('togglePassword');
-          const password = document.getElementById('newPassword');
+          const password = document.getElementById('password');
           const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
           const confirmPassword = document.getElementById('confirmPassword');
   
@@ -166,5 +97,4 @@ document.getElementById('resetPassword').addEventListener('submit', function(eve
           });
       });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <%- include('../layouts/loginFooter') %>

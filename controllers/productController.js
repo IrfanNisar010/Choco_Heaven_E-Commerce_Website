@@ -37,8 +37,7 @@ const addProductLoad = async (req, res, next) => {
 
 const addProduct = async (req, res, next) => {
     try {
-
-        const images = []
+        const images = [];
 
         // Ensure each image field is populated
         if (req.files.productImage1) images.push(req.files.productImage1[0].filename);
@@ -48,7 +47,7 @@ const addProduct = async (req, res, next) => {
 
         const product = new Products({
             productName: req.body.productName,
-            brand: req.body.brandName,
+            brandId: req.body.brandId, 
             model: req.body.model,
             size: req.body.size,
             description: req.body.description,
@@ -57,16 +56,16 @@ const addProduct = async (req, res, next) => {
             discount: req.body.discount,
             inStock: req.body.inStock,
             image: images
-        })
+        });
 
         await product.save();
 
-        res.status(200).json({success:true})
+        res.status(200).json({ success: true });
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
 
 const searchProduct = async (req, res, next) => {
     try {
@@ -183,7 +182,7 @@ const editProduct = async (req, res, next) => {
 
         const update = await Products.findByIdAndUpdate(productId, {
             productName: req.body.productName,
-            brand: req.body.brandName,
+            brandId: req.body.brandId, 
             model: req.body.model,
             size: req.body.size,
             description: req.body.description,

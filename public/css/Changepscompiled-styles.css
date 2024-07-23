@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600");
+@import url("https://api.fontshare.com/css?f[]=roboto@400,500,600&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-6,
+.change-password-field,
+.change-password-field-1 {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(224, 224, 224, 1);
+}
+
+.common-5,
+.change-password-t-field,
+.change-password-t-field-1,
+.change-password-t-button {
+  display: flex;
+  justify-content: center;
+}
+
+.common-4,
+.change-password-reset-password,
+.change-password-choco-heaven {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+}
+
+.common-1,
+.change-password-field,
+.change-password-field-1 {
+  display: flex;
+  width: 327px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.common-2,
+.change-password-wrapper,
+.change-password-change-password {
+  display: flex;
+  width: 100%;
+}
+
+.common-3,
+.change-password-reset-password,
+.change-password-footer {
+  display: flex;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.change-password-change-password {
+  flex-shrink: 0;
+  height: 100%;
+  padding-top: 330px;
+  flex-direction: column;
+  row-gap: 2px;
+  background-color: rgba(250, 250, 250, 1);
+  align-items: center;
+  overflow: clip;
+  font-family: Roboto;
+  font-size: 14px;
+  letter-spacing: 0em;
+}
+
+.change-password-change-password-1 {
+  text-align: center;
+  font-size: 21px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.change-password-enter-your-new-password-to-reset-it {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.change-password-t-field {
+  padding-top: 18px;
+  padding-right: 1px;
+  align-self: stretch;
+  align-items: flex-end;
+}
+
+.change-password-field {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.change-password-label {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  color: rgba(130, 130, 130, 1);
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.change-password-t-field-1 {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.change-password-field-1 {
+  flex-shrink: 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-top: 9px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 9px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.change-password-label-1 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+  color: rgba(130, 130, 130, 1);
+  line-height: 1.4;
+  outline: none;
+  min-width: 0;
+}
+
+.change-password-t-button {
+  padding-top: 14px;
+  padding-right: 1px;
+  align-self: stretch;
+}
+
+.change-password-reset-password {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-right: 110px;
+  padding-left: 110px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.change-password-t-footer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1px;
+  height: 751px;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+.change-password-footer {
+  flex-shrink: 0;
+  padding-top: 92px;
+  padding-right: 1001px;
+  padding-left: 71px;
+  padding-bottom: 92px;
+  height: 373px;
+  flex-direction: column;
+  row-gap: 21px;
+  align-items: flex-start;
+}
+
+.change-password-choco-heaven {
+  font-size: 28px;
+  line-height: 12px;
+  letter-spacing: 0.19em;
+  text-transform: capitalize;
+}
+
+.change-password-mazia-store-is-apremium-theme-with-advanced-admin-module-it-sextremely-customizable-easy-to-use-and-fully-responsive-and-retina-ready {
+  align-self: stretch;
+  color: rgba(196, 196, 196, 1);
+  line-height: 25px;
+}
+
+.change-password-t-paypal-png {
+  flex-shrink: 0;
+  display: flex;
+  height: 37px;
+  width: 439px;
+  align-items: flex-end;
+}
+
+.change-password-paypal-png {
+  flex-shrink: 0;
+  height: 25px;
+  width: 282px;
+  max-height: 100%;
+  max-width: 100%;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: 100% 100%;
+  background-image: url(/assets/paypal-png.png);
+}
+
+.change-password-field:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.change-password-label:placeholder {
+  color: rgba(130, 130, 130, 1);
+}
+
+.change-password-field-1:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+
+.change-password-label-1:placeholder {
+  color: rgba(130, 130, 130, 1);
+}

@@ -118,9 +118,11 @@
 }
 
 body {
-  font-family: "Rubik", sans-serif;
+  font-family: "poppins", sans-serif;
   font-weight: normal;
   font-style: normal;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in-out forwards;
 }
 .container-fluid {
   padding-left: 70px;
@@ -329,19 +331,17 @@ label {
 /* button style */
 
 .btn {
-	background: transparent;
+	background-color: black;
 	border: 0;
-	border-radius: 0;
-	color: #525470;
+	border-radius: 10;
+	color: white;
 	display: inline-block;
 	font-size: 13px;
 	font-weight: 500;
 	letter-spacing: 2px;
 	line-height: 1;
 	margin-bottom: 0;
-	padding: 22px 50px;
 	text-align: center;
-	text-transform: uppercase;
 	touch-action: manipulation;
 	transition: all 0.3s ease 0s;
 	vertical-align: middle;
@@ -553,7 +553,7 @@ a#scrollUp:hover i {
   top: 0;
   transition: all 0.5s;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 35px;
   z-index: 9;
   height: 5.2rem;
 }
@@ -2000,7 +2000,8 @@ ul.post-entry-data li:not(:last-child) {
 }
 
 .has-breadcrumb-bg {
-	min-height: 300px;
+	padding-top: 110px;
+  padding-bottom: 30px;
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -4396,4 +4397,48 @@ a.replay:hover{
 .signup-button:hover {
   background-color: #f9dce5;
   color: black;
+}
+
+.profile-head {
+  font-size: 30px;
+  font-family: "poppins", sans-serif;
+  font-weight: 400;
+}
+.p-head {
+  font-size: 14px;
+}
+.sidebar-text {
+  font-family: "poppins", sans-serif;
+}
+
+.custom-uppercase {
+  text-transform: lowercase; 
+  font-family: "poppins", sans-serif;
+  color: white;
+}
+
+.custom-uppercase::first-letter {
+  text-transform: uppercase;
+}
+
+input::placeholder {
+  color: #999; /* Default placeholder color */
+}
+
+input.error::placeholder {
+  color: red; /* Error placeholder color */
+}
+
+
+.sidebar .nav-link {
+  color: rgb(176, 176, 176);
+  transition: color 0.4s ease, font-size 0.5s ease;
+}
+.sidebar .nav-link.active {
+  color: black;
+  margin-left: 10px;
+  font-size: 1.4rem;
+}
+.sidebar .nav-link:not(.active) {
+  color: rgb(176, 176, 176);
 }

@@ -211,13 +211,18 @@ input {
   font-family: Inter;
   font-weight: 500;
 }
-
 .common-10,
 .sign-in-reset-password,
 .sign-in-create-an-account {
   color: rgba(130, 130, 130, 1);
-  font-family: Inter;
+  font-family: "poppins";
   text-align: center;
+}
+
+.common-10:hover,
+.sign-in-reset-password:hover,
+.sign-in-create-an-account:hover {
+  color: black;
 }
 
 .common-11,

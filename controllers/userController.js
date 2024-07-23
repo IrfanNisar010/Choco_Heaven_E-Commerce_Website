@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const nodemailer = require('nodemailer');
 const OTP = require('../models/Otp')
+const Address = require('../models/addressModel')
 const crypto = require('crypto');
 const mailgen = require('mailgen');
 const bcrypt = require('bcrypt');
@@ -119,7 +120,7 @@ const forgotPasswordOtp = async (req, res) => {
         html: mail
     }
     try {
-        const newOtp = new otpModel({
+        const newOtp = new OTP({
             email: req.session.forgotUser,
             otp: otp,
             createdAt: Date.now(),
@@ -210,49 +211,84 @@ const loginLoad = async (req, res) => {
 
 const forgotPasswordPage = async (req, res, next) => {
     try {
-        res.render('forgotPassword')
+        res.render('verifyEmail')
     } catch (error) {
         console.log(error.message);
         next(error)
     }
 }
-const forgotOtpVerify = async (req, res) => {
+
+const verifyEmail = async (req, res, next) => {
     try {
+        const email = req.body.email;
+        const isUser = await User.findOne({ email: email })
 
-        const userEmail = req.session.forgotUser;
-
-        if (!req.body || !req.body.otp) {
-            return res.status(400).render('forgotOtp', { userEmail:userEmail, message: "Please enter OTP" });
+        if (!req.body) {
+            return res.render('verifyEmail', { warning: "Enter Email your email" })
+        }
+        if (!isUser) {
+            return res.render('verifyEmail', { message: "Sorry, Your Email not found. Please try again with other Email." })
         }
 
+        req.session.forgotUserId = isUser._id
+        req.session.forgotUser = req.body.email
 
-        const otpUserData = await otpModel.findOne({ email: userEmail });
+        forgotPasswordOtp(req, res);
+        res.render('forgotOtp', { userEmail: email });
+
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+
+const forgotOtpVerify = async (req, res, next) => {
+    try {
+        const userEmail = req.session.forgotUser;
+
+        if (!req.body || !req.body.verifyOtp) {
+            return res.status(400).render('forgotOtp', { userEmail: userEmail, message: "Please enter the OTP" });
+        }
+
+        const otpUserData = await Otp.findOne({ email: userEmail });
         if (!otpUserData) {
-            return res.status(404).render('forgotOtp', { userEmail:userEmail, message: "OTP session expired or invalid. Please try again." });
+            return res.status(404).render('forgotOtp', { userEmail: userEmail, message: "OTP session expired or invalid. Please try again." });
         }
 
         const otpUser = otpUserData.otp;
-        const otp = parseFloat(req.body.otp.join(""));
+        const otp = parseInt(req.body.verifyOtp.join(""));
 
+        // Check if OTP is within valid timeframe
+        const currentTime = new Date();
+        const otpAgeInSeconds = (currentTime - otpUserData.createdAt) / 1000;
+
+        if (otpAgeInSeconds > 60) { // 1 minute
+            return res.status(400).render('forgotOtp', { userEmail, message: "OTP has expired", incorrectOtp: false });
+        }
 
         if (otp === otpUser) {
-            res.render('resetPassword');
+            const userData = await User.findOne({ email: userEmail });
+            userData.is_Verified = true;
+            await userData.save();
+
+            res.render('changePassword', { success: "OTP verified! You can now log in." });
         } else {
-            res.status(400).render('forgotOtp', { userEmail, message: "Incorrect OTP" });
+            return res.status(400).render('forgotOtp', { userEmail, incorrectOtp: true });
         }
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
+        next(error);
     }
-}
+};
 
 const resetPassword = async (req, res, next) => {
     try {
         const userId = req.session.forgotUserId
-        const { newPassword, cnfmPassword } = req.body
+        const { newPassword, confirmPassword } = req.body
 
 
-        if (newPassword != cnfmPassword) {
-            return res.status(403), json({ message: "Password dosn't Match" })
+        if (newPassword != confirmPassword) {
+            return res.status(403), json({ warning: "Password doesn't match.check your password" })
         }
 
         const spassword = await securePassword(newPassword)
@@ -346,9 +382,14 @@ const loadSignUp = async (req, res) => {
 
 const addUser = async (req, res, next) => {
     try {
-        // Check if required fields are empty
-        if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password || !req.body.confirmPassword) {
-            return res.render('userSignUp', { message: "Please enter all details to sign up" });
+       // Server-side validation can still be useful for other checks
+       if (!req.body.email || !req.body.password || !req.body.confirmPassword) {
+        return res.render('userSignUp', { warning: "Please enter all details to sign up" });
+    }
+
+        // Check if email format is valid
+        if (!validateEmail(req.body.email)) {
+            return res.render('userSignUp', { message: "Please enter a valid email address" });
         }
 
         // Check if passwords match
@@ -357,35 +398,36 @@ const addUser = async (req, res, next) => {
         }
 
         // Check if email is already taken
-        if (req.body.email) {
-            const isExistingUser = await User.findOne({ email: req.body.email });
-            if (isExistingUser) {
-                return res.render('userSignUp', { message: "This email is already taken, please try with another email" });
-            }
+        const isExistingUser = await User.findOne({ email: req.body.email });
+        if (isExistingUser) {
+            return res.render('userSignUp', { message: "This email is already taken, please try with another email" });
         }
 
-        const spassword = await securePassword(req.body.password)
+        const spassword = await securePassword(req.body.password);
         const user = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: spassword,
             is_is_Admin: false
+        });
 
-        })
+        req.session.userData = user;
+        req.session.user = req.body.email;
+        const userEmail = req.session.user;
 
-        req.session.userData = user
-        req.session.user = req.body.email
-        const userEmail = req.session.user
-
-        await sendOtp(req, res)
+        await sendOtp(req, res);
         res.render('verifyOtp', { userEmail });
-
 
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
+}
+
+function validateEmail(email) {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(String(email).toLowerCase());
 }
 
 
@@ -517,12 +559,122 @@ const googleAuth = async (req, res) => {
     }
 };
 
+const userProfileLoad = async (req, res) => {
+    try {
+
+        let userId = req.session.userId
+        const userData = await User.findById({ _id: userId })
+
+        res.render('userProfile', { user: userData })
+        
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+
+const updateProfileLoad = async (req, res) => {
+    try {
+
+        let userId = req.session.userId
+        const userData = await User.findById({ _id: userId })
+
+        res.render('updateProfile', { user: userData })
+        
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+
+const updateProfile = async (req, res, next) => {
+    try {
+        const userId = req.session.userId;
+        const userData = await User.findByIdAndUpdate(
+            { _id: userId },
+            {
+                $set: {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    phone: req.body.phone,
+                    town: req.body.town,
+                }
+            },
+            { new: true }
+        );
+        res.status(200).json({ message: "Profile updated successfully" });
+    } catch (error) {
+        console.error(error);
+        next(error)
+    }
+}
+
+const addressManageLoad = async (req, res, next) => {
+    try {
+        let userId = req.session.userId
+
+        const userData = await User.findById({ _id: userId })
+        const address = await Address.find({ user_id: userId })
+
+        res.render('addressManage', { user: userData, address: address })
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+
+const saveAddress = async (req, res) => {
+    try {
+        const id = req.session.userId
+        const user = await User.findById(id)
+        const email = user.email
+
+        if (!req.body.is_Home && !req.body.is_Work) {
+            return res.status(403).json({ message: "please select address type" })
+        }
+
+        let userAddress = new Address(req.body)
+        userAddress.user_id = id
+        userAddress.email = email
+
+        await userAddress.save()
+        res.status(200).json({ success: true });
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const editAddress = async (req, res, next) => {
+    try {
+        const id = req.session.userId;
+        const edit = await Address.updateOne({ user_id: id }, { $set: req.body });
+
+        res.status(200).json({ success: true })
+    } catch (error) {
+        console.error(error.message);
+        next(error);
+    }
+}
+
 const userLogout = async (req, res, next) => {
     try {
         req.session.destroy();
         res.redirect('/home')
     } catch (error) {
         next(error)
+    }
+}
+
+const deleteAddress = async (req, res) => {
+    try {
+        const id = req.query.id
+        if (id) {
+            await Address.deleteOne({ _id: id })
+            return res.redirect('/addressManage')
+        }
+    } catch (error) {
+        console.log(error.message);
     }
 }
 
@@ -533,12 +685,22 @@ module.exports = {
     otpLoad,
     verifyOtp,
     googleAuth,
-    forgotPasswordOtp,
+    forgotPasswordPage,
+    verifyEmail,
+    resetPassword,
     loadHome,
     loadShop,
     loadProduct,
     ResendOtp,
+    forgotOtpVerify,
     verifyLogin,
+    userProfileLoad,
+    updateProfileLoad,
+    updateProfile,
+    addressManageLoad,
+    saveAddress,
+    editAddress,
+    deleteAddress,
     userLogout,
     addUser
 }

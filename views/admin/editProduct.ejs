@@ -13,7 +13,7 @@
           <i class="mdi mdi-menu"></i>
         </button>
         <form action="#" class="t-header-search-box">
-            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off" onsubmit="">
             <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
           </div>
         </form>
@@ -384,15 +384,16 @@
           </div>
           <div class="mb-3 col-md-6">
             <label for="brands" class="form-label">Brands</label>
-            <select id="brands" name="brands" class="select2 form-select">
-                <% if (brands && brands.length > 0) { %>
-                    <% for(let i = 0; i < brands.length; i++) { %> 
-                        <option value="<%= brands[i].name %>"><%= brands[i].name %></option>
-                    <% } %>
-                <% } else { %>
-                    <option value="">No brands available</option>
-                <% } %>
-            </select>
+            <select id="brands" name="brandId" class="select2 form-select">
+              <% if (brands && brands.length > 0) { %>
+                  <% for(let i = 0; i < brands.length; i++) { %> 
+                      <option value="<%= brands[i]._id %>"><%= brands[i].name %></option>
+                  <% } %>
+              <% } else { %>
+                  <option value="">No brands available</option>
+              <% } %>
+          </select>
+          
         </div>
         
           <div class="mb-3 col-md-6">

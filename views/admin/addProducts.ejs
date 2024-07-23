@@ -360,15 +360,16 @@
           </div>
           <div class="mb-3 col-md-6">
             <label for="brands" class="form-label">Brands</label>
-            <select id="brands" name="brandName" class="select2 form-select">
-                <% if (brands && brands.length > 0) { %>
-                    <% for(let i = 0; i < brands.length; i++) { %> 
-                        <option value="<%= brands[i].name %>"><%= brands[i].name %></option>
-                    <% } %>
-                <% } else { %>
-                    <option value="">No brands available</option>
-                <% } %>
-            </select>
+            <select id="brands" name="brandId" class="select2 form-select">
+              <% if (brands && brands.length > 0) { %>
+                  <% for(let i = 0; i < brands.length; i++) { %> 
+                      <option value="<%= brands[i]._id %>"><%= brands[i].name %></option>
+                  <% } %>
+              <% } else { %>
+                  <option value="">No brands available</option>
+              <% } %>
+          </select>
+          
         </div>
         
           <div class="mb-3 col-md-6">
@@ -464,26 +465,17 @@ let currentPreviewId;
 let cropper;
 
 function calculateDiscount() {
-    const discountPrice = parseFloat(document.getElementById('discountPrice').value);
-    const discount = parseFloat(document.getElementById('discount').value);
-
-    if (isNaN(discountPrice) || isNaN(discount) || discountPrice <= 0 || discount < 0) {
-        document.getElementById('discount').value = '';
-        return;
+    var OriginalPriceInput = document.getElementById('mrp').value;
+    var discountPriceInput = document.getElementById('discountPrice').value;
+    
+    var discountPrice = parseFloat(discountPriceInput);
+    var OriginalPrice = parseFloat(OriginalPriceInput);
+    
+    if (!isNaN(discountPrice) && !isNaN(OriginalPrice)) {
+        var discountPercentage = ((OriginalPrice - discountPrice) / OriginalPrice) * 100;
+        document.getElementById('discount').value = parseInt(discountPercentage);
     }
-
-    const discountPercentage = ((discountPrice - discount) / discountPrice) * 100;
-    document.getElementById('discount').value = discountPercentage.toFixed(2);
 }
-
-// Add an event listener to the original price field to recalculate the discount when the original price changes
-document.getElementById('discountPrice').addEventListener('keyup', calculateDiscount);
-
-
-function triggerInput(inputId) {
-    document.getElementById(inputId).click();
-}
-
 
 function triggerInput(inputId) {
     document.getElementById(inputId).click();

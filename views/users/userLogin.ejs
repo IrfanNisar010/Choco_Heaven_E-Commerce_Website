@@ -80,12 +80,22 @@
               type="password"
               class="sign-in-label-1"
             />
+            <lord-icon
+            src="https://cdn.lordicon.com/ktsahwvc.json"
+            trigger="click"
+            state="out-reveal"
+            colors="primary:#000000"
+            style="width:22px;height:20px"
+            id="togglePassword"
+        >
+        </lord-icon>
           </div>
         </div>
         <div class="sign-in-t-button">
           <button class="sign-in-sign-up-with-email" type="submit" value="submit">Sign up with email</button>
         </div>
-        <footer class="sign-in-reset-password">Reset password</footer>
+        <a href="/forgotPassword" style="text-decoration: none;">
+        <footer class="sign-in-reset-password">Reset password</footer></a>
         <div class="sign-in-tt-divider-or-continue-with-divider">
           <div class="sign-in-t-divider-or-continue-with-divider">
             <div class="sign-in-divider"></div>
@@ -94,9 +104,10 @@
           </div>
         </div>
         <div class="sign-in-t-button-1">
-          <button class="sign-in-button">
+          <button class="sign-in-button" style="border: solid 1px; border-color: rgb(227, 226, 226);">
             <div class="sign-in-t-google-continue-with-google">
               <object
+              style="width: 18px; height: 18px;"
                 data="/assets/Google.svg"
                 class="sign-in-google"
               ></object>
@@ -117,7 +128,8 @@
           </div>
         </div>
       </form>
-      <footer class="sign-in-create-an-account"><a href="/signUp" style="color: #9f9e9e; text-decoration: none;">Create an account</a></footer>
+      <a href="/signUp" style="text-decoration: none;">
+      <footer class="sign-in-create-an-account">Create an account</footer></a>
       <div class="sign-in-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy">
         <footer class="sign-in-text">
           By clicking continue, you agree to our
@@ -178,5 +190,15 @@
     </div>
   </div>
 </div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const togglePassword = document.getElementById('togglePassword');
+          const password = document.getElementById('password');
 
+          togglePassword.addEventListener('click', function() {
+              const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+              password.setAttribute('type', type);
+          });
+      });
+</script>
 <%- include('../layouts/loginFooter') %>

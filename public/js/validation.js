@@ -40,17 +40,12 @@ function checkPassword(event) {
         return;
     }
 
-    if (password != confirm-password.value){
-        message.textContent = "Confirm password does not match";
+    if (password != confirmPassword.value){
+        message.textContent = "Conform password does not match";
         message.style.color = "red" ;
         return
     }
-    // if (!validatePassword(password)) {
-    //     message.textContent = "Password must be at least 6 characters long and contain at least one letter and one digit";
-    //     message.style.color = "red";
-    //     return; 
-    // }
-  
+
     if (!validateEmail(email)) {
         message.textContent = "Please enter a valid email address.";
         message.style.color = "red";
@@ -60,14 +55,7 @@ function checkPassword(event) {
     console.log("Name, password, and email verified! Submitting form..."); 
     document.getElementById("signUpForm").submit();
 }
-$(document).ready(function() {
-    if ($('.msg').length) {
-      $('.msg').addClass('show');
-      setTimeout(function() {
-        $('.msg').removeClass('show');
-      }, 4000);
-    }
-  });
+
 
 // validation address
 // function addressValidation(index) {
@@ -137,64 +125,64 @@ $(document).ready(function() {
 // }
 
 
-//  update profile form validation
-// function updateProfileValidation() {
+//! update profile form validation
+function updateProfileValidation() {
 
-//     let message = document.getElementById("message");
-//     let firstName = document.getElementById("fName").value 
-//     let lastName = document.getElementById("lName").value
-//     let phone = document.getElementById("phone").value
+    let message = document.getElementById("message");
+    let firstName = document.getElementById("fName").value 
+    let lastName = document.getElementById("lName").value
+    let phone = document.getElementById("phone").value
 
 
-//     const nameRegex = /^[a-zA-Z]+$/;
-//     const phoneRegex = /^[0-9]{10}$/; 
+    const nameRegex = /^[a-zA-Z]+$/;
+    const phoneRegex = /^[0-9]{10}$/; 
 
-//     if (firstName[0]== 0 || lastName[0]== 0 || !firstName || !lastName) {
-//         message.textContent = "Name cannot be empty.";
-//         return false;
-//     }
+    if (firstName[0]== 0 || lastName[0]== 0 || !firstName || !lastName) {
+        message.textContent = "Name cannot be empty.";
+        return false;
+    }
     
-//     if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
-//         message.textContent = "Please enter a valid name.";
-//         return false;
-//     }
+    if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+        message.textContent = "Please enter a valid name.";
+        return false;
+    }
 
-//     if (!phone) {
-//         message.textContent = "Please enter a valid phone number.";
-//         return false;
-//     }
+    if (!phone) {
+        message.textContent = "Please enter a valid phone number.";
+        return false;
+    }
   
-//     if (!phoneRegex.test(phone)) {
-//         message.textContent = "Please enter a valid phone number.";
-//         return false;
-//     }
+    if (!phoneRegex.test(phone)) {
+        message.textContent = "Please enter a valid phone number.";
+        return false;
+    }
 
-//     return true
-// }
+    return true
+}
 
-//  update password validation
-// function updatePasswordValidation(){
-//     let password = document.getElementById("newPassword").value.trim();
-//     let confirm-password = document.getElementById("confmPassword")
-//     let message = document.getElementById("passwordMsg")
+//! update password validation
+function updatePasswordValidation(){
+    let password = document.getElementById("newPassword").value.trim();
+    let confirmPassword = document.getElementById("confmPassword")
+    let message = document.getElementById("passwordMsg")
 
-//     if (password.length === 0 || password[0] === " ") {
-//         message.style.display = "block" ;
-//         message.textContent = "Please enter a valid Password";
-//         return false;
-//     }
+    if (password.length === 0 || password[0] === " ") {
+        message.style.display = "block" ;
+        message.textContent = "Please enter a valid Password";
+        return false;
+    }
 
-//     if (password != confirm-password.value){
-//         message.style.display = "block" ;
-//         message.textContent = "Conform password does not match";
-//         return false;
+    if (password != confirmPassword.value){
+        message.style.display = "block" ;
+        message.textContent = "Conform password does not match";
+        return false;
 
-//     }
-//     if (!validatePassword(password)) {
-//         message.style.display = "block" ;
-//         message.textContent = "Password must be at least 6 characters long and contain at least one letter and one digit";
-//         return false;
-//     }
-//     return true
+    }
+    if (!validatePassword(password)) {
+        message.style.display = "block" ;
+        message.textContent = "Password must be at least 6 characters long and contain at least one letter and one digit";
+        return false;
+    }
+    return true
 
-// }
+}

@@ -5,28 +5,24 @@ const BrandSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true // Ensure each brand name is unique
+    unique: true 
   },
   description: {
     type: String,
     required: true
   },
   imageUrl: {
-    type: String, // You can store the URL or path to the logo image
+    type: String,
     required: true
   },
   website: {
-    type: String // If the brand has a website, you can store it here
+    type: String 
   },
   isDeleted: { 
     type: Boolean,
     default: false
-  },
-  created_at: {
-    type: Date,
-    default: Date.now
   }
-});
+}, { timestamps: true });
 
 const Brands = mongoose.model('Brands', BrandSchema);
 

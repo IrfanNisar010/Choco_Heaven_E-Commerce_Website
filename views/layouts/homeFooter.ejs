@@ -1,5 +1,22 @@
     <!-- JS here -->
 
+    <script>
+        function setActive(link) {
+            const links = document.querySelectorAll('.sidebar .nav-link');
+            links.forEach(link => link.classList.remove('active'));
+            link.classList.add('active');
+        }
+        // Optional: Set the initial active link based on current URL or other logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname;
+            const links = document.querySelectorAll('.sidebar .nav-link');
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
     <script src="/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

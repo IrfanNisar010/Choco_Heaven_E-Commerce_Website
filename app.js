@@ -4,6 +4,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const path = require("path");
+const nocache = require('nocache');
+
 dotenv.config({ path: '.env' });
 
 const app = express();
@@ -17,6 +19,9 @@ app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Use nocache middleware to disable caching
+app.use(nocache());
 
 // Session middleware
 app.use(session({
