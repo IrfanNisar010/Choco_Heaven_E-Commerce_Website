@@ -1,0 +1,615 @@
+<%- include('../layouts/checkoutHeader') %>
+<%- include('../layouts/userHomeHeader') %>
+
+    <div class="shipping-offer-container">
+        <p class="shipping-offer">Melt free Delivery PAN India! 🚚</p>
+    </div>
+    <!-- header section start -->
+    <header class="header pt-30 pb-30  header-sticky">
+        <div class="container-fluid">
+            <div class="header-nav  position-relative">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-1 col-md-6 col-sm-6 col-3">
+                        <div class="logo">
+                            <a href="/home"><img src="/assets/img/logo/logo1.png" alt=""></a>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-8 hidden-md position-static">
+                        <div class="header-nav header-nav-2 pl-100">
+                            <nav class="d-flex justify-content-center align-content-center"> 
+                                <ul>
+                                    <li><a href="/home"><span>Home </span></a></li>
+                                    <li><a href="/loadShop"><span>Shop <i class="fas fa-angle-down"></i></span></a>
+                                            <div class="submenu" style="border-radius: 13px;">
+                                                <ul>
+                                                    <li><a href="#">All Products </a></li>
+                                                    <li><a href="#">Trending</a></li>
+                                                    <li><a href="#">Best Seller</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    <li><a href="javascript:void(0)"><span>Best Deals</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="javascript:void(0)"><span>Top Brands <i
+                                                    class="fas fa-angle-down"></i></span> </a>
+                                        <ul class="submenu" style="border-radius: 13px;">
+                                            <li><a href="portfolio.html">Lindt</a></li>
+                                            <li><a href="portfolio2.html">Whittaker's</a></li>
+                                            <li><a href="portfolio3.html">Buttlers's</a></li>
+                                            <li><a href="portfolio3.html">Milka</a></li>
+                                            <li><a href="portfolio3.html">Ferrero</a></li>
+                                            <li><a href="portfolio3.html">Cadbury</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="javascript:void(0)"><span>Gifting</span> <i
+                                                class="fas fa-angle-down"></i></a>
+                                        <ul class="submenu" style="border-radius: 13px;">
+                                            <li><a href="about.html">Gift Hampers</a></li>
+                                            <li><a href="contact.html">Bulk Orders</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html"><span>Contact</span></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-3 col-6 col-md-6 col-sm-6 col-9 hidden-md">
+                        <div class="header-right">
+                            <ul class="text-right">
+                                <% if (!locals.user) { %>
+                                    <li>
+                                        <a href="/login" class="account">
+                                            <button class="signup-button"> 
+                                                Sign up
+                                            </button>
+                                            <lord-icon
+                                                src="https://cdn.lordicon.com/kthelypq.json"
+                                                trigger="hover"
+                                                colors="primary:#000000"
+                                                style="width:22px;height:22px; padding-top: 6px;">
+                                            </lord-icon>
+                                        </a>
+                                    </li>
+                                <% } else { %>
+                                    <a href="/profileDetails" class="account">
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/kthelypq.json"
+                                            trigger="hover"
+                                            colors="primary:#000000"
+                                            style="width:23px;height:23px; padding-top: 6px;">
+                                        </lord-icon>
+                                    </a>
+                                <% } %>                                
+                                <li><a href="javascript:void(0)"><lord-icon
+                                    src="https://cdn.lordicon.com/kkvxgpti.json"
+                                    trigger="hover"
+                                    colors="primary:#000000"
+                                    style="width:22px;height:22px; padding-top: 4.5px; padding-left: 2px;">
+                                </lord-icon>
+
+                                    <!-- search popup -->
+                                    <div id="search-popup">
+                                        <div class="close-search-popup">
+                                            <lord-icon
+                                            src="https://cdn.lordicon.com/kkvxgpti.json"
+                                            trigger="hover"
+                                            colors="primary:#000000"
+                                            style="width:20px;height:20px;">
+                                        </lord-icon>
+                                        </div>
+                                        <div class="search-popup-inner mt-135">
+                                            <div class="search-title text-center">
+                                                <h2>Search</h2>
+                                            </div>
+
+                                            <div class="search-content pt-55">
+                                                <ul class="text-center">
+                                                    <li><a href="javascript:void(0)" class="active">All categories</a>
+                                                    </li>
+                                                    <li><a href="javascript:void(0)">Clothing</a></li>
+                                                    <li><a href="javascript:void(0)">Gift Cards</a></li>
+                                                    <li><a href="javascript:void(0)">Handbag</a></li>
+                                                    <li><a href="javascript:void(0)">Kids</a></li>
+                                                    <li><a href="javascript:void(0)">Shoes</a></li>
+                                                    <li><a href="javascript:void(0)">Sneaker</a></li>
+                                                    <li><a href="javascript:void(0)">Women</a></li>
+                                                </ul>
+
+                                                <div class="search-form mt-35">
+                                                    <form action="#" method="post">
+                                                        <input type="text" placeholder="Search Products...">
+                                                        <button type="submit"> <img src="/assets/Vector1.svg" style="width: 22px; height: 20px;"></button>                                                    </form>
+                                                </div>
+
+                                                <div class="search-result-list">
+                                                    <ul class="text-left">
+                                                        <li class="d-block d-flex align-items-center">
+                                                            <div class="search-result-img">
+                                                                <img src="/assets/img/product/1.jpg" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="search-result-desc pl-10">
+                                                                <a href="/loadShop" class="title px-0">ELLE - Recliner syntheti
+                                                                    chair</a>
+                                                                <div class="price">$<span>399</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="d-block d-flex align-items-center">
+                                                            <div class="search-result-img">
+                                                                <img src="/assets/img/product/2.jpg" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="search-result-desc pl-10">
+                                                                <a href="/loadShop" class="title px-0">RIMINI - Folding leather
+                                                                    deck chair</a>
+                                                                <div class="price">$<span>399</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="d-block d-flex align-items-center">
+                                                            <div class="search-result-img">
+                                                                <img src="/assets/img/product/3.jpg" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="search-result-desc pl-10">
+                                                                <a href="/loadShop" class="title px-0">LANDSCAPE - Folding
+                                                                    fabric deck chair</a>
+                                                                <div class="price">$<span>399</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="d-block d-flex align-items-center">
+                                                            <div class="search-result-img">
+                                                                <img src="/assets/img/product/1.jpg" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="search-result-desc pl-10">
+                                                                <a href="/loadShop" class="title px-0">ELLE - Recliner syntheti
+                                                                    chair</a>
+                                                                <div class="price">$<span>399</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="d-block d-flex align-items-center">
+                                                            <div class="search-result-img">
+                                                                <img src="/assets/img/product/2.jpg" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="search-result-desc pl-10">
+                                                                <a href="/loadShop" class="title px-0">RIMINI - Folding leather
+                                                                    deck chair</a>
+                                                                <div class="price">$<span>399</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="d-block d-flex align-items-center">
+                                                            <div class="search-result-img">
+                                                                <img src="/assets/img/product/3.jpg" class="w-100" alt="">
+                                                            </div>
+                                                            <div class="search-result-desc pl-10">
+                                                                <a href="/loadShop" class="title px-0">LANDSCAPE - Folding
+                                                                    fabric deck chair</a>
+                                                                <div class="price">$<span>399</span></div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                                        title="view wishlist"><lord-icon
+                                        src="https://cdn.lordicon.com/xyboiuok.json"
+                                        trigger="hover"
+                                        colors="primary:#000000"
+                                        style="width:24px;height:24px; padding-top: 4.8px;">
+                                    </lord-icon></a></li>
+                                <li><a href="/cart"> <lord-icon
+                                    src="https://cdn.lordicon.com/mfmkufkr.json"
+                                    trigger="hover"
+                                    colors="primary:#ef829f"
+                                    style="width:23px;height:23px; padding-top: 4.2px;">
+                                </lord-icon><span></span></i></a>
+                                    <!-- <div class="minicart">
+                                        <div class="minicart-body">
+                                            <div class="minicart-content">
+                                                <ul class="text-left">
+                                                    <li>
+                                                        <div class="minicart-img">
+                                                            <a href="/product-1" class="p-0"><img src="/assets/img/product/P-1.webp"
+                                                                    class="w-100" alt=""></a>
+                                                        </div>
+                                                        <div class="minicart-desc">
+                                                            <a href="/product-1" class="p-0">Capitalize on low hanging fruit
+                                                                t</a>
+                                                            <strong>1 × $250.00</strong>
+                                                        </div>
+                                                        <div class="remove">
+                                                            <i class="fas fa-times"></i>
+                                                        </div>
+                                                    </li>
+
+                                                    <li>
+                                                        <div class="minicart-img">
+                                                            <a href="/product-1" class="p-0"><img src="/assets/img/product/2.jpg"
+                                                                    class="w-100" alt=""></a>
+                                                        </div>
+                                                        <div class="minicart-desc">
+                                                            <a href="/product-1" class="p-0">Leather Courriere duffle ba</a>
+                                                            <strong>1 × $150.00</strong>
+                                                        </div>
+                                                        <div class="remove">
+                                                            <i class="fas fa-times"></i>
+                                                        </div>
+                                                    </li>
+
+
+                                                    <li>
+                                                        <div class="minicart-img">
+                                                            <a href="/product-1" class="p-0"><img src="/assets/img/product/3.jpg"
+                                                                    class="w-100" alt=""></a>
+                                                        </div>
+                                                        <div class="minicart-desc">
+                                                            <a href="/product-1" class="p-0">Party Supplies Around Cupcake</a>
+                                                            <strong>1 × $150.00</strong>
+                                                        </div>
+                                                        <div class="remove">
+                                                            <i class="fas fa-times"></i>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="minicart-checkout">
+                                            <div class="minicart-checkout-heading mt-8 mb-25 overflow-hidden">
+                                                <strong class="float-left">Subtotal:</strong>
+                                                <span class="price float-right">503.00</span>
+                                            </div>
+                                            <div class="minicart-checkout-links">
+                                                <a href="cart.html"
+                                                    class="generic-btn black-hover-btn text-uppercase w-100 mb-20">View
+                                                    cart</a>
+                                                <a href="checkout.html"
+                                                    class="generic-btn black-hover-btn text-uppercase w-100 mb-20">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li> -->
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; ">
+                                    </a>
+                                    <ul class="submenu text-right" style="border-radius: 13px;">
+                                        <% if (locals.user) { %>
+                                            <li><a href="/profileDetails">My profile</a></li>
+                                            <li><a href="checkout.html">My address</a></li>
+                                            <li><a href="/loadShop">Orders</a></li>
+                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/logout">logout</a></li>
+                                        <% } else { %>
+                                            <li><a href="/login">My profile</a></li>
+                                            <li><a href="checkout.html">My address</a></li>
+                                            <li><a href="/loadShop">Orders</a></li>
+                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/login">Sign in</a></li>
+                                        <% } %>
+                                    </ul>
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu visible-sm">
+                <div id="mobile-menu">
+                    <ul>
+                        <li><a class="pl-3" href="javascript:void(0)">Home</a></li>
+                        <li><a class="pl-3" href="javascript:void(0)">Shop</a>
+                            <ul>
+                                <li><a href="#">All Products </a></li>
+                                <li><a href="#">Trending</a></li>
+                                <li><a href="#">Best Seller</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)">Best Deals</a>
+                        </li>
+                        <li><a href="javascript:void(0)">Gifting</a>
+                            <ul>
+                                <li><a href="portfolio.html">Gifting</a></li>
+                                <li><a href="portfolio2.html">Bundle Hamper</a></li>
+                                <li><a href="portfolio3.html">Bulk Orders</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /. mobile nav -->
+        </div>
+    </header>
+    <!-- header section end -->
+
+
+<!-- shop body section start -->
+<section class="cart-body mb-90" style="font-family: poppins;">
+    <div class="has-breadcrumb-content">
+        <div class="container container-1430">
+            <div class="breadcrumb-content" style="flex-direction: column;">
+                <div class="has-breadcrumb-bg" data-background="img/bg/3.jpg">
+                    <div class="breadcrumb-content d-flex justify-content-center align-items-center" style="flex-direction: column;">
+                        <h3 class="title" style="font-size: 35px; font-family: poppins; font-weight: 500;">
+                            <img src="/assets/img/logo/Shop_icon.png" style="width: 50px; height: 50px; padding-bottom: 3px; padding-right: 4px;">Cart</h3>
+                        <nav aria-label="breadcrumb" class="mb-40">
+                            <ol class="breadcrumb p-0 m-0">
+                                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <% if (userCart.length === 0) { %>
+                <div class="container-fluid mt-50">
+                    <div class="row">
+                        <div class="col-md-12" style="height: 600px;">
+                            <div class="card-body cart">
+                                <div class="col-sm-12 empty-cart-cls text-center">
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/mfmkufkr.json"
+                                        trigger="in"
+                                        delay="1000"
+                                        state="in-shopping"
+                                        colors="primary:#000000"
+                                        style="width:150px;height:150px">
+                                    </lord-icon>
+                                    <h3><strong>Your Cart is Currently Empty</strong></h3>
+                                    <h4>Browse our products and discover something you'll love.</h4>
+                                    <a href="/loadShop" class="btn btn-shopping" style="width: 200px; height: 50px; margin: 20px auto;">Continue Shopping</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="cart-body-content">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="product-content">
+                                <form action="#">
+                                    <div class="table-responsive">
+                                        <table class="table table-2">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-image"></th>
+                                                    <th class="product-title" style="font-family: poppins; font-weight: 600;">Product</th>
+                                                    <th style="font-family: poppins; font-weight: 600;">Price</th>
+                                                    <th class="quantity" style="font-family: poppins; font-weight: 600;">Quantity</th>
+                                                    <th class="total" style="font-family: poppins; font-weight: 600;">Total </th>
+                                                    <th class="remove-porduct"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% userCart.forEach(cartItem => { %>
+                                                <tr class="cart-item" data-original-price="<%= cartItem.productDetails[0].price %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>">
+                                                    <td>
+                                                        <div class="table-data">
+                                                            <a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><img src="/assets/img/brands/<%= cartItem.productDetails[0].image[0] %>" alt="" width="80"></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data">
+                                                            <h6><a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><%= cartItem.productDetails[0].productName %></a></h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data">
+                                                            <span class="price">₹ <%= cartItem.productDetails[0].discountPrice %></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data">
+                                                            <button class="decrease-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> - </button>
+                                                            <span class="quantity" id="quantity<%= cartItem.productDetails[0]._id %>"><%= cartItem.cartItems.quantity %></span>
+                                                            <button class="increase-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> + </button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data">
+                                                            <span class="total" id="total<%= cartItem.productDetails[0]._id %>">₹ <%= cartItem.productDetails[0].discountPrice * cartItem.cartItems.quantity %></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data">
+                                                            <button class="close-btn" data-product-id="<%= cartItem.productDetails[0]._id %>">
+                                                                <lord-icon
+                                                                    src="https://cdn.lordicon.com/nqtddedc.json"
+                                                                    trigger="hover"
+                                                                    state="hover-cross-3"
+                                                                    colors="primary:#000000"
+                                                                    style="width:25px;height:25px">
+                                                                </lord-icon>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% }); %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="container mt-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="payment-methods p-3 rounded-3">
+                                        <h2 class="text-center mb-4">Select Payment Method</h2>
+                                        <div class="row g-3">
+                                            <div class="col-6">
+                                                <div class="payment-option p-3">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Razorpay_logo.svg/2560px-Razorpay_logo.svg.png" class="img-fluid" alt="Razorpay">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="payment-option p-3">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/PayPal_logo.svg/2560px-PayPal_logo.svg.png" class="img-fluid" alt="PayPal">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="payment-option p-3">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/2560px-Visa.svg.png" class="img-fluid" alt="Visa">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="payment-option p-3">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/UPI-Logo-vector.svg/2560px-UPI-Logo-vector.svg.png" class="img-fluid" alt="UPI">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="cart-summary">
+                                <h4 class="title">Cart Totals</h4>
+                                <table class="table table-cart-summary" style="font-family: Poppins;">
+                                    <tbody>
+                                        <tr>
+                                            <th class="cart-summary-title">Total MRP</th>
+                                            <td class="cart-summary-price p-0 total-mrp">₹<%= totalMRP %></td>
+                                        </tr>
+                                        <tr class="border-bottom">
+                                            <th class="cart-summary-title">Discount</th>
+                                            <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);">₹<%= totalDiscount > 0 ? totalDiscount : 0 %></td>
+                                        </tr>
+                                        <tr class="border-bottom">
+                                            <th class="cart-summary-title">Delivery Charge</th>
+                                            <td class="cart-summary-price p-0">₹ <%= deliveryCharge %></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="cart-summary-title">Total Amount</th>
+                                            <td class="cart-summary-price p-0 total-amount">₹ <%= totalAmount %></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row justify-content-center align-items-center mt-3">
+                                    <div class="col-6">
+                                        <a href="/loadShop" class="btn btn-outline-dark text-center">Continue Shopping</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-primary" id="checkout-button">Proceed to Checkout</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+<!-- shop body section end -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function updateCartQuantity(productId, newQuantity) {
+        fetch(`/cart/updateCartItemQuantity/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quantity: newQuantity })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById(`quantity${productId}`).textContent = data.updatedCart.quantity;
+                document.getElementById(`total${productId}`).textContent = `₹ ${data.updatedCart.discountPrice * data.updatedCart.quantity}`;
+                updateCartSummary(data.cartSummary);
+            } else {
+                alert(data.message || 'Error updating cart.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+    }
+
+    function updateCartSummary(summary) {
+        document.querySelector('.total-mrp').textContent = `₹ ${summary.totalMRP}`;
+        document.querySelector('.total-discount').textContent = `₹ ${summary.totalDiscount}`;
+        document.querySelector('.total-amount').textContent = `₹ ${summary.totalAmount}`;
+    }
+
+    document.querySelectorAll('.increase-quantity').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.dataset.productId;
+            const inStock = parseInt(button.dataset.inStock, 10);
+            const currentQuantity = parseInt(document.getElementById(`quantity${productId}`).textContent, 10);
+            if (currentQuantity < inStock) {
+                updateCartQuantity(productId, currentQuantity + 1);
+            } else {
+                alert('Quantity exceeds stock limit.');
+            }
+        });
+    });
+
+    document.querySelectorAll('.decrease-quantity').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.dataset.productId;
+            const currentQuantity = parseInt(document.getElementById(`quantity${productId}`).textContent, 10);
+            if (currentQuantity > 1) {
+                updateCartQuantity(productId, currentQuantity - 1);
+            } else {
+                alert('Quantity cannot be less than 1.');
+            }
+        });
+    });
+
+    document.querySelectorAll('.close-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.dataset.productId;
+            fetch(`/cart/deleteCartItem/${productId}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.querySelector(`.cart-item[data-product-id="${productId}"]`).remove();
+                    updateCartSummary(data.cartSummary);
+                    if (data.cartSummary.totalMRP === 0) {
+                        location.reload();
+                    }
+                } else {
+                    alert(data.message || 'Error removing item from cart.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    });
+
+    document.getElementById('checkout-button').addEventListener('click', () => {
+        fetch('/order/createOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ /* pass necessary order data */ })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '/checkout';
+            } else {
+                alert(data.message || 'Error proceeding to checkout.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+    });
+});
+</script>
+
+    <%- include('../layouts/homeFooter') %>

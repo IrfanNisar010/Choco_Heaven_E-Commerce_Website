@@ -316,17 +316,109 @@ input {
   height: 20px;
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.bg-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+}
 .sign-in-sign-in {
+  display: flex;
   flex-shrink: 0;
   height: 100vh;
   flex-direction: column;
   row-gap: 2px;
-  background-color: rgba(250, 250, 250, 1);
+  background: transparent;
   align-items: center;
-  overflow: clip;
   font-size: 14px;
   letter-spacing: 0em;
+  z-index: 1000; 
+  position: relative;
+  overflow: visible; 
 }
+    /* Notification Message Styles */
+    .msg {
+      background: white;
+      color: #fe4343;
+      font-weight: 300;
+      font-family: "poppins";
+      font-size: small;
+      padding: 17px;
+      padding-left: 18px;
+      border-top: solid 3px #CCCCCC;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      -webkit-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+         -moz-box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+              box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+      position: fixed;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: top 0.8s ease-in-out, opacity 0.8s ease-in;
+      z-index: 1000;
+    }
+    
+    .msg.show {
+      top: 15px;
+      opacity: 1;
+    }
+
+    .msg-clear {
+      border-color: #fefefe;
+      -webkit-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+         -moz-box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+              box-shadow: 0 7px 10px -5px rgba(0,0,0,.15);
+    }
+    .msg-info {
+      border-color: #b8dbf2;
+    }
+    .msg-success {
+      border-color: #cef2b8;
+    }
+    .msg-warning {
+      border-color: rgba(255,165,0,.5);
+    }
+    .msg-danger {
+      border-color: #f84741;
+    }
+    .msg-primary {
+      border-color: #9ca6f1;
+    }
+    .msg-magick {
+      border-color: #e0b8f2;
+    }
+    .msg-info-text {
+      color: #39b3d7;
+    }
+    .msg-success-text {
+      color: #80d651;
+    }
+    .msg-warning-text {
+      color: #db9e34;
+    }
+    .msg-danger-text {
+      color: #c9302c;
+    }
+    .msg-primary-text {
+      color: rgba(47,106,215,.9);
+    }
+    .msg-magick-text {
+      color: #bb39d7;
+    }
 
 .sign-in-ttt-choco-heaven-tttthome-horizontal-divider-ticon-ttshop-ticon-tgifting-vector-tnew-launches-ticon-tbrands-ticon-tlink-contact-ttvector-titem-ticon-t0ticon-t5titem {
   align-self: stretch;
@@ -366,8 +458,7 @@ input {
   letter-spacing: 0.19em;
   line-height: 12px;
   font-size: 23px;
-  background-color: #FAFAFA;
-  backdrop-filter: blur(95px);
+  background: transparent;
   justify-content: center;
 }
 

@@ -60,8 +60,10 @@ user_route.post('/addAddress',userAuth.isLogin,userController.saveAddress);
 user_route.post('/editAddress',userAuth.isLogin,userController.editAddress);
 user_route.get('/deleteAddress',userAuth.isLogin,userController.deleteAddress);
  
-// Order Manage
+// Order, Checkout Manage
 user_route.get('/ordersManage', userAuth.isLogin, orderController.ordersPageLoad);
+user_route.get('/checkout',userAuth.isLogin,orderController.checkoutPageLoad);
+// user_route.post('/createOrder',userAuth.isLogin,orderController.createOrder)
 
 // User Cart  Manage
 user_route.get('/cart', userAuth.isLogin, cartController.cartLoad);
