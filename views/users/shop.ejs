@@ -11,6 +11,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assets/img/logo/Shop_logo.png">
     <!-- Place favicon.ico in the root directory -->
 
+      <!-- jQuery and jQuery UI CSS -->
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- CSS here -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/owl.carousel.min.css">
@@ -369,40 +371,54 @@
                         <div class="widget">
                             <h4 class="mb-30">Brands Categories</h4>
                             <div class="accordion" id="accordionExample">
-                                <% products.forEach(product => { %>
-                                <div class="list">
-                                    <a href="javascript:void(0)"><%= brands.name %>(<%= product.inStock %>)</a>
-                                    <button class="float-right text-right" type="button" data-toggle="collapse" data-target="#collapse-<%= product._id %>">
-                                        <span class="float-right"><i class="fas fa-angle-right"></i></span>
-                                    </button>
-                                </div>
+                                <% products.slice(0, 5).forEach((product, i) => { %>
+                                    <div class="list">
+                                        <a href="javascript:void(0)"><%= brands[i].name %>(<%= product.inStock %>)</a>
+                                        <button class="float-right text-right" type="button" data-toggle="collapse" data-target="#collapse-<%= product._id %>">
+                                            <span class="float-right"><i class="fas fa-angle-right" onclick="toggleBrands('<%= product._id %>')"></i></span>
+                                        </button>
+                                    </div>
+                                    <div id="collapse-<%= product._id %>" class="collapse">
+                                        <!-- Content to be collapsed -->
+                                    </div>
                                 <% }); %>
+                                
+                                <% if (products.length > 5) { %>
+                                    <div id="extra-products" style="display: none;">
+                                        <% products.slice(5).forEach((product, i) => { %>
+                                            <div class="list">
+                                                <a href="javascript:void(0)"><%= brands[i + 5].name %>(<%= product.inStock %>)</a>
+                                                <button class="float-right text-right" type="button" data-toggle="collapse" data-target="#collapse-<%= product._id %>">
+                                                    <span class="float-right"><i class="fas fa-angle-right" onclick="toggleBrands('<%= product._id %>')"></i></span>
+                                                </button>
+                                            </div>
+                                            <div id="collapse-<%= product._id %>" class="collapse">
+                                                <!-- Content to be collapsed -->
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                <% } %>                                
                             </div>
                         </div>
-                        
                         <div class="widget mt-50">
                             <h4 class="mb-30">Filter By Price</h4>
-                            <form action="#">
+                            <form id="price-filter-form" action="#">
                                 <div class="price-filter">
-                                    <div id="slider-range"
-                                        class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                        <div class="ui-slider-range ui-corner-all ui-widget-header"
-                                            style="left: 15%; width: 46.4%;"></div><span tabindex="0"
-                                            class="ui-slider-handle ui-corner-all ui-state-default"
-                                            style="left: 15%;"></span><span tabindex="0"
-                                            class="ui-slider-handle ui-corner-all ui-state-default"
-                                            style="left: 60%;"></span>
-                                        <div class="ui-slider-range ui-corner-all ui-widget-header"
-                                            style="left: 15%; width: 45%;"></div>
+                                    <div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                        <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 15%; width: 45%;"></div>
+                                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 15%;"></span>
+                                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span>
                                     </div>
                                     <div class="filter-form-submit mt-35">
                                         <button type="submit">Filter</button>
-                                        <div class="filter-price d-inline-block pl-20">Price: <input type="button"
-                                                id="amount" value="₹75 - ₹300"></div>
+                                        <div class="filter-price d-inline-block pl-20">Price: 
+                                            <input type="text" id="amount" readonly value="₹75 - ₹300" style="border:0; color:#fb99c7; font-weight:bold;">
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        
                         <div class="widget mt-50">
                             <h4 class="mb-30">Filter By Size</h4>
                             <div class="size-link">
@@ -578,56 +594,51 @@
                         <!-- /. filter heading -->
                         <div class="filter-content">
                             <div class="tab-content">
-                                <% if (products.length > 0) { %>
-                                <div class="tab-pane fade show active" id="shop-tab-1">
-                                    <% for (let row = 0; row < 3; row++) { %>
-                                    <div class="product-wrapper mt-55">
-                                        <div class="row">
-                                            <% for (let col = 0; col < 4; col++) { 
-                                                let index = row * 4 + col;
-                                                if (index >= products.length) break;
-                                            %>
-                                            <div class="col-6">
-                                                <div class="product-box mb-40">
-                                                    <div class="product-box-wrapper">
-                                                        <div class="product-img">
-                                                            <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
-                                                            <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
-                                                                <div class="second-img">
-                                                                    <img src="/assets/img/brands/<%= products[index].image[1] %>" alt=""
-                                                                        class="w-100">
-                                                                </div>
-                                                            </a>
-                                                            <a href="/singleProduct?id=<%= products[index]._id %>"
-                                                                class="product-img-link quick-view-1 text-capitalize">Quick
-                                                                view</a>
-                                                        </div>
-
-                                                        <div class="product-desc pb-20">
-                                                            <div class="product-desc-top">
-                                                                <div class="categories">
-                                                                    <a href="/singleProduct?id=<%= products[index]._id %>"
-                                                                        class="product-category"><span><%= products[index].brand %></span></a>
-                                                                </div>
-                                                                <a href="wishlist.html" class="wishlist float-right"><span><i
-                                                                            class="fas fa-heart"></i></span></a>
+                                <div id="product-list">
+                                    <% if (products.length > 0) { %>
+                                    <div class="tab-pane fade show active" id="shop-tab-1">
+                                        <% for (let row = 0; row < 3; row++) { %>
+                                        <div class="product-wrapper mt-55">
+                                            <div class="row">
+                                                <% for (let col = 0; col < 4; col++) { 
+                                                    let index = row * 4 + col;
+                                                    if (index >= products.length) break;
+                                                %>
+                                                <div class="col-6">
+                                                    <div class="product-box mb-40">
+                                                        <div class="product-box-wrapper">
+                                                            <div class="product-img">
+                                                                <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
+                                                                <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
+                                                                    <div class="second-img">
+                                                                        <img src="/assets/img/brands/<%= products[index].image[1] %>" alt="" class="w-100">
+                                                                    </div>
+                                                                </a>
+                                                                <a href="/singleProduct?id=<%= products[index]._id %>" class="product-img-link quick-view-1 text-capitalize">Quick view</a>
                                                             </div>
-                                                            <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title"> <%= products[index].productName %></a>
-                                                            <div class="price-switcher">
-                                                                <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
-                                                                <a href="cart.html"
-                                                                    class="add-cart text-capitalize switcher-item">+add
-                                                                    to cart</a>
+                                                            <div class="product-desc pb-20">
+                                                                <div class="product-desc-top">
+                                                                    <div class="categories">
+                                                                        <a href="/singleProduct?id=<%= products[index]._id %>" class="product-category"><span><%= brands[index].name %></span></a>
+                                                                    </div>
+                                                                    <a href="wishlist.html" class="wishlist float-right"><span><i class="fas fa-heart"></i></span></a>
+                                                                </div>
+                                                                <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title"> <%= products[index].productName %></a>
+                                                                <div class="price-switcher">
+                                                                    <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
+                                                                    <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">+add to cart</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <% } %>
                                             </div>
-                                            <% } %>
                                         </div>
                                         <% } %>
                                     </div>
                                     <% } %>
+                                </div>
                                 </div>
 
                                          
@@ -2164,7 +2175,52 @@
     </section>
     <!-- startup popup end -->
 
+<script>
+  function toggleBrands(productId) {
+    var extraProducts = document.getElementById('extra-products');
+    if (extraProducts.style.display === 'none') {
+        extraProducts.style.display = 'block';
+    } else {
+        extraProducts.style.display = 'none';
+    }
+    var icon = document.querySelector(`[data-target="#collapse-${productId}"] .fas`);
+    icon.classList.toggle('fa-angle-right');
+    icon.classList.toggle('fa-angle-down');
+}
 
+$(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 5000,
+            values: [75, 5000],
+            slide: function(event, ui) {
+                $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
+            }
+        });
+        $("#amount").val("₹" + $("#slider-range").slider("values", 0) +
+            " - ₹" + $("#slider-range").slider("values", 1));
+    });
+
+    $("#price-filter-form").on("submit", function(event) {
+        event.preventDefault();
+        var minPrice = $("#slider-range").slider("values", 0);
+        var maxPrice = $("#slider-range").slider("values", 1);
+
+        filterProductsByPrice(minPrice, maxPrice);
+    });
+
+    function filterProductsByPrice(minPrice, maxPrice) {
+        $(".product-box").each(function() {
+            var price = parseFloat($(this).find(".price").text().replace('₹', ''));
+            if (price >= minPrice && price <= maxPrice) {
+                $(this).parent().show();
+            } else {
+                $(this).parent().hide();
+            }
+        });
+    }
+</script>
 
    
     <!-- JS here -->
@@ -2184,6 +2240,11 @@
     <script src="/js/imagesloaded.pkgd.min.js"></script>
     <script src="/js/jquery.magnific-popup.min.js"></script>
     <script src="/js/plugins.js"></script>
+    <script src="/js/helperFunctions.js"></script>
     <script src="/js/main.js"></script>
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <!-- jQuery UI -->
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </body>
 </html>

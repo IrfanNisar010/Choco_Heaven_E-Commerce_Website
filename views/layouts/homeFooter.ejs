@@ -16,7 +16,18 @@
                 }
             });
         });
+
+        $(document).ready(function() {
+          if ($('.msg').length) {
+            $('.msg').addClass('show');
+            setTimeout(function() {
+              $('.msg').removeClass('show');
+            }, 4000);
+          }
+        });
     </script>
+
+    <script src="/js/helperFunctions.js"></script>
     <script src="/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

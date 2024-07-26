@@ -5,6 +5,7 @@ const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const path = require("path");
 const nocache = require('nocache');
+const morgan = require('morgan')
 
 dotenv.config({ path: '.env' });
 
@@ -30,6 +31,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
+app.use(morgan('dev'))
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {

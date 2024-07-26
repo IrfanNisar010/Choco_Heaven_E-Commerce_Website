@@ -40,5 +40,8 @@
     "passport-google-oauth20": "^2.0.0",
     "sharp": "^0.33.4",
     "userland": "^0.4.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }

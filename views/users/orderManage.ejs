@@ -1,51 +1,8 @@
   
-  <%- include('../layouts/addressManageHeader') %>
+  <%- include('../layouts/userOrderHeader') %>
   <%- include('../layouts/userHomeHeader') %>
-  <% if(typeof message !== "undefined"){ %>
-    <div class="msg msg-danger show d-flex align-items-center justify-content-center text-center" id="message" role="alert">
-      <div class="d-flex align-items-center justify-content-center">
-      <lord-icon
-      src="https://cdn.lordicon.com/nqtddedc.json"
-      trigger="in"
-      delay="100"
-      state="in-cross"
-      colors="primary:#e83a30"
-      style="width:50px;height:50px">
-  </lord-icon> 
-  </div>
-  <%= message %> 
-    </div>
-  <% } %>
-  <% if(typeof warning !== "undefined"){ %>
-    <div class="msg msg-warning show d-flex align-items-center justify-content-center text-center" id="warning" role="alert" style="color: black;">
-      <div class="d-flex align-items-center justify-content-center">
-        <lord-icon
-          src="https://cdn.lordicon.com/ygvjgdmk.json"
-          trigger="in"
-          delay="100"
-          colors="primary:#e88c30"
-          style="width:50px;height:50px;">
-        </lord-icon>
-      </div>
-        <%= warning %>
-    </div>  
-  <% } %>
-  <% if(typeof success !== "undefined"){ %>
-    <div class="msg msg-success show d-flex align-items-center justify-content-center text-center" id="success" role="alert" style="color: black;">
-      <div class="d-flex align-items-center justify-content-center">
-        <lord-icon
-      src="https://cdn.lordicon.com/oqdmuxru.json"
-      trigger="in"
-      delay="100"
-      state="morph-check-in-1"
-      colors="primary:#34c759"
-      style="width:50px;height:50px">
-  </lord-icon>
-      </div>
-        <%= success %>
-    </div>  
-  <% } %>  
 
+  
    <!-- header section start -->
    <header class="header pt-3 pb-4 header-sticky" style="height: 4.5rem;">
     <div class="container-fluid">
@@ -119,7 +76,7 @@
                                     <lord-icon
                                         src="https://cdn.lordicon.com/kthelypq.json"
                                         trigger="hover"
-                                        colors="primary:#000000"
+                                        colors="primary:#ef829f"
                                         style="width:23px;height:23px; padding-top: 6px;">
                                     </lord-icon>
                                 </a>
@@ -364,43 +321,31 @@
     </div>
 </header>
 <!-- header section end -->
-<div class="has-breadcrumb-bg m-0 " data-background="img/bg/3.jpg">
-    <div class="breadcrumb-content d-flex justify-content-center align-items-center" style="flex-direction: column;">
-        <h3 class="title"><img src="/assets/img/logo/Address_Icon.png" style="width: 50px; height: 50px; padding-bottom: 6px; padding-right: 10px;">My Address</h3>
-        <nav aria-label="breadcrumb" class="mb-" style="display: block;" id="manageAddressNav">
+<div class="has-breadcrumb-bg m-0" data-background="img/bg/3.jpg">
+    <div class="breadcrumb-content d-flex justify-content-center align-items-center hidden-md p-sm-0" style="flex-direction: column;">
+        <h3 class="title">
+            <img src="/assets/img/logo/Orders_Icon.png" style="width: 50px; height: 50px; padding-bottom: 6px; padding-right: 3px;">My Orders
+        </h3>
+        <nav aria-label="breadcrumb" class="mb-">
             <ol class="breadcrumb p-0 m-0">
                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Address</li>
-            </ol>
-        </nav>
-        <nav aria-label="breadcrumb" class="ml-5" style="display: none;" id="addAddressNav">
-            <ol class="breadcrumb p-0 m-0">
-                <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                <li class="breadcrumb-item"><a href="/addressManage">Address</a></li>
-                <li class="breadcrumb-item active" aria-current="page">New address</li>
-            </ol>
-        </nav>
-        <nav aria-label="breadcrumb" class="ml-5" style="display: none;" id="editAddressNav">
-            <ol class="breadcrumb p-0 m-0">
-                <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                <li class="breadcrumb-item"><a href="/addressManage">Address</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit address</li>
+                <li class="breadcrumb-item active" aria-current="page">Orders</li>
             </ol>
         </nav>
     </div>
 </div>
 
-<div class="container-xxl flex-grow-1 container-p-y">
+<div class="container-xxl flex-grow-1 container-p-y pt-md-">
     <div class="row">
         <!-- Sidebar Column -->
-        <div class="col-md-3">
-            <div class="sidebar pl-5 sidebar-text">
+        <div class="col-md-3 mb-5 hidden-md">
+            <div class="sidebar pl-5 pr-0 sidebar-text">
                 <ul class="nav flex-column">
                     <li class="nav-item" style="margin-bottom: 25px;">
                         <a class="nav-link" href="/profileDetails" onclick="setActive(this)">Personal info</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/orders" onclick="setActive(this)">Orders</a>
+                        <a class="nav-link" href="/ordersManage" onclick="setActive(this)">Orders</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
                         <a class="nav-link" href="/wallet" onclick="setActive(this)">Wallet</a>
@@ -417,313 +362,253 @@
                 </ul>
             </div>
         </div>
-        
-       <!-- Start Add Address -->
-       <div class="col-md-9 pl-0" style="display: none;" id="newAddressForm">
-        <h4 class="col-md-6 profile-head p-0">Hey, <%= locals.user.firstName %> 👋</h4>
-        <p class="col-md-6 p-head p-0">Add a new address</p>
-        <div class="card mb-4">
-            <h5 class="card-header">New address</h5>
-            <div class="card-body">
-                <form action="/addAddress" id="myForm" method="POST">
-                    <div class="row">
-                        <div class="mb-3 col-md-12">
-                            <label for="firstName" class="form-label">Full name (First and Last name)</label>
-                            <input class="form-control" type="text" id="fullName" name="name" placeholder="Full Name" autofocus />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input class="form-control" type="text" id="email" name="email" placeholder="example@gmail.com" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label" for="phoneNumber">Phone Number</label>
-                            <div class="input-group input-group-merge">
-                                <span class="input-group-text">IN (+91)</span>
-                                <input type="number" id="phone" name="Mobile" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="mb-3 col-md-12">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Flat, House no., Building, Company, Apartment" />
-                            <p id="message" style="font-size: 13px; font-family: poppins; font-weight: 400;"></p>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="organization" class="form-label">Area/Street</label>
-                            <input type="text" class="form-control" id="street" name="street" placeholder="Area, Street, Sector, Village" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="organization" class="form-label">LandMark(Optional)</label>
-                            <input type="text" class="form-control" id="landmark" name="landmark" placeholder="Apartment, suite, unit, building, floor, etc." />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="state" class="form-label">City</label>
-                            <input class="form-control" type="text" id="city" name="city" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="state" class="form-label">State</label>
-                            <input class="form-control" type="text" id="state" name="state" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="zipCode" class="form-label">Pin code</label>
-                            <input type="text" class="form-control" id="PIN" name="PIN" placeholder="6 digits- PIN code" maxlength="6" />
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label" for="country">Country/Region</label>
-                            <select id="country" class="select2 form-select" name="country">
-                                <option value="">Select</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 mb-3">
-                            <label for="name" class="">Address Type</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="addressType" id="home" value="home">
-                                  <label class="form-check-label" for="flexRadioDefault1"> Home</label>
-                                
-                                <input class="form-check-input ml-4" type="radio" name="addressType" id="work" value="work">
-                                  <label class="form-check-label ml-5" for="flexRadioDefault1"> Work</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-primary me-2" style="font-family: poppins; font-weight: 300; font-size: 13px; border-radius: 8px;">Save changes</button>
-                        <button type="button" onclick="clearForm()" class="btn " style="font-family: poppins; font-weight: 300; font-size: 13px; border-radius: 8px;">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- End Add Address -->
+          <!-- Main Content Column -->
+          <div class="col-md-9 pl-0">
+            <h4 class="col-md-6 profile-head p-0">Your Orders 🛍️</h4>
+            <p class="col-md-6 p-head p-0">Here's your Orders summary.</p>
 
-<!-- Main Content Column -->
-<!-- Start Manage Address -->
-<div class="col-md-9" id="manageAddress" style="display: block;">
-    <h4 class="col-md-6 profile-head p-0">Hey, <%= locals.user.firstName %> 👋</h4>
-    <p class="col-md-6 p-head p-0">Manage your address..</p>
-    <main class="frame-frame overflow-hidden">
-        <section class="frame-t-manage-address-frame">
-            <div class="frame-manage-address">Your Addresses</div>
-            <button class="frame-frame-1" id="addAddressBtn">
-                <lord-icon src="https://cdn.lordicon.com/hqymfzvj.json" trigger="hover" colors="primary:#ffffff" style="width:19px;height:19px; padding-right: 4px;"></lord-icon>
-                <div class="frame-add-new">Add new</div>
-            </button>
-        </section>
-        <article class="frame-wrapper overflow-hidden">
-            <% if (address.length > 0) { %>
-                <div class="row" style="font-family: poppins;">
-                    <% for (let i = 0; i < address.length; i++) { %>
-                        <div class="col-md-6 mb-4">
-                            <div class="address-card ">
-                                <div class="address-header ">
-                                    <div class="frame-address">Default</div>
-                                    <div class="frame-address-2">
-                                    <% if (address[i].is_Home) { %>
-                                        Home
-                                    <% } else if (address[i].is_Work) { %>
-                                        Work
-                                    <% } %>
-                                </div>
-                                </div>
-                                <div class="address-body">
-                                    <div class="address-detail">
-                                        <strong><%= address[i].name %></strong>
-                                    </div>
-                                    <div class="address-detail">
-                                        <%= address[i].address %>
-                                    </div>
-                                    <div class="address-detail">
-                                        <%= address[i].street %>
-                                    </div>
-                                    <div class="address-detail">
-                                        <%= address[i].landmark %>
-                                    </div>
-                                    <div class="address-detail">
-                                        <%= address[i].city %>
-                                    </div>
-                                    <div class="address-detail">
-                                        <%= address[i].country %>
-                                    </div>
-                                    <div class="address-detail">
-                                        <p style="color: black; font-weight: 500;">Phone Number: <%= address[i].Mobile %></p>
-                                    </div>
-                                </div>
-                                <div class="address-footer">
-                                    <button class="edit-address-btn" id="editAddressBtn<%= i %>">
-                                        <div class="btn-text">Edit address</div>
-                                        <lord-icon src="https://cdn.lordicon.com/rmkahxvq.json" trigger="hover" colors="primary:#000000" class="icon"></lord-icon>
-                                    </button>
-                                    <button class="remove-address-btn" href="/deleteAddress?id=<%=address[i]._id %>">
-                                        <div class="btn-text">Remove</div>
-                                        <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" colors="primary:#000000" class="icon"></lord-icon>
-                                    </button>
-                                </div>
-                            </div>
+        <div id="firejet-html-app">
+            <main class="frame-frame">
+              <div class="frame-tt-order-id-334902461tframe-2610325frame">
+                <section class="frame-t-order-id-334902461tframe-2610325frame d-flex justify-content-between">
+                  <div class="frame-order-id">Order ID: 334902461</div>
+                  <div class="frame-t-frame-2610325frame">
+                    <div class="frame-wrapper">
+                      <div class="frame-frame-1">
+                        <div class="frame-create-order"></div>
+                        <div class="frame-t-invoice">
+                          <div class="frame-invoice">Invoice</div>
                         </div>
-
-                        <!-- Start Edit Address -->
-                        <div class="col-md-9 pl-0" id="editAddress<%= i %>" style="display: none;">
-                            <h4 class="col-md-6 profile-head p-0">Hey, <%= locals.user.firstName %> 👋</h4>
-                            <p class="col-md-6 p-head p-0">Edit your address</p>
-                            <div class="card mb-4">
-                                <h5 class="card-header">Edit address</h5>
-                                <div class="card-body">
-                                    <form id="editAddressForm<%= i %>" action="/editAddress" method="post" onsubmit="submitEditForm(event, '<%= i %>')">
-                                        <div class="row">
-                                            <div class="mb-3 col-md-12">
-                                                <label for="firstName" class="form-label">Full name (First and Last name)</label>
-                                                <input class="form-control" type="text" id="name<%= i %>" name="name" value="<%= address[i].name %>" autofocus />
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="email" class="form-label">E-mail</label>
-                                                <input class="form-control" type="text" id="email<%= i %>" name="email" value="<%= address[i].email %>" />
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label" for="phoneNumber">Phone Number</label>
-                                                <div class="input-group input-group-merge">
-                                                    <span class="input-group-text">IN (+91)</span>
-                                                    <input type="number" id="Mobile<%= i %>" name="Mobile" class="form-control" value="<%= address[i].Mobile %>" />
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 col-md-12">
-                                                <label for="address" class="form-label">Address</label>
-                                                <input type="text" class="form-control" id="address<%= i %>" name="address" value="<%= address[i].address %>" />
-                                                <p id="message<%= i %>" style="font-size: 13px; font-family: poppins; font-weight: 400;"></p>
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="organization" class="form-label">Area/Street</label>
-                                                <input type="text" class="form-control" id="street<%= i %>" name="street" value="<%= address[i].street %>" />
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="organization" class="form-label">LandMark (Optional)</label>
-                                                <input type="text" class="form-control" id="landmark<%= i %>" name="landmark" value="<%= address[i].landmark %>" />
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="state" class="form-label">City</label>
-                                                <input class="form-control" type="text" id="city<%= i %>" name="city" value="<%= address[i].city %>" />
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="state" class="form-label">State</label>
-                                                <input class="form-control" type="text" id="state<%= i %>" name="state" value="<%= address[i].state %>" />
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="zipCode" class="form-label">Pin code</label>
-                                                <input type="text" class="form-control" id="PIN<%= i %>" name="PIN" value="<%= address[i].PIN %>" maxlength="6" />
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label" for="country">Country/Region</label>
-                                                <select id="country<%= i %>" class="select2 form-select" name="country">
-                                                    <option value=""><%= address[i].country %></option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-6 mb-3">
-                                                <label for="name" class="">Address Type</label>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="addressType" id="home<%= i %>" value="1" <%= address[i].is_Home ? 'checked' : '' %> />
-                                                    <label class="form-check-label" for="home"> Home</label>
-                                                    <input class="form-check-input ml-4" type="radio" name="addressType" id="work<%= i %>" value="1" <%= address[i].is_Work ? 'checked' : '' %> />
-                                                    <label class="form-check-label ml-5" for="Work"> Work</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-2">
-                                            <button type="submit" class="btn btn-primary me-2" style="font-family: poppins; font-weight: 300; font-size: 13px; border-radius: 8px;">Save changes</button>
-                                            <button type="button" onclick="clearForm1('<%= i %>')" class="btn" style="font-family: poppins; font-weight: 300; font-size: 13px; border-radius: 8px;">Cancel</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                      </div>
+                    </div>
+                    <div class="frame-wrapper-1">
+                      <button class="frame-frame-2">
+                        <div class="frame-t-track-order">
+                          <div class="frame-track-order">Track Order</div>
                         </div>
-                        <!-- End Edit Address -->
-                    <% } %>
+                        <div class="frame-north-direction"></div>
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="frame-ttt-order-date-jun-262024line-8estimated-delivery-jul" >
+                <div class="frame-tt-order-date-jun-262024line-8estimated-delivery-jul d-flex justify-content-start" >
+                  <div class="frame-t-order-date-jun-262024line">
+                    <div class="frame-order-date-jun">Order date: Jun 26, 2024</div>
+                    <object
+                      data="/assets/Line.svg"
+                      class="frame-line"
+                    ></object>
+                  </div>
+                  <div class="frame-estimated-delivery-jul">
+                    Estimated delivery: Jul 05, 2024
+                  </div>
                 </div>
-            <% } else { %>
-                <br><br>
-                <h3>No Address Found</h3>
-            <% } %>
-        </article>
-    </main>            
-</div>
-<!-- End Manage Address -->
-
+              </div>
+              <div class="frame-t-line">
+                <object
+                  data="/assets/Line1.svg"
+                  class="frame-line-1"
+                ></object>
+              </div>
+              <div class="frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty" >
+                <section class="frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty" >
+                  <div class="frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty" >
+                    <div class="frame-wrapper-2">
+                      <div class="frame-product">
+                        <img
+                          src="/assets/jpg.png"
+                          loading="lazy"
+                          class="frame-jpg"
+                        />
+                      </div>
+                    </div>
+                    <div class="frame-tttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty" >
+                      <div class="frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty" >
+                        <div class="frame-t-whittakers-dark-ghana-fruit-nut-250g">
+                          <div>Whittakers Dark Ghana Fruit &amp; Nut</div>
+                          <div class="frame-g">250g</div>
+                        </div>
+                        <div class="frame-t-99500tqty">
+                          <div class="frame-component">₹995.00</div>
+                          <div class="frame-t-qty">
+                            <div class="frame-qty">Qty: 1</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="frame-t-product-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty" >
+                    <div class="frame-wrapper-3">
+                      <div class="frame-product-1">
+                        <img
+                          src="/assets/jpg-1.png"
+                          loading="lazy"
+                          class="frame-jpg-1"
+                        />
+                      </div>
+                    </div>
+                    <div class="frame-tttt-whittakers-berry-biscuit-bar-250g-t99500tqty" >
+                      <div class="frame-ttt-whittakers-berry-biscuit-bar-250g-t99500tqty" >
+                        <div class="frame-t-whittakers-berry-biscuit-bar-250g">
+                          <div class="frame-whittakers-berry-biscuit-bar">
+                            Whittakers Berry &amp; Biscuit Bar
+                          </div>
+                          <div class="frame-g-1">250g</div>
+                        </div>
+                        <div class="frame-t-99500tqty-1">
+                          <div class="frame-component-1">₹995.00</div>
+                          <div class="frame-t-qty-1">
+                            <div class="frame-qty-1">Qty: 1</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="frame-t-line-1">
+                <object
+                  data="/assets/Line1.svg"
+                  class="frame-line-2"
+                ></object>
+              </div>
+              <div class="frame-tt-payment-delivery">
+                <section class="frame-t-payment-delivery">
+                  <div class="frame-payment">Payment</div>
+                  <div class="frame-delivery">Delivery</div>
+                </section>
+              </div>
+              <div class="frame-tttt-visa-56tframe-2610319address">
+                <div class="frame-ttt-visa-56tframe-2610319address">
+                  <div class="frame-tt-visa-56tframe">
+                    <div class="frame-t-visa-56tframe">
+                      <div class="frame-visa">Visa**56</div>
+                      <div class="frame-t-frame">
+                        <object
+                          data="/assets/Frame.svg"
+                          class="frame-frame-3"
+                        ></object>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="frame-address">Address</div>
+                </div>
+              </div>
+              <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
+                <div class="frame-kozhikode-skyline-apt">
+                  847 Kozhikode skyline Apt. 174
+                </div>
+              </div>
+              <div class="frame-t-kozhikode-in d-flex justify-content-end">
+                <div class="frame-kozhikode-in">Kozhikode, IN</div>
+              </div>
+              <div class="frame-t d-flex justify-content-end">
+                <div class="frame-component-2 d-flex justify-content-end ">9544675885</div>
+              </div>
+              <div class="frame-t-delivery-method d-flex justify-content-end">
+                <div class="frame-delivery-method">Delivery method</div>
+              </div>
+              <div class="frame-tt-razaro-pay d-flex justify-content-end">
+                <div class="frame-razaro-pay">Razaro Pay</div>
+              </div>
+              <div class="frame-t-line-2">
+                <object
+                  data="/assets/Line1.svg"
+                  class="frame-line-3"
+                ></object>
+              </div>
+              <div class="frame-tt-need-help-order-summary">
+                <div class="frame-t-need-help-order-summary">
+                  <div>
+                    <span>Need <span class="frame-text">help?</span></span>
+                  </div>
+                  <div>Order Summary</div>
+                </div>
+              </div>
+              <div class="frame-ttttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount" >
+                <section class="frame-tttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount" >
+                  <div class="frame-ttt-help-order-issues-tttruck-delivery-info">
+                    <div class="frame-tt-help-order-issues">
+                      <div class="frame-t-help"><div class="frame-help"></div></div>
+                      <div>Order Issues</div>
+                    </div>
+                    <div class="frame-tt-truck-delivery-info">
+                      <div class="frame-t-truck"><div class="frame-truck"></div></div>
+                      <div>Delivery Info</div>
+                    </div>
+                  </div>
+                  <div class="frame-tt-subtotal-199000tdiscount">
+                    <div class="frame-t-subtotal">
+                      <div class="frame-subtotal">Subtotal</div>
+                      <div class="frame-component-3">₹1990.00</div>
+                    </div>
+                    <div class="frame-t-discount">
+                      <div class="frame-discount">Discount</div>
+                      <div class="frame-component-4">(20%)-₹200</div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="frame-tttt-return-purchase-returns-ttdelivery-info">
+                <section class="frame-ttt-return-purchase-returns-ttdelivery-info">
+                  <div class="frame-tt-return-purchase-returns">
+                    <div class="frame-t-return-purchase">
+                      <div class="frame-return-purchase"></div>
+                    </div>
+                    <div class="frame-returns">Returns</div>
+                  </div>
+                  <div class="frame-tt-delivery-info">
+                    <div class="frame-t-delivery-info">
+                      <div class="frame-delivery-1">Delivery</div>
+                      <div class="frame-info"></div>
+                    </div>
+                    <div class="frame-component-5">₹0.00</div>
+                  </div>
+                </section>
+              </div>
+              <div class="frame-ttt-tax-info-free">
+                <div class="frame-tt-tax-info-free">
+                  <div class="frame-t-tax-info">
+                    <div class="frame-tax">Tax</div>
+                    <div class="frame-info-1"></div>
+                  </div>
+                  <div class="frame-free">Free</div>
+                </div>
+              </div>
+              <div class="frame-t-line-3">
+                <object
+                  data="/assets/Line2.svg"
+                  class="frame-line-4"
+                ></object>
+              </div>
+              <div class="frame-tt-total">
+                <div class="frame-t-total">
+                  <div class="frame-total">Total</div>
+                  <div class="frame-component-6">₹1990.00</div>
+                </div>
+              </div>
+            </main>
+          </div>
 <script>
-document.addEventListener('DOMContentLoaded', (event) => {
-    <% for (let i = 0; i < address.length; i++) { %>
-        document.getElementById('editAddressBtn<%= i %>').addEventListener('click', function() {
-            var editAddressForm = document.getElementById('editAddress<%= i %>');
-            var manageAddress = document.getElementById('manageAddress');
-            if (editAddressForm.style.display === 'none') {
-                editAddressForm.style.display = 'block';
-                manageAddress.style.display = 'none';
-            } else {
-                editAddressForm.style.display = 'none';
-                manageAddress.style.display = 'block';
+    function setActive(link) {
+        const links = document.querySelectorAll('.sidebar .nav-link');
+        links.forEach(link => link.classList.remove('active'));
+        link.classList.add('active');
+    }
+
+    // Optional: Set the initial active link based on current URL or other logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname;
+        const links = document.querySelectorAll('.sidebar .nav-link');
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
             }
         });
-    <% } %>
-
-    document.getElementById('addAddressBtn').addEventListener('click', function() {
-        var manageAddress = document.getElementById('manageAddress');
-        var newAddressForm = document.getElementById('newAddressForm');
-        manageAddress.style.display = 'none';
-        newAddressForm.style.display = 'block';
     });
-
-    document.getElementById('addAddressBtn').addEventListener('click', function() {
-        var manageAddressNav = document.getElementById('manageAddressNav');
-        var addAddressNav = document.getElementById('addAddressNav');
-        manageAddressNav.style.display = 'none';
-        addAddressNav.style.display = 'block';
-    });
-});
-
- // add address form submission
- document.getElementById('myForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-		  const index= ''
-          if(!addressValidation(index)){
-            return;
-          }
-          const form = document.getElementById('myForm');
-            const formData = new FormData(form);
-            const jsonObject = {};
-            formData.forEach((value, key) => {
-              jsonObject[key] = value;
-            });
-
-			
-            
-			jsonObject.is_Home = document.getElementById('home').checked;
-			jsonObject.is_Work = document.getElementById('work').checked;
-
-            fetch('/addAddress', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonObject)
-            })
-			.then(response => response.json())
-                    .then(data => {
-                      if (data.success) {
-                          Swal.fire({
-                              title: "New Address Added",
-                              text: "New Address Added successfully!",
-                              icon: "success"
-                          }).then(() => {
-							window.location.reload();; 
-                          });
-                      } else {
-						let message = document.getElementById('message');
-						message.style.color = "red";
-						message.innerText = `${data.message}`
-                      }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            });        
 </script>
- 
-  <script src="/js/countries.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/js/addressValidation.js"></script>
+
+<%- include('../layouts/addBrandsFooter') %>
 <%- include('../layouts/homeFooter') %>

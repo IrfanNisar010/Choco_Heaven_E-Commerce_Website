@@ -1,0 +1,1018 @@
+@import url("https://fonts.googleapis.com/css2?family=SF Pro Display:wght@400");
+@import url("https://api.fontshare.com/css?f[]=sf pro display@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400");
+@import url("https://api.fontshare.com/css?f[]=rubik@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400");
+@import url("https://api.fontshare.com/css?f[]=inter@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=poppins@400,500&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-32,
+.frame-info,
+.frame-info-1 {
+  background-image: url(/assets/info-1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.common-33,
+.frame-create-order,
+.frame-north-direction,
+.frame-help,
+.frame-truck,
+.frame-return-purchase {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.common-31,
+.frame-frame-1,
+.frame-frame-2,
+.frame-product,
+.frame-product-1 {
+  border-style: solid;
+  border-color: whitesmoke;
+}
+
+.common-18,
+.frame-t-order-id-334902461tframe-2610325frame,
+.frame-tt-order-date-jun-262024line-8estimated-delivery-jul,
+.frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty,
+.frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty,
+.frame-t-product-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty,
+.frame-ttt-whittakers-berry-biscuit-bar-250g-t99500tqty,
+.frame-t-payment-delivery,
+.frame-t-need-help-order-summary,
+.frame-tttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount,
+.frame-ttt-return-purchase-returns-ttdelivery-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-19,
+.frame-t-line,
+.frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty,
+.frame-t-line-1,
+.frame-t-line-2,
+.frame-ttttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.common-20,
+.frame-t-99500tqty,
+.frame-t-99500tqty-1,
+.frame-tt-visa-56tframe,
+.frame-t-frame,
+.frame-t-help,
+.frame-t-truck,
+.frame-tt-subtotal-199000tdiscount,
+.frame-t-return-purchase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.common-21,
+.frame-t-frame-2610325frame,
+.frame-t-order-date-jun-262024line,
+.frame-ttt-visa-56tframe-2610319address,
+.frame-t-visa-56tframe,
+.frame-t-kozhikode-in,
+.frame-t,
+.frame-tt-razaro-pay,
+.frame-tt-help-order-issues,
+.frame-tt-truck-delivery-info,
+.frame-t-discount,
+.frame-tt-return-purchase-returns,
+.frame-tt-delivery-info,
+.frame-t-delivery-info,
+.frame-tt-tax-info-free,
+.frame-t-tax-info,
+.frame-t-total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-22,
+.frame-t-847kozhikode-skyline-apt,
+.frame-ttt-tax-info-free {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-23,
+.frame-t-delivery-method,
+.frame-tttt-return-purchase-returns-ttdelivery-info {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.common-24,
+.frame-t-line-3,
+.frame-tt-total {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.common-25,
+.frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty,
+.frame-t-whittakers-berry-biscuit-bar-250g {
+  display: flex;
+  flex-direction: column;
+}
+
+.common-26,
+.frame-wrapper,
+.frame-wrapper-1 {
+  display: flex;
+  align-items: center;
+}
+
+.common-27,
+.frame-tt-payment-delivery,
+.frame-tttt-visa-56tframe-2610319address,
+.frame-tt-need-help-order-summary {
+  display: flex;
+  align-items: flex-end;
+}
+
+.common-28,
+.frame-t-invoice,
+.frame-t-track-order,
+.frame-product,
+.frame-product-1,
+.frame-ttt-help-order-issues-tttruck-delivery-info {
+  flex-direction: column;
+  align-items: center;
+}
+
+.common-29,
+.frame-frame-1,
+.frame-frame-2,
+.frame-t-subtotal {
+  justify-content: center;
+  align-items: center;
+}
+
+.common-30,
+.frame-t-qty,
+.frame-t-qty-1 {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-11,
+.frame-component,
+.frame-component-1 {
+  color: black;
+  font-size: 15px;
+  text-align: center;
+}
+
+.common-12,
+.frame-qty,
+.frame-qty-1 {
+  color: gray;
+  font-size: 11px;
+  text-align: right;
+}
+
+.common-13,
+.frame-kozhikode-in,
+.frame-component-2,
+.frame-razaro-pay {
+  color: dimgray;
+  font-size: 14px;
+  text-align: center;
+}
+
+.common-14,
+.frame-address,
+.frame-delivery-method {
+  color: darkgray;
+  font-size: 11px;
+}
+
+.common-15,
+.frame-kozhikode-skyline-apt,
+.frame-returns {
+  color: dimgray;
+  font-size: 14px;
+}
+
+.common-16,
+.frame-visa,
+.frame-ttt-help-order-issues-tttruck-delivery-info {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.common-17,
+.frame-component-4,
+.frame-component-5,
+.frame-free {
+  font-weight: 500;
+  text-align: right;
+}
+
+.common-1,
+.frame-product,
+.frame-product-1 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+.common-2,
+.frame-frame-1,
+.frame-frame-2 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.common-3,
+.frame-wrapper-2,
+.frame-wrapper-3 {
+  display: flex;
+  width: 64px;
+  height: 64px;
+}
+
+.common-4,
+.frame-t-invoice,
+.frame-t-track-order,
+.frame-t-qty,
+.frame-t-qty-1 {
+  display: flex;
+  height: 24px;
+}
+
+.common-5,
+.frame-t-whittakers-dark-ghana-fruit-nut-250g,
+.frame-ttt-help-order-issues-tttruck-delivery-info,
+.frame-t-subtotal,
+.frame-tax {
+  display: flex;
+  color: dimgray;
+}
+
+.common-6,
+.frame-create-order,
+.frame-north-direction {
+  width: 11px;
+  height: 11px;
+}
+
+.common-7,
+.frame-jpg,
+.frame-jpg-1 {
+  width: 64px;
+  height: 64px;
+}
+
+.common-8,
+.frame-info,
+.frame-info-1 {
+  width: 14px;
+  height: 14px;
+}
+
+.common-9,
+.frame-discount,
+.frame-total {
+  width: 59px;
+  color: dimgray;
+}
+
+.common-10,
+.frame-component-4,
+.frame-component-5 {
+  width: 93px;
+  color: gray;
+}
+
+.frame-frame {
+  background-color: white;
+  padding-bottom: 29px;
+  padding-left: 19px;
+  padding-right: 45px;
+  padding-top: 53px;
+  width: 100%;
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0em;
+}
+
+.frame-tt-order-id-334902461tframe-2610325frame {
+  padding-left: 2px;
+  padding-right: 3px;
+}
+
+.frame-t-order-id-334902461tframe-2610325frame {
+  row-gap: 12px;
+  column-gap: 96px;
+  line-height: 25px;
+}
+
+.frame-order-id {
+  width: 228px;
+  flex-shrink: 0;
+  font-family: "SF Pro Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 22px;
+}
+
+.frame-t-frame-2610325frame {
+  column-gap: 9px;
+  font-family: Rubik, ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+}
+
+.frame-wrapper {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.frame-frame-1 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: clip;
+  column-gap: 5px;
+  padding-left: 10px;
+  padding-right: 7px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  flex-shrink: 0;
+}
+
+.frame-create-order {
+  background-image: url(/assets/create-order.png);
+  flex-shrink: 0;
+}
+
+.frame-invoice {
+  margin-bottom: -1px;
+  color: black;
+}
+
+.frame-wrapper-1 {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.frame-frame-2 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: clip;
+  background-color: dodgerblue;
+  column-gap: 7px;
+  padding-left: 10px;
+  padding-right: 8px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  flex-shrink: 0;
+}
+
+.frame-track-order {
+  margin-bottom: -1px;
+  color: white;
+}
+
+.frame-north-direction {
+  background-image: url(/assets/north-direction.png);
+  flex-shrink: 0;
+}
+
+.frame-ttt-order-date-jun-262024line-8estimated-delivery-jul {
+  height: 37px;
+  padding-left: 3px;
+  padding-right: 134px;
+  padding-top: 12px;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.frame-tt-order-date-jun-262024line-8estimated-delivery-jul {
+  row-gap: 7.5px;
+  column-gap: 34px;
+  flex-grow: 1;
+  max-height: 25px;
+}
+
+.frame-t-order-date-jun-262024line {
+  column-gap: 11px;
+  align-self: stretch;
+  max-height: 25px;
+}
+
+.frame-order-date-jun {
+  font-family: "SF Pro Display", ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 25px;
+}
+
+.frame-line {
+  width: 0.5px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.frame-estimated-delivery-jul {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  color: limegreen;
+  line-height: normal;
+}
+
+.frame-t-line {
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 14px;
+}
+
+.frame-line-1 {
+  height: 1.5px;
+  flex-shrink: 0;
+}
+
+.frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty {
+  padding-left: 3px;
+  padding-right: 1px;
+  padding-top: 14px;
+}
+
+.frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty {
+  row-gap: 14px;
+  font-weight: 500;
+}
+
+.frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty {
+  row-gap: 17px;
+  column-gap: 17px;
+}
+
+.frame-wrapper-2 {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.frame-product {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  overflow: clip;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  flex-shrink: 0;
+}
+
+.frame-jpg {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.frame-tttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty {
+  flex-grow: 1;
+  padding-top: 3px;
+}
+
+.frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty {
+  row-gap: 22px;
+  column-gap: 60px;
+}
+
+.frame-t-whittakers-dark-ghana-fruit-nut-250g {
+  line-height: 19px;
+  flex-direction: column;
+  row-gap: 5px;
+  flex-grow: 1;
+}
+
+.frame-g {
+  width: 261px;
+  font-size: 12px;
+}
+
+.frame-t-99500tqty {
+  line-height: 27px;
+}
+
+.frame-t-qty {
+  padding-left: 29px;
+  padding-right: 1px;
+  flex-shrink: 0;
+}
+
+.frame-qty {
+  margin-bottom: 1.5px;
+}
+
+.frame-t-product-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty {
+  row-gap: 17px;
+  column-gap: 17px;
+}
+
+.frame-wrapper-3 {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.frame-product-1 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  overflow: clip;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  flex-shrink: 0;
+}
+
+.frame-jpg-1 {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.frame-tttt-whittakers-berry-biscuit-bar-250g-t99500tqty {
+  flex-grow: 1;
+  padding-top: 3px;
+}
+
+.frame-ttt-whittakers-berry-biscuit-bar-250g-t99500tqty {
+  row-gap: 22px;
+  column-gap: 60px;
+}
+
+.frame-t-whittakers-berry-biscuit-bar-250g {
+  line-height: 19px;
+  row-gap: 5px;
+  flex-grow: 1;
+}
+
+.frame-whittakers-berry-biscuit-bar {
+  color: darkslategray;
+}
+
+.frame-g-1 {
+  width: 261px;
+  font-size: 12px;
+  color: dimgray;
+}
+
+.frame-t-99500tqty-1 {
+  line-height: 27px;
+}
+
+.frame-t-qty-1 {
+  padding-left: 29px;
+  padding-right: 1px;
+  flex-shrink: 0;
+}
+
+.frame-qty-1 {
+  margin-bottom: 1.5px;
+}
+
+.frame-t-line-1 {
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 43px;
+}
+
+.frame-line-2 {
+  height: 1.5px;
+  flex-shrink: 0;
+}
+
+.frame-tt-payment-delivery {
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 59px;
+}
+
+.frame-t-payment-delivery {
+  row-gap: 10px;
+  column-gap: 204px;
+  line-height: 19px;
+  font-weight: 500;
+}
+
+.frame-payment {
+  font-size: 13px;
+}
+
+.frame-delivery {
+  font-size: 14px;
+}
+
+.frame-tttt-visa-56tframe-2610319address {
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 10px;
+}
+
+.frame-ttt-visa-56tframe-2610319address {
+  column-gap: 167px;
+  line-height: 19px;
+}
+
+.frame-tt-visa-56tframe {
+  padding-top: 2px;
+}
+
+.frame-t-visa-56tframe {
+  column-gap: 6px;
+}
+
+.frame-visa {
+  color: dimgray;
+}
+
+.frame-t-frame {
+  padding-bottom: 1px;
+}
+
+.frame-frame-3 {
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  width: 23px;
+  height: 15px;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+  flex-shrink: 0;
+}
+
+.frame-t-847kozhikode-skyline-apt {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.frame-kozhikode-skyline-apt {
+  text-align: right;
+  line-height: 19px;
+}
+
+.frame-t-kozhikode-in {
+  padding-left: 114px;
+}
+
+.frame-kozhikode-in {
+  line-height: 19px;
+}
+
+.frame-t {
+  padding-left: 110px;
+}
+
+.frame-component-2 {
+  line-height: 19px;
+}
+
+.frame-t-delivery-method {
+  padding-left: 113px;
+  padding-top: 8px;
+}
+
+.frame-delivery-method {
+  text-align: center;
+  line-height: 19px;
+}
+
+.frame-tt-razaro-pay {
+  padding-top: 2px;
+}
+
+.frame-razaro-pay {
+  line-height: 19px;
+  padding-left: 101px;
+}
+
+.frame-t-line-2 {
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 15px;
+}
+
+.frame-line-3 {
+  height: 1.5px;
+  flex-shrink: 0;
+}
+
+.frame-tt-need-help-order-summary {
+  padding-left: 3px;
+  padding-right: 129px;
+  padding-top: 14px;
+}
+
+.frame-t-need-help-order-summary {
+  row-gap: 10px;
+  column-gap: 182px;
+  flex-grow: 1;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 500;
+}
+
+.frame-text {
+  color: black;
+}
+
+.frame-ttttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount {
+  padding-left: 6px;
+  padding-top: 12px;
+}
+
+.frame-tttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount {
+  row-gap: 25px;
+  column-gap: 145px;
+}
+
+.frame-ttt-help-order-issues-tttruck-delivery-info {
+  row-gap: 9px;
+  line-height: 19px;
+}
+
+.frame-tt-help-order-issues {
+  column-gap: 3px;
+}
+
+.frame-t-help {
+  width: 17px;
+  height: 18px;
+  padding-bottom: 1px;
+  flex-shrink: 0;
+}
+
+.frame-help {
+  background-image: url(/assets/help.png);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.frame-tt-truck-delivery-info {
+  column-gap: 5px;
+  padding-right: 1px;
+}
+
+.frame-t-truck {
+  width: 15px;
+  height: 16px;
+  padding-bottom: 1px;
+  flex-shrink: 0;
+}
+
+.frame-truck {
+  background-image: url(/assets/truck.png);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.frame-tt-subtotal-199000tdiscount {
+  row-gap: 11px;
+}
+
+.frame-t-subtotal {
+  column-gap: 120px;
+  font-size: 14px;
+}
+
+.frame-subtotal {
+  line-height: 19px;
+}
+
+.frame-component-3 {
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.frame-t-discount {
+  column-gap: 88px;
+  padding-right: 2px;
+  font-size: 11px;
+}
+
+.frame-discount {
+  flex-shrink: 0;
+  line-height: 19px;
+}
+
+.frame-component-4 {
+  flex-shrink: 0;
+  line-height: 21px;
+}
+
+.frame-tttt-return-purchase-returns-ttdelivery-info {
+  padding-left: 8px;
+  padding-right: 2px;
+  padding-top: 4px;
+}
+
+.frame-ttt-return-purchase-returns-ttdelivery-info {
+  row-gap: 10px;
+  column-gap: 184px;
+  flex-grow: 1;
+}
+
+.frame-tt-return-purchase-returns {
+  column-gap: 6px;
+  padding-top: 2px;
+}
+
+.frame-t-return-purchase {
+  width: 13px;
+  height: 14px;
+  padding-bottom: 1px;
+  flex-shrink: 0;
+}
+
+.frame-return-purchase {
+  background-image: url(/assets/return-purchase.png);
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.frame-returns {
+  line-height: 19px;
+  font-weight: 500;
+}
+
+.frame-tt-delivery-info {
+  column-gap: 87px;
+  font-size: 11px;
+}
+
+.frame-t-delivery-info {
+  column-gap: 2px;
+}
+
+.frame-delivery-1 {
+  color: dimgray;
+  line-height: 19px;
+}
+
+.frame-info {
+  flex-shrink: 0;
+}
+
+.frame-component-5 {
+  flex-shrink: 0;
+  line-height: 21px;
+}
+
+.frame-ttt-tax-info-free {
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 3px;
+}
+
+.frame-tt-tax-info-free {
+  column-gap: 111px;
+  font-size: 11px;
+}
+
+.frame-t-tax-info {
+  column-gap: 2px;
+}
+
+.frame-tax {
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 19px;
+}
+
+.frame-info-1 {
+  flex-shrink: 0;
+}
+
+.frame-free {
+  width: 93px;
+  flex-shrink: 0;
+  color: darkseagreen;
+  line-height: 21px;
+}
+
+.frame-t-line-3 {
+  padding-left: 265px;
+  padding-top: 12px;
+}
+
+.frame-line-4 {
+  flex-grow: 1;
+  height: 1px;
+}
+
+.frame-tt-total {
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 15px;
+}
+
+.frame-t-total {
+  column-gap: 119px;
+  font-size: 14px;
+}
+
+.frame-total {
+  flex-shrink: 0;
+  line-height: 19px;
+}
+
+.frame-component-6 {
+  color: black;
+  line-height: 21px;
+  font-weight: 500;
+}
+@media (min-width: 561px) {
+  .frame-t-order-id-334902461tframe-2610325frame {
+    flex-wrap: nowrap;
+  }
+  .frame-tt-order-date-jun-262024line-8estimated-delivery-jul {
+    flex-wrap: nowrap;
+  }
+  .frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty {
+    flex-wrap: nowrap;
+  }
+  .frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty {
+    flex-wrap: nowrap;
+  }
+  .frame-t-product-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty {
+    flex-wrap: nowrap;
+  }
+  .frame-ttt-whittakers-berry-biscuit-bar-250g-t99500tqty {
+    flex-wrap: nowrap;
+  }
+  .frame-t-payment-delivery {
+    flex-wrap: nowrap;
+  }
+  .frame-t-need-help-order-summary {
+    flex-wrap: nowrap;
+  }
+  .frame-tttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount {
+    flex-wrap: nowrap;
+  }
+  .frame-ttt-return-purchase-returns-ttdelivery-info {
+    flex-wrap: nowrap;
+  }
+}

@@ -18,7 +18,7 @@
                         <div class="header-nav header-nav-2 pl-100">
                             <nav class="d-flex justify-content-center align-content-center"> 
                                 <ul>
-                                    <li><a href="javascript:void(0)" class="active"><span>Home </span></a></li>
+                                    <li><a href="/home"><span>Home </span></a></li>
                                     <li><a href="/loadShop"><span>Shop <i class="fas fa-angle-down"></i></span></a>
                                             <div class="submenu" style="border-radius: 13px;">
                                                 <ul>
@@ -75,7 +75,6 @@
                                 <% } else { %>
                                     <a href="/profileDetails" class="account">
                                         <lord-icon
-                                            class="userProfile"
                                             src="https://cdn.lordicon.com/kthelypq.json"
                                             trigger="hover"
                                             colors="primary:#000000"
@@ -202,7 +201,7 @@
                                 <li><a href="/cart"> <lord-icon
                                     src="https://cdn.lordicon.com/mfmkufkr.json"
                                     trigger="hover"
-                                    colors="primary:#000000"
+                                    colors="primary:#ef829f"
                                     style="width:23px;height:23px; padding-top: 4.2px;">
                                 </lord-icon><span></span></i></a>
                                     <!-- <div class="minicart">
@@ -277,13 +276,13 @@
                                     <ul class="submenu text-right" style="border-radius: 13px;">
                                         <% if (locals.user) { %>
                                             <li><a href="/profileDetails">My profile</a></li>
-                                            <li><a href="/addressManage">My address</a></li>
+                                            <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
                                             <li><a href="/login">My profile</a></li>
-                                            <li><a href="/addressManage">My address</a></li>
+                                            <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                             <li><a href="/login">Sign in</a></li>
@@ -327,355 +326,155 @@
 
 
 
-    <!-- slider section start -->
-    <section class="slider">
-        <div class="slider-active">
-            <div class="single-slider d-flex align-items-center h-950" data-background="/assets/img/slider/1.jpg">
-                <div class="container">
-                    <div class="single-slider-inner d-flex align-items-center justify-content-center pt-190">
-                        <div class="single-slider-content text-center light-content">
-                            <div class="slider-heading">
-                                <h2 class="mb-0" data-animation="fadeInUp" data-delay=".2s">Handcrafted</h2>
-                                <h2 class="mb-0" data-animation="fadeInUp" data-delay=".4s">Perfection in Every Bites</h2>
-                            </div>
-                            <div class="slider-desc" data-animation="fadeInUp" data-delay=".6s">
-                                <p class="mt-20 mb-0">Explore Our Latest Arrivals. Shop the Collection Now</p>
-                            </div>
-                            <div class="slider-link" data-animation="fadeInUp" data-delay=".8s">
-                                <a href="/loadShop" class="generic-btn mt-50 red-hover-btn text-uppercase">Shop Now</a>
-                            </div>
+    <!-- shop body section start -->
+    <section class="cart-body mb-90 " style="font-family: poppins;">
+        <div class="has-breadcrumb-content">
+            <div class="container container-1430">
+                <div class="breadcrumb-content" style="flex-direction: column;">
+                    <div class="has-breadcrumb-bg " data-background="img/bg/3.jpg">
+                        <div class="breadcrumb-content d-flex justify-content-center align-items-center" style="flex-direction: column;">
+                            
+                            <h3 class="title" style="font-size: 35px; font-family: poppins; font-weight: 500;"><img src="/assets/img/logo/Shop_icon.png" style="width: 50px; height: 50px; padding-bottom: 3px; padding-right: 4px;">Cart</h3>
+                            <nav aria-label="breadcrumb" class="mb-40">
+                                <ol class="breadcrumb p-0 m-0">
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="single-slider d-flex align-items-center h-950" data-background="/assets/img/slider/2.jpg">
-                <div class="container">
-                    <div class="single-slider-inner d-flex align-items-center justify-content-center pt-190">
-                        <div class="single-slider-content text-center light-content">
-                            <div class="slider-heading">
-                                <h2 class="mb-0" data-animation="fadeInUp" data-delay=".2s">Gift the Joy</h2>
-                                <h2 class="mb-0" data-animation="fadeInUp" data-delay=".4s">of Exquisite Chocolates </h2>
-                            </div>
-                            <div class="slider-desc" data-animation="fadeInUp" data-delay=".6s">
-                                <p class="mt-35 mb-0">Celebrate special moments with our luxurious chocolate gift hampers.</p>
-                            </div>
-                            <div class="slider-link" data-animation="fadeInUp" data-delay=".8s">
-                                <a href="/loadShop" class="generic-btn mt-70 red-hover-btn text-uppercase">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-slider d-flex align-items-center h-950" data-background="/assets/img/slider/3.jpg">
-                <div class="container">
-                    <div class="single-slider-inner d-flex align-items-center justify-content-center pt-190">
-                        <div class="single-slider-content text-center light-content">
-                            <div class="slider-heading">
-                                <h2 class="mb-0">Pure Cocoa</h2>
-                                <h2 class="mb-0">Bliss in Every Taste</h2>
-                            </div>
-                            <div class="slider-desc" data-animation="fadeInUp" data-delay=".6s">
-                                <p class="mt-35 mb-0">Experience the rich, authentic flavor of our premium cocoa chocolates.</p>
-                            </div>
-                            <div class="slider-link" data-animation="fadeInUp" data-delay=".8s">
-                                <a href="/loadShop" class="generic-btn mt-70 red-hover-btn text-uppercase">Discover
-                                    now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- slider section end -->
-
-
-
-
-    <!-- category section start -->
-    <section class="category mt-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 left-category">
-                    <div class="category-box">
-                        <div class="category-wrapper">
-                            <div class="category-img">
-                                <img src="https://i.pinimg.com/564x/6d/ec/da/6decdafab9623c0066aa1924090b721c.jpg" class="w-100" style="height: 637px; border-radius: 16px;">
-                            </div>
-                            <div class="category-content">
-                                <a href="#" class="title">New Bites</a>
-                                <p class="category-item">(<span>8</span> items)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
-                            <div class="row">
-                                <div class="col-12 mb-27">
-                                    <div class="category-box">
-                                        <div class="category-wrapper">
-                                            <div class="category-img">
-                                                <img src="/assets/img/banner/categorie_2.gif" class="w-100" style="height: 307px; border-radius: 16px;">
-                                            </div>
-                                            <div class="category-content">
-                                                <a href="#" class="title">Cocoa Balls</a>
-                                                <p class="category-item">(<span>5</span> items)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="category-box">
-                                        <div class="category-wrapper">
-                                            <div class="category-img">
-                                                <img src="/assets/img/banner/categorie_3.png" class="w-100" style="height: 307px; border-radius: 16px;">
-                                            </div>
-                                            <div class="category-content">
-                                                <a href="/loadShop" class="title">Authentic Cocoa</a>
-                                                <p class="category-item">(<span>11</span> items)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 category-right">
-                            <div class="category-box">
-                                <div class="category-wrapper">
-                                    <div class="category-img">
-                                        <img src="/assets/img/banner/categorie_4.jpg" class="w-100"  style="height: 637px; border-radius: 16px;">
-                                    </div>
-                                    <div class="category-content">
-                                        <a href="/loadShop" class="title">Real Flavors</a>
-                                        <p class="category-item">(<span>19</span> items)</p>
+                <% if (userCart.length === 0) { %>
+                    <div class="container-fluid mt-50">
+                        <div class="row">
+                            <div class="col-md-12" style="height: 600px;">
+                                <div class="card-body cart">
+                                    <div class="col-sm-12 empty-cart-cls text-center">
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/mfmkufkr.json"
+                                            trigger="in"
+                                            delay="1000"
+                                            state="in-shopping"
+                                            colors="primary:#000000"
+                                            style="width:150px;height:150px">
+                                        </lord-icon>
+                                        <h3><strong>Your Cart is Currently Empty</strong></h3>
+                                        <h4>Browse our products and discover something you'll love.</h4>
+                                        <a href="/loadShop" class="btn btn-shopping" style="width: 200px; height: 50px; margin: 20px auto;">Continue Shopping</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- category section end -->
-
-
-
-    <!-- main product sections tart -->
-    <section class="main-product mt-100">
-        <div class="container">
-            <ul class="nav nav-pills mb-3">
-                <li class="nav-item">
-                    <a class="active" data-toggle="pill" href="#main-tab-1">New Arrivals</a>
-                </li>
-                <li class="nav-item">
-                    <a class="" data-toggle="pill" href="#main-tab-2">Best Sellers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="" data-toggle="pill" href="#main-tab-3">Top rate</a>
-                </li>
-            </ul>
-            <div class="tab-content mt-25">
-                <% if (products.length > 0){ %>
-                <div class="tab-pane fade show active" id="main-tab-1">
-                    <% for(let row = 0; row < 3; row++){ %>
-                    <div class="row">
-                        <% for(let col = 0; col < 4; col++){ 
-                            let index = row * 4 + col;
-                            if(index >= products.length) break;
-                        %>
-                        <div class="col-3">
-                            <div class="product-box mb-40">
-                                <div class="product-box-wrapper">
-                                    <div class="product-img">
-                                        <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
-                                        <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
-                                            <div class="second-img">
-                                                <img src="/assets/img/brands/<%= products[index].image[1] %>" alt="" class="w-100">
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                    </div>
-                                    <div class="product-desc pb-20">
-                                        <div class="product-desc-top">
-                                            <div class="categories">
-                                                <a href="/loadShop" class="product-category">
-                                                    <span><%= products[index].brand %></span>
-                                                </a>
-                                            </div>
-                                            <a href="wishlist.html" class="wishlist float-right">
-                                                <span><lord-icon
-                                                    src="https://cdn.lordicon.com/xyboiuok.json"
-                                                    trigger="click"
-                                                    delay="1000"
-                                                    state="morph-heart"
-                                                    colors="primary:#ee7c9b"
-                                                    style="width:30px;height:30px">
-                                                </lord-icon></span>
-                                            </a>
+                <% } else { %>
+                    <div class="cart-body-content">
+                        <div class="row">
+                            <div class="col-xl-8">
+                                <div class="product-content">
+                                    <form action="#">
+                                        <div class="table-responsive">
+                                            <table class="table table-2">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="product-image"></th>
+                                                        <th class="product-title" style="font-family: poppins; font-weight: 600;">Product</th>
+                                                        <th style="font-family: poppins; font-weight: 600;">Price</th>
+                                                        <th class="quantity" style="font-family: poppins; font-weight: 600;">Quantity</th>
+                                                        <th class="total" style="font-family: poppins; font-weight: 600;">Total </th>
+                                                        <th class="remove-porduct"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% userCart.forEach(cartItem => { %>
+                                                    <tr class="cart-item" data-original-price="<%= cartItem.productDetails[0].price %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>">
+                                                        <td>
+                                                            <div class="table-data">
+                                                                <a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><img src="/assets/img/brands/<%= cartItem.productDetails[0].image[0] %>" alt="" width="80"></a>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="table-data">
+                                                                <h6><a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><%= cartItem.productDetails[0].productName %></a></h6>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="table-data">
+                                                                <span class="price">₹ <%= cartItem.productDetails[0].discountPrice %></span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="table-data">
+                                                                <button class="decrease-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> - </button>
+                                                                <span class="quantity" id="quantity<%= cartItem.productDetails[0]._id %>"><%= cartItem.cartItems.quantity %></span>
+                                                                <button class="increase-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> + </button>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="table-data">
+                                                                <span class="total" id="total<%= cartItem.productDetails[0]._id %>">₹ <%= cartItem.productDetails[0].discountPrice * cartItem.cartItems.quantity %></span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="table-data">
+                                                                <button class="close-btn" data-product-id="<%= cartItem.productDetails[0]._id %>">
+                                                                    <lord-icon
+                                                                        src="https://cdn.lordicon.com/nqtddedc.json"
+                                                                        trigger="hover"
+                                                                        state="hover-cross-3"
+                                                                        colors="primary:#000000"
+                                                                        style="width:25px;height:25px">
+                                                                    </lord-icon>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title">
-                                            <%= products[index].productName %>
-                                        </a>
-                                        <div class="price-switcher">
-                                            <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
-                                            <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">+add to cart</a>
-                                        </div>
-                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="cart-summary">
+                                    <h4 class="title">Cart Totals</h4>
+                                    <table class="table table-cart-summary" style="font-family: Poppins;">
+                                        <tbody>
+                                            <tr>
+                                                <th class="cart-summary-title">Total MRP</th>
+                                                <td class="cart-summary-price p-0 total-mrp">₹<%= totalMRP %></td>
+                                            </tr>
+                                            <tr class="border-bottom">
+                                                <th class="cart-summary-title">Discount</th>
+                                                <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);">₹<%= totalDiscount > 0 ? totalDiscount : 0 %></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="cart-summary-title pb-10">Shipping <p>(4-6 Business days)</p></th>
+                                                <td class="cart-summary-price p-0 shipping">₹<%= shipping %></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="cart-summary-title pb-10">Tax <p>(estimated for India (IN))</p></th>
+                                                <td class="cart-summary-price p-0">₹0</td>
+                                            </tr>
+                                            <tr class="border-bottom">
+                                                <th class="cart-summary-title pb-10">Subtotal</th>
+                                                <td class="cart-summary-price p-0 total-price">₹<%= totalPrice %></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="cart-summary-title pb-10" style="font-size: 22px;">Total</th>
+                                                <td style="font-size: 22px;"><strong class="total">₹ <%= totalPrice + shipping %></strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <a href="/checkout" class="mt-20 btn btn-checkout w-100 d-block" style="height: 50px;">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>
-                        <% } %>
                     </div>
-                    <% } %>
-                </div>
                 <% } %>
-            </div>            
-                    <div class="text-center mt-10  load-btn">
-                        <a href="shop.html" class="load-more">Load more</a>
-                    </div>
-                </div>
-                <!-- /. tab content 1
-                <div class="tab-pane fade" id="main-tab-2">
-                    <div class="main-product-carousel owl-carousel red-nav">
-                        <div class="main-product-carousel-item">
-                            <div class="tab-content mt-25">
-                                <% if (products.length > 0) { %>
-                                <div class="tab-pane fade show active" id="main-tab-1">
-                                    <% for (let row = 0; row < 3; row++) { %>
-                                    <div class="row">
-                                        <% for (let col = 0; col < 4; col++) { 
-                                            let index = row * 4 + col;
-                                            if (index >= products.length) break;
-                                        %>
-                                        <div class="col-3 col-md-6 col-sm-12 mb-3">
-                                            <div class="product-box mb-40">
-                                                <div class="product-box-wrapper">
-                                                    <div class="product-img">
-                                                        <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
-                                                        <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
-                                                            <div class="second-img">
-                                                                <img src="/assets/img/brands/<%= products[index].image[1] %>" alt="" class="w-100">
-                                                            </div>
-                                                        </a>
-                                                        <a href="javascript:void(0)"
-                                                           class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                                    </div>
-                                                    <div class="product-desc pb-20">
-                                                        <div class="product-desc-top">
-                                                            <div class="categories">
-                                                                <a href="/loadShop" class="product-category">
-                                                                    <span><%= products[index].brand %></span>
-                                                                </a>
-                                                            </div>
-                                                            <a href="wishlist.html" class="wishlist float-right">
-                                                                <span><lord-icon
-    src="https://cdn.lordicon.com/xyboiuok.json"
-    trigger="click"
-    state="morph-heart"
-    colors="primary:#000000"
-    style="width:23px;height:23px">
-</lord-icon></span>
-                                                            </a>
-                                                        </div>
-                                                        <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title">
-                                                            <%= products[index].productName %>
-                                                        </a>
-                                                        <div class="price-switcher">
-                                                            <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
-                                                            <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <% } %>
-                                    </div>
-                                    <% } %>
-                                </div>
-                                <% } %>
-                            </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- main product sections end -->
+                
+    <!-- shop body section end -->
 
-     <!-- Footer banner-price section start  -->
-    <section class="shipping-price-section shipping-2 pt-130 mt-120 gray-border-top">
-        <div class="container">
-            <img src="/assets/img/banner/footerBanner-1.png" alt="Banner 1" class="responsive-banner">
-            <img src="/assets/img/banner/footerBanner-2.png" alt="Banner 2" class="responsive-banner">
-        </div>
-    </section>
-    <!-- Footer banner section end -->
-
-
-    <!-- footer section start -->
-    <section class="footer">
-        <div class="footer-top mt-120 pb-120 pt-115" style="background: linear-gradient(90deg, #FFE8EF,#FFF3F6);">
-            <div class="footer-top-wrapper">
-                <div class="newsletter ">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6">
-                            <h2 class="title m-0">Sign Up For Our Newsletter</h2>
-                            <p>Subscribe our newsletter and get discount 20% Off</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6">
-                            <div class="newsletter-form">
-                                <form action="#" method="POST">
-                                    <input type="text" placeholder="Search for our newsletter...">
-                                    <button type="submit"
-                                        class="generic-btn red-hover-btn text-uppercase float-right">Subscribe
-                                        Now</button>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- /.newsletter -->
-                <div class="service pt-57 mt-40 gray-border-top">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-4 col-md-6 service-item">
-                            <div class="service-box service-box-2">
-                                <div class="service-box-content">
-                                    <h4 class="title">Worldwide Shipping</h4>
-                                    <p class="service-desc">Duis autem vel eum iriure dolor in hendrerit velit esse
-                                        molestie consequat.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-md-6 service-item">
-                            <div class="service-box service-box-2">
-                                <div class="service-box-content">
-                                    <h4 class="title">Online Support 24/7</h4>
-                                    <p class="service-desc">Duis autem vel eum iriure dolor in hendrerit velit esse
-                                        molestie consequat.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-lg-6 hidden-md service-item">
-                            <div class="service-box service-box-2">
-                                <div class="service-box-content">
-                                    <h4 class="title">Money Return Guarantee</h4>
-                                    <p class="service-desc">Duis autem vel eum iriure dolor in hendrerit velit esse
-                                        molestie consequat.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /. service -->
-                <!-- /. footer bottom -->
-            </div>
-
-        </div>
-        <!-- footer top -->
 
         <div class="footer-bottom pt-77" style="background-color: #000;">
             <div class="container-1180">
@@ -874,4 +673,95 @@
     </section>
     <!-- startup popup end -->
 
+   
+    <script>
+        document.querySelectorAll('.close-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                let productId = this.dataset.productId;
+    
+                fetch(`/removeFromCart?productId=${productId}`, {
+                    method: 'GET',
+                    credentials: 'same-origin'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        console.error('Failed to remove item from cart');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                let productId = this.dataset.productId;
+                let quantityElement = document.getElementById(`quantity${productId}`);
+                let totalElement = document.getElementById(`total${productId}`);
+                let discountPrice = parseFloat(this.dataset.discountPrice);
+                let quantity = parseInt(quantityElement.innerText);
+    
+                if (quantity < parseInt(this.dataset.inStock)) {
+                    quantity++;
+                    quantityElement.innerText = quantity;
+                    totalElement.innerText = `₹ ${(quantity * discountPrice).toFixed(2)}`;
+                    updateCartSummary();
+                }
+            });
+        });
+    
+        document.querySelectorAll('.decrease-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                let productId = this.dataset.productId;
+                let quantityElement = document.getElementById(`quantity${productId}`);
+                let totalElement = document.getElementById(`total${productId}`);
+                let discountPrice = parseFloat(this.dataset.discountPrice);
+                let quantity = parseInt(quantityElement.innerText);
+    
+                if (quantity > 1) {
+                    quantity--;
+                    quantityElement.innerText = quantity;
+                    totalElement.innerText = `₹ ${(quantity * discountPrice).toFixed(2)}`;
+                    updateCartSummary();
+                }
+            });
+        });
+    
+        function updateCartSummary() {
+            let totalMRP = 0;
+            let totalDiscount = 0;
+            let totalPrice = 0;
+            let shipping = 0;
+            let productCount = 0;
+    
+            document.querySelectorAll('.cart-item').forEach(cartItem => {
+                let originalPrice = parseFloat(cartItem.dataset.originalPrice);
+                let discountPrice = parseFloat(cartItem.dataset.discountPrice);
+                let quantity = parseInt(cartItem.querySelector('.quantity').innerText);
+    
+                totalMRP += originalPrice * quantity;
+                totalPrice += discountPrice * quantity;
+                totalDiscount += (originalPrice - discountPrice) * quantity;
+                productCount += quantity;
+            });
+    
+            shipping = productCount > 2 ? 0 : 40;
+    
+            document.querySelector('.total-mrp').innerText = `₹${totalMRP.toFixed(2)}`;
+            document.querySelector('.total-discount').innerText = `₹${totalDiscount > 0 ? totalDiscount.toFixed(2) : 0}`;
+            document.querySelector('.total-price').innerText = `₹${totalPrice.toFixed(2)}`;
+            document.querySelector('.shipping').innerText = `₹${shipping.toFixed(2)}`;
+            document.querySelector('.total').innerText = `₹${(totalPrice + shipping).toFixed(2)}`;
+        }
+    
+        document.querySelectorAll('.increase-quantity, .decrease-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                updateCartSummary();
+            });
+        });
+    
+        updateCartSummary();
+    </script>
     <%- include('../layouts/homeFooter') %>

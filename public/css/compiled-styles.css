@@ -244,9 +244,17 @@ input {
 .sign-in-sign-in-1,
 .sign-in-enter-your-email-to-sign-in-for-this-app {
   font-family: Poppins;
+  color: black;
   text-align: center;
 }
+.sign-in-enter-your-email-to-sign-in-for-this-app {
+  color: gray;
+  font-weight: 400;
+}
 
+.sign-in-sign-in-1 {
+  font-size: 17px;
+}
 .common-1,
 .sign-in-field,
 .sign-in-field-1 {

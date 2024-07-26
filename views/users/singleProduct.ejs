@@ -271,14 +271,14 @@
                                     </a>
                                     <ul class="submenu text-right">
                                         <% if (locals.user) { %>
-                                            <li><a href="login.html">My profile</a></li>
+                                            <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
-                                            <li><a href="login.html">My profile</a></li>
-                                            <li><a href="checkout.html">My address</a></li>
+                                            <li><a href="/profileDetails">My profile</a></li>
+                                            <li><a href="/manageAddress">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                             <li><a href="/login">Sign in</a></li>
@@ -423,10 +423,15 @@
                                     <div class="quick-quantity mt-60">
                                         <form action="#" method="POST">
                                             <button type="submit" class="list-add-cart-btn red-hover-btn border-0"
-                                                style="padding-left: 80px;padding-right: 80px;transition: all .5s;">add
-                                                to
-                                                cart
-                                            </button>
+                                                style="padding-left: 80px;padding-right: 80px;transition: all .5s;">
+                                                <a onclick="addToCart(event, '<%= product._id %>')" >
+                                                add to cart
+                                            </button></a>
+                                            <!-- <button type="submit" class="list-add-cart-btn red-hover-btn border-0"
+                                                style="padding-left: 80px;padding-right: 80px;transition: all .5s;">
+                                                <a  href="/checkout?productId=<%=product._id %>" >
+                                                Buy Now
+                                            </button></a> -->
                                         </form>
                                     </div>
                                     <div class="single-product-action mt-35">
@@ -615,7 +620,7 @@
                                             <a href="single-product-3.html" class="product-title"><%= products[index].productName %></a>
                                             <div class="price-switcher">
                                                 <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
-                                                <a href="cart.html" class="add-cart text-capitalize switcher-item">+add to cart</a>
+                                                <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">+add to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1188,4 +1193,5 @@
         </div>
     </section>
     <!-- startup popup end -->
+    <script src="/js/helperFunctions.js"></script>
     <%- include('../layouts/singleProductFooter') %>

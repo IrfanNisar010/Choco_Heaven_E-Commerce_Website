@@ -57,52 +57,9 @@
       </main>
       <h1 class="sign-in-sign-in-1">Sign In</h1>
       <aside class="sign-in-enter-your-email-to-sign-in-for-this-app">
-        Enter your email to sign In for this app
+        To get started, sign in to your account.
       </aside>
       <form action="/verifyLogin" method="post" id="contactForm" novalidate="novalidate">
-        <div class="sign-in-t-field">
-          <div class="sign-in-field">
-            <input
-              placeholder="email@domain.com"
-              id="email"
-              name="email"
-              type="email"
-              class="sign-in-label"
-            />
-          </div>
-        </div>
-        <div class="sign-in-t-field-1">
-          <div class="sign-in-field-1">
-            <input
-              placeholder="Password"
-              id="password"
-              name="password"
-              type="password"
-              class="sign-in-label-1"
-            />
-            <lord-icon
-            src="https://cdn.lordicon.com/ktsahwvc.json"
-            trigger="click"
-            state="out-reveal"
-            colors="primary:#000000"
-            style="width:22px;height:20px"
-            id="togglePassword"
-        >
-        </lord-icon>
-          </div>
-        </div>
-        <div class="sign-in-t-button">
-          <button class="sign-in-sign-up-with-email" type="submit" value="submit">Sign up with email</button>
-        </div>
-        <a href="/forgotPassword" style="text-decoration: none;">
-        <footer class="sign-in-reset-password">Reset password</footer></a>
-        <div class="sign-in-tt-divider-or-continue-with-divider">
-          <div class="sign-in-t-divider-or-continue-with-divider">
-            <div class="sign-in-divider"></div>
-            <div class="sign-in-or-continue-with">or continue with</div>
-            <div class="sign-in-divider-1"></div>
-          </div>
-        </div>
         <div class="sign-in-t-button-1">
           <button class="sign-in-button" style="border: solid 1px; border-color: rgb(227, 226, 226);">
             <div class="sign-in-t-google-continue-with-google">
@@ -127,9 +84,54 @@
             </div>
           </div>
         </div>
+        <div class="sign-in-tt-divider-or-continue-with-divider">
+          <div class="sign-in-t-divider-or-continue-with-divider">
+            <div class="sign-in-divider"></div>
+            <div class="sign-in-or-continue-with">or sign in with</div>
+            <div class="sign-in-divider-1"></div>
+          </div>
+        </div>
+        <div class="sign-in-t-field">
+          <div class="sign-in-field">
+            <input
+              placeholder="email@domain.com"
+              id="email"
+              name="email"
+              type="email"
+              value="inzr010@gmail.com"
+              class="sign-in-label"
+            />
+          </div>
+        </div>
+        <div class="sign-in-t-field-1">
+          <div class="sign-in-field-1">
+            <input
+              placeholder="Password"
+              id="password"
+              name="password"
+              value="irfan"
+              type="password"
+              class="sign-in-label-1"
+            />
+            <lord-icon
+            src="https://cdn.lordicon.com/ktsahwvc.json"
+            trigger="click"
+            state="out-reveal"
+            colors="primary:#000000"
+            style="width:22px;height:20px"
+            id="togglePassword"
+        >
+        </lord-icon>
+          </div>
+        </div>
+        <div class="sign-in-t-button">
+          <button class="sign-in-sign-up-with-email" type="submit" value="submit">Sign up with email</button>
+        </div>
+        <a href="/forgotPassword" style="text-decoration: none;">
+        <footer class="sign-in-reset-password">Reset password</footer></a>
+        <a href="/signUp" style="text-decoration: none;">
+          <footer class="sign-in-create-an-account">Create an account</footer></a>
       </form>
-      <a href="/signUp" style="text-decoration: none;">
-      <footer class="sign-in-create-an-account">Create an account</footer></a>
       <div class="sign-in-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy">
         <footer class="sign-in-text">
           By clicking continue, you agree to our

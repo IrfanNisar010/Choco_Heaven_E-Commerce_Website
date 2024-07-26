@@ -76,7 +76,7 @@
                                     <lord-icon
                                         src="https://cdn.lordicon.com/kthelypq.json"
                                         trigger="hover"
-                                        colors="primary:#000000"
+                                        colors="primary:#ef829f"
                                         style="width:23px;height:23px; padding-top: 6px;">
                                     </lord-icon>
                                 </a>
@@ -323,8 +323,9 @@
 <!-- header section end -->
 <div class="has-breadcrumb-bg m-0" data-background="img/bg/3.jpg">
     <div class="breadcrumb-content d-flex justify-content-center align-items-center hidden-md p-sm-0" style="flex-direction: column;">
-        
-        <h3 class="title"><img src="/assets/img/logo/Profile_icon.png" style="width: 50px; height: 50px; padding-bottom: 6px; padding-right: 6px;">My Profile</h3>
+        <h3 class="title">
+            <img src="/assets/img/logo/Profile_icon.png" style="width: 50px; height: 50px; padding-bottom: 6px; padding-right: 6px;">My Profile
+        </h3>
         <nav aria-label="breadcrumb" class="mb-">
             <ol class="breadcrumb p-0 m-0">
                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
@@ -334,128 +335,163 @@
     </div>
 </div>
 
-
 <div class="container-xxl flex-grow-1 container-p-y pt-md-">
     <div class="row">
-      <!-- Sidebar Column -->
-      <div class="col-md-3 mb-5 hidden-md">
-        <div class="sidebar pl-5 pr-0 sidebar-text">
-            <ul class="nav flex-column">
-                <li class="nav-item" style="margin-bottom: 25px;">
-                    <a class="nav-link" href="/profileDetails" onclick="setActive(this)">Personal info</a>
-                </li>
-                <li class="nav-item" style="margin-bottom: 25px;">
-                    <a class="nav-link" href="/orders" onclick="setActive(this)">Orders</a>
-                </li>
-                <li class="nav-item" style="margin-bottom: 25px;">
-                    <a class="nav-link" href="/wallet" onclick="setActive(this)">Wallet</a>
-                </li>
-                <li class="nav-item" style="margin-bottom: 25px;">
-                    <a class="nav-link" href="/addressManage" onclick="setActive(this)">Address</a>
-                </li>
-                <li class="nav-item" style="margin-bottom: 25px;">
-                    <a class="nav-link" href="/accountDetails" onclick="setActive(this)">Account details</a>
-                </li>
-                <li class="nav-item" style="margin-bottom: 25px;">
-                    <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
-                </li>
-            </ul>
-        </div>
-      </div>
-      
-      <!-- Main Content Column -->
-      <div class="col-md-9 pl-0">
-        <h4 class="col-md-6 profile-head p-0">Hey, <%= locals.user.firstName %> 👋</h4>
-        <p class="col-md-6 p-head p-0">Welcome back. Here's your account details.</p>
-        
-        <!-- Account -->
-        <div class="card mb-4">
-            <h5 class="card-header">Profile Details</h5>
-          <div class="card-body">
-            <div class="d-flex justify-content-end align-items-sm-center gap-5 ">
-                <div class="button-wrapper">
-                    <button type="button" class="btn btn-outline-secondary account-image-edit custom-uppercase" style="color: white; font-family: poppins; font-weight: 300; border-radius: 7px;">
-                    <i class="bx bx-reset d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block"><a href="/profile/updateProfile" style="color: white; text-decoration: none;">Edit profile</span></a>
-                  </button>
-                </div>
-              <img src="/assets/img/related-project/2.jpg" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+        <!-- Sidebar Column -->
+        <div class="col-md-3 mb-5 hidden-md">
+            <div class="sidebar pl-5 pr-0 sidebar-text">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/profileDetails" onclick="setActive(this)">Personal info</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/ordersManage" onclick="setActive(this)">Orders</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/wallet" onclick="setActive(this)">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/addressManage" onclick="setActive(this)">Address</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/accountDetails" onclick="setActive(this)">Account details</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-          
-          <hr class="my-0" />
-          
-          <div class="card-body">
-            <form id="formAccountSettings" method="POST" onsubmit="return false">
-              <div class="row">
-                <div class="mb-3 col-md-6">
-                  <label for="firstName" class="form-label">First Name</label>
-                     <p class="firstName-s "></p><%= locals.user.firstName %>
-                </div>
-                <div class="mb-3 col-md-6">
-                    <label for="lastName" class="form-label">Last Name</label>
-                       <p class="lastName-s "></p><%= locals.user.lastName %>
-                  </div>
-                <div class="mb-3 col-md-6">
-                  <label for="email" class="form-label">E-mail</label>
-                  <p class="email-s "></p><%= locals.user.email %>
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label class="form-label" for="phoneNumber">Phone Number</label>
-                  <div class="input-group input-group-merge">
-                    <span class="input-group-text">IN (+91)</span>
-                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="" />
-                  </div>
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label for="address" class="form-label">Address</label>
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label for="state" class="form-label">State</label>
-                  <input class="form-control" type="text" id="state" name="state" placeholder="California" />
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label for="state" class="form-label">TOWN</label>
-                  <input class="form-control" type="text" id="state" name="town" placeholder="California" />
-                </div>
-                <div class="mb-3 col-md-6">
-                  <label for="zipCode" class="form-label">Zip Code</label>
-                  <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="231465" maxlength="6" />
-                </div>
-                <!-- <div class="mb-3 col-md-6">
-                    <label for="password" class="form-label">password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="●●●●●●●●●●" />
-                  </div> -->
-              </div>
-              <div class="mt-2">
-                <button style=" border-radius: 7px;" type="submit" class="btn btn-primary me-2"><a href="/forgotPassword" style="color: white; text-decoration: none; font-family: poppins; font-weight: 300;">Change Password</button></a>
-              </div>
-            </form>
-          </div>
-          <!-- /Account -->
         </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    function setActive(link) {
-            const links = document.querySelectorAll('.sidebar .nav-link');
-            links.forEach(link => link.classList.remove('active'));
-            link.classList.add('active');
-        }
-        // Optional: Set the initial active link based on current URL or other logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentPath = window.location.pathname;
-            const links = document.querySelectorAll('.sidebar .nav-link');
-            links.forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('active');
-                }
-            });
-        });
 
-  </script>
-                    
+        <!-- Main Content Column -->
+        <div class="col-md-9 pl-0">
+            <h4 class="col-md-6 profile-head p-0">Hey, <%= user.firstName %> 👋</h4>
+            <p class="col-md-6 p-head p-0">Welcome back. Here's your profile details.</p>
+
+            <!-- Account -->
+            <div class="card mb-4">
+                <h5 class="card-header">Your Profile</h5>
+                <div class="card-body">
+                    <div class="d-flex justify-content-end align-items-sm-center gap-5 ">
+                        <div class="button-wrapper">
+                            <button type="button" class="btn btn-outline-secondary account-image-edit custom-uppercase" style="color: white; font-family: poppins; font-weight: 300; border-radius: 7px;">
+                                <i class="bx bx-reset d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">
+                                    <a href="/profile/updateProfile" style="color: white; text-decoration: none;">Edit profile</a>
+                                </span>
+                            </button>
+                        </div>
+                        <img src="/assets/img/brands/<%= user.image %>" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+                    </div>
+                </div>
+
+                <hr class="my-0" />
+                
+                <% if (address) { %>
+                <div class="card-body">
+                    <form id="editAddressForm" method="POST" onsubmit="return false">
+                        <div class="row">
+                            <div class="mb-3 col-md-12">
+                                <label for="firstName" class="form-label">Full Name</label>
+                                <div class="input-group input-group-merge profile-name" >
+                                    <h3 class="user-name"><%= user.firstName %> <%= user.lastName %></h3>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Favorite Chocolates</label>
+                                <% if( locals.user.favorite) {%>
+                                <div class="input-group input-group-merge">
+                                    <%= user.favorite %>
+                                </div>
+                                <% } else { %>
+                                    <div class="input-group input-group-merge">
+                                        <p>No favorite Chocolates yet!</p>
+                                    </div>
+                                <% } %> 
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Bio</label>
+                                <% if( locals.user.bio) {%>
+                                <div class="input-group input-group-merge">
+                                    <%= user.bio %>
+                                </div>
+                                <% } else { %>
+                                    <div class="input-group input-group-merge">
+                                        <p>No bio</p>
+                                    </div>
+                                <% } %> 
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">E-mail</label>
+                                <div class="input-group input-group-merge">
+                                    <%= address.email %>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="phoneNumber">Phone Number</label>
+                                <div class="input-group input-group-merge">
+                                    <%= address.Mobile %>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="address" class="form-label">Address</label>
+                                <div class="input-group input-group-merge">
+                                    <%= address.address %>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="state" class="form-label">State</label>
+                                <div class="input-group input-group-merge">
+                                    <%= address.state %>
+                                </div>                            
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="state" class="form-label">TOWN</label>
+                                <div class="input-group input-group-merge">
+                                    <%= address.city %>
+                                </div>                            
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="zipCode" class="form-label">Zip Code</label>
+                                <div class="input-group input-group-merge">
+                                    <%= address.PIN %>
+                                </div>                            
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button style="border-radius: 7px;" type="submit" class="btn btn-primary me-2">
+                                <a href="/forgotPassword" style="color: white; text-decoration: none; font-family: poppins; font-weight: 300;">Change Password</a>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <% } else { %>
+                <br><br>
+                <h3> No Address Found</h3>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setActive(link) {
+        const links = document.querySelectorAll('.sidebar .nav-link');
+        links.forEach(link => link.classList.remove('active'));
+        link.classList.add('active');
+    }
+
+    // Optional: Set the initial active link based on current URL or other logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname;
+        const links = document.querySelectorAll('.sidebar .nav-link');
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
 <%- include('../layouts/addBrandsFooter') %>
 <%- include('../layouts/homeFooter') %>

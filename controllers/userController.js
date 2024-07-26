@@ -561,17 +561,16 @@ const googleAuth = async (req, res) => {
 
 const userProfileLoad = async (req, res) => {
     try {
+        let userId = req.session.userId;
+        const address = await Address.findOne({ user_id: userId }).sort({ _id: 1 });
+        const userData = await User.findById({ _id: userId });
 
-        let userId = req.session.userId
-        const userData = await User.findById({ _id: userId })
-
-        res.render('userProfile', { user: userData })
-        
+        res.render('userProfile', { user: userData, address: address });
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
 
 const updateProfileLoad = async (req, res) => {
     try {
@@ -587,27 +586,37 @@ const updateProfileLoad = async (req, res) => {
     }
 }
 
+
 const updateProfile = async (req, res, next) => {
     try {
         const userId = req.session.userId;
+        const imageFile = req.file ? req.file.filename : null;
+
+        const updatedData = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            favorite: req.body.favorite || 'No favorite',
+            bio: req.body.bio || 'No bio',
+            phone: req.body.phone
+        };
+
+        if (imageFile) {
+            updatedData.image = imageFile;
+        }
+
         const userData = await User.findByIdAndUpdate(
-            { _id: userId },
-            {
-                $set: {
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    phone: req.body.phone,
-                    town: req.body.town,
-                }
-            },
+            userId,
+            { $set: updatedData },
             { new: true }
         );
-        res.status(200).json({ message: "Profile updated successfully" });
+
+        res.status(200).json({ success: true });
     } catch (error) {
         console.error(error);
-        next(error)
+        res.status(500).json({ success: false, message: 'Profile update failed' });
+        next(error);
     }
-}
+};
 
 const addressManageLoad = async (req, res, next) => {
     try {
@@ -650,7 +659,7 @@ const editAddress = async (req, res, next) => {
         const id = req.session.userId;
         const edit = await Address.updateOne({ user_id: id }, { $set: req.body });
 
-        res.status(200).json({ success: true })
+        res.status(200).json({ success: true });
     } catch (error) {
         console.error(error.message);
         next(error);

@@ -9,6 +9,18 @@ const userSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    favorite:{
+        type:String,
+        required:false
+    },
+    bio:{
+        type:String,
+        required:false
+    },
+    image: {
+        type: String,
+        required: false
+    },
     email:{
         type:String,
         required:true,
@@ -31,10 +43,10 @@ const userSchema = mongoose.Schema({
         type:Boolean,
         default:false
     },
-    profilePhoto: {
-        type: String,
-        required: false
-    },
+    phone: {
+        type:Number,
+        required:false
+    }
     
 },{
     timestamps: true 
