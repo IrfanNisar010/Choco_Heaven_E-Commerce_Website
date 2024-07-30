@@ -1,4 +1,67 @@
+    <!-- JS here -->
+    <script>
+        $(document).ready(function(){
+            $(".main-product-carousel").owlCarousel({
+                items: 4,
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 4
+                    }
+                }
+            });
+        });
 
+        document.querySelectorAll('#product-rating .fa-star').forEach(star => {
+        star.addEventListener('mouseover', (event) => {
+            const value = event.target.getAttribute('data-value');
+            document.querySelectorAll('#product-rating .fa-star').forEach((s, index) => {
+                if (index < value) {
+                    s.classList.add('fas');
+                    s.classList.remove('far');
+                } else {
+                    s.classList.add('far');
+                    s.classList.remove('fas');
+                }
+            });
+        });
+
+        star.addEventListener('click', (event) => {
+            const value = event.target.getAttribute('data-value');
+            alert(`You rated this product ${value} stars!`);
+        });
+
+        star.addEventListener('mouseout', () => {
+            document.querySelectorAll('#product-rating .fa-star').forEach(s => {
+                s.classList.add('far');
+                s.classList.remove('fas');
+            });
+        });
+    });
+    </script>
+
+
+<style>
+    .stars i {
+        color: #f0ad4e;
+        cursor: pointer;
+    }
+    .stars i.fas {
+        color: #f0ad4e;
+    }
+</style>
     <!-- JS here -->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -10,7 +73,8 @@
     <script src="js/jquery.meanmenu.min.js"></script>
     <script src="js/ajax-form.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
+    <script src="path/to/jquery.min.js"></script>
+    <script src="path/to/owl.carousel.min.js"></script>
     <script src="js/fontawesome.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/jquery-ui.js"></script>

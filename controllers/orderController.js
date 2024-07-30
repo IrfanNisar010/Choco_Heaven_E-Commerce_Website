@@ -100,6 +100,7 @@ const checkoutPageLoad = async (req, res, next) => {
                     discountPrice: productPrice,
                     brand: item.product.brand,
                     price: item.product.price,
+                    size: item.product.size,
                     category: item.product.category,
                     discount: item.product.discount,
                     image: item.product.image,
@@ -121,9 +122,82 @@ const checkoutPageLoad = async (req, res, next) => {
     }
 }
 
+const createOrder = async (req, res, next) => {
+    try {
+        // Check if user is authenticated
+        if (!req.session || !req.session.userId) {
+            return res.status(403).json({ message: "User is not authenticated." });
+        }
+
+        const userId = req.session.userId;
+        const { addressId, paymentMethod } = req.body;
+
+        // Validate request body
+        if (!addressId || !paymentMethod) {
+            return res.status(400).json({ message: "Address ID and payment method are required." });
+        }
+
+        // Fetch user data, address
+        const userData = await User.findById(userId);
+        const userAddress = await Address.findById(addressId);
+
+        // Fetch products from session
+        const products = req.session.products;
+
+        // Check product stock
+        for (let product of products) {
+            if (product.inStock <= 0) {
+                return res.status(403).json({ message: "Product is Out of Stock!!" });
+            }
+        }
+
+        // Prepare order items
+        const orderItems = products.map(product => ({
+            productId: product._id,
+            quantity: product.quantity,
+            price: product.price
+        }));
+
+        // Create order
+        const order = new OrderModel({
+            userId: userId,
+            orderItems: orderItems,
+            paymentMethod: paymentMethod,
+            address: userAddress,
+            totalAmount: req.session.totalAmount,
+        });
+
+        // Save order
+        await order.save();
+
+        // Update product stock
+        for (const item of orderItems) {
+            await Products.findByIdAndUpdate(
+                item.productId,
+                {
+                    $inc: { inStock: -item.quantity },
+                    $set: { popularProduct: true }
+                }
+            );
+        }
+
+        // Respond with success message
+        return res.json({
+            success: true,
+            message: "Order created successfully.",
+            orderId: order._id,
+            amount: order.totalAmount * 100,
+        });
+
+    } catch (error) {
+        console.error('Create Order Failed:', error);
+        next(error);
+    }
+};
 
 module.exports = {
     ordersPageLoad,
     checkoutPageLoad,
+    createOrder
 
 }

@@ -498,7 +498,7 @@ a#scrollUp:hover i {
 }
 /* generic title */
 .generic-title h2 {
-  color: #fff;
+  color: black;
   font-size: 36px;
   line-height: 43.2px;
   font-weight: 500;
@@ -514,7 +514,7 @@ a#scrollUp:hover i {
 .generic-title p {
   margin-bottom: 0;
   font-weight: 400;
-  color: #fff;
+  color: black;
   line-height: 25.2px;
   font-size: 14.98px;
 }
@@ -535,7 +535,9 @@ a#scrollUp:hover i {
 
 .responsive-banner {
   width: 90%; 
-  max-width: 674px; 
+  display: flex;
+  flex-direction: column;
+  max-width: 654px; 
   margin: 10px; 
   box-sizing: border-box;
 }
@@ -1645,10 +1647,14 @@ ul.nav.left-tab-link li:not(:last-child) {
 }
 .price-switcher {
   height: 35px;
+  font-family: "poppins" , sans-serif;
   overflow: hidden;
+  cursor: pointer;
   position: relative;
 }
 .price-switcher span.price {
+  text-decoration: none;
+  cursor: pointer;
   font-size: 14px;
   color: #888;
 }
@@ -1673,7 +1679,7 @@ ul.nav.left-tab-link li:not(:last-child) {
   top: 50%;
 }
 .price-switcher a.add-cart {
-  color: #666;
+  color: #161616;
   font-size: 14px;
   line-height: 25px;
   padding-bottom: 2px;
@@ -1685,7 +1691,7 @@ ul.nav.left-tab-link li:not(:last-child) {
   bottom: 0;
   width: 100%;
   height: 0.8px;
-  background-color: #666;
+  background-color: #131212;
   content: "";
 }
 .price-switcher a.add-cart:hover {
@@ -1765,6 +1771,23 @@ a.load-more:hover {
   font-weight: 300;
 }
 
+.quick-quantity {
+  display: flex;
+  align-items: center; /* Align items vertically center */
+}
+.circle-div {
+  width: 56px;
+  height: 56px;
+  background: rgba(207, 207, 207, 0.3); /* Semi-transparent gray background */
+  border-radius: 50%;
+  backdrop-filter: blur(9px); /* Apply blur effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Space between circle and button */
+  border: 1px solid rgba(233, 233, 233, 0.5); /* Optional: add border with semi-transparent color */
+}
+
 .list-add-cart-btn {
   font-size: 14px;
   font-weight: 400;
@@ -1777,6 +1800,7 @@ a.load-more:hover {
   border-radius: 30px;
   padding: 0 60px;
 }
+
 .list-add-cart-btn:hover {
   background-color: #000;
   color: #fff;
@@ -2465,7 +2489,7 @@ ul.color-list li:hover {
 }
 .single-product-category ul li:last-child::after,
 .single-product-tags ul li:last-child::after {
-  content: ";";
+  content: "";
 }
 .single-product-action ul li a,
 .single-product-category ul li a,
@@ -2632,16 +2656,49 @@ ul.color-list li:hover {
   font-weight: 400;
 }
 
-/* color input */
+.single-product-component {
+  margin-top: 1rem; /* Adjust as needed */
+}
+
 .single-product-component h6 {
   color: #666;
-  font-size: 13px;
-  line-height: 26px;
+  font-size: 15px;
+  line-height: 25px;
   font-weight: 500;
+  margin-bottom: 0.5rem; /* Adjust spacing between heading and box */
 }
-.single-product-component h6 span {
-  font-weight: 400;
+
+.size {
+  display: flex;
+  flex-direction: column;
 }
+
+.size-box {
+  display: inline-block;
+  background: rgba(207, 207, 207, 0.3); 
+  backdrop-filter: blur(9px);
+  color: #0b0b0b;
+  width: 120px;
+  height: 50px;
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 13px;
+  text-align: center;
+  border: 2px solid #fff; /* Optional: add a border */
+}
+
+.size-text {
+  font-size: 18px;
+  display: inline-block;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .size-box {
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+}
+
 
 .color-input {
   display: flex;
@@ -2896,15 +2953,18 @@ div#accordionExample > div{
   margin-bottom: 10px;
 }
 
+#newAddressForm .form-control,
+#newAddressForm .form-label {
+  color: #000; /* Black color for text in inputs and labels */
+}
 
+#newAddressForm .form-check-label {
+  color: #000; /* Black color for radio button labels */
+}
 
-
-
-
-
-
-
-
+#newAddressForm #message {
+  color: #000; /* Black color for any messages displayed */
+}
 
 
 
@@ -4625,3 +4685,212 @@ input.error::placeholder {
 .msg-magick-text {
   color: #bb39d7;
 }
+
+#cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+}
+
+.selected-address {
+  border: 2px solid dodgerblue;
+}
+
+.order-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+
+.payment-options {
+  margin-bottom: 20px;
+}
+
+.payment-option {
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.payment-option img {
+  width: 100%;
+  border-radius: 5px;
+  transition: border 0.3s;
+}
+
+.payment-option.selected {
+  border: 2px solid dodgerblue;
+  border-radius: 8px;
+}
+
+.address-card {
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.address-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.address-card.selected {
+  border: 2px solid dodgerblue;
+}
+
+.card-title {
+  font-size: 1rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+}
+
+.genric-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.genric-btn.primary {
+  background-color: limegreen;
+  color: #fff;
+}
+
+.genric-btn.primary:hover {
+  background-color: darkgreen;
+}
+
+/* Define keyframes for fade-in and fade-out */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Apply the fade-in and fade-out animations */
+.fade-in {
+  animation: fadeIn 1s forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+/* Ensure the message remains visible while fading out */
+.msg {
+  display: flex;
+  opacity: 1;
+}
+
+.carousel-inner .row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.carousel-inner .col-2 {
+  flex: 0 0 16.6667%;
+  max-width: 16.6667%;
+}
+
+.card-brand {
+  border-radius: 10px;
+  height: 300px;
+  width: 170px;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 50px 50px;
+  background-image: none;
+}
+
+.carousel-control-prev-icon {
+  background-image: url('left-arrow.png');
+}
+
+.carousel-control-next-icon {
+  background-image: url('right-arrow.png');
+}
+
+@media (max-width: 768px) {
+  .col-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+/* Remove from cart swal style */
+.swal2-custom-popup {
+  background: #fafafa; 
+  backdrop-filter: blur(100px);
+  border: 1px solid lightgray;
+  border-radius: 15px;
+}
+
+.swal2-custom-title {
+  font-family: 'poppins', sans-serif;
+  font-size: 1.5em;
+  color: #0b0b0b;
+}
+
+.swal2-custom-content {
+  font-family: 'poppins', sans-serif;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.swal2-custom-confirm-button {
+  background-color: limegreen;
+  border-color: #d33;
+  color: #fff;
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+.swal2-custom-cancel-button {
+  background-color: #FF453A;
+  border-color: #3085;
+  color: #fff;
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+

@@ -1,6 +1,9 @@
 <%- include('../layouts/checkoutHeader') %>
 <%- include('../layouts/userHomeHeader') %>
 
+
+
+
     <div class="shipping-offer-container">
         <p class="shipping-offer">Melt free Delivery PAN India! 🚚</p>
     </div>
@@ -333,283 +336,456 @@
                 <div class="has-breadcrumb-bg" data-background="img/bg/3.jpg">
                     <div class="breadcrumb-content d-flex justify-content-center align-items-center" style="flex-direction: column;">
                         <h3 class="title" style="font-size: 35px; font-family: poppins; font-weight: 500;">
-                            <img src="/assets/img/logo/Shop_icon.png" style="width: 50px; height: 50px; padding-bottom: 3px; padding-right: 4px;">Cart</h3>
+                            <img src="/assets/img/logo/Shop_icon.png" style="width: 50px; height: 50px; padding-bottom: 3px; padding-right: 4px;">Checkout</h3>
                         <nav aria-label="breadcrumb" class="mb-40">
                             <ol class="breadcrumb p-0 m-0">
                                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                                <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
                             </ol>
                         </nav>
                     </div>
                 </div>
             </div>
-            <% if (userCart.length === 0) { %>
-                <div class="container-fluid mt-50">
-                    <div class="row">
-                        <div class="col-md-12" style="height: 600px;">
-                            <div class="card-body cart">
-                                <div class="col-sm-12 empty-cart-cls text-center">
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/mfmkufkr.json"
-                                        trigger="in"
-                                        delay="1000"
-                                        state="in-shopping"
-                                        colors="primary:#000000"
-                                        style="width:150px;height:150px">
-                                    </lord-icon>
-                                    <h3><strong>Your Cart is Currently Empty</strong></h3>
-                                    <h4>Browse our products and discover something you'll love.</h4>
-                                    <a href="/loadShop" class="btn btn-shopping" style="width: 200px; height: 50px; margin: 20px auto;">Continue Shopping</a>
-                                </div>
-                            </div>
-                        </div>
+            <% if (productData && productData.length > 0) { %> 
+                <% productData.forEach(function(product) { %>
+                    <% if(product.inStock <= 0){ %>
+                    <div class="mb-4 p-2 center-content" style="background-color: rgb(255, 154, 154); display: flex; justify-content: center; align-items: center;">
+                        <h5>Product is Out Of Stock</h5>
                     </div>
-                </div>
-            <% } else { %>
-                <div class="cart-body-content">
-                    <div class="row">
-                        <div class="col-xl-8">
-                            <div class="product-content">
-                                <form action="#">
-                                    <div class="table-responsive">
-                                        <table class="table table-2">
-                                            <thead>
-                                                <tr>
-                                                    <th class="product-image"></th>
-                                                    <th class="product-title" style="font-family: poppins; font-weight: 600;">Product</th>
-                                                    <th style="font-family: poppins; font-weight: 600;">Price</th>
-                                                    <th class="quantity" style="font-family: poppins; font-weight: 600;">Quantity</th>
-                                                    <th class="total" style="font-family: poppins; font-weight: 600;">Total </th>
-                                                    <th class="remove-porduct"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% userCart.forEach(cartItem => { %>
-                                                <tr class="cart-item" data-original-price="<%= cartItem.productDetails[0].price %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>">
-                                                    <td>
-                                                        <div class="table-data">
-                                                            <a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><img src="/assets/img/brands/<%= cartItem.productDetails[0].image[0] %>" alt="" width="80"></a>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data">
-                                                            <h6><a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><%= cartItem.productDetails[0].productName %></a></h6>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data">
-                                                            <span class="price">₹ <%= cartItem.productDetails[0].discountPrice %></span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data">
-                                                            <button class="decrease-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> - </button>
-                                                            <span class="quantity" id="quantity<%= cartItem.productDetails[0]._id %>"><%= cartItem.cartItems.quantity %></span>
-                                                            <button class="increase-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> + </button>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data">
-                                                            <span class="total" id="total<%= cartItem.productDetails[0]._id %>">₹ <%= cartItem.productDetails[0].discountPrice * cartItem.cartItems.quantity %></span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="table-data">
-                                                            <button class="close-btn" data-product-id="<%= cartItem.productDetails[0]._id %>">
-                                                                <lord-icon
-                                                                    src="https://cdn.lordicon.com/nqtddedc.json"
-                                                                    trigger="hover"
-                                                                    state="hover-cross-3"
-                                                                    colors="primary:#000000"
-                                                                    style="width:25px;height:25px">
-                                                                </lord-icon>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <% }); %>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="container mt-5">
-                            <div class="row justify-content-center">
-                                <div class="col-md-6">
-                                    <div class="payment-methods p-3 rounded-3">
-                                        <h2 class="text-center mb-4">Select Payment Method</h2>
-                                        <div class="row g-3">
-                                            <div class="col-6">
-                                                <div class="payment-option p-3">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Razorpay_logo.svg/2560px-Razorpay_logo.svg.png" class="img-fluid" alt="Razorpay">
+                <% } %>
+                <% }) %>
+            <% } %>
+            <div class="billing_details ml-5 mr-5">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="mb-4">DELIVERY ADDRESS</h3>
+                        <div class="row">
+                            <% if(userAddress.length > 0) { %>
+                                <% for (let i = 0; i < userAddress.length; i++) { %>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card address-card" onclick="highlightSelectedAddress(this, '<%= i %>')" style="cursor: pointer; border-radius: 12px;" onchange="toggleButtonVisibility('<%= i %>')">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h5 class="card-title">
+                                                        <input type="radio" name="address" value="<%= userAddress[i]._id %>" id="address<%= i %>">
+                                                        <label for="address<%= i %>">
+                                                            <% if (userAddress[i].is_Home) { %>
+                                                                Home
+                                                            <% } else if (userAddress[i].is_Work) { %>
+                                                                Work
+                                                            <% } %>
+                                                            | <%= userAddress[i].name %> | <%= userAddress[i].Mobile %>
+                                                        </label>
+                                                    </h5>
+                                                    <button id="button<%= i %>" class="genric-btn primary radius" style="display: none; color: limegreen; border: none; border-radius: 8px; background: transparent;" onclick="showPaymentMethods('<%= i %>')">Deliver Here</button>
                                                 </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="payment-option p-3">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/PayPal_logo.svg/2560px-PayPal_logo.svg.png" class="img-fluid" alt="PayPal">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="payment-option p-3">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Visa.svg/2560px-Visa.svg.png" class="img-fluid" alt="Visa">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="payment-option p-3">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/UPI-Logo-vector.svg/2560px-UPI-Logo-vector.svg.png" class="img-fluid" alt="UPI">
-                                                </div>
+                                                <p class="card-text"><%= userAddress[i].address %>, <%= userAddress[i].Locality %> Subdistrict, <%= userAddress[i].city %> District, <%= userAddress[i].state %></p>
                                             </div>
                                         </div>
                                     </div>
+                                <% } %>
+                            <% } %>
+                            <!-- Add new address -->
+                            <div class="col-md-12 mb-3">
+                                <button class="frame-frame-1 mb-50" id="addNewAddressBtn" style="border: none; border-radius: 10px; width: 110px; align-items: center; height: 40px;">
+                                    <div class="frame-add-new" style="color: white;">Add new</div>
+                                </button>
+            
+                                <div id="newAddressForm" style="display: none; background-color: #f9f9f9; border-radius: 10px; padding: 4px;" class="card">
+                                    <div class="card-body">
+                                        <form action="/addAddress" id="myForm" method="POST" onsubmit="AddAddressFormSubmit(event)">
+                                            <div class="row">
+                                                <div class="mb-3 col-md-12">
+                                                    <label for="firstName" class="form-label">Full name (First and Last name)</label>
+                                                    <input class="form-control" type="text" id="fullName" name="name" placeholder="Full Name" autofocus />
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="email" class="form-label">E-mail</label>
+                                                    <input class="form-control" type="text" id="email" name="email" placeholder="example@gmail.com" />
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                                                    <div class="input-group input-group-merge">
+                                                        <span class="input-group-text">IN (+91)</span>
+                                                        <input type="number" id="phone" name="Mobile" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 col-md-12">
+                                                    <label for="address" class="form-label">Address</label>
+                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Flat, House no., Building, Company, Apartment" />
+                                                    <p id="message" style="font-size: 13px; font-family: poppins; font-weight: 400;"></p>
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="organization" class="form-label">Area/Street</label>
+                                                    <input type="text" class="form-control" id="street" name="street" placeholder="Area, Street, Sector, Village" />
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="organization" class="form-label">LandMark (Optional)</label>
+                                                    <input type="text" class="form-control" id="landmark" name="landmark" placeholder="Apartment, suite, unit, building, floor, etc." />
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="state" class="form-label">City</label>
+                                                    <input class="form-control" type="text" id="city" name="city" />
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="state" class="form-label">State</label>
+                                                    <input class="form-control" type="text" id="state" name="state" />
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="zipCode" class="form-label">Pin code</label>
+                                                    <input type="text" class="form-control" id="PIN" name="PIN" placeholder="6 digits - PIN code" maxlength="6" />
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label class="form-label" for="country">Country/Region</label>
+                                                    <select id="country" class="select2 form-select" name="country">
+                                                        <option value="">Select</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6 mb-3">
+                                                    <label for="name" class="">Address Type</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="addressType" id="home" value="home">
+                                                        <label class="form-check-label" for="home"> Home</label>
+                                                        
+                                                        <input class="form-check-input ml-4" type="radio" name="addressType" id="work" value="work">
+                                                        <label class="form-check-label ml-5" for="work"> Work</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2">
+                                                <button type="submit" class="btn btn-primary me-2" style="font-family: poppins; font-weight: 300; border-radius: 8px; height: 30px; font-size: 13px;">Save changes</button>
+                                                <button type="button" onclick="clearForm()" class="btn" style="font-family: poppins; border-radius: 8px; height: 30px; font-size: 13px;">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-4">
-                            <div class="cart-summary">
-                                <h4 class="title">Cart Totals</h4>
-                                <table class="table table-cart-summary" style="font-family: Poppins;">
-                                    <tbody>
-                                        <tr>
-                                            <th class="cart-summary-title">Total MRP</th>
-                                            <td class="cart-summary-price p-0 total-mrp">₹<%= totalMRP %></td>
-                                        </tr>
-                                        <tr class="border-bottom">
-                                            <th class="cart-summary-title">Discount</th>
-                                            <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);">₹<%= totalDiscount > 0 ? totalDiscount : 0 %></td>
-                                        </tr>
-                                        <tr class="border-bottom">
-                                            <th class="cart-summary-title">Delivery Charge</th>
-                                            <td class="cart-summary-price p-0">₹ <%= deliveryCharge %></td>
-                                        </tr>
-                                        <tr>
-                                            <th class="cart-summary-title">Total Amount</th>
-                                            <td class="cart-summary-price p-0 total-amount">₹ <%= totalAmount %></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="row justify-content-center align-items-center mt-3">
-                                    <div class="col-6">
-                                        <a href="/loadShop" class="btn btn-outline-dark text-center">Continue Shopping</a>
+                            <main class="container">
+                                <div class="row justify-content-between my-3">
+                                    <div class="col-md-6">
+                                        <h3> Review items and delivery</h3>
                                     </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-primary" id="checkout-button">Proceed to Checkout</button>
+                                    <!-- <div class="col-md-6 text-right">
+                                        <button class="btn btn-primary">Track Order</button>
+                                        <button class="btn btn-secondary">Invoice</button>
+                                    </div> -->
+                                </div>
+                                
+                                <div class="row my-3">
+                                    <div class="col-md-6">
+                                        <p style="color: limegreen;">Estimated delivery: Jul 05, 2024</p>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <p>Order date: Jun 26, 2024</p>
                                     </div>
                                 </div>
-                            </div>
+                                
+                                <hr>
+                                <% productData.forEach(function(product) { %>
+                                <div class="row my-3">
+                                    <div class="frame-wrapper-1 col-md-6 d-flex align-items-center">
+                                        <img  src="/assets/img/brands/<%= product.image[0] %>" class="order-img  mr-3">
+                                        <div>
+                                            <h6><%= product.productName %></h6>
+                                            <p><%= product.size %></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <p>₹<%= product.discountPrice %></p>
+                                        <p>Qty:<%= product.quantity || 1 %></p>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                
+                                <hr>
+                                
+                                <div class="row my-3">
+                                    <div class="col-md-6">
+                                        <h6>Payment Method</h6>
+                                        <p>COD(cash on Delivery)</p>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <h6>Delivery</h6>
+                                        <p>847 Kozhikode skyline Apt. 174, Kozhikode, IN</p>
+                                        <p>9544675885</p>
+                                        <p>Kerala</p>
+                                    </div>
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="row my-3">
+                                    <div class="col-md-6">
+                                        <h6>Delivery method</h6>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="row my-3">
+                                    <div class="col-md-12">
+                                        <h6>Need help?</h6>
+                                        <p>When your order is placed, we'll send you an e-mail message acknowledging receipt of your order. 
+                                            If you choose to pay using an electronic payment method (credit card, debit card or net banking), 
+                                            you will be directed to your bank's website to complete your payment. Your contract to purchase an item will not be complete until we receive your electronic payment and dispatch your item. 
+                                            If you choose to pay using Pay on Delivery (POD), you can pay using cash/card/net banking when you receive your item.</p>
+                                    </div>
+                                </div>
+                            </main>
+                            
+                            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
                         </div>
                     </div>
-                </div>
-            <% } %>
-        </div>
-    </div>
-</section>
-<!-- shop body section end -->
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    function updateCartQuantity(productId, newQuantity) {
-        fetch(`/cart/updateCartItemQuantity/${productId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ quantity: newQuantity })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById(`quantity${productId}`).textContent = data.updatedCart.quantity;
-                document.getElementById(`total${productId}`).textContent = `₹ ${data.updatedCart.discountPrice * data.updatedCart.quantity}`;
-                updateCartSummary(data.cartSummary);
-            } else {
-                alert(data.message || 'Error updating cart.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
-        });
-    }
-
-    function updateCartSummary(summary) {
-        document.querySelector('.total-mrp').textContent = `₹ ${summary.totalMRP}`;
-        document.querySelector('.total-discount').textContent = `₹ ${summary.totalDiscount}`;
-        document.querySelector('.total-amount').textContent = `₹ ${summary.totalAmount}`;
-    }
-
-    document.querySelectorAll('.increase-quantity').forEach(button => {
-        button.addEventListener('click', () => {
-            const productId = button.dataset.productId;
-            const inStock = parseInt(button.dataset.inStock, 10);
-            const currentQuantity = parseInt(document.getElementById(`quantity${productId}`).textContent, 10);
-            if (currentQuantity < inStock) {
-                updateCartQuantity(productId, currentQuantity + 1);
-            } else {
-                alert('Quantity exceeds stock limit.');
-            }
-        });
-    });
-
-    document.querySelectorAll('.decrease-quantity').forEach(button => {
-        button.addEventListener('click', () => {
-            const productId = button.dataset.productId;
-            const currentQuantity = parseInt(document.getElementById(`quantity${productId}`).textContent, 10);
-            if (currentQuantity > 1) {
-                updateCartQuantity(productId, currentQuantity - 1);
-            } else {
-                alert('Quantity cannot be less than 1.');
-            }
-        });
-    });
-
-    document.querySelectorAll('.close-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            const productId = button.dataset.productId;
-            fetch(`/cart/deleteCartItem/${productId}`, {
-                method: 'POST'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.querySelector(`.cart-item[data-product-id="${productId}"]`).remove();
-                    updateCartSummary(data.cartSummary);
-                    if (data.cartSummary.totalMRP === 0) {
-                        location.reload();
+                    <div class="col-xl-4">
+                        <div class="cart-summary">
+                            <h4 class="title">Payment method</h4>
+                            <p>Choose a payment method to continue Checkout.</p>
+                            <div class="payment-options" id="paymentMethods">
+                                <div class="row">
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="buttonProceed">
+                                            <input type="radio" id="razorPay" name="paymentMethod" value="RazorPay">
+                                            <label for="razorPay">
+                                                <img src="/assets/img/logo/razroPay_img.png" alt="Payment Option 1" class="payment-image">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="upi">
+                                            <input type="radio" id="upiPayment" name="paymentMethod" value="UPI">
+                                            <label for="upiPayment">
+                                                <img src="/assets/img/logo/upi_img.png" alt="Payment Option 2" class="payment-image">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="cashOnDelivery">
+                                            <input type="radio" id="cashDelivery" name="paymentMethod" value="CashOnDelivery">
+                                            <label for="cashDelivery">
+                                                <img src="/assets/img/logo/cashondelivery_img.png" alt="Payment Option 3" class="payment-image">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="razaroPayment">
+                                            <input type="radio" id="visa" name="paymentMethod" value="Visa">
+                                            <label for="visa">
+                                                <img src="/assets/img/logo/visa_img.png" alt="Payment Option 4" class="payment-image">
+                                            </label>
+                                        </div>
+                                    </div>                          
+                                </div>
+                                <input type="radio" id="wallet" name="paymentMethod" value="Wallet">
+                                <label for="wallet">Use Wallet</label>    
+                            </div>                            
+                            <h4 class="title">Order Summary</h4>
+                            <% if (productData && productData.length > 0) { %> 
+                            <table class="table table-cart-summary" style="font-family: Poppins;">
+                                <tbody>
+                                    <tr>
+                                        <th class="cart-summary-title">Total MRP</th>
+                                        <td class="cart-summary-price p-0 total-mrp">₹<%= totalPrice %></td>
+                                    </tr>
+                                    <tr class="border-bottom">
+                                        <th class="cart-summary-title">Discount</th>
+                                        <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);">₹0</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cart-summary-title pb-10">Shipping <p>(4-6 Business days)</p></th>
+                                        <td class="cart-summary-price p-0 shipping">₹40</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cart-summary-title pb-10 border-bottom">Tax <p>(estimated for India (IN))</p></th>
+                                        <td class="cart-summary-price p-0 border-bottom">₹0</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="cart-summary-title pb-10" style="font-size: 22px;">Total</th>
+                                        <td class="cart-summary-price p-0">₹<%= totalPrice + 40 %></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <% } %>
+                            <button id="confirmOrderBtn" class="mt-20 btn btn-checkout w-100 d-block" style="height: 50px;">Place your Order</button>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    // Add new address
+                    document.getElementById('addNewAddressBtn').addEventListener('click', function() {
+                        var newAddressForm = document.getElementById('newAddressForm');
+                        if (newAddressForm.style.display === 'none') {
+                            newAddressForm.style.display = 'block';
+                        } else {
+                            newAddressForm.style.display = 'none';
+                        }
+                    });
+                    
+                    // Address form submission
+                    function AddAddressFormSubmit(event) {
+                        event.preventDefault();
+                        const index = '';
+                        if (!addressValidation(index)) {
+                            return;
+                        }
+                        const form = document.getElementById('myForm');
+                        const formData = new FormData(form);
+                        const url = '/addAddress'; 
+                    
+                        const jsonObject = {};
+                        formData.forEach((value, key) => {
+                            jsonObject[key] = value;
+                        });
+                    
+                        jsonObject.is_Home = document.getElementById('home').checked;
+                        jsonObject.is_Work = document.getElementById('work').checked;
+                    
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(jsonObject)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: "New Address Added",
+                                    text: "New Address Added successfully!",
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.reload();
+                                });
+                            } else {
+                                let message = document.getElementById('message');
+                                message.style.color = "red";
+                                message.innerText = `${data.message}`;
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                     }
-                } else {
-                    alert(data.message || 'Error removing item from cart.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            });
-        });
-    });
+                    
+                    function highlightSelectedAddress(card, index) {
+                        // Remove selected class from all address cards
+                        document.querySelectorAll('.address-card').forEach(function(card) {
+                            card.classList.remove('selected');
+                            // Hide all 'Deliver Here' buttons
+                            card.querySelector('.genric-btn').style.display = 'none';
+                        });
+                    
+                        // Add selected class to the clicked card
+                        card.classList.add('selected');
+                    
+                        // Show the 'Deliver Here' button for the selected card
+                        document.getElementById('button' + index).style.display = 'block';
+                    }
+                    
+                    function showPaymentMethods(addressId) {
+                        document.getElementById('paymentMethods').style.display = 'block';
+                        console.log('Selected address: ' + addressId);
+                    }
+                    
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const paymentOptions = document.querySelectorAll('.payment-option');
+                    
+                        paymentOptions.forEach(option => {
+                            option.addEventListener('click', function() {
+                                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                                this.classList.add('selected');
+                            });
+                        });
+                    });
+                    
+                    function handlePaymentSelection() {
+                        const onlinePaymentRadio = document.getElementById('onlinePayment');
+                        const cashOnDeliveryRadio = document.getElementById('cashOnDelivery');
+                        const walletRadio = document.getElementById('wallet');
+                    
+                        const buttonProceed = document.getElementById('buttonProceed');
+                        const buttonConform = document.getElementById('buttonConform');
+                        const WalletButtonConform = document.getElementById('WalletButtonConform');
+                    
+                        if (onlinePaymentRadio.checked) {
+                            buttonProceed.style.display = 'block';
+                            buttonConform.style.display = 'none';
+                            WalletButtonConform.style.display = 'none';
+                        } else if (cashOnDeliveryRadio.checked) {
+                            buttonProceed.style.display = 'none';
+                            buttonConform.style.display = 'block';
+                            WalletButtonConform.style.display = 'none';
+                        } else if (walletRadio.checked) {
+                            buttonProceed.style.display = 'none';
+                            buttonConform.style.display = 'none';
+                            WalletButtonConform.style.display = 'block';
+                        }
+                    }
+                    
+                    document.getElementById('confirmOrderBtn').addEventListener('click', function() {
+                        Swal.fire({
+                            title: "Confirm Order",
+                            text: "Are you sure you want to place this order?",
+                            icon: "question",
+                            showCancelButton: true,
+                            confirmButtonText: "Yes, place order",
+                            cancelButtonText: "No, cancel",
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Logic to place the order
+                                console.log("Order confirmed and placed.");
+                            } else {
+                                console.log("Order canceled.");
+                            }
+                        });
+                    });
 
-    document.getElementById('checkout-button').addEventListener('click', () => {
-        fetch('/order/createOrder', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ /* pass necessary order data */ })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = '/checkout';
-            } else {
-                alert(data.message || 'Error proceeding to checkout.');
+                    // confirm Order
+                    document.getElementById('confirmOrderBtn').addEventListener('click', function() {
+                    const selectedAddressId = document.querySelector('input[name="address"]:checked').value;
+                    const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+                    confirmOrder(selectedAddressId, selectedPaymentMethod);
+                });
+
+                function confirmOrder(addressId, paymentMethod) {
+                fetch('/createOrder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ addressId, paymentMethod })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: "Order Placed",
+                            text: "Your Order is Confirmed",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.href = `/orderDetails?orderId=${data.orderId}`;
+                        });
+                    } else {
+                        Swal.fire('Sorry', data.message, 'warning');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire('Error', 'Network Error. Try again.', 'error');
+                });
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
-        });
-    });
-});
-</script>
+
+
+
+                    </script>
+                    <script src="/js/countries.js"></script>
+                    <script src="/js/addressValidation.js"></script>                  
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <%- include('../layouts/homeFooter') %>

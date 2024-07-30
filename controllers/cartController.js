@@ -22,44 +22,44 @@ const cartLoad = async (req, res, next) => {
             }
         ]);
 
-        let totalMRP = 0;
-        let totalDiscount = 0;
-        let totalPrice = 0;
-        let shipping = 0;
+        const totalPriceResult = await Cart.aggregate([
+            { $match: { userId: new mongoose.Types.ObjectId(userId) } },
+            { $unwind: '$cartItems' },
+            {
+                $lookup: {
+                    from: 'products',
+                    localField: 'cartItems.productId',
+                    foreignField: '_id',
+                    as: 'productDetails'
+                }
+            },
+            { $unwind: '$productDetails' },
+            {
+                $project: {
+                    _id: 0,
+                    totalPrice: { $multiply: ['$productDetails.discountPrice', '$cartItems.quantity'] }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalPrice: { $sum: '$totalPrice' }
+                }
+            }
+        ]);
 
-        userCart.forEach(cartItem => {
-            const originalPrice = cartItem.productDetails[0].price;
-            const discountPrice = cartItem.productDetails[0].discountPrice || originalPrice;
-            const quantity = cartItem.cartItems.quantity;
-
-            totalMRP += originalPrice * quantity;
-            totalPrice += discountPrice * quantity;
-            totalDiscount += (originalPrice - discountPrice) * quantity;
-        });
-
-        if (userCart.length > 3) {
-            shipping = 0; // Free shipping
-        } else {
-            shipping = 40; // Shipping cost is ₹40
-        }
+        const totalPrice = totalPriceResult.length > 0 ? totalPriceResult[0].totalPrice : 0;
 
         if (userCart.length === 0) {
             return res.render('cart', { user: userData, userCart: [], message: 'Your cart is empty.' });
         }
 
-        res.render('cart', {
-            user: userData,
-            userCart: userCart,
-            totalMRP,
-            totalDiscount,
-            totalPrice,
-            shipping
-        });
+        res.render('cart', { user: userData, userCart: userCart, totalPrice });
     } catch (error) {
         console.log(error.message);
-        next(error);
+        next(error)
     }
-};
+}
 
 const addToCart = async (req, res, next) => {
     try {
@@ -70,29 +70,39 @@ const addToCart = async (req, res, next) => {
             return res.status(401).json({ redirectUrl: '/login' });
         }
 
+        // Validate productId
+        if (!productId) {
+            return res.status(400).json({ message: "Product ID is required." });
+        }
+
+        // Find the product to ensure it exists (optional, but recommended)
+        const product = await Products.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: "Product not found." });
+        }
+
         let cart = await Cart.findOne({ userId: userId });
         if (!cart) {
             cart = new Cart({
                 userId: userId,
-                cartItems: [{ productId: productId }]
+                cartItems: [{ productId: productId, quantity: 1 }]
             });
         } else {
             const existingItem = cart.cartItems.find(item => item.productId.equals(productId));
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cart.cartItems.push({ productId: productId });
+                cart.cartItems.push({ productId: productId, quantity: 1 });
             }
         }
 
         await cart.save();
-        res.status(200).json({ addToCart: "Added to cart" });
+        res.status(200).json({ message: "Product added to cart" });
     } catch (error) {
         console.log(error.message);
         next(error);
     }
 };
-
 
 const removeFromCart = async (req, res, next) => {
     try {
@@ -104,14 +114,20 @@ const removeFromCart = async (req, res, next) => {
             return value.productId.toString() === productId;
         });
 
-        cartData.cartItems.splice(index, 1);
-        await cartData.save();
-        res.redirect("/cart");
+        if (index !== -1) {
+            cartData.cartItems.splice(index, 1);
+            await cartData.save();
+            res.json({ success: true });
+        } else {
+            res.json({ success: false, message: 'Product not found in cart' });
+        }
     } catch (error) {
         console.log(error.message);
-        next(error)
+        res.json({ success: false, message: error.message });
+        next(error);
     }
 }
+
 
 const updateQuantity = async (req, res) => {
     try {
@@ -131,8 +147,8 @@ const updateQuantity = async (req, res) => {
             }
         }
 
-        await cart.save();
-        res.sendStatus(200)
+        let savedCart = await cart.save();
+        res.status(200).json({ savedCart });
 
     } catch (error) {
         console.log(error.message);
@@ -140,9 +156,29 @@ const updateQuantity = async (req, res) => {
     }
 }
 
+
+const getCartCount = async (userId) => {
+    try {
+        if (!userId) {
+            return 0;
+        }
+        
+        const cart = await Cart.findOne({ userId: userId });
+        if (!cart) {
+            return 0;
+        }
+        
+        return cart.cartItems.reduce((total, item) => total + item.quantity, 0);
+    } catch (error) {
+        console.log(error.message);
+        return 0;
+    }
+};
+
 module.exports = {
     cartLoad,
     addToCart,
     removeFromCart,
-    updateQuantity
+    updateQuantity,
+    getCartCount
 };

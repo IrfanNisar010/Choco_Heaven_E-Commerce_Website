@@ -25,6 +25,21 @@
             }, 4000);
           }
         });
+
+        $(document).ready(function(){
+      $('#cardSlider').carousel({
+        interval: false,
+        wrap: true
+      });
+
+      $('.carousel-control-next').click(function(){
+        $('#cardSlider').carousel('next');
+      });
+
+      $('.carousel-control-prev').click(function(){
+        $('#cardSlider').carousel('prev');
+      });
+    });
     </script>
 
     <script src="/js/helperFunctions.js"></script>

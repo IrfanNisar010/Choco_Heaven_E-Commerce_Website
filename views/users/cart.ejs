@@ -380,43 +380,48 @@
                                                         <th class="product-title" style="font-family: poppins; font-weight: 600;">Product</th>
                                                         <th style="font-family: poppins; font-weight: 600;">Price</th>
                                                         <th class="quantity" style="font-family: poppins; font-weight: 600;">Quantity</th>
-                                                        <th class="total" style="font-family: poppins; font-weight: 600;">Total </th>
-                                                        <th class="remove-porduct"></th>
+                                                        <th class="totals" style="font-family: poppins; font-weight: 600;">MRP</th>
+                                                        <th class="remove-product"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <% userCart.forEach(cartItem => { %>
-                                                    <tr class="cart-item" data-original-price="<%= cartItem.productDetails[0].price %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>">
-                                                        <td>
-                                                            <div class="table-data">
-                                                                <a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><img src="/assets/img/brands/<%= cartItem.productDetails[0].image[0] %>" alt="" width="80"></a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="table-data">
-                                                                <h6><a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>"><%= cartItem.productDetails[0].productName %></a></h6>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="table-data">
-                                                                <span class="price">₹ <%= cartItem.productDetails[0].discountPrice %></span>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="table-data">
-                                                                <button class="decrease-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> - </button>
-                                                                <span class="quantity" id="quantity<%= cartItem.productDetails[0]._id %>"><%= cartItem.cartItems.quantity %></span>
-                                                                <button class="increase-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-discount-price="<%= cartItem.productDetails[0].discountPrice %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> + </button>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="table-data">
-                                                                <span class="total" id="total<%= cartItem.productDetails[0]._id %>">₹ <%= cartItem.productDetails[0].discountPrice * cartItem.cartItems.quantity %></span>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="table-data">
-                                                                <button class="close-btn" data-product-id="<%= cartItem.productDetails[0]._id %>">
+                                                        <tr data-product-id="<%= cartItem.productDetails[0]._id %>">
+                                                            <td>
+                                                                <div class="table-data">
+                                                                    <a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>">
+                                                                        <img src="/assets/img/brands/<%= cartItem.productDetails[0].image[0] %>" alt="" width="80">
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="table-data">
+                                                                    <h6>
+                                                                        <a href="/singleProduct?id=<%= cartItem.productDetails[0]._id %>">
+                                                                            <%= cartItem.productDetails[0].productName %>
+                                                                        </a>
+                                                                    </h6>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="table-data">
+                                                                    <span class="price" data-price="<%= cartItem.productDetails[0].discountPrice %>">₹ <%= cartItem.productDetails[0].discountPrice %></span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="table-data">
+                                                                    <button type="button" class="decrease-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>"> - </button>
+                                                                    <span class="quantity" id="quantity<%= cartItem.productDetails[0]._id %>"><%= cartItem.cartItems.quantity %></span>
+                                                                    <button type="button" class="increase-quantity btn-light btn" data-product-id="<%= cartItem.productDetails[0]._id %>" data-in-stock="<%= cartItem.productDetails[0].inStock %>"> + </button>
+                                                                </div>
+                                                            </td>                                                            
+                                                            <td class="product-total">
+                                                                <div class="total-show" id="price<%= cartItem.productDetails[0]._id %>" data-price="<%= cartItem.productDetails[0].discountPrice %>">
+                                                                    ₹ <%= cartItem.cartItems.quantity * cartItem.productDetails[0].discountPrice %>
+                                                                </div>
+                                                            </td>                                                            
+                                                            <td class="product-remove remove-from-cart">
+                                                                <a href="#" data-product-id="<%= cartItem.productDetails[0]._id %>">
                                                                     <lord-icon
                                                                         src="https://cdn.lordicon.com/nqtddedc.json"
                                                                         trigger="hover"
@@ -424,10 +429,9 @@
                                                                         colors="primary:#000000"
                                                                         style="width:25px;height:25px">
                                                                     </lord-icon>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                                </a>
+                                                            </td>                                                            
+                                                        </tr>
                                                     <% }); %>
                                                 </tbody>
                                             </table>
@@ -442,15 +446,15 @@
                                         <tbody>
                                             <tr>
                                                 <th class="cart-summary-title">Total MRP</th>
-                                                <td class="cart-summary-price p-0 total-mrp">₹<%= totalMRP %></td>
+                                                <td class="cart-summary-price p-0 total-mrp" id="total-mrp">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].price, 0) %></td>
                                             </tr>
                                             <tr class="border-bottom">
                                                 <th class="cart-summary-title">Discount</th>
-                                                <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);">₹<%= totalDiscount > 0 ? totalDiscount : 0 %></td>
+                                                <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);" id="discount">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * (cartItem.productDetails[0].price - cartItem.productDetails[0].discountPrice), 0) %></td>
                                             </tr>
                                             <tr>
                                                 <th class="cart-summary-title pb-10">Shipping <p>(4-6 Business days)</p></th>
-                                                <td class="cart-summary-price p-0 shipping">₹<%= shipping %></td>
+                                                <td class="cart-summary-price p-0 shipping">₹40</td>
                                             </tr>
                                             <tr>
                                                 <th class="cart-summary-title pb-10">Tax <p>(estimated for India (IN))</p></th>
@@ -458,11 +462,11 @@
                                             </tr>
                                             <tr class="border-bottom">
                                                 <th class="cart-summary-title pb-10">Subtotal</th>
-                                                <td class="cart-summary-price p-0 total-price">₹<%= totalPrice %></td>
+                                                <td class="cart-summary-price p-0 total-price" id="Subtotal">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].discountPrice, 0) %></td>
                                             </tr>
                                             <tr>
                                                 <th class="cart-summary-title pb-10" style="font-size: 22px;">Total</th>
-                                                <td style="font-size: 22px;"><strong class="total">₹ <%= totalPrice + shipping %></strong></td>
+                                                <td class="cart-summary-price p-0" id="totalPrice">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].discountPrice, 0) + 40 %></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -473,10 +477,11 @@
                     </div>
                 <% } %>
                 
+                
     <!-- shop body section end -->
 
 
-        <div class="footer-bottom pt-77" style="background-color: #000;">
+        <!-- <div class="footer-bottom pt-77" style="background-color: #000;">
             <div class="container-1180">
                 <div class="footer-bottom-wrapper">
                     <div class="footer-bottom-primary pb-60">
@@ -546,7 +551,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </section>
     <!-- footer section end -->
@@ -671,97 +676,165 @@
             </div>
         </div>
     </section>
+    <div id="warning-message-container"></div>
+
     <!-- startup popup end -->
 
-   
-    <script>
-        document.querySelectorAll('.close-btn').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                let productId = this.dataset.productId;
-    
-                fetch(`/removeFromCart?productId=${productId}`, {
-                    method: 'GET',
-                    credentials: 'same-origin'
-                })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.reload();
-                    } else {
-                        console.error('Failed to remove item from cart');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            });
-        });
-    
-        document.querySelectorAll('.increase-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                let productId = this.dataset.productId;
-                let quantityElement = document.getElementById(`quantity${productId}`);
-                let totalElement = document.getElementById(`total${productId}`);
-                let discountPrice = parseFloat(this.dataset.discountPrice);
-                let quantity = parseInt(quantityElement.innerText);
-    
-                if (quantity < parseInt(this.dataset.inStock)) {
-                    quantity++;
-                    quantityElement.innerText = quantity;
-                    totalElement.innerText = `₹ ${(quantity * discountPrice).toFixed(2)}`;
-                    updateCartSummary();
-                }
-            });
-        });
-    
-        document.querySelectorAll('.decrease-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                let productId = this.dataset.productId;
-                let quantityElement = document.getElementById(`quantity${productId}`);
-                let totalElement = document.getElementById(`total${productId}`);
-                let discountPrice = parseFloat(this.dataset.discountPrice);
-                let quantity = parseInt(quantityElement.innerText);
-    
-                if (quantity > 1) {
-                    quantity--;
-                    quantityElement.innerText = quantity;
-                    totalElement.innerText = `₹ ${(quantity * discountPrice).toFixed(2)}`;
-                    updateCartSummary();
-                }
-            });
-        });
-    
-        function updateCartSummary() {
-            let totalMRP = 0;
-            let totalDiscount = 0;
-            let totalPrice = 0;
-            let shipping = 0;
-            let productCount = 0;
-    
-            document.querySelectorAll('.cart-item').forEach(cartItem => {
-                let originalPrice = parseFloat(cartItem.dataset.originalPrice);
-                let discountPrice = parseFloat(cartItem.dataset.discountPrice);
-                let quantity = parseInt(cartItem.querySelector('.quantity').innerText);
-    
-                totalMRP += originalPrice * quantity;
-                totalPrice += discountPrice * quantity;
-                totalDiscount += (originalPrice - discountPrice) * quantity;
-                productCount += quantity;
-            });
-    
-            shipping = productCount > 2 ? 0 : 40;
-    
-            document.querySelector('.total-mrp').innerText = `₹${totalMRP.toFixed(2)}`;
-            document.querySelector('.total-discount').innerText = `₹${totalDiscount > 0 ? totalDiscount.toFixed(2) : 0}`;
-            document.querySelector('.total-price').innerText = `₹${totalPrice.toFixed(2)}`;
-            document.querySelector('.shipping').innerText = `₹${shipping.toFixed(2)}`;
-            document.querySelector('.total').innerText = `₹${(totalPrice + shipping).toFixed(2)}`;
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+   document.querySelectorAll('.decrease-quantity').forEach(button => {
+    button.addEventListener('click', decreaseQuantity);
+});
+
+document.querySelectorAll('.increase-quantity').forEach(button => {
+    button.addEventListener('click', increaseQuantity);
+});
+
+function showWarningAlert(message) {
+    const container = document.getElementById('warning-message-container');
+    const warningMessage = `
+        <div class="msg msg-warning show d-flex align-items-center justify-content-center text-center fade-in" role="alert" style="color: black;">
+            <div class="d-flex align-items-center justify-content-center">
+                <lord-icon src="https://cdn.lordicon.com/ygvjgdmk.json" trigger="in" delay="100" colors="primary:#e88c30" style="width:50px;height:50px"></lord-icon>
+            </div>
+            ${message}
+        </div>
+    `;
+    container.innerHTML = warningMessage;
+
+    setTimeout(function() {
+        const msgElement = container.querySelector('.msg');
+        msgElement.classList.remove('fade-in');
+        msgElement.classList.add('fade-out');
+        setTimeout(function() {
+            container.innerHTML = '';
+        }, 700); 
+    }, 4000); 
+}
+
+function decreaseQuantity(event) {
+    const productId = event.target.dataset.productId;
+    const quantityElement = document.getElementById("quantity" + productId);
+    const currentQuantity = parseInt(quantityElement.innerText);
+
+    if (currentQuantity > 1) {
+        updateQuantity(productId, -1);
+    } else {
+        showWarningAlert("Quantity cannot be less than 1");
+    }
+}
+
+function increaseQuantity(event) {
+    const productId = event.target.dataset.productId;
+    const inStock = parseInt(event.target.dataset.inStock); 
+    const quantityElement = document.getElementById("quantity" + productId);
+    const currentQuantity = parseInt(quantityElement.innerText);
+    const maxQuantity = Math.min(isNaN(inStock) ? 5 : inStock, 5); 
+
+    if (currentQuantity < maxQuantity) {
+        updateQuantity(productId, 1);
+    } else {
+        showWarningAlert(`Quantity cannot exceed ${maxQuantity}`);
+    }
+}
+
+function updateQuantity(productId, change) {
+    $.ajax({
+        url: `/updateQuantity?productId=${productId}&change=${change}`,
+        type: 'POST',
+        success: function (response) {
+            const cartItem = response.savedCart.cartItems.find(item => item.productId === productId);
+            const newQuantity = cartItem.quantity;
+            const discountPrice = parseFloat(document.getElementById(`price${productId}`).dataset.price);
+            const newPrice = newQuantity * discountPrice;
+
+            document.getElementById(`quantity${productId}`).innerText = newQuantity;
+            document.getElementById(`price${productId}`).innerText = `₹ ${newPrice}`;
+            updateTotalPrice(response.savedCart.cartItems); // Update total price
+
+        },
+        error: function (error) {
+            console.error('Error updating quantity:', error);
+            $('#quantityErrorMessage').text('Quantity error: ' + error.responseJSON.message);
+            $('#quantityErrorModal').modal('show');
         }
-    
-        document.querySelectorAll('.increase-quantity, .decrease-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                updateCartSummary();
-            });
+    });
+}
+
+function updateTotalPrice(cartItems) {
+    let totalPrice = 0;
+    cartItems.forEach(item => {
+        const itemPrice = parseFloat(document.getElementById(`price${item.productId}`).dataset.price);
+        totalPrice += item.quantity * itemPrice;
+    });
+    document.getElementById('totalPrice').innerText = `₹ ${totalPrice}`;
+}
+
+document.querySelectorAll('.remove-from-cart a').forEach(button => {
+    button.addEventListener('click', confirmRemoveFromCart);
+});
+
+async function confirmRemoveFromCart(event) {
+    event.preventDefault(); // Prevent the default action
+
+    const productId = event.currentTarget.dataset.productId;
+
+    const result = await Swal.fire({
+        title: 'Are you sure ?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#FF3B30',
+        cancelButtonColor: '#007AFF',
+        confirmButtonText: 'Yes, remove',
+        cancelButtonText: 'No, keep',
+        customClass: {
+            popup: 'swal2-custom-popup',
+            title: 'swal2-custom-title',
+            content: 'swal2-custom-content',
+            confirmButton: 'swal2-custom-confirm-button',
+            cancelButton: 'swal2-custom-cancel-button'
+        }
+    });
+
+    if (result.isConfirmed) {
+        removeFromCart(productId);
+    }
+}
+
+async function removeFromCart(productId) {
+    try {
+        const response = await fetch(`/removeFromCart?productId=${productId}`, {
+            method: 'GET'
         });
+
+        if (response.ok) {
+            Swal.fire(
+                'Removed!',
+                'The product has been removed from your cart.',
+                'success'
+            ).then(() => {
+                window.location.reload();
+            });
+        } else {
+            Swal.fire(
+                'Error!',
+                'There was an error removing the product from your cart.',
+                'error'
+            );
+        }
+    } catch (error) {
+        Swal.fire(
+            'Error!',
+            'There was an error removing the product from your cart.',
+            'error'
+        );
+    }
+}
+
+</script>
     
-        updateCartSummary();
-    </script>
-    <%- include('../layouts/homeFooter') %>
+<%- include('../layouts/homeFooter') %>

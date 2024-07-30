@@ -40,7 +40,7 @@
             </div>
           </div>
           <heading class="sign-up-create-an-account">Create an account</heading
-          ><heading class="sign-up-enter-your-email-to-sign-up-for-this-app" >Enter your email to sign up for this app</heading>
+          ><heading class="sign-up-enter-your-email-to-sign-up-for-this-app" >Enter your email address to create an account.</heading>
           <form action="/signUp" method="post" id="signupForm" onsubmit="checkPassword(event)">
             <div class="sign-up-t-field">
                 <div class="sign-up-field">
@@ -76,45 +76,59 @@
                 </div>
             </div>
             <div class="sign-up-t-field-3">
-                <div class="sign-up-field-3">
-                    <input
-                        name="password"
-                        placeholder="Password"
-                        id="password"
-                        type="password"
-                        class="sign-up-label-3"
-                    />
-                    <lord-icon
-                        src="https://cdn.lordicon.com/ktsahwvc.json"
-                        trigger="click"
-                        state="out-reveal"
-                        colors="primary:#000000"
-                        style="width:22px;height:22px"
-                        id="togglePassword"
-                    >
-                    </lord-icon>
-                </div>
+              <div class="sign-up-field-3">
+                <input
+                  name="password"
+                  placeholder="Password"
+                  id="password"
+                  type="password"
+                  class="sign-up-label-3"
+                />
+                <img
+                  id="showPassword"
+                  src="assets/img/logo/eye_open.svg"
+                  width="22"
+                  height="22"
+                  style="cursor: pointer; display: none;"
+                  alt="Show Password"
+                />
+                <img
+                  id="hidePassword"
+                  src="assets/img/logo/eye_close.svg"
+                  width="22"
+                  height="22"
+                  style="cursor: pointer;"
+                  alt="Hide Password"
+                />
+              </div>
             </div>
             <div class="sign-up-t-field-4">
-                <div class="sign-up-field-4">
-                    <input
-                        name="confirmPassword"
-                        placeholder="Confirm Password"
-                        id="confirmPassword"
-                        type="password"
-                        class="sign-up-label-4"
-                    />
-                    <lord-icon
-                        src="https://cdn.lordicon.com/ktsahwvc.json"
-                        trigger="click"
-                        state="out-reveal"
-                        colors="primary:#000000"
-                        style="width:22px;height:20px"
-                        id="toggleConfirmPassword"
-                    >
-                    </lord-icon>
-                </div>
-            </div>          
+              <div class="sign-up-field-4">
+                <input
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  id="confirmPassword"
+                  type="password"
+                  class="sign-up-label-4"
+                />
+                <img
+                  id="showConfirmPassword"
+                  src="assets/img/logo/eye_open.svg"
+                  width="22"
+                  height="20"
+                  style="cursor: pointer; display: none;"
+                  alt="Show Confirm Password"
+                />
+                <img
+                  id="hideConfirmPassword"
+                  src="assets/img/logo/eye_close.svg"
+                  width="22"
+                  height="20"
+                  style="cursor: pointer;"
+                  alt="Hide Confirm Password"
+                />
+              </div>
+            </div>                      
             <div class="sign-up-t-button">
                 <button type="submit" value="submit" class="sign-up-sign-up-with-email">Sign up with email</button>
             </div>
@@ -139,7 +153,7 @@
             </div>
           </a>
           </div>
-          <div class="sign-up-t-button-2">
+          <div class="sign-up-t-button-2 cursor-pointer">
             <div class="sign-up-t-apple-logo-continue-with-apple">
               <div class="sign-up-apple-logo"></div>
               <div class="sign-up-continue-with-apple">Continue with Apple</div>
@@ -157,21 +171,26 @@
     </div>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-          const togglePassword = document.getElementById('togglePassword');
-          const password = document.getElementById('password');
-          const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-          const confirmPassword = document.getElementById('confirmPassword');
-  
-          togglePassword.addEventListener('click', function() {
-              const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-              password.setAttribute('type', type);
-          });
-  
-          toggleConfirmPassword.addEventListener('click', function() {
-              const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-              confirmPassword.setAttribute('type', type);
-          });
-      });
+      const togglePasswordVisibility = (passwordInputId, showIconId, hideIconId) => {
+      const passwordInput = document.getElementById(passwordInputId);
+      const showIcon = document.getElementById(showIconId);
+      const hideIcon = document.getElementById(hideIconId);
+
+      const toggleVisibility = () => {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      showIcon.style.display = type === 'password' ? 'none' : 'inline';
+      hideIcon.style.display = type === 'password' ? 'inline' : 'none';
+      };
+
+      showIcon.addEventListener('click', toggleVisibility);
+      hideIcon.addEventListener('click', toggleVisibility);
+    };
+
+  togglePasswordVisibility('password', 'showPassword', 'hidePassword');
+  togglePasswordVisibility('confirmPassword', 'showConfirmPassword', 'hideConfirmPassword');
+});
+
 
          // checking email
     document.getElementById('signupForm').addEventListener('submit', function(event) {

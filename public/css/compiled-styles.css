@@ -331,7 +331,7 @@ body, html {
   min-height: 100%;
   width: auto;
   height: auto;
-  z-index: 100;
+  z-index: -1000;
   transform: translate(-50%, -50%);
 }
 .sign-in-sign-in {
@@ -344,7 +344,7 @@ body, html {
   align-items: center;
   font-size: 14px;
   letter-spacing: 0em;
-  z-index: 1000; 
+  z-index: 1; 
   position: relative;
   overflow: visible; 
 }
@@ -356,6 +356,7 @@ body, html {
       font-family: "poppins";
       font-size: small;
       padding: 17px;
+      z-index: 1000;
       padding-left: 18px;
       border-top: solid 3px #CCCCCC;
       border-radius: 16px;
@@ -653,6 +654,7 @@ body, html {
 }
 
 .sign-in-t-field {
+  color: black;
   padding-top: 16px;
   padding-right: 1px;
   align-self: stretch;
@@ -683,6 +685,7 @@ body, html {
 }
 
 .sign-in-t-field-1 {
+  color: black;
   padding-top: 14px;
   padding-right: 1px;
   align-self: stretch;
@@ -846,7 +849,8 @@ body, html {
 }
 
 .sign-in-text {
-  color: rgba(130, 130, 130, 1);
+  color: rgb(0, 0, 0);
+  cursor: pointer;
 }
 
 .sign-in-text-1 {
@@ -857,6 +861,7 @@ body, html {
 .sign-in-t-footer {
   padding-top: 227px;
   padding-right: 1px;
+  background:transparent;
   align-self: stretch;
 }
 
@@ -865,12 +870,12 @@ body, html {
   padding-top: 79px;
   padding-right: 239px;
   padding-left: 71px;
+  background: transparent;
   padding-bottom: 85px;
   flex-direction: column;
   row-gap: 2px;
   align-items: flex-start;
   font-family: Rubik;
-  color: rgba(196, 196, 196, 1);
   line-height: 25px;
 }
 

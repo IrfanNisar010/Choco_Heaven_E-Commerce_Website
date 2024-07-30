@@ -98,6 +98,7 @@
         <div class="sign-in-t-field">
           <div class="sign-in-field">
             <input
+              style="color: black;"
               placeholder="email@domain.com"
               id="email"
               name="email"
@@ -110,6 +111,7 @@
         <div class="sign-in-t-field-1">
           <div class="sign-in-field-1">
             <input
+              style="color: black;"
               placeholder="Password"
               id="password"
               name="password"
@@ -117,17 +119,25 @@
               type="password"
               class="sign-in-label-1"
             />
-            <lord-icon
-            src="https://cdn.lordicon.com/ktsahwvc.json"
-            trigger="click"
-            state="out-reveal"
-            colors="primary:#000000"
-            style="width:22px;height:20px"
-            id="togglePassword"
-        >
-        </lord-icon>
+            <img
+              id="showPassword"
+              src="assets/img/logo/eye_open.svg"
+              width="22"
+              height="20"
+              style="cursor: pointer; display: none;"
+              alt="Show Password"
+            />
+            <img
+              id="hidePassword"
+              src="assets/img/logo/eye_close.svg"
+              width="22"
+              height="20"
+              style="cursor: pointer;"
+              alt="Hide Password"
+            />
           </div>
         </div>
+        
         <div class="sign-in-t-button">
           <button class="sign-in-sign-up-with-email" type="submit" value="submit">Sign up with email</button>
         </div>
@@ -137,7 +147,7 @@
           <footer class="sign-in-create-an-account">Create an account</footer></a>
       </form>
       <div class="sign-in-by-clicking-continue-you-agree-to-our-terms-of-service-and-privacy-policy">
-        <footer class="sign-in-text">
+        <footer class="sign-in-text" style="color: black;">
           By clicking continue, you agree to our
           Terms of Service <span class="sign-in-text-1">and </span>Privacy
           Policy
@@ -197,14 +207,21 @@
   </div>
 </div>
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const togglePassword = document.getElementById('togglePassword');
-          const password = document.getElementById('password');
+  document.addEventListener('DOMContentLoaded', function() {
+  const showPassword = document.getElementById('showPassword');
+  const hidePassword = document.getElementById('hidePassword');
+  const password = document.getElementById('password');
 
-          togglePassword.addEventListener('click', function() {
-              const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-              password.setAttribute('type', type);
-          });
-      });
+  const togglePasswordVisibility = () => {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    showPassword.style.display = type === 'password' ? 'none' : 'inline';
+    hidePassword.style.display = type === 'password' ? 'inline' : 'none';
+  };
+
+  showPassword.addEventListener('click', togglePasswordVisibility);
+  hidePassword.addEventListener('click', togglePasswordVisibility);
+});
+
 </script>
 <%- include('../layouts/loginFooter') %>

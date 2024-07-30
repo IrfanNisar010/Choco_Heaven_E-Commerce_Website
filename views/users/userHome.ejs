@@ -199,12 +199,19 @@
                                         colors="primary:#000000"
                                         style="width:24px;height:24px; padding-top: 4.8px;">
                                     </lord-icon></a></li>
-                                <li><a href="/cart"> <lord-icon
-                                    src="https://cdn.lordicon.com/mfmkufkr.json"
-                                    trigger="hover"
-                                    colors="primary:#000000"
-                                    style="width:23px;height:23px; padding-top: 4.2px;">
-                                </lord-icon><span></span></i></a>
+                                    <li>
+                                        <a href="/cart">
+                                            <lord-icon
+                                                src="https://cdn.lordicon.com/mfmkufkr.json"
+                                                trigger="hover"
+                                                colors="primary:#000000"
+                                                style="width:23px;height:23px; padding-top: 4.2px;">
+                                            </lord-icon>
+                                            <% if (isLoggedIn) { %>
+                                                <span id="cart-count"><%= cartCount %></span>
+                                            <% } %>
+                                        </a>
+                                    </li>
                                     <!-- <div class="minicart">
                                         <div class="minicart-body">
                                             <div class="minicart-content">
@@ -460,7 +467,44 @@
         </div>
     </section>
     <!-- category section end -->
-
+    
+    <!-- Brands Slider section Start -->
+    <div class="container mt-5">
+        <div class="generic-title text-center">
+            <h2 class="mb-20">Top Brands</h2>
+            <p>Indulge in the finest selection of premium chocolates from world-renowned luxury brands.</p>
+            <p>we offer an exclusive range of exquisite, high-end chocolates that epitomize sophistication and taste.</p>
+        </div>
+        <div class="container mt-5">
+            <% if (brands.length > 0){ %>
+              <div id="cardSlider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <% for(let i = 0; i < brands.length; i += 6) { %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                      <div class="row">
+                        <% for(let j = i; j < i + 6 && j < brands.length; j++) { %>
+                          <div class="col-2">
+                            <div class="card-brand" style="width: 200px;">
+                              <img src="/assets/img/brands/<%= brands[j].imageUrl %>" class="card-img" alt="Image <%= j + 1 %>">
+                            </div>
+                          </div>
+                        <% } %>
+                      </div>
+                    </div>
+                  <% } %>
+                </div>
+                <a class="carousel-control-prev" href="#cardSlider" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#cardSlider" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            <% } %>
+          </div>   
+    <!-- Brands Slider section End -->
 
 
     <!-- main product sections tart -->
@@ -479,60 +523,59 @@
             </ul>
             <div class="tab-content mt-25">
                 <% if (products.length > 0){ %>
-                <div class="tab-pane fade show active" id="main-tab-1">
-                    <% for(let row = 0; row < 3; row++){ %>
-                    <div class="row">
-                        <% for(let col = 0; col < 4; col++){ 
-                            let index = row * 4 + col;
-                            if(index >= products.length) break;
-                        %>
-                        <div class="col-3">
-                            <div class="product-box mb-40">
-                                <div class="product-box-wrapper">
-                                    <div class="product-img">
-                                        <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
-                                        <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
-                                            <div class="second-img">
-                                                <img src="/assets/img/brands/<%= products[index].image[1] %>" alt="" class="w-100">
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="product-img-link quick-view-1 text-capitalize">Quick view</a>
-                                    </div>
-                                    <div class="product-desc pb-20">
-                                        <div class="product-desc-top">
-                                            <div class="categories">
-                                                <a href="/loadShop" class="product-category">
-                                                    <span><%= products[index].brand %></span>
+                    <div class="tab-pane fade show active" id="main-tab-1">
+                        <% for(let row = 0; row < 3; row++){ %>
+                        <div class="row">
+                            <% for(let col = 0; col < 4; col++){ 
+                                let index = row * 4 + col;
+                                if(index >= products.length) break;
+                            %>
+                            <div class="col-3">
+                                <div class="product-box mb-40">
+                                    <div class="product-box-wrapper">
+                                        <div class="product-img">
+                                            <img src="/assets/img/brands/<%= products[index].image[0] %>" class="w-100" alt="">
+                                            <a href="/singleProduct?id=<%= products[index]._id %>" class="d-block">
+                                                <div class="second-img">
+                                                    <img src="/assets/img/brands/<%= products[index].image[1] %>" alt="" class="w-100">
+                                                </div>
+                                            </a>
+                                            <a href="javascript:void(0)" class="product-img-link quick-view-1 text-capitalize">Quick view</a>
+                                        </div>
+                                        <div class="product-desc pb-20">
+                                            <div class="product-desc-top">
+                                                <div class="categories">
+                                                    <a href="/loadShop" class="product-category">
+                                                        <span><%= products[index].brandId ? products[index].brandId.name : 'Unknown Brand' %></span>
+                                                    </a>
+                                                </div>
+                                                <a href="wishlist.html" class="wishlist float-right">
+                                                    <span><lord-icon
+                                                        src="https://cdn.lordicon.com/xyboiuok.json"
+                                                        trigger="click"
+                                                        delay="1000"
+                                                        state="morph-heart"
+                                                        colors="primary:#ee7c9b"
+                                                        style="width:30px;height:30px">
+                                                    </lord-icon></span>
                                                 </a>
                                             </div>
-                                            <a href="wishlist.html" class="wishlist float-right">
-                                                <span><lord-icon
-                                                    src="https://cdn.lordicon.com/xyboiuok.json"
-                                                    trigger="click"
-                                                    delay="1000"
-                                                    state="morph-heart"
-                                                    colors="primary:#ee7c9b"
-                                                    style="width:30px;height:30px">
-                                                </lord-icon></span>
+                                            <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title">
+                                                <%= products[index].productName %>
                                             </a>
-                                        </div>
-                                        <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title">
-                                            <%= products[index].productName %>
-                                        </a>
-                                        <div class="price-switcher">
-                                            <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
-                                            <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">+add to cart</a>
+                                            <div class="price-switcher">
+                                                <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
+                                                <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">+add to cart</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <% } %>
                         </div>
                         <% } %>
                     </div>
-                    <% } %>
-                </div>
-                <% } %>
+                <% } %>                
             </div>            
                     <div class="text-center mt-10  load-btn">
                         <a href="shop.html" class="load-more">Load more</a>
@@ -872,6 +915,8 @@
             </div>
         </div>
     </section>
+    <div id="success-message-container"></div>
+
     <!-- startup popup end -->
 
     <%- include('../layouts/homeFooter') %>
