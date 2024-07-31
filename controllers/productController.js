@@ -190,6 +190,8 @@ const editProduct = async (req, res, next) => {
             discountPrice: req.body.discountPrice,
             discount: req.body.discount,
             inStock: req.body.inStock,
+            bestSellerProduct: req.body.bestSellerProduct,
+            popularProduct:req.body.popularProduct,
             image: images
         });
 

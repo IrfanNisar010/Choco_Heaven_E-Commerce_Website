@@ -17,7 +17,7 @@
                     <div class="header-nav header-nav-2 pl-100">
                         <nav class="d-flex justify-content-center align-content-center"> 
                             <ul>
-                                <li><a href="javascript:void(0)" ><span>Home </span></a></li>
+                                <li><a href="/home" ><span>Home </span></a></li>
                                 <li><a href="/loadShop"><span>Shop <i class="fas fa-angle-down"></i></span></a>
                                         <div class="submenu" style="border-radius: 13px;">
                                             <ul>
@@ -337,18 +337,30 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
       <!-- Sidebar Column -->
-      <div class="col-md-3">
-        <div class="sidebar pl-5 sidebar-text">
-          <ul class="nav flex-column">
-            <li class="nav-item" style="margin-bottom: 25px;"><a class="nav-link" href="/profileDetails" style="color: black;">Personal info</a></li>
-            <li class="nav-item" style="margin-bottom: 25px;"><a class="nav-link" href="/orders" style="color: rgb(176, 176, 176);">Orders</a></li>
-            <li class="nav-item" style="margin-bottom: 25px;"><a class="nav-link" href="/wallet" style="color: rgb(176, 176, 176);">Wallet</a></li>
-            <li class="nav-item" style="margin-bottom: 25px;"><a class="nav-link" href="/address" style="color: rgb(176, 176, 176);">Address</a></li>
-            <li class="nav-item" style="margin-bottom: 25px;"><a class="nav-link" href="/accountDetails" style="color: rgb(176, 176, 176);">Account details</a></li>
-            <li class="nav-item" style="margin-bottom: 25px;"><a class="nav-link" href="/logout" style="color: rgb(176, 176, 176);">Log out</a></li>
-          </ul>
+      <div class="col-md-3 mb-5 hidden-md">
+        <div class="sidebar pl-5 pr-0 sidebar-text">
+            <ul class="nav flex-column">
+                <li class="nav-item" style="margin-bottom: 25px;">
+                    <a class="nav-link" href="/profileDetails" onclick="setActive(this)">Personal info</a>
+                </li>
+                <li class="nav-item" style="margin-bottom: 25px;">
+                    <a class="nav-link" href="/ordersManage" onclick="setActive(this)">Orders</a>
+                </li>
+                <li class="nav-item" style="margin-bottom: 25px;">
+                    <a class="nav-link" href="/wallet" onclick="setActive(this)">Wallet</a>
+                </li>
+                <li class="nav-item" style="margin-bottom: 25px;">
+                    <a class="nav-link" href="/addressManage" onclick="setActive(this)">Address</a>
+                </li>
+                <li class="nav-item" style="margin-bottom: 25px;">
+                    <a class="nav-link" href="/accountDetails" onclick="setActive(this)">Wishlist</a>
+                </li>
+                <li class="nav-item" style="margin-bottom: 25px;">
+                    <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
+                </li>
+            </ul>
         </div>
-      </div>
+    </div>
       
       <!-- Main Content Column -->
       <div class="col-md-6">

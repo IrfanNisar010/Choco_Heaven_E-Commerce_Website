@@ -409,7 +409,7 @@
                         <a class="nav-link" href="/addressManage" onclick="setActive(this)">Address</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/accountDetails" onclick="setActive(this)">Account details</a>
+                        <a class="nav-link" href="/wishlist" onclick="setActive(this)">Wishlist</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
                         <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
@@ -511,7 +511,7 @@
             <% if (address.length > 0) { %>
                 <div class="row" style="font-family: poppins;">
                     <% for (let i = 0; i < address.length; i++) { %>
-                        <div class="col-md-6 mb-4">
+                        <div class="address-details col-md-6 mb-4" style="display: block;">
                             <div class="address-card ">
                                 <div class="address-header ">
                                     <div class="frame-address">Default</div>
@@ -551,8 +551,9 @@
                                         <div class="btn-text">Edit address</div>
                                         <lord-icon src="https://cdn.lordicon.com/rmkahxvq.json" trigger="hover" colors="primary:#000000" class="icon"></lord-icon>
                                     </button>
-                                    <button class="remove-address-btn" href="/deleteAddress?id=<%=address[i]._id %>">
-                                        <div class="btn-text">Remove</div>
+                                    <button class="remove-address-btn">
+                                        <a href="/deleteAddress?id=<%=address[i]._id %>">
+                                        <div class="btn-text">Remove</div></a>
                                         <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" colors="primary:#000000" class="icon"></lord-icon>
                                     </button>
                                 </div>
@@ -561,8 +562,6 @@
 
                         <!-- Start Edit Address -->
                         <div class="col-md-9 pl-0" id="editAddress<%= i %>" style="display: none;">
-                            <h4 class="col-md-6 profile-head p-0">Hey, <%= locals.user.firstName %> 👋</h4>
-                            <p class="col-md-6 p-head p-0">Edit your address</p>
                             <div class="card mb-4">
                                 <h5 class="card-header">Edit address</h5>
                                 <div class="card-body">
@@ -632,6 +631,7 @@
                                 </div>
                             </div>
                         </div>
+                        <script src="/js/countries.js"></script>
                         <!-- End Edit Address -->
                     <% } %>
                 </div>
@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     <% for (let i = 0; i < address.length; i++) { %>
         document.getElementById('editAddressBtn<%= i %>').addEventListener('click', function() {
             var editAddressForm = document.getElementById('editAddress<%= i %>');
-            var manageAddress = document.getElementById('manageAddress');
+            var manageAddress = document.getElementsByClassName('address-details');
             if (editAddressForm.style.display === 'none') {
                 editAddressForm.style.display = 'block';
                 manageAddress.style.display = 'none';
@@ -659,7 +659,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
     <% } %>
-
     document.getElementById('addAddressBtn').addEventListener('click', function() {
         var manageAddress = document.getElementById('manageAddress');
         var newAddressForm = document.getElementById('newAddressForm');
@@ -723,7 +722,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });        
 </script>
  
-  <script src="/js/countries.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/countries.js"></script>
   <script src="/js/addressValidation.js"></script>
 <%- include('../layouts/homeFooter') %>

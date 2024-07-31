@@ -6,6 +6,7 @@ const Cart = require('../models/cartModel')
 const OrderModel = require('../models/orderModel')
 const Offer = require('../models/offerModel')
 const { default: mongoose } = require("mongoose");
+const { render } = require('ejs')
 
 const ordersPageLoad = async (req, res, next) => {
     try {
@@ -100,6 +101,7 @@ const checkoutPageLoad = async (req, res, next) => {
                     discountPrice: productPrice,
                     brand: item.product.brand,
                     price: item.product.price,
+                    size: item.product.size,
                     category: item.product.category,
                     discount: item.product.discount,
                     image: item.product.image,
@@ -121,9 +123,125 @@ const checkoutPageLoad = async (req, res, next) => {
     }
 }
 
+const createOrder = async (req, res, next) => {
+    try {
+        if (!req.session || !req.session.userId) {
+            return res.status(403).json({ message: "User is not authenticated." });
+        }
+
+        const userId = req.session.userId;
+        const { addressId, paymentMethod } = req.body;
+
+        // Retrieve user address
+        const userAddress = await Address.findById(addressId);
+        if (!userAddress) {
+            return res.status(404).json({ message: "Address not found." });
+        }
+
+        // Retrieve the cart items for the user
+        const cart = await Cart.findOne({ userId: userId }).populate('cartItems.productId');
+        if (!cart || cart.cartItems.length === 0) {
+            return res.status(400).json({ message: "Your cart is empty." });
+        }
+
+        // Check stock for each product in the cart
+        for (let item of cart.cartItems) {
+            const product = item.productId;
+            if (!product || product.inStock < item.quantity) {
+                return res.status(403).json({ message: `Product ${product.name} is out of stock!` });
+            }
+        }
+
+        // Check payment method constraints
+        if (paymentMethod === 'COD' && req.session.totalAmount > 1000) {
+            return res.status(403).json({ message: "COD only available for products below ₹1000!" });
+        }
+
+        // Calculate total amount
+        const totalAmount = cart.cartItems.reduce((acc, item) => {
+            const product = item.productId;
+            return acc + item.quantity * product.discountPrice;
+        }, 0) + 40; // Add shipping cost
+
+        const orderItems = cart.cartItems.map(item => {
+            const product = item.productId;
+            return {
+                productId: product._id,
+                quantity: item.quantity,
+                productName: product.name,
+                brandId: product.brandId,
+                model: product.model,
+                description: product.description,
+                price: product.price,
+                discountPrice: product.discountPrice,
+                discount: product.discount,
+                image: product.image
+            };
+        });
+
+        const order = new OrderModel({
+            userId: userId,
+            orderItems: orderItems,
+            paymentMethod: paymentMethod,
+            address: {
+                Name: userAddress.name,
+                email: userAddress.email,
+                Mobile: userAddress.Mobile,
+                PIN: userAddress.PIN,
+                street: userAddress.street,
+                address: userAddress.address,
+                city: userAddress.city,
+                state: userAddress.state,
+                country: userAddress.country,
+                landmark: userAddress.landmark,
+                is_Home: userAddress.is_Home,
+                is_Work: userAddress.is_Work
+            },
+            totalAmount: totalAmount,
+            orderStatus: paymentMethod === 'COD' ? "order confirmed" : "pending" // Adjust based on payment method
+        });
+
+        if (req.session.coupen && req.session.coupenId) {
+            order.coupenId = req.session.coupenId;
+        }
+
+        await order.save();
+
+        // Update stock for each product
+        for (let item of cart.cartItems) {
+            await Products.findByIdAndUpdate(item.productId, {
+                $inc: { inStock: -item.quantity },
+                $set: { popularProduct: true }
+            });
+        }
+
+        // Clear the cart after order is placed
+        await Cart.findOneAndDelete({ userId: userId });
+
+        return res.json({
+            success: true,
+            message: "Order created successfully.",
+            orderId: order._id
+        });
+    } catch (error) {
+        console.error('Create Order Failed:', error);
+        next(error);
+    }
+};
+
+const adminOrderPageLoad = async(req,res, next) => {
+    try {
+        res.render('adminOrderManage')
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 
 module.exports = {
     ordersPageLoad,
     checkoutPageLoad,
+    createOrder,
+    adminOrderPageLoad
 
 }

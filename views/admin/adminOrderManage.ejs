@@ -1,4 +1,6 @@
+<%- include('../layouts/adminOrderManageHeader') %>
 <%- include('../layouts/addProductHeader') %>
+
 <nav class="t-header">
   <div class="t-header-brand-wrapper">
     <a href="/admin/dashboard">
@@ -231,6 +233,9 @@
         </a>
         <ul class="collapse navigation-submenu" id="products">
           <li>
+            <a href="pages/ui-components/buttons.html">Product Unlisted</a>
+          </li>
+          <li>
             <a href="/admin/productManage">Product Listed</a>
           </li>
           <li>
@@ -287,155 +292,113 @@
   </li>
     </ul>
   </div>
-  <!-- partial -->
-      <div class="page-content-wrapper">
-        <div class="page-content-wrapper-inner">
+ 
+    <div class="page-content-wrapper">
+      <div class="page-content-wrapper-inner">
+         <div class="col-12 pb-3">
+                    <h4>Add Products</h4>
+                    <p class="text-gray">Please enter the details of products to add</p>
+                  </div>
           <div class="content-viewport">
-            <div class="row">
-              <div class="col-6 pb-3">
-                <h4>Product Listed</h4>
-                <p class="text-gray">Here are the products listed</p>
+              <div class="row">
+                  <div class="col-12">
+                      <div class="grid">
+                        <div class="col-md-3">
+                          <form class="form-inline" action="#" method="get">
+                              <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Search by Order ID">
+                                  <div class="input-group-append">
+                                      <button class="btn btn-primary" type="submit">Search</button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                          <div class="grid-body">
+                              <div class="item-wrapper">
+                                  <div class="table-responsive">
+                                      <table class="table info-table align-center">
+                                          <thead>
+                                              <tr>
+                                                  <th>Product</th>
+                                                  <th>Order ID</th>
+                                                  <th>Customer</th>
+                                                  <th style="text-align: center;">Date</th>
+                                                  <th>Status</th>
+                                                  <th>Price</th>
+                                                  <th>Details</th>
+                                                  <th style="text-align: center;">Actions</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr>
+                                                  <td>Product 1</td>
+                                                  <td>ORD123456</td>
+                                                  <td>John Doe</td>
+                                                  <td>2024-07-31</td>
+                                                  <td>Pending</td>
+                                                  <td>$100.00</td>
+                                                  <td class="text-center">
+                                                      <a href="#" class="btn btn-sm " style="background-color: #EDEDED; color: black;">View</a>
+                                                  </td>
+                                                  <td>
+                                                      <a href="#" class="btn btn-sm" style="background-color: #007AFF; color: white;">Edit</a>
+                                                      <a href="#" class="btn btn-sm" style="background-color: #FF453A; color: white;">Cancel</a>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Product 2</td>
+                                                  <td>ORD123457</td>
+                                                  <td>Jane Smith</td>
+                                                  <td>2024-07-30</td>
+                                                  <td>Shipped</td>
+                                                  <td>$150.00</td>
+                                                  <td class="text-center">
+                                                      <a href="#" class="btn btn-sm" style="background-color: #EDEDED; color:black">View</a>
+                                                  </td>
+                                                  <td>
+                                                      <a href="#" class="btn btn-sm" style="background-color: #007AFF; color: white;">Edit</a>
+                                                      <a href="#" class="btn btn-sm" style="background-color: #FF453A; color: white;">Cancel</a>
+                                                  </td>
+                                              </tr>
+                                              <!-- Add more rows as needed -->
+                                          </tbody>
+                                      </table>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-md-3">
+                                          <p class="text-gray">Showing 1 to 10 of 100 entries</p>
+                                      </div>
+                                      <div class="col-md-9">
+                                          <nav aria-label="Page navigation">
+                                              <ul class="pagination justify-content-end">
+                                                  <li class="page-item">
+                                                      <a class="page-link" href="#" aria-label="Previous">
+                                                          <span aria-hidden="true">&laquo;</span>
+                                                      </a>
+                                                  </li>
+                                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                  <li class="page-item">
+                                                      <a class="page-link" href="#" aria-label="Next">
+                                                          <span aria-hidden="true">&raquo;</span>
+                                                      </a>
+                                                  </li>
+                                              </ul>
+                                          </nav>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <div class="col-6 pb-3 d-flex justify-content-end align-items-center">
-                <button class="btn add-btn d-flex align-items-center justify-content-center" style="width: 150px; height: 40px;">
-                  <lord-icon
-                    src="https://cdn.lordicon.com/hqymfzvj.json"
-                    trigger="hover"
-                    colors="primary:#000000"
-                    style="width:25px;height:25px">
-                  </lord-icon>
-                  <a href="/admin/addProduct">
-                  <span class="ml-2" style="font-size: 13px; color: black; font-weight: 500;">Add more</span></a>
-                </button>
-              </div>
-            </div>
-     <!-- Product listing -->
-     <table class="table table-striped">
-      <thead>
-          <tr class="table-info">
-              <th scope="col">No:</th> 
-              <th scope="col">Image</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Brand</th>
-              <th scope="col">Stock</th>
-              <th scope="col">Price</th>
-              <th scope="col">Discount</th>
-              <th scope="col">Action</th>
-          </tr>
-      </thead>
-      <tbody>
-          <% if (product.length > 0) { %>
-              <% for(let i = 0; i < product.length; i++) { %>
-                  <tr>
-                      <td><%= i + 1 %></td> <!-- Display product number -->
-                      <td><img style="height: 70px; width: 70px;" src="/assets/img/brands/<%= product[i].image[0] %>" alt="Image"></td>
-                      <td><%= product[i].productName %></td>
-                      <td><%= product[i].brand %></td>
-                      <% if(product[i].inStock > 0) { %>
-                          <td><%= product[i].inStock %></td>
-                      <% } else { %>
-                          <td><p class="text-danger">Out of Stock</p></td>
-                      <% } %>
-                      <td>₹ <%= product[i].discountPrice %></td>
-                      <td class="text-success"><%= product[i].discount %> %</td>
-                      <% if(product[i].isDeleted) { %>
-                          <td>
-                              <button type="button" class="btn btn-success relist-button" style="background-color: #5db65e;" data-product-id="<%= product[i]._id %>">
-                                  List
-                              </button>
-                          </td>
-                      <% } else { %>
-                          <td>
-                              <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-primary w-25 p-0 h-25 me-2"  style="width: 50px;">
-                                  <i class="fas fa-edit"></i> Edit
-                              </a>
-                              <button type="button" class="btn btn-outline-danger unlist-button" data-product-id="<%= product[i]._id %>">
-                                  Unlist 
-                              </button>
-                          </td>
-                      <% } %>
-                  </tr>
-              <% } %>
-          <% } else { %>
-              <tr>
-                  <td colspan="8" class="text-center">
-                      <h3>No Products Found</h3>
-                  </td>
-              </tr>
-          <% } %>
-      </tbody>
-  </table>
-  
-    <!-- partial -->
+
+              <%- include('../layouts/addBrandsFooter') %>
+
+          </div>
+      </div>
   </div>
-  <!-- page content ends -->
 </div>
-<!--page body ends -->
-<script>
- document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll(".relist-button").forEach(button => {
-    button.addEventListener("click", function() {
-      const productId = button.getAttribute("data-product-id");
-      listAndUnlistProduct(productId, true);
-    });
-  });
-
-  document.querySelectorAll(".unlist-button").forEach(button => {
-    button.addEventListener("click", function() {
-      const productId = button.getAttribute("data-product-id");
-      listAndUnlistProduct(productId, false);
-    });
-  });
-});
-
-function listAndUnlistProduct(productId, status) {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: status ? "Yes, List Product!" : "Yes, Unlist Product!",
-    cancelButtonText: "No, cancel!",
-    reverseButtons: true
-  }).then((result) => {
-    if (result.isConfirmed) {
-      fetch(`/admin/listAndUnlistProduct?id=${productId}`, {
-        method: 'GET'
-      })
-      .then(response => {
-        if (response.ok) {
-          Swal.fire({
-            title: status ? "Product Listed!" : "Product Unlisted!",
-            text: status ? "The Product has been listed." : "The Product has been unlisted.",
-            icon: "success"
-          }).then(() => {
-            window.location.reload();
-          });
-        } else {
-          Swal.fire({
-            title: "Error",
-            text: "An error occurred while changing the product status.",
-            icon: "error"
-          });
-        }
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        Swal.fire({
-          title: "Error",
-          text: "An error occurred while changing the product status.",
-          icon: "error"
-        });
-      });
-    }
-  });
-}
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
-<%- include('../layouts/dashboardFooter') %>
-<%- include('../layouts/addBrandsFooter') %>

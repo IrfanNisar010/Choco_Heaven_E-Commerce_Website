@@ -458,12 +458,36 @@
             placeholder="Stock"
           />
           </div>
-
           <label for="description" class="form-label">Description</label>
 
           <div class="input-group input-group-merge speech-to-text">
             <input class="form-control" id="description" value="<%= product.description %>" name="description" placeholder="Luxury brands handcrafted" rows="2"></input>
           </div>
+          <div class="mb-3 col-md-6 mt-3">
+            <div class="form-check">
+                <input
+                    type="radio"
+                    class="form-check-input"
+                    id="bestSellerProduct"
+                    name="productType"
+                    value="bestSellerProduct"
+                />
+                <label for="bestSellerProduct" class="form-check-label">Best seller</label>
+            </div>
+        </div>
+        <div class="mb-3 col-md-6 mt-3">
+            <div class="form-check">
+                <input
+                    type="radio"
+                    class="form-check-input"
+                    id="popularProduct"
+                    name="productType"
+                    value="popularProduct"
+                />
+                <label for="popularProduct" class="form-check-label">Popular product</label>
+            </div>
+        </div>
+        
         <div class="mt-2">
           <button type="submit"  id="sbmtbtn" class="btn btn-primary me-2">Add product</button>
           <button type="button" onclick="clearForm()" class="btn btn-outline-secondary">Cancel</button>
@@ -534,21 +558,17 @@ function resetImages() {
 }
 
 function calculateDiscount() {
-    const discountPrice = parseFloat(document.getElementById('discountPrice').value);
-    const discount = parseFloat(document.getElementById('discount').value);
-
-    if (isNaN(discountPrice) || isNaN(discount) || discountPrice <= 0 || discount < 0) {
-        document.getElementById('discount').value = '';
-        return;
+    var OriginalPriceInput = document.getElementById('mrp').value;
+    var discountPriceInput = document.getElementById('discountPrice').value;
+    
+    var discountPrice = parseFloat(discountPriceInput);
+    var OriginalPrice = parseFloat(OriginalPriceInput);
+    
+    if (!isNaN(discountPrice) && !isNaN(OriginalPrice)) {
+        var discountPercentage = ((OriginalPrice - discountPrice) / OriginalPrice) * 100;
+        document.getElementById('discount').value = parseInt(discountPercentage);
     }
-
-    const discountPercentage = ((discountPrice - discount) / discountPrice) * 100;
-    document.getElementById('discount').value = discountPercentage.toFixed(2);
 }
-
-// Add an event listener to the original price field to recalculate the discount when the original price changes
-document.getElementById('discountPrice').addEventListener('keyup', calculateDiscount);
-
 function triggerInput(inputId) {
     document.getElementById(inputId).click();
 }

@@ -3,7 +3,9 @@ const nodemailer = require('nodemailer');
 const OTP = require('../models/Otp')
 const Address = require('../models/addressModel')
 const crypto = require('crypto');
+const Cart = require('../models/cartModel')
 const mailgen = require('mailgen');
+const cartController = require('../controllers/cartController');
 const bcrypt = require('bcrypt');
 const { default: mongoose } = require("mongoose");
 const { json } = require("express");
@@ -300,23 +302,27 @@ const resetPassword = async (req, res, next) => {
     }
 }
 
-
 const loadHome = async (req, res) => {
     try {
         let userId = req.session.userId ? req.session.userId : '';
-        const productData = await Products.find({ isDeleted: false }).sort({ createdAt: -1 })
-        const brandsData = await Brands.find({ isDeleted: false })
-        if (req.session.userId) {
+        const productData = await Products.find({ isDeleted: false })
+            .sort({ createdAt: -1 })
+            .populate('brandId', 'name');
+
+        let cartCount = userId ? await cartController.getCartCount(userId) : 0;
+
+        const brands = await Brands.find({}); // Fetch all brands
+
+        if (userId) {
             const userData = await User.findById({ _id: userId });
-            res.render('userHome', { user: userData, products: productData, brands: brandsData })
-        }
-        else {
-            res.render('userHome', { products: productData, brands: brandsData })
+            res.render('userHome', { user: userData, products: productData, cartCount, brands, isLoggedIn: true });
+        } else {
+            res.render('userHome', { products: productData, cartCount, brands, isLoggedIn: false });
         }
     } catch (error) {
         console.log(error.message);
     }
-}
+};
 
 const securePassword = async (password) => {
     try {
@@ -333,15 +339,22 @@ const loadShop = async (req, res) => {
         let userId = req.session.userId
 
         const productData = await Products.find({ isDeleted: false })
+            .sort({ createdAt: -1 })
+            .populate('brandId', 'name');
+            
         const brandsData = await Brands.find({ isDeleted: false })
         const allProduct = await Products.find({ isDeleted: false })
+        let cartCount = userId ? await cartController.getCartCount(userId) : 0;
+
+        const brands = await Brands.find({});
+
 
 
         if (req.session.userId) {
             const userData = await User.findById({ _id: userId })
-            res.render('shop', { user: userData, products: productData, brands:brandsData,allProduct })
+            res.render('shop', { user: userData, products: productData, brands:brandsData,allProduct, cartCount, brands,isLoggedIn: true })
         } else {
-            res.render('shop', { products: productData, allProduct, brands:brandsData, allProduct })
+            res.render('shop', { products: productData, allProduct, brands:brandsData, allProduct, cartCount,brands, isLoggedIn: false })
         }
 
     } catch (error) {
@@ -351,16 +364,24 @@ const loadShop = async (req, res) => {
 
 const loadProduct = async (req, res, next) => {
     try {
+        let userId = req.session.userId
         const id = req.query.id;
-        const productData = await Products.findOne({ _id: id, isDeleted: false });
-        const products = await Products.find({ isDeleted: false }); 
+        const productData = await Products.findOne({ _id: id, isDeleted: false })
+        .sort({ createdAt: -1 })
+        .populate('brandId', 'name');
+
+        const products = await Products.find({ isDeleted: false });
+        const brandsList = await Brands.find({ isDeleted: false }); 
+        let cartCount = userId ? await cartController.getCartCount(userId) : 0;
         let price = productData.discountPrice;
+
+        const brands = await Brands.find({});
 
         if (req.session.userId) {
             const userData = await User.findById({ _id: req.session.userId });
-            res.render('singleProduct', { user: userData, product: productData, price, products });
+            res.render('singleProduct', { user: userData, product: productData, brands:brandsList,brands, price, products, cartCount, isLoggedIn: true });
         } else {
-            res.render('singleProduct', { product: productData, price, products });
+            res.render('singleProduct', { product: productData,brands:brandsList, price,brands, products, cartCount, isLoggedIn: false });
         }
     } catch (error) {
         console.log(error.message);
@@ -506,7 +527,6 @@ const verifyLogin = async (req, res, next) => {
             const passwordMatch = await bcrypt.compare(password, userData.password);
             if (passwordMatch) {
                 if (userData.is_block === false) {
-                    // Set session data for logged in user
                     req.session.userId = userData._id;
                     return res.redirect('/home');
                 } else {
@@ -521,7 +541,7 @@ const verifyLogin = async (req, res, next) => {
 
     } catch (error) {
         console.log(error.message);
-        next(error); // Pass the error to the error-handling middleware
+        next(error); 
     }
 };
 

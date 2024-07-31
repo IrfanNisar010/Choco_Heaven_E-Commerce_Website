@@ -319,7 +319,7 @@ input {
 
 .sign-up-sign-up {
   flex-shrink: 0;
-  height: 100%;
+  height: 100vh;
   row-gap: 2px;
   background-color: rgba(250, 250, 250, 1);
   overflow: clip;
@@ -768,6 +768,7 @@ input {
 }
 
 .sign-up-t-button-2 {
+  cursor: pointer;
   padding-top: 22px;
   padding-right: 1px;
   align-self: stretch;

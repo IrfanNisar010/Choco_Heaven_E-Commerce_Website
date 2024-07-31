@@ -556,6 +556,7 @@
     right: -44px;
   }
   .list-add-cart-btn {
+    cursor: pointer;
     line-height: 45px;
     height: 45px;
     padding: 0 30px;

@@ -1,0 +1,45 @@
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.search-bar .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.search-bar .input-group-append .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.text-pending {
+  color: #f0ad4e !important; /* Replace with your custom color */
+}
+
+.text-delivered {
+  color: #5cb85c !important; /* Replace with your custom color */
+}
+
+.text-canceled {
+  color: #d9534f !important; /* Replace with your custom color */
+}
+
+.pagination .page-link {
+  color: #007bff;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #6c757d;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
