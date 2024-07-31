@@ -6,6 +6,7 @@ const admin_Route = express();
 const adminController = require('../controllers/adminController');
 const brandsController = require('../controllers/brandsController');
 const productController = require('../controllers/productController');
+const orderController = require('../controllers/orderController');
 
 const uploads = require('../middlewares/multer');
 
@@ -43,5 +44,8 @@ admin_Route.get('/listAndUnlistProduct', adminAuth.isLogin, productController.li
 admin_Route.get('/editProduct', adminAuth.isLogin, productController.editProductLoad)
 admin_Route.get('/removeProductImage', adminAuth.isLogin, productController.deleteImage)
 admin_Route.post('/editProduct', adminAuth.isLogin, uploads.productUpload, productController.editProduct)
+
+// Order Management Routes
+admin_Route.get('/orderManage', adminAuth.isLogin, orderController.adminOrderPageLoad)
 
 module.exports = admin_Route;

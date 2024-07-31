@@ -545,41 +545,32 @@
                             <p>Choose a payment method to continue Checkout.</p>
                             <div class="payment-options" id="paymentMethods">
                                 <div class="row">
-                                    <div class="col-6 p-0">
-                                        <div class="payment-option" id="buttonProceed">
+                                    <div class="col-4 p-0">
+                                        <div class="payment-option" id="razorPayOption">
                                             <input type="radio" id="razorPay" name="paymentMethod" value="RazorPay">
                                             <label for="razorPay">
                                                 <img src="/assets/img/logo/razroPay_img.png" alt="Payment Option 1" class="payment-image">
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6 p-0">
-                                        <div class="payment-option" id="upi">
+                                    <div class="col-4 p-0">
+                                        <div class="payment-option" id="upiOption">
                                             <input type="radio" id="upiPayment" name="paymentMethod" value="UPI">
                                             <label for="upiPayment">
                                                 <img src="/assets/img/logo/upi_img.png" alt="Payment Option 2" class="payment-image">
                                             </label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 p-0">
-                                        <div class="payment-option" id="cashOnDelivery">
-                                            <input type="radio" id="cashDelivery" name="paymentMethod" value="CashOnDelivery">
-                                            <label for="cashDelivery">
+                                    <div class="col-4 p-0">
+                                        <div class="payment-option" id="codOption">
+                                            <input type="radio" id="codPayment" name="paymentMethod" value="COD">
+                                            <label for="codPayment">
                                                 <img src="/assets/img/logo/cashondelivery_img.png" alt="Payment Option 3" class="payment-image">
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6 p-0">
-                                        <div class="payment-option" id="razaroPayment">
-                                            <input type="radio" id="visa" name="paymentMethod" value="Visa">
-                                            <label for="visa">
-                                                <img src="/assets/img/logo/visa_img.png" alt="Payment Option 4" class="payment-image">
-                                            </label>
-                                        </div>
-                                    </div>                          
-                                </div>
+                                </div>                                
+                                
                                 <input type="radio" id="wallet" name="paymentMethod" value="Wallet">
                                 <label for="wallet">Use Wallet</label>    
                             </div>                            
@@ -613,179 +604,187 @@
                             <button id="confirmOrderBtn" class="mt-20 btn btn-checkout w-100 d-block" style="height: 50px;">Place your Order</button>
                         </div>
                     </div>
-                    
+
+
+
                     <script>
-                    // Add new address
-                    document.getElementById('addNewAddressBtn').addEventListener('click', function() {
-                        var newAddressForm = document.getElementById('newAddressForm');
-                        if (newAddressForm.style.display === 'none') {
-                            newAddressForm.style.display = 'block';
-                        } else {
-                            newAddressForm.style.display = 'none';
-                        }
-                    });
-                    
-                    // Address form submission
-                    function AddAddressFormSubmit(event) {
-                        event.preventDefault();
-                        const index = '';
-                        if (!addressValidation(index)) {
-                            return;
-                        }
-                        const form = document.getElementById('myForm');
-                        const formData = new FormData(form);
-                        const url = '/addAddress'; 
-                    
-                        const jsonObject = {};
-                        formData.forEach((value, key) => {
-                            jsonObject[key] = value;
-                        });
-                    
-                        jsonObject.is_Home = document.getElementById('home').checked;
-                        jsonObject.is_Work = document.getElementById('work').checked;
-                    
-                        fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(jsonObject)
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                Swal.fire({
-                                    title: "New Address Added",
-                                    text: "New Address Added successfully!",
-                                    icon: "success"
-                                }).then(() => {
-                                    window.location.reload();
-                                });
+                        // Add new address
+                        document.getElementById('addNewAddressBtn').addEventListener('click', function() {
+                            var newAddressForm = document.getElementById('newAddressForm');
+                            if (newAddressForm.style.display === 'none') {
+                                newAddressForm.style.display = 'block';
                             } else {
-                                let message = document.getElementById('message');
-                                message.style.color = "red";
-                                message.innerText = `${data.message}`;
+                                newAddressForm.style.display = 'none';
                             }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
                         });
-                    }
-                    
-                    function highlightSelectedAddress(card, index) {
-                        // Remove selected class from all address cards
-                        document.querySelectorAll('.address-card').forEach(function(card) {
-                            card.classList.remove('selected');
-                            // Hide all 'Deliver Here' buttons
-                            card.querySelector('.genric-btn').style.display = 'none';
-                        });
-                    
-                        // Add selected class to the clicked card
-                        card.classList.add('selected');
-                    
-                        // Show the 'Deliver Here' button for the selected card
-                        document.getElementById('button' + index).style.display = 'block';
-                    }
-                    
-                    function showPaymentMethods(addressId) {
-                        document.getElementById('paymentMethods').style.display = 'block';
-                        console.log('Selected address: ' + addressId);
-                    }
-                    
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const paymentOptions = document.querySelectorAll('.payment-option');
-                    
-                        paymentOptions.forEach(option => {
-                            option.addEventListener('click', function() {
-                                paymentOptions.forEach(opt => opt.classList.remove('selected'));
-                                this.classList.add('selected');
+                        
+                        // Address form submission
+                        function AddAddressFormSubmit(event) {
+                            event.preventDefault();
+                            const index = '';
+                            if (!addressValidation(index)) {
+                                return;
+                            }
+                            const form = document.getElementById('myForm');
+                            const formData = new FormData(form);
+                            const url = '/addAddress'; 
+                        
+                            const jsonObject = {};
+                            formData.forEach((value, key) => {
+                                jsonObject[key] = value;
                             });
-                        });
-                    });
-                    
-                    function handlePaymentSelection() {
-                        const onlinePaymentRadio = document.getElementById('onlinePayment');
-                        const cashOnDeliveryRadio = document.getElementById('cashOnDelivery');
-                        const walletRadio = document.getElementById('wallet');
-                    
-                        const buttonProceed = document.getElementById('buttonProceed');
-                        const buttonConform = document.getElementById('buttonConform');
-                        const WalletButtonConform = document.getElementById('WalletButtonConform');
-                    
-                        if (onlinePaymentRadio.checked) {
-                            buttonProceed.style.display = 'block';
-                            buttonConform.style.display = 'none';
-                            WalletButtonConform.style.display = 'none';
-                        } else if (cashOnDeliveryRadio.checked) {
-                            buttonProceed.style.display = 'none';
-                            buttonConform.style.display = 'block';
-                            WalletButtonConform.style.display = 'none';
-                        } else if (walletRadio.checked) {
-                            buttonProceed.style.display = 'none';
-                            buttonConform.style.display = 'none';
-                            WalletButtonConform.style.display = 'block';
+                        
+                            jsonObject.is_Home = document.getElementById('home').checked;
+                            jsonObject.is_Work = document.getElementById('work').checked;
+                        
+                            fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(jsonObject)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: "New Address Added",
+                                        text: "New Address Added successfully!",
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });
+                                } else {
+                                    let message = document.getElementById('message');
+                                    message.style.color = "red";
+                                    message.innerText = `${data.message}`;
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
                         }
-                    }
+                        
+function highlightSelectedAddress(card, index) {
+    // Remove selected class from all address cards
+    document.querySelectorAll('.address-card').forEach(function(card) {
+        card.classList.remove('selected');
+        // Hide all 'Deliver Here' buttons
+        card.querySelector('.genric-btn').style.display = 'none';
+    });
+
+    // Add selected class to the clicked card
+    card.classList.add('selected');
+
+    // Show the 'Deliver Here' button for the selected card
+    document.getElementById('button' + index).style.display = 'block';
+}
+
+                        
+function showPaymentMethods(addressId) {
+    document.getElementById('paymentMethods').style.display = 'block';
+    console.log('Selected address: ' + addressId);
+}
+
+                        
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentOptions = document.querySelectorAll('.payment-option');
+
+    paymentOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            paymentOptions.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+});
+
+                        
+                        function handlePaymentSelection() {
+    const onlinePaymentRadio = document.getElementById('onlinePayment');
+    const cashOnDeliveryRadio = document.getElementById('cashOnDelivery');
+    const walletRadio = document.getElementById('wallet');
+
+    const buttonProceed = document.getElementById('buttonProceed');
+    const buttonConform = document.getElementById('buttonConform');
+    const WalletButtonConform = document.getElementById('WalletButtonConform');
+
+    if (onlinePaymentRadio.checked) {
+        buttonProceed.style.display = 'block';
+        buttonConform.style.display = 'none';
+        WalletButtonConform.style.display = 'none';
+    } else if (cashOnDeliveryRadio.checked) {
+        buttonProceed.style.display = 'none';
+        buttonConform.style.display = 'block';
+        WalletButtonConform.style.display = 'none';
+    } else if (walletRadio.checked) {
+        buttonProceed.style.display = 'none';
+        buttonConform.style.display = 'none';
+        WalletButtonConform.style.display = 'block';
+    }
+}
+
+//Confirm Order Script                        
+document.getElementById('confirmOrderBtn').addEventListener('click', function() {
+    Swal.fire({
+        title: "Confirm Order",
+        text: "Are you sure you want to place this order?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, place order",
+        cancelButtonText: "No, cancel",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const selectedAddressId = document.querySelector('input[name="address"]:checked').value;
+            const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            confirmOrder(selectedAddressId, selectedPaymentMethod);
+        } else {
+            console.log("Order canceled.");
+        }
+    });
+});
+
+function confirmOrder(addressId, paymentMethod) {
+    fetch('/createOrder', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ addressId, paymentMethod })
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => {
+                throw new Error(`HTTP error! Status: ${response.status}. Message: ${text}`);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                title: "Order Placed",
+                text: "Your Order is Confirmed",
+                icon: "success"
+            }).then(() => {
+                window.location.href = `/orderDetails?orderId=${data.orderId}`;
+            });
+        } else {
+            Swal.fire('Sorry', data.message, 'warning');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error', 'Network Error. Try again.', 'error');
+    });
+}
+
+</script>
+<script src="/js/countries.js"></script>
+<script src="/js/addressValidation.js"></script>                  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
                     
-                    document.getElementById('confirmOrderBtn').addEventListener('click', function() {
-                        Swal.fire({
-                            title: "Confirm Order",
-                            text: "Are you sure you want to place this order?",
-                            icon: "question",
-                            showCancelButton: true,
-                            confirmButtonText: "Yes, place order",
-                            cancelButtonText: "No, cancel",
-                            reverseButtons: true
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Logic to place the order
-                                console.log("Order confirmed and placed.");
-                            } else {
-                                console.log("Order canceled.");
-                            }
-                        });
-                    });
-
-                    // confirm Order
-                    document.getElementById('confirmOrderBtn').addEventListener('click', function() {
-                    const selectedAddressId = document.querySelector('input[name="address"]:checked').value;
-                    const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-                    confirmOrder(selectedAddressId, selectedPaymentMethod);
-                });
-
-                function confirmOrder(addressId, paymentMethod) {
-                fetch('/createOrder', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ addressId, paymentMethod })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            title: "Order Placed",
-                            text: "Your Order is Confirmed",
-                            icon: "success"
-                        }).then(() => {
-                            window.location.href = `/orderDetails?orderId=${data.orderId}`;
-                        });
-                    } else {
-                        Swal.fire('Sorry', data.message, 'warning');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    Swal.fire('Error', 'Network Error. Try again.', 'error');
-                });
-            }
-
-
-
-                    </script>
-                    <script src="/js/countries.js"></script>
-                    <script src="/js/addressValidation.js"></script>                  
-                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <%- include('../layouts/homeFooter') %>
