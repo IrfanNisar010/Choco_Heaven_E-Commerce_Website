@@ -366,231 +366,178 @@
           <div class="col-md-9 pl-0">
             <h4 class="col-md-6 profile-head p-0">Your Orders 🛍️</h4>
             <p class="col-md-6 p-head p-0">Here's your Orders summary.</p>
+        
+            <% if (orders.length > 0) { %>
+              <% orders.forEach((order, index) => { %>
+                  <h1>Order <%= (currentPage - 1) * 3 + index + 1 %></h1> <!-- Heading with order number -->
+                    <main class="frame-frame">
+                        <div class="frame-tt-order-id-334902461tframe-2610325frame">
+                            <section class="frame-t-order-id-334902461tframe-2610325frame d-flex justify-content-between">
+                                <%
+                                // Function to convert string to array, splice it, and join back to string
+                                function reduceOrderId(orderId, length) {
+                                    let arr = orderId.split(''); 
+                                    if (arr.length > length) {
+                                        arr.splice(length); 
+                                    }
+                                    return arr.join(''); 
+                                }
+        
+                                const shortenedOrderId = reduceOrderId(order._id.toString(), 10);
+                                %>
+                                <div class="frame-order-id">
+                                    Order ID: <%= shortenedOrderId %>
+                                </div>
+                                                          
+                                <div class="frame-t-frame-2610325frame">
+                                    <div class="frame-wrapper">
+                                        <div class="frame-frame-1">
+                                            <div class="frame-create-order"></div>
+                                            <div class="frame-t-invoice">
+                                                <div class="frame-invoice">Invoice</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="frame-wrapper-1">
+                                        <button class="frame-frame-2">
+                                            <div class="frame-t-track-order">
+                                                <div class="frame-track-order">Track Order</div>
+                                            </div>
+                                            <div class="frame-north-direction"></div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="frame-ttt-order-date-jun-262024line-8estimated-delivery-jul">
+                            <div class="frame-tt-order-date-jun-262024line-8estimated-delivery-jul d-flex justify-content-start">
+                                <div class="frame-t-order-date-jun-262024line">
+                                    <div class="frame-order-date-jun">Order date: <%= new Date(order.orderDate).toDateString() %></div>
+                                    <object data="/assets/Line.svg" class="frame-line"></object>
+                                </div>
+                                <div class="frame-estimated-delivery-jul">
+                                    Estimated delivery: 
+                                    <%
+                                        // Function to calculate estimated delivery date
+                                        function getEstimatedDeliveryDate(orderDate) {
+                                            const minDays = 5;
+                                            const maxDays = 7;
+                                            const randomDays = Math.floor(Math.random() * (maxDays - minDays + 1)) + minDays;
+                                            const estimatedDate = new Date(orderDate);
+                                            estimatedDate.setDate(estimatedDate.getDate() + randomDays);
+                                            return estimatedDate.toDateString();
+                                        }
+        
+                                        const estimatedDelivery = getEstimatedDeliveryDate(order.orderDate);
+                                    %>
+                                    <%= estimatedDelivery %>
+                                </div>                            
+                            </div>
+                        </div>
+                        <div class="frame-t-line">
+                            <object data="/assets/Line1.svg" class="frame-line-1"></object>
+                        </div>
+                        <% order.orderItems.forEach(item => { %>
+                        <div class="frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty">
+                            <section class="frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                <div class="frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                    <div class="p">
+                                        <div class="frame-product">
+                                            <img src="/assets/img/brands/<%= item.image[0] %>" loading="lazy" class="frame-jpg"/>
+                                        </div>
+                                    </div>
+                                    <div class="frame-tttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                        <div class="frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                            <div class="frame-t-whittakers-dark-ghana-fruit-nut-250g">
+                                                <div><%= item.productName %></div>
+                                                <div class="frame-g"><%= item.quantity %></div>
+                                            </div>
+                                            <div class="frame-t-99500tqty">
+                                                <div class="frame-component">₹<%= item.price %></div>
+                                                <div class="frame-t-qty">
+                                                    <div class="frame-qty">Qty: <%= item.quantity %></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <% }) %>
+                        <div class="frame-t-line-1">
+                            <object data="/assets/Line1.svg" class="frame-line-2"></object>
+                        </div>
+                        <div class="frame-tt-payment-delivery">
+                            <section class="frame-t-payment-delivery">
+                                <div class="frame-payment">Payment</div>
+                                <div class="frame-delivery">Delivery</div>
+                            </section>
+                        </div>
+                        <div class="frame-tttt-visa-56tframe-2610319address">
+                            <div class="frame-ttt-visa-56tframe-2610319address">
+                                <div class="frame-tt-visa-56tframe">
+                                    <div class="frame-t-visa-56tframe">
+                                        <div class="frame-visa"><%= order.paymentMethod %></div>
+                                        <div class="frame-t-frame">
+                                            <object data="/assets/img/logo/cashondelivery_img.png" class="frame-frame-3"></object>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="frame-address d-flex justify-content-end">Address</div>
+                            </div>
+                        </div>
+                        <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
+                            <div class="frame-kozhikode-skyline-apt"><%= order.address.street %>, <%= order.address.address %></div>
+                        </div>
+                        <div class="frame-t-kozhikode-in d-flex justify-content-end">
+                            <div class="frame-kozhikode-in"><%= order.address.city %>, <%= order.address.state %></div>
+                        </div>
+                        <div class="frame-t d-flex justify-content-end">
+                            <div class="frame-component-2 d-flex justify-content-end"><%= order.address.Mobile %></div>
+                        </div>
+                        <div class="frame-t-delivery-method d-flex justify-content-end">
+                            <div class="frame-delivery-method">Delivery method: Standard</div>
+                        </div>
+                        <div class="frame-t-line-1">
+                            <object data="/assets/Line1.svg" class="frame-line-2"></object>
+                        </div>
+                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end">
+                            <div class="frame-amount-payable-99000">Amount payable ₹<%= order.totalAmount %></div>
+                        </div>
+                    </main>
+                <% }) %>
+             <!-- Pagination Controls -->
+            <div class=" d-flex justify-content-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <% if (currentPage > 1) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    <% } %>
 
-        <div id="firejet-html-app">
-            <main class="frame-frame">
-              <div class="frame-tt-order-id-334902461tframe-2610325frame">
-                <section class="frame-t-order-id-334902461tframe-2610325frame d-flex justify-content-between">
-                  <div class="frame-order-id">Order ID: 334902461</div>
-                  <div class="frame-t-frame-2610325frame">
-                    <div class="frame-wrapper">
-                      <div class="frame-frame-1">
-                        <div class="frame-create-order"></div>
-                        <div class="frame-t-invoice">
-                          <div class="frame-invoice">Invoice</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="frame-wrapper-1">
-                      <button class="frame-frame-2">
-                        <div class="frame-t-track-order">
-                          <div class="frame-track-order">Track Order</div>
-                        </div>
-                        <div class="frame-north-direction"></div>
-                      </button>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div class="frame-ttt-order-date-jun-262024line-8estimated-delivery-jul" >
-                <div class="frame-tt-order-date-jun-262024line-8estimated-delivery-jul d-flex justify-content-start" >
-                  <div class="frame-t-order-date-jun-262024line">
-                    <div class="frame-order-date-jun">Order date: Jun 26, 2024</div>
-                    <object
-                      data="/assets/Line.svg"
-                      class="frame-line"
-                    ></object>
-                  </div>
-                  <div class="frame-estimated-delivery-jul">
-                    Estimated delivery: Jul 05, 2024
-                  </div>
-                </div>
-              </div>
-              <div class="frame-t-line">
-                <object
-                  data="/assets/Line1.svg"
-                  class="frame-line-1"
-                ></object>
-              </div>
-              <div class="frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty" >
-                <section class="frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty" >
-                  <div class="frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty" >
-                    <div class="frame-wrapper-2">
-                      <div class="frame-product">
-                        <img
-                          src="/assets/jpg.png"
-                          loading="lazy"
-                          class="frame-jpg"
-                        />
-                      </div>
-                    </div>
-                    <div class="frame-tttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty" >
-                      <div class="frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty" >
-                        <div class="frame-t-whittakers-dark-ghana-fruit-nut-250g">
-                          <div>Whittakers Dark Ghana Fruit &amp; Nut</div>
-                          <div class="frame-g">250g</div>
-                        </div>
-                        <div class="frame-t-99500tqty">
-                          <div class="frame-component">₹995.00</div>
-                          <div class="frame-t-qty">
-                            <div class="frame-qty">Qty: 1</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-t-product-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty" >
-                    <div class="frame-wrapper-3">
-                      <div class="frame-product-1">
-                        <img
-                          src="/assets/jpg-1.png"
-                          loading="lazy"
-                          class="frame-jpg-1"
-                        />
-                      </div>
-                    </div>
-                    <div class="frame-tttt-whittakers-berry-biscuit-bar-250g-t99500tqty" >
-                      <div class="frame-ttt-whittakers-berry-biscuit-bar-250g-t99500tqty" >
-                        <div class="frame-t-whittakers-berry-biscuit-bar-250g">
-                          <div class="frame-whittakers-berry-biscuit-bar">
-                            Whittakers Berry &amp; Biscuit Bar
-                          </div>
-                          <div class="frame-g-1">250g</div>
-                        </div>
-                        <div class="frame-t-99500tqty-1">
-                          <div class="frame-component-1">₹995.00</div>
-                          <div class="frame-t-qty-1">
-                            <div class="frame-qty-1">Qty: 1</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div class="frame-t-line-1">
-                <object
-                  data="/assets/Line1.svg"
-                  class="frame-line-2"
-                ></object>
-              </div>
-              <div class="frame-tt-payment-delivery">
-                <section class="frame-t-payment-delivery">
-                  <div class="frame-payment">Payment</div>
-                  <div class="frame-delivery">Delivery</div>
-                </section>
-              </div>
-              <div class="frame-tttt-visa-56tframe-2610319address">
-                <div class="frame-ttt-visa-56tframe-2610319address">
-                  <div class="frame-tt-visa-56tframe">
-                    <div class="frame-t-visa-56tframe">
-                      <div class="frame-visa">Visa**56</div>
-                      <div class="frame-t-frame">
-                        <object
-                          data="/assets/Frame.svg"
-                          class="frame-frame-3"
-                        ></object>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-address">Address</div>
-                </div>
-              </div>
-              <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
-                <div class="frame-kozhikode-skyline-apt">
-                  847 Kozhikode skyline Apt. 174
-                </div>
-              </div>
-              <div class="frame-t-kozhikode-in d-flex justify-content-end">
-                <div class="frame-kozhikode-in">Kozhikode, IN</div>
-              </div>
-              <div class="frame-t d-flex justify-content-end">
-                <div class="frame-component-2 d-flex justify-content-end ">9544675885</div>
-              </div>
-              <div class="frame-t-delivery-method d-flex justify-content-end">
-                <div class="frame-delivery-method">Delivery method</div>
-              </div>
-              <div class="frame-tt-razaro-pay d-flex justify-content-end">
-                <div class="frame-razaro-pay">Razaro Pay</div>
-              </div>
-              <div class="frame-t-line-2">
-                <object
-                  data="/assets/Line1.svg"
-                  class="frame-line-3"
-                ></object>
-              </div>
-              <div class="frame-tt-need-help-order-summary">
-                <div class="frame-t-need-help-order-summary">
-                  <div>
-                    <span>Need <span class="frame-text">help?</span></span>
-                  </div>
-                  <div>Order Summary</div>
-                </div>
-              </div>
-              <div class="frame-ttttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount" >
-                <section class="frame-tttt-help-order-issues-tttruck-delivery-info-ttsubtotal-199000tdiscount" >
-                  <div class="frame-ttt-help-order-issues-tttruck-delivery-info">
-                    <div class="frame-tt-help-order-issues">
-                      <div class="frame-t-help"><div class="frame-help"></div></div>
-                      <div>Order Issues</div>
-                    </div>
-                    <div class="frame-tt-truck-delivery-info">
-                      <div class="frame-t-truck"><div class="frame-truck"></div></div>
-                      <div>Delivery Info</div>
-                    </div>
-                  </div>
-                  <div class="frame-tt-subtotal-199000tdiscount">
-                    <div class="frame-t-subtotal">
-                      <div class="frame-subtotal">Subtotal</div>
-                      <div class="frame-component-3">₹1990.00</div>
-                    </div>
-                    <div class="frame-t-discount">
-                      <div class="frame-discount">Discount</div>
-                      <div class="frame-component-4">(20%)-₹200</div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div class="frame-tttt-return-purchase-returns-ttdelivery-info">
-                <section class="frame-ttt-return-purchase-returns-ttdelivery-info">
-                  <div class="frame-tt-return-purchase-returns">
-                    <div class="frame-t-return-purchase">
-                      <div class="frame-return-purchase"></div>
-                    </div>
-                    <div class="frame-returns">Returns</div>
-                  </div>
-                  <div class="frame-tt-delivery-info">
-                    <div class="frame-t-delivery-info">
-                      <div class="frame-delivery-1">Delivery</div>
-                      <div class="frame-info"></div>
-                    </div>
-                    <div class="frame-component-5">₹0.00</div>
-                  </div>
-                </section>
-              </div>
-              <div class="frame-ttt-tax-info-free">
-                <div class="frame-tt-tax-info-free">
-                  <div class="frame-t-tax-info">
-                    <div class="frame-tax">Tax</div>
-                    <div class="frame-info-1"></div>
-                  </div>
-                  <div class="frame-free">Free</div>
-                </div>
-              </div>
-              <div class="frame-t-line-3">
-                <object
-                  data="/assets/Line2.svg"
-                  class="frame-line-4"
-                ></object>
-              </div>
-              <div class="frame-tt-total">
-                <div class="frame-t-total">
-                  <div class="frame-total">Total</div>
-                  <div class="frame-component-6">₹1990.00</div>
-                </div>
-              </div>
-            </main>
+                    <% for (let i = 1; i <= totalPages; i++) { %>
+                        <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+
+                    <% if (currentPage < totalPages) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    <% } %>
+                </ul>
+            </nav>
           </div>
+        <% } else { %>
+            <div class="no-orders">No orders found.</div>
+        <% } %>
+    </div>  
 <script>
     function setActive(link) {
         const links = document.querySelectorAll('.sidebar .nav-link');

@@ -5,25 +5,46 @@ const Address = require('../models/addressModel')
 const Cart = require('../models/cartModel')
 const OrderModel = require('../models/orderModel')
 const Offer = require('../models/offerModel')
-const { default: mongoose } = require("mongoose");
+const { default: mongoose } = require('mongoose');
 const { render } = require('ejs')
 
 const ordersPageLoad = async (req, res, next) => {
     try {
-        const id = req.session.userId
-        const userData = await User.findById({ _id: id })
+        const id = req.session.userId;
+        const userData = await User.findById(id);
 
+        // Define the number of orders per page
+        const ordersPerPage = 3;
 
-        const totalProduct = await OrderModel.countDocuments()
+        // Get the current page number from the query parameters, default to 1 if not specified
+        const currentPage = parseInt(req.query.page) || 1;
 
-        const orders = await OrderModel.find({ userId: id }).sort({ orderDate: -1 })
-        
-        res.render('orderManage', { user: userData, orders})
+        // Calculate the total number of orders
+        const totalOrders = await OrderModel.countDocuments({ userId: id });
+
+        // Calculate the number of pages
+        const totalPages = Math.ceil(totalOrders / ordersPerPage);
+
+        // Fetch orders for the current page
+        const orders = await OrderModel.find({ userId: id })
+            .sort({ orderDate: -1 })
+            .populate('orderItems.productId')
+            .skip((currentPage - 1) * ordersPerPage)
+            .limit(ordersPerPage);
+
+        res.render('orderManage', {
+            user: userData,
+            orders,
+            currentPage,
+            totalPages
+        });
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
+
+
 
 const checkoutPageLoad = async (req, res, next) => {
     try {
@@ -168,7 +189,7 @@ const createOrder = async (req, res, next) => {
             return {
                 productId: product._id,
                 quantity: item.quantity,
-                productName: product.name,
+                productName: product.productName,
                 brandId: product.brandId,
                 model: product.model,
                 description: product.description,

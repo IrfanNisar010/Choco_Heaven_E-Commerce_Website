@@ -364,11 +364,11 @@
                             <% if(userAddress.length > 0) { %>
                                 <% for (let i = 0; i < userAddress.length; i++) { %>
                                     <div class="col-md-6 mb-3">
-                                        <div class="card address-card" onclick="highlightSelectedAddress(this, '<%= i %>')" style="cursor: pointer; border-radius: 12px;" onchange="toggleButtonVisibility('<%= i %>')">
+                                        <div class="card address-card" onclick="highlightSelectedAddress(this, '<%= i %>')" data-address-id="<%= userAddress[i]._id %>" style="cursor: pointer; border-radius: 12px;">
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <h5 class="card-title">
-                                                        <input type="radio" name="address" value="<%= userAddress[i]._id %>" id="address<%= i %>">
+                                                        <input type="radio" name="address" value="<%= userAddress[i]._id %>" id="address<%= i %>" style="display: none;">
                                                         <label for="address<%= i %>">
                                                             <% if (userAddress[i].is_Home) { %>
                                                                 Home
@@ -385,7 +385,7 @@
                                         </div>
                                     </div>
                                 <% } %>
-                            <% } %>
+                            <% } %>                            
                             <!-- Add new address -->
                             <div class="col-md-12 mb-3">
                                 <button class="frame-frame-1 mb-50" id="addNewAddressBtn" style="border: none; border-radius: 10px; width: 110px; align-items: center; height: 40px;">
@@ -545,35 +545,40 @@
                             <p>Choose a payment method to continue Checkout.</p>
                             <div class="payment-options" id="paymentMethods">
                                 <div class="row">
-                                    <div class="col-4 p-0">
-                                        <div class="payment-option" id="razorPayOption">
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="razorPayOption" data-payment-method="RazorPay">
                                             <input type="radio" id="razorPay" name="paymentMethod" value="RazorPay">
                                             <label for="razorPay">
                                                 <img src="/assets/img/logo/razroPay_img.png" alt="Payment Option 1" class="payment-image">
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-4 p-0">
-                                        <div class="payment-option" id="upiOption">
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="upiOption" data-payment-method="UPI">
                                             <input type="radio" id="upiPayment" name="paymentMethod" value="UPI">
                                             <label for="upiPayment">
                                                 <img src="/assets/img/logo/upi_img.png" alt="Payment Option 2" class="payment-image">
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-4 p-0">
-                                        <div class="payment-option" id="codOption">
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="codOption" data-payment-method="COD">
                                             <input type="radio" id="codPayment" name="paymentMethod" value="COD">
                                             <label for="codPayment">
                                                 <img src="/assets/img/logo/cashondelivery_img.png" alt="Payment Option 3" class="payment-image">
                                             </label>
                                         </div>
                                     </div>
-                                </div>                                
-                                
-                                <input type="radio" id="wallet" name="paymentMethod" value="Wallet">
-                                <label for="wallet">Use Wallet</label>    
-                            </div>                            
+                                    <div class="col-6 p-0">
+                                        <div class="payment-option" id="visaOption" data-payment-method="visa">
+                                            <input type="radio" id="visaPayment" name="paymentMethod" value="visa">
+                                            <label for="visaPayment">
+                                                <img src="/assets/img/logo/visa_img.png" alt="Payment Option 4" class="payment-image">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                                       
                             <h4 class="title">Order Summary</h4>
                             <% if (productData && productData.length > 0) { %> 
                             <table class="table table-cart-summary" style="font-family: Poppins;">
@@ -665,7 +670,7 @@
                             });
                         }
                         
-function highlightSelectedAddress(card, index) {
+                        function highlightSelectedAddress(card, index) {
     // Remove selected class from all address cards
     document.querySelectorAll('.address-card').forEach(function(card) {
         card.classList.remove('selected');
@@ -678,15 +683,16 @@ function highlightSelectedAddress(card, index) {
 
     // Show the 'Deliver Here' button for the selected card
     document.getElementById('button' + index).style.display = 'block';
+
+    // Select the corresponding hidden radio button
+    card.querySelector('input[type="radio"]').checked = true;
 }
 
-                        
 function showPaymentMethods(addressId) {
     document.getElementById('paymentMethods').style.display = 'block';
     console.log('Selected address: ' + addressId);
 }
 
-                        
 document.addEventListener('DOMContentLoaded', function() {
     const paymentOptions = document.querySelectorAll('.payment-option');
 
@@ -694,36 +700,13 @@ document.addEventListener('DOMContentLoaded', function() {
         option.addEventListener('click', function() {
             paymentOptions.forEach(opt => opt.classList.remove('selected'));
             this.classList.add('selected');
+
+            // Select the corresponding hidden radio button
+            this.querySelector('input[type="radio"]').checked = true;
         });
     });
 });
 
-                        
-                        function handlePaymentSelection() {
-    const onlinePaymentRadio = document.getElementById('onlinePayment');
-    const cashOnDeliveryRadio = document.getElementById('cashOnDelivery');
-    const walletRadio = document.getElementById('wallet');
-
-    const buttonProceed = document.getElementById('buttonProceed');
-    const buttonConform = document.getElementById('buttonConform');
-    const WalletButtonConform = document.getElementById('WalletButtonConform');
-
-    if (onlinePaymentRadio.checked) {
-        buttonProceed.style.display = 'block';
-        buttonConform.style.display = 'none';
-        WalletButtonConform.style.display = 'none';
-    } else if (cashOnDeliveryRadio.checked) {
-        buttonProceed.style.display = 'none';
-        buttonConform.style.display = 'block';
-        WalletButtonConform.style.display = 'none';
-    } else if (walletRadio.checked) {
-        buttonProceed.style.display = 'none';
-        buttonConform.style.display = 'none';
-        WalletButtonConform.style.display = 'block';
-    }
-}
-
-//Confirm Order Script                        
 document.getElementById('confirmOrderBtn').addEventListener('click', function() {
     Swal.fire({
         title: "Confirm Order",
@@ -735,8 +718,8 @@ document.getElementById('confirmOrderBtn').addEventListener('click', function() 
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            const selectedAddressId = document.querySelector('input[name="address"]:checked').value;
-            const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const selectedAddressId = document.querySelector('.address-card.selected').getAttribute('data-address-id');
+            const selectedPaymentMethod = document.querySelector('.payment-option.selected').getAttribute('data-payment-method');
 
             confirmOrder(selectedAddressId, selectedPaymentMethod);
         } else {
@@ -768,7 +751,7 @@ function confirmOrder(addressId, paymentMethod) {
                 text: "Your Order is Confirmed",
                 icon: "success"
             }).then(() => {
-                window.location.href = `/orderDetails?orderId=${data.orderId}`;
+                window.location.href = `/ordersManage?orderId=${data.orderId}`;
             });
         } else {
             Swal.fire('Sorry', data.message, 'warning');
