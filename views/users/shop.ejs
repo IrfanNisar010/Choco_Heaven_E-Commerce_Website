@@ -42,7 +42,7 @@
                         <div class="header-nav header-nav-2 pl-100">
                             <nav class="d-flex justify-content-center align-content-center"> 
                                 <ul>
-                                    <li><a href="javascript:void(0)" ><span>Home </span></a></li>
+                                    <li><a href="/home" ><span>Home </span></a></li>
                                     <li><a href="/loadShop" class="active"><span>Shop <i class="fas fa-angle-down"></i></span></a>
                                             <div class="submenu" style="border-radius: 13px;">
                                                 <ul>
@@ -106,12 +106,26 @@
                                         </lord-icon>
                                     </a>
                                 <% } %>                                
-                                <li><a href="javascript:void(0)"><lord-icon
-                                    src="https://cdn.lordicon.com/kkvxgpti.json"
-                                    trigger="hover"
-                                    colors="primary:#000000"
-                                    style="width:20px;height:20px">
-                                </lord-icon>
+                                <li>
+                                    <a href="javascript:void(0)" onclick="openSearchModal()">
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/kkvxgpti.json"
+                                            trigger="hover"
+                                            colors="primary:#000000"
+                                            style="width:20px;height:20px">
+                                        </lord-icon>
+                                    </a>
+                                </li>
+                                <!-- Search Modal -->
+                                <div id="search-modal" class="search-modal">
+                                    <div class="search-modal-content">
+                                        <span class="close" onclick="closeSearchModal()">&times;</span>
+                                        <form id="search-form" action="#">
+                                            <input type="text" name="search" id="search-input" placeholder="Search Products..." required>
+                                            <button type="submit">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
 
                                     <!-- search popup -->
                                     <div id="search-popup">
@@ -120,7 +134,7 @@
                                             src="https://cdn.lordicon.com/kkvxgpti.json"
                                             trigger="hover"
                                             colors="primary:#000000"
-                                            style="width:20px;height:20px">
+                                            style="width:21px;height:21px">
                                         </lord-icon>
                                         </div>
                                         <div class="search-popup-inner mt-135">
@@ -132,95 +146,24 @@
                                                 <ul class="text-center">
                                                     <li><a href="javascript:void(0)" class="active">All categories</a>
                                                     </li>
-                                                    <li><a href="javascript:void(0)">Clothing</a></li>
-                                                    <li><a href="javascript:void(0)">Gift Cards</a></li>
-                                                    <li><a href="javascript:void(0)">Handbag</a></li>
-                                                    <li><a href="javascript:void(0)">Kids</a></li>
-                                                    <li><a href="javascript:void(0)">Shoes</a></li>
-                                                    <li><a href="javascript:void(0)">Sneaker</a></li>
-                                                    <li><a href="javascript:void(0)">Women</a></li>
+
                                                 </ul>
 
                                                 <div class="search-form mt-35">
-                                                    <form action="#" method="post">
-                                                        <input type="text" placeholder="Search Products...">
+                                                    <form action="#" id="searchForm">
+                                                        <input type="text" value="<%= search %>" placeholder="Search Products..." id="searchInput">
                                                         <button type="submit"> <img src="/assets/Vector1.svg" style="width: 22px; height: 20px;"></button>                                                    </form>
-                                                </div>
-
-                                                <div class="search-result-list">
-                                                    <ul class="text-left">
-                                                        <li class="d-block d-flex align-items-center">
-                                                            <div class="search-result-img">
-                                                                <img src="/assets/img/product/1.jpg" class="w-100" alt="">
-                                                            </div>
-                                                            <div class="search-result-desc pl-10">
-                                                                <a href="/loadShop" class="title px-0">ELLE - Recliner syntheti
-                                                                    chair</a>
-                                                                <div class="price">$<span>399</span></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-block d-flex align-items-center">
-                                                            <div class="search-result-img">
-                                                                <img src="/assets/img/product/2.jpg" class="w-100" alt="">
-                                                            </div>
-                                                            <div class="search-result-desc pl-10">
-                                                                <a href="/loadShop" class="title px-0">RIMINI - Folding leather
-                                                                    deck chair</a>
-                                                                <div class="price">$<span>399</span></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-block d-flex align-items-center">
-                                                            <div class="search-result-img">
-                                                                <img src="/assets/img/product/3.jpg" class="w-100" alt="">
-                                                            </div>
-                                                            <div class="search-result-desc pl-10">
-                                                                <a href="/loadShop" class="title px-0">LANDSCAPE - Folding
-                                                                    fabric deck chair</a>
-                                                                <div class="price">$<span>399</span></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-block d-flex align-items-center">
-                                                            <div class="search-result-img">
-                                                                <img src="/assets/img/product/1.jpg" class="w-100" alt="">
-                                                            </div>
-                                                            <div class="search-result-desc pl-10">
-                                                                <a href="/loadShop" class="title px-0">ELLE - Recliner syntheti
-                                                                    chair</a>
-                                                                <div class="price">$<span>399</span></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-block d-flex align-items-center">
-                                                            <div class="search-result-img">
-                                                                <img src="/assets/img/product/2.jpg" class="w-100" alt="">
-                                                            </div>
-                                                            <div class="search-result-desc pl-10">
-                                                                <a href="/loadShop" class="title px-0">RIMINI - Folding leather
-                                                                    deck chair</a>
-                                                                <div class="price">$<span>399</span></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="d-block d-flex align-items-center">
-                                                            <div class="search-result-img">
-                                                                <img src="/assets/img/product/3.jpg" class="w-100" alt="">
-                                                            </div>
-                                                            <div class="search-result-desc pl-10">
-                                                                <a href="/loadShop" class="title px-0">LANDSCAPE - Folding
-                                                                    fabric deck chair</a>
-                                                                <div class="price">$<span>399</span></div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                                <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                         title="view wishlist"><lord-icon
                                         src="https://cdn.lordicon.com/xyboiuok.json"
                                         trigger="hover"
                                         colors="primary:#000000"
-                                        style="width:23px;height:23px">
+                                        style="width:23px;height:23px; padding-top: 2.5px;">
                                     </lord-icon></a></li>
                                     <li>
                                         <a href="/cart">
@@ -228,7 +171,7 @@
                                                 src="https://cdn.lordicon.com/mfmkufkr.json"
                                                 trigger="hover"
                                                 colors="primary:#000000"
-                                                style="width:23px;height:23px; padding-top: 4.2px;">
+                                                style="width:23px;height:23px; padding-top: 3.5px;">
                                             </lord-icon>
                                             <% if (isLoggedIn) { %>
                                                 <span id="cart-count"><%= cartCount %></span>
@@ -302,20 +245,20 @@
                                 </li> -->
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; margin-bottom: 5px;">
+                                        <img src="/assets/Icon4.svg" style="width: 30px; height: 28px;">
                                     </a>
                                     <ul class="submenu text-right">
                                         <% if (locals.user) { %>
                                             <li><a href="login.html">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
                                             <li><a href="login.html">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/login">Sign in</a></li>
                                         <% } %>
                                     </ul>
@@ -526,11 +469,10 @@
                                     <div class="sorting d-inline-block">
                                         <select name="sort" id="shop-sort">
                                             <option value="default">Default sorting</option>
-                                            <option value="default">Short by popularity</option>
-                                            <option value="default">Sort by average rating</option>
-                                            <option value="default">Sort by latest</option>
-                                            <option value="default">Sort by price: low to high</option>
-                                            <option value="default">Sort by price: high to low</option>
+                                            <option value="discountPrice-asc">Price: low to high</option>
+                                            <option value="discountPrice-desc">Price: high to low</option>
+                                            <option value="popularProduct-asc">Popularity: low to high</option>
+                                            <option value="popularProduct-desc">Popularity: high to low</option>
                                         </select>
                                     </div>
                                     <div class="filter">
@@ -604,7 +546,7 @@
                                 <div id="product-list">
                                     <% if (products.length > 0) { %>
                                     <div class="tab-pane fade show active" id="shop-tab-1">
-                                        <% for (let row = 0; row < 3; row++) { %>
+                                        <% for (let row = 0; row < Math.ceil(products.length / 4); row++) { %>
                                         <div class="product-wrapper mt-55">
                                             <div class="row">
                                                 <% for (let col = 0; col < 4; col++) { 
@@ -628,12 +570,34 @@
                                                                     <div class="categories">
                                                                         <a href="/singleProduct?id=<%= products[index]._id %>" class="product-category"><span><%= products[index].brandId ? products[index].brandId.name : 'Unknown Brand' %></span></a>
                                                                     </div>
-                                                                    <a href="wishlist.html" class="wishlist float-right"><span><i class="fas fa-heart"></i></span></a>
+                                                                    <a onclick="addToWishlist(event, '<%= products[index]._id %>')" class="wishlist float-right">
+                                                                    <span>
+                                                                        <% if (wishlistItems.includes(products[index]._id.toString())) { %>
+                                                                            <lord-icon
+                                                                            src="https://cdn.lordicon.com/xyboiuok.json"
+                                                                            trigger="in"
+                                                                            delay="1"
+                                                                            state="morph-heart"
+                                                                            colors="primary:#ee7c9b"
+                                                                            style="width:30px;height:30px">
+                                                                            </lord-icon>
+                                                                            <% } else { %>
+                                                                                <lord-icon
+                                                                                src="https://cdn.lordicon.com/xyboiuok.json"
+                                                                                    trigger="click"
+                                                                                    state="morph-heart"
+                                                                                    colors="primary:#ee7c9b"
+                                                                                    style="width:30px;height:30px">
+                                                                                </lord-icon>
+                                                                        <% } %>
+                                                                    </span>
+                                                                </a>
                                                                 </div>
                                                                 <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title"> <%= products[index].productName %></a>
                                                                 <div class="price-switcher">
                                                                     <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
-                                                                    <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">Add to cart</a>                                                                </div>
+                                                                    <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">Add to cart</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -643,15 +607,35 @@
                                         </div>
                                         <% } %>
                                     </div>
+                                    <% } else { %>
+                                    <p>No products found.</p>
                                     <% } %>
                                 </div>
-                                </div>
-
-                                         
-                                        <div class="text-center mt-20">
-                                           <a href="/loadShop" class="load-more">View more</a>
-                                        </div>
+                            </div>
+                        </div>
+                                <!-- Pagination Controls -->
+                                    <div class=" d-flex justify-content-center">
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination" id="pagination">
+                                                <% if (page > 1) { %>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page=<%= page - 1 %>">Previous</a>
+                                                    </li>
+                                                <% } %>
+                                                <% for (let i = 1; i <= totalPages; i++) { %>
+                                                    <li class="page-item <%= page == i ? 'active' : '' %>">
+                                                        <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                                                    </li>
+                                                <% } %>
+                                                <% if (page < totalPages) { %>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page=<%= page + 1 %>">Next</a>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        </nav>
                                     </div>
+                                </div>
                                 </div>
                                 <!-- <div class="tab-pane fade" id="shop-tab-2">
                                     <div class="product-wrapper mt-55">
@@ -1951,79 +1935,31 @@
    <div id="success-message-container"></div>
    <audio id="success-sound" src="/assets/addToCartSound.mp3" preload="auto"></audio>
    
-<script>
-  function toggleBrands(productId) {
-    var extraProducts = document.getElementById('extra-products');
-    if (extraProducts.style.display === 'none') {
-        extraProducts.style.display = 'block';
-    } else {
-        extraProducts.style.display = 'none';
-    }
-    var icon = document.querySelector(`[data-target="#collapse-${productId}"] .fas`);
-    icon.classList.toggle('fa-angle-right');
-    icon.classList.toggle('fa-angle-down');
-}
-
-$(function() {
-        $("#slider-range").slider({
-            range: true,
-            min: 0,
-            max: 5000,
-            values: [75, 5000],
-            slide: function(event, ui) {
-                $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
-            }
-        });
-        $("#amount").val("₹" + $("#slider-range").slider("values", 0) +
-            " - ₹" + $("#slider-range").slider("values", 1));
-    });
-
-    $("#price-filter-form").on("submit", function(event) {
-        event.preventDefault();
-        var minPrice = $("#slider-range").slider("values", 0);
-        var maxPrice = $("#slider-range").slider("values", 1);
-
-        filterProductsByPrice(minPrice, maxPrice);
-    });
-
-    function filterProductsByPrice(minPrice, maxPrice) {
-        $(".product-box").each(function() {
-            var price = parseFloat($(this).find(".price").text().replace('₹', ''));
-            if (price >= minPrice && price <= maxPrice) {
-                $(this).parent().show();
-            } else {
-                $(this).parent().hide();
-            }
-        });
-    }
-
-    // Alert message
-
-</script>
-
    
-    <!-- JS here -->
-    <script src="/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/isotope.pkgd.min.js"></script>
-    <script src="/js/one-page-nav-min.js"></script>
-    <script src="/js/slick.min.js"></script>
-    <script src="/js/jquery.meanmenu.min.js"></script>
-    <script src="/js/ajax-form.js"></script>
-    <script src="/js/fontawesome.min.js"></script>
-    <script src="/js/wow.min.js"></script>
-    <script src="/js/jquery-ui.js"></script>
-    <script src="/js/jquery.scrollUp.min.js"></script>
-    <script src="/js/imagesloaded.pkgd.min.js"></script>
-    <script src="/js/jquery.magnific-popup.min.js"></script>
-    <script src="/js/plugins.js"></script>
-    <script src="/js/helperFunctions.js"></script>
-    <script src="/js/main.js"></script>
-      <!-- jQuery -->
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <!-- jQuery UI -->
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+   
+   <!-- JS here -->
+   <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+   <script src="/js/popper.min.js"></script>
+   <script src="/js/bootstrap.min.js"></script>
+   <script src="/js/owl.carousel.min.js"></script>
+   <script src="/js/isotope.pkgd.min.js"></script>
+   <script src="/js/one-page-nav-min.js"></script>
+   <script src="/js/slick.min.js"></script>
+   <script src="/js/jquery.meanmenu.min.js"></script>
+   <script src="/js/ajax-form.js"></script>
+   <script src="/js/fontawesome.min.js"></script>
+   <script src="/js/wow.min.js"></script>
+   <script src="/js/jquery-ui.js"></script>
+   <script src="/js/jquery.scrollUp.min.js"></script>
+   <script src="/js/imagesloaded.pkgd.min.js"></script>
+   <script src="/js/jquery.magnific-popup.min.js"></script>
+   <script src="/js/plugins.js"></script>
+   <script src="/js/helperFunctions.js"></script>
+   <script src="/js/main.js"></script>
+   <!-- jQuery -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!-- jQuery UI -->
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+   <script src="/js/shopScript.js"></script>
 </body>
 </html>

@@ -191,7 +191,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                                <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                         title="view wishlist"><lord-icon
                                         src="https://cdn.lordicon.com/xyboiuok.json"
                                         trigger="hover"
@@ -278,13 +278,13 @@
                                             <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
                                             <li><a href="/login">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/login">Sign in</a></li>
                                         <% } %>
                                     </ul>
@@ -446,19 +446,21 @@
                                         <tbody>
                                             <tr>
                                                 <th class="cart-summary-title">Total MRP</th>
-                                                <td class="cart-summary-price p-0 total-mrp" id="total-mrp">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].price, 0) %></td>
+                                                <td class="cart-summary-price p-0 total-mrp" id="total-mrp">₹ <%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].price, 0) %>
+                                            </td>
                                             </tr>
                                             <tr class="border-bottom">
                                                 <th class="cart-summary-title">Discount</th>
-                                                <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);" id="discount">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * (cartItem.productDetails[0].price - cartItem.productDetails[0].discountPrice), 0) %></td>
-                                            </tr>
+                                                <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);" id="discount">₹ <%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * (cartItem.productDetails[0].price - cartItem.productDetails[0].discountPrice), 0) %> 
+                                            </td>
+                                            </tr>                                            
                                             <tr>
                                                 <th class="cart-summary-title pb-10">Shipping <p>(4-6 Business days)</p></th>
                                                 <td class="cart-summary-price p-0 shipping">₹40</td>
                                             </tr>
                                             <tr>
                                                 <th class="cart-summary-title pb-10">Tax <p>(estimated for India (IN))</p></th>
-                                                <td class="cart-summary-price p-0">₹0</td>
+                                                <td class="cart-summary-price p-0">18%</td>
                                             </tr>
                                             <tr class="border-bottom">
                                                 <th class="cart-summary-title pb-10">Subtotal</th>
@@ -512,7 +514,7 @@
                                                 <li><a href="login.html">My account</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
                                                 <li><a href="/loadShop">Shop</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="/wishlist">Wishlist</a></li>
                                                 <li><a href="question.html">Frequently</a></li>
                                             </ul>
                                         </div>
@@ -753,8 +755,12 @@ function updateQuantity(productId, change) {
 
             document.getElementById(`quantity${productId}`).innerText = newQuantity;
             document.getElementById(`price${productId}`).innerText = `₹ ${newPrice}`;
-            updateTotalPrice(response.savedCart.cartItems); // Update total price
 
+            // Update total price, subtotal, total MRP, and total discount
+            updateTotalPrice(response.savedCart.cartItems);
+            updateSubtotal(response.savedCart.cartItems);
+            updateTotalMRP(response.savedCart.cartItems);
+            updateTotalDiscount(response.savedCart.cartItems);
         },
         error: function (error) {
             console.error('Error updating quantity:', error);
@@ -766,12 +772,44 @@ function updateQuantity(productId, change) {
 
 function updateTotalPrice(cartItems) {
     let totalPrice = 0;
+    const shippingCost = 40;
+
     cartItems.forEach(item => {
         const itemPrice = parseFloat(document.getElementById(`price${item.productId}`).dataset.price);
-        totalPrice += item.quantity * itemPrice;
+        const itemTotal = item.quantity * itemPrice;
+        const itemTax = itemTotal * 0.18; // Calculate 18% tax
+        totalPrice += itemTotal + itemTax;
     });
-    document.getElementById('totalPrice').innerText = `₹ ${totalPrice}`;
+
+    totalPrice += shippingCost; 
+
+    document.getElementById('totalPrice').innerText = `₹ ${totalPrice.toFixed(2)}`;
 }
+
+
+function updateSubtotal(cartItems) {
+    let subtotal = 0;
+    cartItems.forEach(item => {
+        const itemPrice = parseFloat(document.getElementById(`price${item.productId}`).dataset.price);
+        subtotal += item.quantity * itemPrice;
+    });
+    document.getElementById('Subtotal').innerText = `₹ ${subtotal}`;
+}
+
+function updateTotalMRP(cartItems) {
+    let totalMRP = 0;
+    totalMRP = cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * cartItem.productDetails[0].price, 0);
+    document.getElementById('total-mrp').innerText = `₹ ${totalMRP}`;
+}
+
+function updateTotalDiscount(cartItems) {
+    let totalDiscount = 0;
+    totalDiscount = cartItems.reduce((acc, cartItem) => 
+        acc + cartItem.quantity * (cartItem.productDetails[0].price - cartItem.productDetails[0].discountPrice), 0
+    );
+    document.getElementById('discount').innerText = `₹ ${totalDiscount}`;
+}
+
 
 document.querySelectorAll('.remove-from-cart a').forEach(button => {
     button.addEventListener('click', confirmRemoveFromCart);

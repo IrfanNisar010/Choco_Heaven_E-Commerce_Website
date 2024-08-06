@@ -190,7 +190,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                            <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                     title="view wishlist"><lord-icon
                                     src="https://cdn.lordicon.com/xyboiuok.json"
                                     trigger="hover"
@@ -277,13 +277,13 @@
                                         <li><a href="/profileDetails">My profile</a></li>
                                         <li><a href="checkout.html">My address</a></li>
                                         <li><a href="/loadShop">Orders</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/wishlist">Wishlist</a></li>
                                         <li><a href="/logout">logout</a></li>
                                     <% } else { %>
                                         <li><a href="/login">My profile</a></li>
                                         <li><a href="checkout.html">My address</a></li>
                                         <li><a href="/loadShop">Orders</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/wishlist">Wishlist</a></li>
                                         <li><a href="/login">Sign in</a></li>
                                     <% } %>
                                 </ul>
@@ -354,7 +354,10 @@
                         <a class="nav-link" href="/addressManage" onclick="setActive(this)">Address</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/accountDetails" onclick="setActive(this)">Wishlist</a>
+                        <a class="nav-link" href="/wishlist" onclick="setActive(this)">Wishlist</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/coupon" onclick="setActive(this)">Coupons</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
                         <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>

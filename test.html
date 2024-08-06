@@ -1,114 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Slider</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="test.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="test.css">
 </head>
 <body>
-  <div class="container mt-5">
-    <div id="cardSlider" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row">
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 1">
-              </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-custom" style="background-image: url('card-bg.jpg');">
+                    <div class="card-details">
+                        <div class="card-logo">VISA</div>
+                        <div class="card-number">4312 5673 3389 4400</div>
+                        <div class="card-name">Irfan Nisar</div>
+                        <div class="card-expiry">07/30</div>
+                    </div>
+                </div>
             </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 2">
-              </div>
+            <div class="col-md-4 mb-3">
+                <div class="balance-card shadow-custom">
+                    <div class="balance">₹2995.00</div>
+                </div>
             </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 3">
-              </div>
+            <div class="col-md-3 mb-3">
+                <div class="add-card shadow-custom">
+                    <div class="add-card-text">+ Add Card</div>
+                </div>
             </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 4">
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 5">
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 6">
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 7">
-              </div>
+        <div class="wallet-history">
+            <h2>Wallet history</h2>
+            <div class="history-item row mb-3">
+                <div class="col-auto">
+                    <img src="whittakers.png" alt="">
+                </div>
+                <div class="col">
+                    <div class="item-details">
+                        <div class="item-name">Whittakers Dark Ghana Fruit & Nut</div>
+                        <div class="item-weight">250g</div>
+                    </div>
+                </div>
+                <div class="col-auto text-right">
+                    <div class="item-price">-₹995.00</div>
+                    <div class="item-qty">Qty: 1</div>
+                </div>
             </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 8">
-              </div>
+            <div class="history-item row mb-3">
+                <div class="col-auto">
+                    <img src="ferrero_rocher.png" alt="">
+                </div>
+                <div class="col">
+                    <div class="item-details">
+                        <div class="item-name">Ferrero Rocher T30 375g</div>
+                        <div class="item-weight">375g</div>
+                    </div>
+                </div>
+                <div class="col-auto text-right">
+                    <div class="item-price">-₹2,155.00</div>
+                    <div class="item-qty">Qty: 1</div>
+                </div>
             </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 9">
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 10">
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 11">
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="card">
-                <img src="https://via.placeholder.com/150" class="card-img" alt="Image 12">
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <a class="carousel-control-prev" href="#cardSlider" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#cardSlider" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      $('#cardSlider').carousel({
-        interval: false,
-        wrap: true
-      });
-
-      $('.carousel-control-next').click(function(){
-        $('#cardSlider').carousel('next');
-      });
-
-      $('.carousel-control-prev').click(function(){
-        $('#cardSlider').carousel('prev');
-      });
-    });
-  </script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

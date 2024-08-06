@@ -5,6 +5,7 @@ const Address = require('../models/addressModel')
 const crypto = require('crypto');
 const Cart = require('../models/cartModel')
 const mailgen = require('mailgen');
+const Wishlist = require('../models/wishlistModel')
 const cartController = require('../controllers/cartController');
 const bcrypt = require('bcrypt');
 const { default: mongoose } = require("mongoose");
@@ -311,13 +312,19 @@ const loadHome = async (req, res) => {
 
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
 
+        let wishlistItems = [];
+        if (userId) {
+            const wishlist = await Wishlist.findOne({ userId: userId });
+            wishlistItems = wishlist ? wishlist.wishlistItems.map(item => item.toString()) : [];
+        }        
+
         const brands = await Brands.find({}); // Fetch all brands
 
         if (userId) {
             const userData = await User.findById({ _id: userId });
-            res.render('userHome', { user: userData, products: productData, cartCount, brands, isLoggedIn: true });
+            res.render('userHome', { user: userData, products: productData, cartCount, wishlistItems,brands, isLoggedIn: true });
         } else {
-            res.render('userHome', { products: productData, cartCount, brands, isLoggedIn: false });
+            res.render('userHome', { products: productData, cartCount, brands, wishlistItems, isLoggedIn: false });
         }
     } catch (error) {
         console.log(error.message);
@@ -336,31 +343,62 @@ const securePassword = async (password) => {
 }
 const loadShop = async (req, res) => {
     try {
-        let userId = req.session.userId
+        let userId = req.session.userId;
+        let { 
+            sort = "createdAt-desc",
+            page = 1,
+            search = ""
+        } = req.query;
 
-        const productData = await Products.find({ isDeleted: false })
-            .sort({ createdAt: -1 })
-            .populate('brandId', 'name');
-            
-        const brandsData = await Brands.find({ isDeleted: false })
-        const allProduct = await Products.find({ isDeleted: false })
+        const productPerPage = 6;
+        let sortQuery = {};
+        sort = sort.split('-');
+        sortQuery[sort[0]] = sort[1] == 'asc' ? 1 : -1;
+
+        let wishlistItems = [];
+        if (userId) {
+            const wishlist = await Wishlist.findOne({ userId: userId });
+            wishlistItems = wishlist ? wishlist.wishlistItems.map(item => item.toString()) : [];
+        }
+
+
+        const skip = (page - 1) * productPerPage;
+
+        let searchQuery = { isDeleted: false };
+        if (search) {
+            searchQuery = { 
+                ...searchQuery,
+                productName: { $regex: search, $options: "i" }
+            };
+        }
+
+        const totalProduct = await Products.countDocuments(searchQuery);
+        const totalPages = Math.ceil(totalProduct / productPerPage);
+
+        const productData = await Products.find(searchQuery)
+            .sort(sortQuery)
+            .populate('brandId', 'name')
+            .skip(skip)
+            .limit(productPerPage);
+
+        const brandsData = await Brands.find({ isDeleted: false });
+        const allProduct = await Products.find({ isDeleted: false });
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
 
         const brands = await Brands.find({});
 
-
-
         if (req.session.userId) {
-            const userData = await User.findById({ _id: userId })
-            res.render('shop', { user: userData, products: productData, brands:brandsData,allProduct, cartCount, brands,isLoggedIn: true })
+            const userData = await User.findById({ _id: userId });
+            res.render('shop', { user: userData, products: productData, brands: brandsData, allProduct, page, totalPages, wishlistItems,cartCount, brands, isLoggedIn: true, search });
         } else {
-            res.render('shop', { products: productData, allProduct, brands:brandsData, allProduct, cartCount,brands, isLoggedIn: false })
+            res.render('shop', { products: productData, allProduct, brands: brandsData, page, totalPages, cartCount, wishlistItems, brands, isLoggedIn: false, search });
         }
 
     } catch (error) {
         console.log(error.message);
     }
-}
+};
+
 
 const loadProduct = async (req, res, next) => {
     try {
@@ -370,7 +408,14 @@ const loadProduct = async (req, res, next) => {
         .sort({ createdAt: -1 })
         .populate('brandId', 'name');
 
+        let wishlistItems = [];
+        if (userId) {
+            const wishlist = await Wishlist.findOne({ userId: userId });
+            wishlistItems = wishlist ? wishlist.wishlistItems.map(item => item.toString()) : [];
+        }    
+
         const products = await Products.find({ isDeleted: false });
+        const popularProducts = await Products.find({ isDeleted: false, popularProduct: true });
         const brandsList = await Brands.find({ isDeleted: false }); 
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
         let price = productData.discountPrice;
@@ -379,9 +424,9 @@ const loadProduct = async (req, res, next) => {
 
         if (req.session.userId) {
             const userData = await User.findById({ _id: req.session.userId });
-            res.render('singleProduct', { user: userData, product: productData, brands:brandsList,brands, price, products, cartCount, isLoggedIn: true });
+            res.render('singleProduct', { user: userData, product: productData,popularProducts, wishlistItems, brands:brandsList,brands, price, products, cartCount, isLoggedIn: true });
         } else {
-            res.render('singleProduct', { product: productData,brands:brandsList, price,brands, products, cartCount, isLoggedIn: false });
+            res.render('singleProduct', { product: productData,brands:brandsList, popularProducts, wishlistItems,price,brands, products, cartCount, isLoggedIn: false });
         }
     } catch (error) {
         console.log(error.message);

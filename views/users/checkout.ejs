@@ -195,7 +195,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                                <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                         title="view wishlist"><lord-icon
                                         src="https://cdn.lordicon.com/xyboiuok.json"
                                         trigger="hover"
@@ -267,7 +267,7 @@
                                                 <a href="cart.html"
                                                     class="generic-btn black-hover-btn text-uppercase w-100 mb-20">View
                                                     cart</a>
-                                                <a href="checkout.html"
+                                                <a href="/addressManage"
                                                     class="generic-btn black-hover-btn text-uppercase w-100 mb-20">Checkout</a>
                                             </div>
                                         </div>
@@ -280,15 +280,15 @@
                                     <ul class="submenu text-right" style="border-radius: 13px;">
                                         <% if (locals.user) { %>
                                             <li><a href="/profileDetails">My profile</a></li>
-                                            <li><a href="checkout.html">My address</a></li>
+                                            <li><a href="/addressManage">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
                                             <li><a href="/login">My profile</a></li>
-                                            <li><a href="checkout.html">My address</a></li>
+                                            <li><a href="/addressManage">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/login">Sign in</a></li>
                                         <% } %>
                                     </ul>
@@ -608,11 +608,59 @@
                             <% } %>
                             <button id="confirmOrderBtn" class="mt-20 btn btn-checkout w-100 d-block" style="height: 50px;">Place your Order</button>
                         </div>
+                        <div class="col-xl-12 pt-50">
+                            <p>COUPONS</p>
+                            <div class="d-flex align-items-center w-100">
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/gfgzffjw.json"
+                                    trigger="loop"
+                                    delay="3000"
+                                    colors="primary:#000000"
+                                    style="width:20px;height:20px;">
+                                </lord-icon>
+                                <h5 style="margin-bottom: 0; padding-left: 20px;">Apply Coupons</h5>
+                                <button class="aply-coupon">Apply</button>
+                            </div>
+                            <div class="coupon-input-container">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="Coupon code">
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="submit-coupon rounded-circle">
+                                            <a href="">
+                                            <lord-icon
+                                                src="https://cdn.lordicon.com/vduvxizq.json"
+                                                trigger="hover"
+                                                state="hover-ternd-flat-3"
+                                                colors="primary:white"
+                                                style="width:20px;height:20px">
+                                            </lord-icon>
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="choose-coupon">If you don't have a coupon code, <a href="#">choose a coupon</a>.</p>
+                            </div>
+                        </div>                                          
                     </div>
+                    
 
 
 
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
                     <script>
+                        // Apple coupon div 
+                        document.querySelector('.aply-coupon').addEventListener('click', function() {
+                        var couponContainer = document.querySelector('.coupon-input-container');
+                        if (couponContainer.style.display === 'none' || couponContainer.style.display === '') {
+                            couponContainer.style.display = 'block';
+                        } else {
+                            couponContainer.style.display = 'none';
+                        }
+                    });
+
+
                         // Add new address
                         document.getElementById('addNewAddressBtn').addEventListener('click', function() {
                             var newAddressForm = document.getElementById('newAddressForm');
@@ -706,7 +754,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 document.getElementById('confirmOrderBtn').addEventListener('click', function() {
     Swal.fire({
         title: "Confirm Order",
@@ -746,13 +793,52 @@ function confirmOrder(addressId, paymentMethod) {
     })
     .then(data => {
         if (data.success) {
-            Swal.fire({
-                title: "Order Placed",
-                text: "Your Order is Confirmed",
-                icon: "success"
-            }).then(() => {
-                window.location.href = `/ordersManage?orderId=${data.orderId}`;
+            if (paymentMethod === "RazorPay") { // Ensure this matches the value sent from the frontend
+                const options = {
+                "key": data.key_id,
+                "amount": data.amount,
+                "currency": "INR",
+                "name": "Choco Heaven",
+                "description": "Transaction Description",
+                "image": "/assets/img/logo/logo1.png",
+                "order_id": data.razorpayOrderId,
+                "handler": function (response) {
+                    verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, data.orderId, response.razorpay_signature);
+                },
+                "prefill": {
+                    "name": "Customer Name",
+                    "email": "customer_email@example.com",
+                    "contact": "customer_phone"
+                },
+                "theme": {
+                    "color": "#ee7c9b"
+                },
+                "modal": {
+                    "ondismiss": function () {
+                        window.location.href = '/orders';
+                    }
+                }
+            };
+            var paymentGateway = new Razorpay(options);
+
+            paymentGateway.on('payment.failed', function (response) {
+                Swal.fire('Payment Failed', 'Your payment could not be processed. Please try again.', 'error')
+                .then(() => {
+                    window.location.href = '/orders';
+                });
             });
+
+            paymentGateway.open();
+
+            } else {
+                Swal.fire({
+                    title: "Order Placed",
+                    text: "Your Order is Confirmed",
+                    icon: "success"
+                }).then(() => {
+                    window.location.href = `/orderDetails?orderId=${data.orderId}`;
+                });
+            }
         } else {
             Swal.fire('Sorry', data.message, 'warning');
         }
@@ -762,6 +848,43 @@ function confirmOrder(addressId, paymentMethod) {
         Swal.fire('Error', 'Network Error. Try again.', 'error');
     });
 }
+
+function verifyPayment(paymentId,razorpay_order_id, placed_orderId, signature) {
+    fetch('/verifyPayment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+            paymentId: paymentId,
+            orderId: placed_orderId,
+            razorpaySignature: signature,
+            razorpay_order_id: razorpay_order_id
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                title: "Order Placed",
+                text: "Your Order is Confirmed",
+                icon: "success"
+            }).then(() => {
+                window.location.href = `/orderDetails?orderId=${placed_orderId}`; 
+            });
+        } else {
+            Swal.fire('Error', data.message, 'error')
+            .then(() => {
+                window.location.href = `/orders`; 
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error', 'Network Error. Try again.', 'error');
+    });
+}
+
 
 </script>
 <script src="/js/countries.js"></script>

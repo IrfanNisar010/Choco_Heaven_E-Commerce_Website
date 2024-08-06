@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .card, .balance-card, .add-card {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+  }
+  .card {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Default gradient if no image is specified */
+    background-size: cover; /* Ensures the image covers the entire card area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    border-radius: 10px; /* Ensures the background image follows the card's border radius */
+    position: relative;
+    overflow: hidden; /* Ensures the content doesn't overflow the card */
+  }
+  
+  .card .card-details {
+    position: relative;
+    z-index: 1;
+    padding: 15px; /* Adjust padding as needed */
+  }
+  
+  .card::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    z-index: 0;
+  }
+  .balance-card {
+    background: linear-gradient(to right, #ff512f, #dd2476); /* Default gradient if no image is specified */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-card {
+    width: 100px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    height: 180px;
+    margin: none; /* Center horizontally */
+  }
+  
+  .wallet-history h2 {
+    margin: 20px 0;
+    font-size: 24px;
+  }
+  
+  .history-item {
+    align-items: center;
+  }
+  
+  .history-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 10px;
+  }
+  
+  .item-details {
+    flex-grow: 1;
+  }
+  
+  .item-name {
+    font-size: 16px;
+  }
+  
+  .item-weight {
+    color: #888;
+  }
+  
+  .item-price {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .item-qty {
+    color: #888;
+  }
+  
+  /* Custom Shadow for Cards */
+  .shadow-custom {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  

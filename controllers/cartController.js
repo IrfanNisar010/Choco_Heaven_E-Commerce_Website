@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const Products = require('../models/productModel');
 const Brands = require('../models/brandsModel');
 const Cart = require('../models/cartModel');
+const Wishlist =  require('../models/wishlistModel')
 const mongoose = require("mongoose");
 
 const cartLoad = async (req, res, next) => {
@@ -175,10 +176,108 @@ const getCartCount = async (userId) => {
     }
 };
 
+const wishlistLoad = async (req, res, next) => {
+    try {
+        const userId = req.session.userId
+        const productId =  req.session.productId
+        const userData = await User.findById({ _id: userId })
+
+        const userWishlist = await Wishlist.aggregate([
+            { $match: { userId: new mongoose.Types.ObjectId(userId) } },
+            { $unwind: '$wishlistItems' },
+            {
+                $lookup: {
+                    from: "products",
+                    localField: "wishlistItems",
+                    foreignField: "_id",
+                    as: "productDetails"
+
+                }
+            },
+            {
+                $project: {
+                    productDetails: 1
+                }
+            }
+        ])
+
+        const productData = await Products.findById(productId)
+
+        if (userWishlist.length === 0) {
+            return res.render('userWishlist', { user: userData, product:productData, userWishlist: [] , title: 'Wishlist'});
+        }
+
+        res.render('userWishlist', { user: userData, product:productData, userWishlist: userWishlist , title: 'Wishlist' })
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+
+    }
+}
+
+
+const addToWishlist = async (req, res, next) => {
+    try {
+        const productId = req.query.productId
+        const userId = req.session.userId
+
+        if (typeof userId == 'undefined') {
+            return res.status(401).json({ redirectUrl: '/login' });
+        }
+
+        let wishlist = await Wishlist.findOne({ userId: userId })
+        if (!wishlist) {
+            wishlist = new Wishlist({
+                userId: userId,
+                wishlistItems: productId
+            });
+            console.log(productId, "Product id")
+            await wishlist.save()
+            res.status(200).json({ message: "added to Wishlist" })
+        } else {
+            const index = wishlist.wishlistItems.indexOf(productId);
+            if (index > -1) {
+                wishlist.wishlistItems.splice(index, 1);
+                await wishlist.save();
+                return res.status(200).json({ message: "Product removed from wishlist" });
+            } else {
+                wishlist.wishlistItems.push(productId);
+                await wishlist.save();
+                return res.status(200).json({ message: "Product added to wishlist" });
+            }
+        }
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+
+const removeFromWishlist = async (req, res, next) => {
+    try {
+        const userID = req.session.userId;
+        const productId = req.query.productId;
+
+        const wishlist = await Wishlist.findOne({ userId: userID });
+        const index = wishlist.wishlistItems.findIndex((value) => {
+            return value.toString() === productId;
+        });
+
+        wishlist.wishlistItems.splice(index, 1);
+        await wishlist.save();
+        res.redirect("/wishlist");
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+
 module.exports = {
     cartLoad,
     addToCart,
     removeFromCart,
     updateQuantity,
-    getCartCount
+    getCartCount,
+    wishlistLoad,
+    addToWishlist,
+    removeFromWishlist
 };

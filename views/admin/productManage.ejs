@@ -11,12 +11,12 @@
       <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
         <i class="mdi mdi-menu"></i>
       </button>
-      <form action="#" class="t-header-search-box">
+      <form action="/admin/searchProduct" class="t-header-search-box">
         <div class="input-group">
-          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
-          <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+            <input type="text" class="form-control" id="inlineFormInputGroup" name="search" placeholder="Search" value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" autocomplete="off">
+            <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
         </div>
-      </form>
+    </form>    
       <ul class="nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -324,50 +324,74 @@
           </tr>
       </thead>
       <tbody>
-          <% if (product.length > 0) { %>
-              <% for(let i = 0; i < product.length; i++) { %>
-                  <tr>
-                      <td><%= i + 1 %></td> <!-- Display product number -->
-                      <td><img style="height: 70px; width: 70px;" src="/assets/img/brands/<%= product[i].image[0] %>" alt="Image"></td>
-                      <td><%= product[i].productName %></td>
-                      <td><%= product[i].brand %></td>
-                      <% if(product[i].inStock > 0) { %>
-                          <td><%= product[i].inStock %></td>
-                      <% } else { %>
-                          <td><p class="text-danger">Out of Stock</p></td>
-                      <% } %>
-                      <td>₹ <%= product[i].discountPrice %></td>
-                      <td class="text-success"><%= product[i].discount %> %</td>
-                      <% if(product[i].isDeleted) { %>
-                          <td>
-                              <button type="button" class="btn btn-success relist-button" style="background-color: #5db65e;" data-product-id="<%= product[i]._id %>">
-                                  List
-                              </button>
-                          </td>
-                      <% } else { %>
-                          <td>
-                              <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-primary w-25 p-0 h-25 me-2"  style="width: 50px;">
-                                  <i class="fas fa-edit"></i> Edit
-                              </a>
-                              <button type="button" class="btn btn-outline-danger unlist-button" data-product-id="<%= product[i]._id %>">
-                                  Unlist 
-                              </button>
-                          </td>
-                      <% } %>
-                  </tr>
-              <% } %>
-          <% } else { %>
+        <% if (product.length > 0) { %>
+          <% for(let i = 0; i < product.length; i++) { %>
               <tr>
-                  <td colspan="8" class="text-center">
-                      <h3>No Products Found</h3>
-                  </td>
+                  <td><%= i + 1 %></td> <!-- Display product number -->
+                  <td><img style="height: 70px; width: 70px;" src="/assets/img/brands/<%= product[i].image[0] %>" alt="Image"></td>
+                  <td><%= product[i].productName %></td>
+                  <td><%= product[i].brand %></td>
+                  <% if(product[i].inStock > 0) { %>
+                      <td><%= product[i].inStock %></td>
+                  <% } else { %>
+                      <td><p class="text-danger">Out of Stock</p></td>
+                  <% } %>
+                  <td>₹ <%= product[i].discountPrice %></td>
+                  <td class="text-success"><%= product[i].discount %> %</td>
+                  <% if(product[i].isDeleted) { %>
+                      <td>
+                          <button type="button" class="btn btn-success relist-button" style="background-color: #5db65e;" data-product-id="<%= product[i]._id %>">
+                              List
+                          </button>
+                      </td>
+                  <% } else { %>
+                      <td>
+                          <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-primary w-25 p-0 h-25 me-2"  style="width: 50px;">
+                              <i class="fas fa-edit"></i> Edit
+                          </a>
+                          <button type="button" class="btn btn-outline-danger unlist-button" data-product-id="<%= product[i]._id %>">
+                              Unlist 
+                          </button>
+                      </td>
+                  <% } %>
               </tr>
           <% } %>
+      <% } else { %>
+          <tr>
+              <td colspan="8" class="text-center">
+                  <h3>No Products Found</h3>
+              </td>
+          </tr>
+      <% } %>
       </tbody>
   </table>
   
     <!-- partial -->
   </div>
+  <!-- Pagination Controls -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+      <% if (currentPage > 1) { %>
+          <li class="page-item">
+              <a class="page-link" href="?page=<%= currentPage - 1 %>&search=<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+              </a>
+          </li>
+      <% } %>
+      <% for (let i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+              <a class="page-link" href="?page=<%= i %>&search=<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"><%= i %></a>
+          </li>
+      <% } %>
+      <% if (currentPage < totalPages) { %>
+          <li class="page-item">
+              <a class="page-link" href="?page=<%= currentPage + 1 %>&search=<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>
+      <% } %>
+  </ul>
+</nav>
   <!-- page content ends -->
 </div>
 <!--page body ends -->

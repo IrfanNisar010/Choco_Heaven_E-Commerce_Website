@@ -190,7 +190,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                            <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                     title="view wishlist"><lord-icon
                                     src="https://cdn.lordicon.com/xyboiuok.json"
                                     trigger="hover"
@@ -270,20 +270,20 @@
                             </li> -->
                             <li>
                                 <a href="javascript:void(0)">
-                                    <img src="/assets/Icon4.svg" style="width: 30px; height: 28px; ">
+                                    <img src="/assets/Icon4.svg" style="width: 30px; height: 28px;">
                                 </a>
                                 <ul class="submenu text-right" style="border-radius: 13px;">
                                     <% if (locals.user) { %>
                                         <li><a href="/profileDetails">My profile</a></li>
                                         <li><a href="checkout.html">My address</a></li>
                                         <li><a href="/loadShop">Orders</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/wishlist">Wishlist</a></li>
                                         <li><a href="/logout">logout</a></li>
                                     <% } else { %>
                                         <li><a href="/login">My profile</a></li>
                                         <li><a href="checkout.html">My address</a></li>
                                         <li><a href="/loadShop">Orders</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/wishlist">Wishlist</a></li>
                                         <li><a href="/login">Sign in</a></li>
                                     <% } %>
                                 </ul>
@@ -354,7 +354,10 @@
                         <a class="nav-link" href="/addressManage" onclick="setActive(this)">Address</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/accountDetails" onclick="setActive(this)">Account details</a>
+                        <a class="nav-link" href="/wishlist" onclick="setActive(this)">Wishlist</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/coupon" onclick="setActive(this)">Coupons</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
                         <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
@@ -363,13 +366,22 @@
             </div>
         </div>
           <!-- Main Content Column -->
-          <div class="col-md-9 pl-0">
+          <div class="col-md-6 pl-0">
             <h4 class="col-md-6 profile-head p-0">Your Orders 🛍️</h4>
             <p class="col-md-6 p-head p-0">Here's your Orders summary.</p>
-        
+            <% const statusColors = { 'cancelled': '#FF3B30', 'order confirmed': 'limegreen' }; %>
+            <% function capitalizeFirstLetter(string) { %>
+            <%= string.charAt(0).toUpperCase() + string.slice(1) %>
+            <% } %>
             <% if (orders.length > 0) { %>
-              <% orders.forEach((order, index) => { %>
-                  <h1>Order <%= (currentPage - 1) * 3 + index + 1 %></h1> <!-- Heading with order number -->
+                <% orders.forEach((order, index) => { %>
+                    <h1>Order <%= (currentPage - 1) * 3 + index + 1 %></h1> 
+                    <h5 class="status" id="orderStatus-<%= order._id %>" data-order-id="<%= order._id %>">
+                        Status: 
+                        <span style="color: <%= statusColors[order.orderStatus] || 'defaultColor' %>;">
+                            <%= capitalizeFirstLetter(order.orderStatus) %>
+                        </span>
+                    </h5>                    
                     <main class="frame-frame">
                         <div class="frame-tt-order-id-334902461tframe-2610325frame">
                             <section class="frame-t-order-id-334902461tframe-2610325frame d-flex justify-content-between">
@@ -450,7 +462,7 @@
                                         <div class="frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
                                             <div class="frame-t-whittakers-dark-ghana-fruit-nut-250g">
                                                 <div><%= item.productName %></div>
-                                                <div class="frame-g"><%= item.quantity %></div>
+                                                <div class="frame-g">Model: <%= item.model %></div>
                                             </div>
                                             <div class="frame-t-99500tqty">
                                                 <div class="frame-component">₹<%= item.price %></div>
@@ -470,7 +482,7 @@
                         <div class="frame-tt-payment-delivery">
                             <section class="frame-t-payment-delivery">
                                 <div class="frame-payment">Payment</div>
-                                <div class="frame-delivery">Delivery</div>
+                                <div class="frame-delivery" style="padding-left: 300px;">Delivery</div>
                             </section>
                         </div>
                         <div class="frame-tttt-visa-56tframe-2610319address">
@@ -483,11 +495,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="frame-address d-flex justify-content-end">Address</div>
+                                <div class="frame-address" style="padding-left: 305px;">Address</div>
                             </div>
                         </div>
                         <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
-                            <div class="frame-kozhikode-skyline-apt"><%= order.address.street %>, <%= order.address.address %></div>
+                            <div class="frame-kozhikode-skyline-apt"><%= order.address.address %></div>
+                        </div>
+                        <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
+                            <div class="frame-kozhikode-skyline-apt"><%= order.address.street %></div>
                         </div>
                         <div class="frame-t-kozhikode-in d-flex justify-content-end">
                             <div class="frame-kozhikode-in"><%= order.address.city %>, <%= order.address.state %></div>
@@ -499,63 +514,111 @@
                             <div class="frame-delivery-method">Delivery method: Standard</div>
                         </div>
                         <div class="frame-t-line-1">
-                            <object data="/assets/Line1.svg" class="frame-line-2"></object>
+                            <object data="/assets/Line2.svg" class="frame-line-2"></object>
                         </div>
-                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end">
-                            <div class="frame-amount-payable-99000">Amount payable ₹<%= order.totalAmount %></div>
+                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-between align-center">
+                            <% if (order.orderStatus !== 'cancelled') { %>
+                            <button class="cancel-btn-order" data-order-id="<%= order._id %>" style="color: #FF3B30;">
+                                Cancel Orders
+                                <lord-icon
+                                  src="https://cdn.lordicon.com/nqtddedc.json"
+                                  trigger="hover"
+                                  colors="primary:#FF3B30"
+                                  style="width:14px;height:14px; padding-left: 3px;">
+                                </lord-icon>
+                            </button>
+                            <% } %>
+                            <div class="frame-amount-payable-99000">Total :  ₹<%= order.totalAmount %></div>
                         </div>
                     </main>
                 <% }) %>
-             <!-- Pagination Controls -->
-            <div class=" d-flex justify-content-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <% if (currentPage > 1) { %>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    <% } %>
-
-                    <% for (let i = 1; i <= totalPages; i++) { %>
-                        <li class="page-item <%= currentPage === i ? 'active' : '' %>">
-                            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
-                        </li>
-                    <% } %>
-
-                    <% if (currentPage < totalPages) { %>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    <% } %>
-                </ul>
-            </nav>
-          </div>
-        <% } else { %>
-            <div class="no-orders">No orders found.</div>
-        <% } %>
-    </div>  
-<script>
-    function setActive(link) {
-        const links = document.querySelectorAll('.sidebar .nav-link');
-        links.forEach(link => link.classList.remove('active'));
-        link.classList.add('active');
-    }
-
-    // Optional: Set the initial active link based on current URL or other logic
-    document.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname;
-        const links = document.querySelectorAll('.sidebar .nav-link');
-        links.forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-            }
-        });
-    });
-</script>
-
+                <!-- Pagination Controls -->
+                <div class=" d-flex justify-content-center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <% if (currentPage > 1) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=<%= currentPage - 1 %>">Previous</a>
+                                </li>
+                            <% } %>
+                            <% for (let i = 1; i <= totalPages; i++) { %>
+                                <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                                    <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                                </li>
+                            <% } %>
+                            <% if (currentPage < totalPages) { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=<%= currentPage + 1 %>">Next</a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            <% } else { %>
+                <div class="d-flex justify-content-center align-items-center vh-50">
+                    <div class="text-center">
+                        <h2 class="frame-order-history">No Orders Found</h2>
+                    </div>
+                </div>
+            <% } %>
+    </div>
+    <!-- Vertically centered scrollable modal -->
+<div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cancelOrderModalLabel">Cancel Order</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="cancelOrderForm">
+            <div class="mb-3">
+              <label for="cancelReason" class="form-label">Select a reason for cancellation:</label>
+              <div id="cancelReason">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="reason" id="reason1" value="Product damaged">
+                  <label class="form-check-label" for="reason1">
+                    Product damaged
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="reason" id="reason2" value="Product not as described">
+                  <label class="form-check-label" for="reason2">
+                    Product not as described
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="reason" id="reason3" value="Shipping delay">
+                  <label class="form-check-label" for="reason3">
+                    Shipping delay
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="reason" id="reason4" value="Changed my mind">
+                  <label class="form-check-label" for="reason4">
+                    Changed my mind
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="reason" id="reason5" value="Other">
+                  <label class="form-check-label" for="reason5">
+                    Other
+                  </label>
+                </div>
+                <div class="form-group mt-2" id="otherReasonContainer" style="display: none;">
+                  <label for="otherReason">Please specify:</label>
+                  <input type="text" class="form-control" id="otherReason" name="otherReason">
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="success-message-container"></div>   
+<script src="/js/OrdersManage.js"></script>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
 <%- include('../layouts/addBrandsFooter') %>
 <%- include('../layouts/homeFooter') %>

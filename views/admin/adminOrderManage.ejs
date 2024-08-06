@@ -293,112 +293,191 @@
     </ul>
   </div>
  
-    <div class="page-content-wrapper">
-      <div class="page-content-wrapper-inner">
-         <div class="col-12 pb-3">
-                    <h4>Add Products</h4>
-                    <p class="text-gray">Please enter the details of products to add</p>
-                  </div>
-          <div class="content-viewport">
-              <div class="row">
-                  <div class="col-12">
-                      <div class="grid">
-                        <div class="col-md-3">
-                          <form class="form-inline" action="#" method="get">
-                              <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Search by Order ID">
-                                  <div class="input-group-append">
-                                      <button class="btn btn-primary" type="submit">Search</button>
-                                  </div>
-                              </div>
-                          </form>
-                      </div>
-                          <div class="grid-body">
-                              <div class="item-wrapper">
-                                  <div class="table-responsive">
-                                      <table class="table info-table align-center">
-                                          <thead>
-                                              <tr>
-                                                  <th>Product</th>
-                                                  <th>Order ID</th>
-                                                  <th>Customer</th>
-                                                  <th style="text-align: center;">Date</th>
-                                                  <th>Status</th>
-                                                  <th>Price</th>
-                                                  <th>Details</th>
-                                                  <th style="text-align: center;">Actions</th>
-                                              </tr>
-                                          </thead>
-                                          <tbody>
-                                              <tr>
-                                                  <td>Product 1</td>
-                                                  <td>ORD123456</td>
-                                                  <td>John Doe</td>
-                                                  <td>2024-07-31</td>
-                                                  <td>Pending</td>
-                                                  <td>$100.00</td>
-                                                  <td class="text-center">
-                                                      <a href="#" class="btn btn-sm " style="background-color: #EDEDED; color: black;">View</a>
-                                                  </td>
-                                                  <td>
-                                                      <a href="#" class="btn btn-sm" style="background-color: #007AFF; color: white;">Edit</a>
-                                                      <a href="#" class="btn btn-sm" style="background-color: #FF453A; color: white;">Cancel</a>
-                                                  </td>
-                                              </tr>
-                                              <tr>
-                                                  <td>Product 2</td>
-                                                  <td>ORD123457</td>
-                                                  <td>Jane Smith</td>
-                                                  <td>2024-07-30</td>
-                                                  <td>Shipped</td>
-                                                  <td>$150.00</td>
-                                                  <td class="text-center">
-                                                      <a href="#" class="btn btn-sm" style="background-color: #EDEDED; color:black">View</a>
-                                                  </td>
-                                                  <td>
-                                                      <a href="#" class="btn btn-sm" style="background-color: #007AFF; color: white;">Edit</a>
-                                                      <a href="#" class="btn btn-sm" style="background-color: #FF453A; color: white;">Cancel</a>
-                                                  </td>
-                                              </tr>
-                                              <!-- Add more rows as needed -->
-                                          </tbody>
-                                      </table>
-                                  </div>
-
-                                  <div class="row">
-                                      <div class="col-md-3">
-                                          <p class="text-gray">Showing 1 to 10 of 100 entries</p>
-                                      </div>
-                                      <div class="col-md-9">
-                                          <nav aria-label="Page navigation">
-                                              <ul class="pagination justify-content-end">
-                                                  <li class="page-item">
-                                                      <a class="page-link" href="#" aria-label="Previous">
-                                                          <span aria-hidden="true">&laquo;</span>
-                                                      </a>
-                                                  </li>
-                                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                  <li class="page-item">
-                                                      <a class="page-link" href="#" aria-label="Next">
-                                                          <span aria-hidden="true">&raquo;</span>
-                                                      </a>
-                                                  </li>
-                                              </ul>
-                                          </nav>
-                                      </div>
-                                  </div>
-
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-              <%- include('../layouts/addBrandsFooter') %>
-
-          </div>
+  <div class="page-content-wrapper">
+    <div class="page-content-wrapper-inner">
+      <div class="col-12 pb-3">
+        <h4>Manage Orders</h4>
+        <p class="text-gray">Review and manage orders from customers.</p>
       </div>
-  </div>
+      <div class="content-viewport">
+        <div class="row">
+          <div class="col-12">
+            <div class="grid">
+              <div class="grid-body">
+                <div class="item-wrapper">
+                  <div class="table-responsive">
+                    <table class="table info-table align-center">
+                      <% if (orders.length > 0) { %>
+                        <thead>
+                          <tr>
+                            <th>#</th> <!-- Order Number Column -->
+                            <th style="text-align: left;">Product</th>
+                            <th style="text-align: center;">Order ID</th>
+                            <th style="text-align: center;">Customer</th>
+                            <th style="text-align: center;">Date</th>
+                            <th style="text-align: center;">Status</th>
+                            <th style="text-align: center;">Actions</th>
+                            <th style="text-align: center;">Price</th>
+                            <th style="text-align: center;">Details</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% let orderNumber = 1; %> <!-- Initialize Order Number -->
+                          <% orders.forEach(order => { %>
+                          <tr>
+                            <td><%= orderNumber++ %></td> <!-- Increment Order Number -->
+                            <td style="text-align: left;"><%= order.orderItems[0].productName %></td>
+                            <%
+                              // Function to convert string to array, splice it, and join back to string
+                              function reduceOrderId(orderId, length) {
+                                let arr = orderId.split(''); 
+                                if (arr.length > length) {
+                                  arr.splice(length); 
+                                }
+                                return arr.join(''); 
+                              }
+                              const shortenedOrderId = reduceOrderId(order._id.toString(), 10);
+                            %>
+                            <td><%= shortenedOrderId %></td>
+                            <td><%= order.address.Name %></td>
+                            <td><%= new Date(order.orderDate).toDateString() %></td>
+                            <td>
+                              <h5 class="status"><%= order.orderStatus %></h5>
+                            </td>
+                            <td>
+                                <% if(order.orderStatus === "order confirmed" || order.orderStatus === "delivered") { %> 
+                                  <select class="order-status-dropdown" data-order-id="<%= order._id %>" onchange="updateOrderStatus(this)">
+                                    <% if(order.orderStatus !== "delivered") { %>
+                                      <option value="order confirmed" <%= order.orderStatus === 'order confirmed' ? 'selected' : '' %>>Ordered</option>
+                                    <% } else { %>
+                                      <option value="order confirmed" <%= order.orderStatus === 'order confirmed' ? 'selected' : '' %> disabled>Ordered</option>
+                                    <% } %>
+                                    <option value="delivered" <%= order.orderStatus === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                                    <option value="completed" <%= order.orderStatus === 'completed' ? 'selected' : '' %>>Completed</option>
+                                  </select>
+                                <% } else if(order.orderStatus === "Requested for Return") { %> 
+                                  <button type="button" class="btn-info btn-lg" onclick="approveReturn('<%= order._id %>')">Approve</button>
+                                <% } %>
+                            </td>
+                            <td>₹<%= order.totalAmount %></td>
+                            <td class="text-center">
+                              <a href="#" class="btn btn-sm" style="background-color: #EDEDED; color: black;">View</a>
+                            </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                    <% } else { %>
+                        <p>No orders found.</p>
+                    <% } %>                                           
+                    </table>
+                  </div>
+  
+                  <!-- Pagination Controls -->
+                  <div class="row">
+                    <div class="col-md-3">
+                      <p class="text-gray">Showing <%= currentPage * 10 - 9 %> to <%= Math.min(currentPage * 10, totalOrders) %> of <%= totalOrders %> entries</p>
+                    </div>
+                    <div class="col-md-9">
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-end">
+                          <% if (currentPage > 1) { %>
+                          <li class="page-item">
+                            <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <% } %>
+                          <% for (let i = 1; i <= totalPages; i++) { %>
+                          <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                          </li>
+                          <% } %>
+                          <% if (currentPage < totalPages) { %>
+                          <li class="page-item">
+                            <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                          <% } %>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              const orderStatusHeaders = document.querySelectorAll('.status');
+          
+              orderStatusHeaders.forEach(function(h5) {
+                  switch(h5.textContent.trim()) {
+                      case 'cancelled':
+                      case 'returned':
+                          h5.style.color = 'red';
+                          break;
+                      case 'completed':
+                          h5.style.color = 'green';
+                          break;
+                      case 'order confirmed':
+                          h5.style.color = 'blue';
+                          break;
+                      case 'Requested for Return':
+                          h5.style.color = 'red';
+                          break;
+                      default:
+                          h5.style.color = 'black'; 
+                          break;
+                  }
+              });
+          });
+          
+          function updateOrderStatus(selectElement) {
+              const orderId = selectElement.getAttribute('data-order-id');
+              const newStatus = selectElement.value;
+          
+              fetch('/admin/updateOrderStatus', {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ orderId, newStatus })
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      Swal.fire({
+                          position: 'center',
+                          icon: 'success',
+                          title: 'Order status updated successfully',
+                          showConfirmButton: false,
+                          timer: 1200
+                      }).then(() => {
+                          location.reload(); 
+                      });
+                  } else {
+                      Swal.fire({
+                          position: 'center',
+                          icon: 'error',
+                          title: 'Failed to update order status',
+                          showConfirmButton: true  
+                      });
+                  }
+              })
+              .catch(error => {
+                  console.error('Error updating order status:', error);
+              });
+          }
+          </script>
+          
+        <%- include('../layouts/addBrandsFooter') %>
+  
+      </div>
+    </div>
+  </div>  
 </div>

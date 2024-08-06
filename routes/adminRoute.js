@@ -39,13 +39,15 @@ admin_Route.get('/restoreBrands', adminAuth.isLogin, brandsController.restoreBra
 admin_Route.get('/productManage', adminAuth.isLogin, productController.productsLoad)
 admin_Route.get('/addProduct', adminAuth.isLogin, productController.addProductLoad)
 admin_Route.post('/addProduct', adminAuth.isLogin, uploads.productUpload, productController.addProduct)
-admin_Route.get('/searchProduct', adminAuth.isLogin, productController.searchProduct)
+admin_Route.get('/searchProduct', adminAuth.isLogin, productController.searchProduct);
 admin_Route.get('/listAndUnlistProduct', adminAuth.isLogin, productController.listAndUnlistProduct)
 admin_Route.get('/editProduct', adminAuth.isLogin, productController.editProductLoad)
 admin_Route.get('/removeProductImage', adminAuth.isLogin, productController.deleteImage)
 admin_Route.post('/editProduct', adminAuth.isLogin, uploads.productUpload, productController.editProduct)
 
 // Order Management Routes
-admin_Route.get('/orderManage', adminAuth.isLogin, orderController.adminOrderPageLoad)
+admin_Route.get('/orderManage', adminAuth.isLogin, orderController.adminOrderPageLoad);
+admin_Route.patch('/updateOrderStatus', adminAuth.isLogin, orderController.updateOrderStatus);
+admin_Route.get('/adminCancelOrder', adminAuth.isLogin, orderController.cancelOrder)
 
 module.exports = admin_Route;

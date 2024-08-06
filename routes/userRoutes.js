@@ -26,7 +26,6 @@ const orderController = require("../controllers/orderController");
 
 // load Home
 user_route.get('/', userController.loadHome)
-
 user_route.get('/login', userAuth.isLogout, userController.loginLoad);
 user_route.get('/signUp', userAuth.isLogout, userController.loadSignUp);
 user_route.post('/signUp', userController.addUser);
@@ -64,13 +63,23 @@ user_route.get('/deleteAddress',userAuth.isLogin,userController.deleteAddress);
 user_route.get('/ordersManage', userAuth.isLogin, orderController.ordersPageLoad);
 user_route.get('/checkout', userAuth.isLogin, orderController.checkoutPageLoad);
 user_route.post('/createOrder', userAuth.isLogin, orderController.createOrder);
+user_route.post('/cancelOrder', userAuth.isLogin, orderController.cancelOrder);
+user_route.post('/verifyPayment', userAuth.isLogin, orderController.verifyPayment);
+user_route.post('/getPaymentDetails', userAuth.isLogin, orderController.getPaymentDetails);
+user_route.get('/wallet', userAuth.isLogin, orderController.walletLoad);
 
 
 // User Cart  Manage
 user_route.get('/cart', userAuth.isLogin, cartController.cartLoad);
 user_route.get('/addToCart', cartController.addToCart);
-user_route.get('/removeFromCart',userAuth.isLogin,cartController.removeFromCart)
-user_route.post('/updateQuantity', userAuth.isLogin, cartController.updateQuantity)
+user_route.get('/removeFromCart',userAuth.isLogin,cartController.removeFromCart);
+user_route.post('/updateQuantity', userAuth.isLogin, cartController.updateQuantity);
+
+//Wishlist Manage
+user_route.get('/wishlist', userAuth.isLogin, cartController.wishlistLoad);
+user_route.get('/addToWishlist', cartController.addToWishlist);
+user_route.get('/removeFromWishlist', userAuth.isLogin, cartController.removeFromWishlist);
+
 
 // user Logout
 user_route.get('/logout',userAuth.loginCheck,userController.userLogout);
