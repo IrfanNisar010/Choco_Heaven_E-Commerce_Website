@@ -93,3 +93,13 @@ document.getElementById('search-form').addEventListener('submit', function(event
   queryParams.set("search", searchQuery)
   window.location.href = `/loadShop?${queryParams.toString()}`
 })
+
+
+document.getElementById('search-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  let queryParams = new URLSearchParams(window.location.search);
+  let searchQuery = document.getElementById('search-input').value.trim();
+  queryParams.set("search", searchQuery);
+  window.location.href = `/loadShop?${queryParams.toString()}`;
+});
+

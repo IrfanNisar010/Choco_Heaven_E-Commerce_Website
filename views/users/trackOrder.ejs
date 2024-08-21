@@ -364,91 +364,63 @@
         </div>
           <!-- Main Content Column -->
           <div class="col-md-6 pl-0">
-            <h4 class="col-md-6 profile-head p-0">Your Orders 🛍️</h4>
-            <p class="col-md-6 p-head p-0">Here's your Orders summary.</p>
+            <h4 class="col-md-12 profile-head p-0 align-items-center" >
+                <lord-icon
+                src="https://cdn.lordicon.com/oqdmuxru.json"
+                trigger="in"
+                delay="500"
+                state="morph-check-in-1"
+                colors="primary:limegreen"
+                style="width:43px;height:43px; padding-top: 10px;">
+            </lord-icon>Order Placed Successfully</h4>
+            <p class="col-md-6 p-head p-0">Here's your Orders Details.</p>
             <div class="row shop-tracking-status">
     
                 <div class="col-md-12">
                     <div class="well">
-                
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label for="inputOrderTrackingID" class="col-sm-2 control-label">Order id</label>
-                                    <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputOrderTrackingID" value="" placeholder="# put your order id here">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" id="shopGetOrderStatusID" class="btn btn-success">Get status</button>
-                                </div>
-                            </div>
-                        </div>
-                
                         <h4>Your order status:</h4>
-            
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <span class="prefix">Date created:</span>
-                                <span class="label label-success">12.12.2013</span>
-                            </li>
-                            <li class="list-group-item">
-                                <span class="prefix">Last update:</span>
-                                <span class="label label-success">12.15.2013</span>
-                            </li>
-                            <li class="list-group-item">
-                                <span class="prefix">Comment:</span>
-                                <span class="label label-success">customer's comment goes here</span>
-                            </li>
-                            <li class="list-group-item">You can find out latest status of your order with the following link:</li>
-                            <li class="list-group-item"><a href="//tracking/link/goes/here">//tracking/link/goes/here</a></li>
-                        </ul>
-            
                         <div class="order-status">
-            
                             <div class="order-status-timeline">
-                                <!-- class names: c0 c1 c2 c3 and c4 -->
-                                <div class="order-status-timeline-completion c3"></div>
+                                <!-- Adjust the class based on the order status -->
+                            <div class="order-status-timeline-completion 
+                            <%= order.orderStatus === 'order confirmed' ? 'c1' : '' %>
+                            <%= order.orderStatus === 'delivered' ? 'c2' : '' %>
+                            <%= order.orderStatus === 'completed' ? 'c3' : '' %>">
                             </div>
-            
-                            <div class="image-order-status image-order-status-new active img-circle">
-                                <span class="status">Accepted</span>
-                                <div class="icon"></div>
+
+                            <div class="image-order-status image-order-status-new 
+                            <%= order.orderStatus === 'order confirmed' ? 'active' : '' %> img-circle">
+                            <span class="status">Order Confirmed</span>
+                            <div class="icon"></div>
                             </div>
-                            <div class="image-order-status image-order-status-active active img-circle">
-                                <span class="status">In progress</span>
-                                <div class="icon"></div>
+
+                            <div class="image-order-status image-order-status-active 
+                            <%= ['order confirmed', 'delivered', 'completed'].includes(order.orderStatus) ? 'active' : '' %> img-circle">
+                            <span class="status">In progress</span>
+                            <div class="icon"></div>
                             </div>
-                            <div class="image-order-status image-order-status-intransit active img-circle">
-                                <span class="status">Shipped</span>
-                                <div class="icon"></div>
+
+                            <div class="image-order-status image-order-status-intransit 
+                            <%= ['delivered', 'completed'].includes(order.orderStatus) ? 'active' : '' %> img-circle">
+                            <span class="status">Shipped</span>
+                            <div class="icon"></div>
                             </div>
-                            <div class="image-order-status image-order-status-delivered active img-circle">
-                                <span class="status">Delivered</span>
-                                <div class="icon"></div>
+
+                            <div class="image-order-status image-order-status-delivered 
+                            <%= order.orderStatus === 'completed' ? 'active' : '' %> img-circle">
+                            <span class="status">Delivered</span>
+                            <div class="icon"></div>
                             </div>
-                            <div class="image-order-status image-order-status-completed active img-circle">
-                                <span class="status">Completed</span>
-                                <div class="icon"></div>
+
                             </div>
-            
                         </div>
                     </div>
                 </div>
-            </div>
+                
             <% const statusColors = { 'cancelled': '#FF3B30', 'order confirmed': 'limegreen' }; %>
             <% function capitalizeFirstLetter(string) { %>
             <%= string.charAt(0).toUpperCase() + string.slice(1) %>
-            <% } %>
-            <% if (orders.length > 0) { %>
-                <% orders.forEach((order, index) => { %>
-                    <h1>Order <%= (currentPage - 1) * 3 + index + 1 %></h1> 
-                    <h5 class="status" id="orderStatus-<%= order._id %>" data-order-id="<%= order._id %>">
-                        Status: 
-                        <span style="color: <%= statusColors[order.orderStatus] || 'defaultColor' %>;">
-                            <%= capitalizeFirstLetter(order.orderStatus) %>
-                        </span>
-                    </h5>                    
+            <% } %>   
                     <main class="frame-frame">
                         <div class="frame-tt-order-id-334902461tframe-2610325frame">
                             <section class="frame-t-order-id-334902461tframe-2610325frame d-flex justify-content-between">
@@ -491,144 +463,121 @@
                         <div class="frame-ttt-order-date-jun-262024line-8estimated-delivery-jul">
                             <div class="frame-tt-order-date-jun-262024line-8estimated-delivery-jul d-flex justify-content-start">
                                 <div class="frame-t-order-date-jun-262024line">
-                                    <div class="frame-order-date-jun">Order date: <%= new Date(order.orderDate).toDateString() %></div>
+                                    <div class="frame-order-date-jun">Order date: <% if(order) { %>
+                                        <%= new Date(order.orderDate).toDateString() %>
+                                    <% } %>
+                                    </div>
                                     <object data="/assets/Line.svg" class="frame-line"></object>
                                 </div>
                                 <div class="frame-estimated-delivery-jul">
                                     Estimated delivery: 
-                                    <%
-                                        // Function to calculate estimated delivery date
-                                        function getEstimatedDeliveryDate(orderDate) {
-                                            const minDays = 5;
-                                            const maxDays = 7;
-                                            const randomDays = Math.floor(Math.random() * (maxDays - minDays + 1)) + minDays;
-                                            const estimatedDate = new Date(orderDate);
-                                            estimatedDate.setDate(estimatedDate.getDate() + randomDays);
-                                            return estimatedDate.toDateString();
-                                        }
-        
-                                        const estimatedDelivery = getEstimatedDeliveryDate(order.orderDate);
-                                    %>
-                                    <%= estimatedDelivery %>
+                                    
                                 </div>                            
                             </div>
                         </div>
                         <div class="frame-t-line">
                             <object data="/assets/Line1.svg" class="frame-line-1"></object>
                         </div>
-                        <% order.orderItems.forEach(item => { %>
-                        <div class="frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty">
-                            <section class="frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
-                                <div class="frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
-                                    <div class="p">
-                                        <div class="frame-product">
-                                            <img src="/assets/img/brands/<%= item.image[0] %>" loading="lazy" class="frame-jpg"/>
-                                        </div>
-                                    </div>
-                                    <div class="frame-tttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
-                                        <div class="frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
-                                            <div class="frame-t-whittakers-dark-ghana-fruit-nut-250g">
-                                                <div><%= item.productName %></div>
-                                                <div class="frame-g">Model: <%= item.model %></div>
-                                            </div>
-                                            <div class="frame-t-99500tqty">
-                                                <div class="frame-component">₹<%= item.price %></div>
-                                                <div class="frame-t-qty">
-                                                    <div class="frame-qty">Qty: <%= item.quantity %></div>
+
+                        <% if (order) { %>
+                                            <% order.orderItems.forEach(item => { %> 
+                                                <div class="frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty">
+                                                    <section class="frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                        <div class="frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                            <div class="p">
+                                                                <div class="frame-product">
+                                                                    <img src="/assets/img/brands/<%= item.image[0] %>" loading="lazy" class="frame-jpg"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="frame-tttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                                <div class="frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                                    <div class="frame-t-whittakers-dark-ghana-fruit-nut-250g">
+                                                                        <div><a href="/singleProduct?id=<%= item.productId %>"><%= item.productName %></a></div>
+                                                                        <div class="frame-g">Model: <%= item.model %></div>
+                                                                    </div>
+                                                                    <div class="frame-t-99500tqty">
+                                                                        <div class="frame-component">₹<%= item.price %></div>
+                                                                        <div class="frame-t-qty">
+                                                                            <div class="frame-qty">Qty: <%= item.quantity %></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                        <% }) %>
-                        <div class="frame-t-line-1">
-                            <object data="/assets/Line1.svg" class="frame-line-2"></object>
-                        </div>
-                        <div class="frame-tt-payment-delivery">
-                            <section class="frame-t-payment-delivery">
-                                <div class="frame-payment">Payment</div>
-                                <div class="frame-delivery" style="padding-left: 310px;">Delivery</div>
-                            </section>
-                        </div>
-                        <div class="frame-tttt-visa-56tframe-2610319address">
-                            <div class="frame-ttt-visa-56tframe-2610319address">
-                                <div class="frame-tt-visa-56tframe">
-                                    <div class="frame-t-visa-56tframe">
-                                        <div class="frame-visa"><%= order.paymentMethod %></div>
-                                        <div class="frame-t-frame">
-                                            <object data="/assets/img/logo/cashondelivery_img.png" class="frame-frame-3"></object>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="frame-address" style="padding-left: 350px;">Address</div>
+                                                <% }) %>
+                                                <div class="frame-t-line-1">
+                                                    <object data="/assets/Line1.svg" class="frame-line-2"></object>
+                                                </div>
+                                                <div class="frame-tt-payment-delivery">
+                                                    <section class="frame-t-payment-delivery">
+                                                        <div class="frame-payment">Payment</div>
+                                                        <div class="frame-delivery" style="padding-left: 360px;">Delivery</div>
+                                                    </section>
+                                                </div>
+                                                <div class="frame-tttt-visa-56tframe-2610319address">
+                                                    <div class="frame-ttt-visa-56tframe-2610319address">
+                                                        <div class="frame-tt-visa-56tframe">
+                                                            <div class="frame-t-visa-56tframe">
+                                                                <div class="frame-visa"><%= order.paymentMethod %></div>
+                                                                <div class="frame-t-frame">
+                                                                    <object data="/assets/img/logo/cashondelivery_img.png" class="frame-frame-3"></object>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="frame-address" style="padding-left: 370px;">Address</div>
+                                                    </div>
+                                                </div>
+                                                <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
+                                                    <div class="frame-kozhikode-skyline-apt"><%= order.address.address %></div>
+                                                </div>
+                                                <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
+                                                    <div class="frame-kozhikode-skyline-apt"><%= order.address.street %></div>
+                                                </div>
+                                                <div class="frame-t-kozhikode-in d-flex justify-content-end">
+                                                    <div class="frame-kozhikode-in"><%= order.address.city %>, <%= order.address.state %></div>
+                                                </div>
+                                                <div class="frame-t d-flex justify-content-end">
+                                                    <div class="frame-component-2 d-flex justify-content-end"><%= order.address.Mobile %></div>
+                                                </div>
+                                                <div class="frame-t-delivery-method d-flex justify-content-end">
+                                                    <div class="frame-delivery-method">Delivery method: Standard</div>
+                                                </div>
+                                                <div class="frame-t-line-1">
+                                                    <object data="/assets/Line2.svg" class="frame-line-2"></object>
+                                                </div>
+                                                <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
+                                                    <div class="frame-amount-payable-99000">Shipping charge :  ₹40</div>
+                                                </div>
+                                                <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
+                                                    <div class="frame-amount-payable-99000">Subtotal :  ₹<%= order.totalAmount - 40 %></div>
+                                                </div>
+                                                <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-between align-center">
+                                                    <% if (order.orderStatus !== 'cancelled') { %>
+                                                    <button class="cancel-btn-order" data-order-id="<%= order._id %>" style="color: #FF3B30;">
+                                                        Cancel Orders
+                                                        <lord-icon
+                                                          src="https://cdn.lordicon.com/nqtddedc.json"
+                                                          trigger="hover"
+                                                          colors="primary:#FF3B30"
+                                                          style="width:14px;height:14px; padding-left: 3px;">
+                                                        </lord-icon>
+                                                    </button>
+                                                    <% } %>
+                                                    <div class="frame-amount-payable-99000">Total :  ₹<%= order.totalAmount %></div>
+                                                </div>
+                                            </main>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="3">No order found.</td>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
-                            <div class="frame-kozhikode-skyline-apt"><%= order.address.address %></div>
-                        </div>
-                        <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
-                            <div class="frame-kozhikode-skyline-apt"><%= order.address.street %></div>
-                        </div>
-                        <div class="frame-t-kozhikode-in d-flex justify-content-end">
-                            <div class="frame-kozhikode-in"><%= order.address.city %>, <%= order.address.state %></div>
-                        </div>
-                        <div class="frame-t d-flex justify-content-end">
-                            <div class="frame-component-2 d-flex justify-content-end"><%= order.address.Mobile %></div>
-                        </div>
-                        <div class="frame-t-delivery-method d-flex justify-content-end">
-                            <div class="frame-delivery-method">Delivery method: Standard</div>
-                        </div>
-                        <div class="frame-t-line-1">
-                            <object data="/assets/Line2.svg" class="frame-line-2"></object>
-                        </div>
-                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-between align-center">
-                            <% if (order.orderStatus !== 'cancelled') { %>
-                            <button class="cancel-btn-order" data-order-id="<%= order._id %>" style="color: #FF3B30;">
-                                Cancel Orders
-                                <lord-icon
-                                  src="https://cdn.lordicon.com/nqtddedc.json"
-                                  trigger="hover"
-                                  colors="primary:#FF3B30"
-                                  style="width:14px;height:14px; padding-left: 3px;">
-                                </lord-icon>
-                            </button>
-                            <% } %>
-                            <div class="frame-amount-payable-99000">Total :  ₹<%= order.totalAmount %></div>
-                        </div>
-                    </main>
-                <% }) %>
-                <!-- Pagination Controls -->
-                <div class=" d-flex justify-content-center">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <% if (currentPage > 1) { %>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page=<%= currentPage - 1 %>">Previous</a>
-                                </li>
-                            <% } %>
-                            <% for (let i = 1; i <= totalPages; i++) { %>
-                                <li class="page-item <%= currentPage === i ? 'active' : '' %>">
-                                    <a class="page-link" href="?page=<%= i %>"><%= i %></a>
-                                </li>
-                            <% } %>
-                            <% if (currentPage < totalPages) { %>
-                                <li class="page-item">
-                                    <a class="page-link" href="?page=<%= currentPage + 1 %>">Next</a>
-                                </li>
-                            <% } %>
-                        </ul>
-                    </nav>
-                </div>
-            <% } else { %>
-                <div class="d-flex justify-content-center align-items-center vh-50">
-                    <div class="text-center">
-                        <h2 class="frame-order-history">No Orders Found</h2>
-                    </div>
-                </div>
-            <% } %>
-    </div>
+                        
     </div>
   <div id="success-message-container"></div>   
 <script src="/js/OrdersManage.js"></script>

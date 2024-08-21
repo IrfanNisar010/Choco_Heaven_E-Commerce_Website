@@ -1,3 +1,4 @@
+
 function setActive(link) {
     const links = document.querySelectorAll('.sidebar .nav-link');
     links.forEach(link => link.classList.remove('active'));
@@ -15,69 +16,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const cancelButtons = document.querySelectorAll('.cancel-btn-order');
-    const cancelOrderModal = new bootstrap.Modal(document.getElementById('cancelOrderModal'));
-
-    cancelButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            const orderId = this.getAttribute('data-order-id');
-            document.getElementById('cancelOrderForm').setAttribute('data-order-id', orderId);
-            cancelOrderModal.show();
-        });
-    });
-
-    const otherReasonRadio = document.getElementById('reason5');
-    otherReasonRadio.addEventListener('change', function() {
-        document.getElementById('otherReasonContainer').style.display = this.checked ? 'block' : 'none';
-    });
-
-    document.getElementById('cancelOrderForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const orderId = this.getAttribute('data-order-id');
-        const selectedReason = document.querySelector('input[name="reason"]:checked').value;
-        const otherReason = document.getElementById('otherReason').value;
-
-        const reason = selectedReason === 'Other' ? otherReason : selectedReason;
-
-        try {
-            const response = await fetch(`/cancelOrder?orderId=${orderId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ reason })
+ // Function to handle cancel order
+ function cancelOrder(orderId) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Cancel Order",
+        cancelButtonText: "No, Keep Order",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/cancelOrder?orderId=${orderId}`, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (response.ok) {
+                    Swal.fire({
+                        title: "Order Cancelled",
+                        text: "The Order has been cancelled.",
+                        icon: "success"
+                    })
+                    .then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Error",
+                        text: "An error occed while cancelling the order.",
+                        icon: "error"
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                Swal.fire({
+                    title: "Error",
+                    text: "An error occurred while cancelling the order.",
+                    icon: "error"
+                });
             });
-
-            const result = await response.json();
-
-            if (result.success) {
-                showSuccessAlert('Order cancelled successfully.');
-
-                // Update the order status in the UI
-                const orderStatusElement = document.querySelector(`#status[data-order-id="${orderId}"]`);
-                if (orderStatusElement) {
-                    orderStatusElement.textContent = `Order ${orderId} - Cancelled`;
-                }
-
-                // Optionally, you can update the order element to show the cancellation reason
-                const reasonElement = document.querySelector(`#cancelReason[data-order-id="${orderId}"]`);
-                if (reasonElement) {
-                    reasonElement.textContent = `Cancellation Reason: ${reason}`;
-                }
-                // Hide the Cancel Order button
-                this.style.display = 'none';
-                window.location.reload();
-            } else {
-                showErrorAlert(result.message);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            showErrorAlert('An error occurred while cancelling the order.');
         }
     });
-});
+}
+
+ 
+
 
 function showSuccessAlert(message) {
     const container = document.getElementById('success-message-container');

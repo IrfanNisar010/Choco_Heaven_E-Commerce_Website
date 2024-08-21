@@ -9,6 +9,14 @@ const walletSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    productName: {
+        type: String,
+        default: 0
+    },
+    productImage: {
+        type: String,
+        default: 0
+    },
     transactionHistory: [{
         amount: {
             type: Number,

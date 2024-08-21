@@ -13,7 +13,7 @@ const offerSchema = mongoose.Schema({
         type: String,
 
     },
-    category: {
+    brands: {
         type: String,
 
     },
@@ -22,7 +22,7 @@ const offerSchema = mongoose.Schema({
         required: true
 
     },
-    expiredate: {
+    expireDate: {
         type: Date,
         required: true
     },

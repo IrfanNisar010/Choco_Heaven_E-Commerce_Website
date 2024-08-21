@@ -18,7 +18,7 @@
                     <div class="header-nav header-nav-2 pl-100">
                         <nav class="d-flex justify-content-center align-content-center"> 
                             <ul>
-                                <li><a href="javascript:void(0)" ><span>Home </span></a></li>
+                                <li><a href="/home" ><span>Home </span></a></li>
                                 <li><a href="/loadShop"><span>Shop <i class="fas fa-angle-down"></i></span></a>
                                         <div class="submenu" style="border-radius: 13px;">
                                             <ul>
@@ -357,10 +357,10 @@
                         <a class="nav-link" href="/wishlist" onclick="setActive(this)">Wishlist</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/coupon" onclick="setActive(this)">Coupons</a>
+                        <a class="nav-link" href="/coupons" onclick="setActive(this)">Coupons</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
+                        <a class="nav-link" id="logoutButton" href="/logout" onclick="setActive(this)">Log out</a>
                     </li>
                 </ul>
             </div>
@@ -368,14 +368,14 @@
           <!-- Main Content Column -->
           <div class="col-md-6 pl-0">
             <h4 class="col-md-6 profile-head p-0">Your Orders 🛍️</h4>
-            <p class="col-md-6 p-head p-0">Here's your Orders summary.</p>
+            <p class="col-md-6 p-head p-0">Here's your Orders history.</p>
             <% const statusColors = { 'cancelled': '#FF3B30', 'order confirmed': 'limegreen' }; %>
             <% function capitalizeFirstLetter(string) { %>
             <%= string.charAt(0).toUpperCase() + string.slice(1) %>
             <% } %>
             <% if (orders.length > 0) { %>
                 <% orders.forEach((order, index) => { %>
-                    <h1>Order <%= (currentPage - 1) * 3 + index + 1 %></h1> 
+                    <h1>Order <%= totalOrders - (ordersPerPage * (currentPage - 1) + index) %></h1>
                     <h5 class="status" id="orderStatus-<%= order._id %>" data-order-id="<%= order._id %>">
                         Status: 
                         <span style="color: <%= statusColors[order.orderStatus] || 'defaultColor' %>;">
@@ -413,7 +413,10 @@
                                     <div class="frame-wrapper-1">
                                         <button class="frame-frame-2">
                                             <div class="frame-t-track-order">
-                                                <div class="frame-track-order">Track Order</div>
+                                                <div class="frame-track-order">
+                                                    <a href="/orderDetails?id=<%= order._id %>" style="text-decoration: none; color: white;">
+                                                    Track Order</a>
+                                            </div>
                                             </div>
                                             <div class="frame-north-direction"></div>
                                         </button>
@@ -516,19 +519,25 @@
                         <div class="frame-t-line-1">
                             <object data="/assets/Line2.svg" class="frame-line-2"></object>
                         </div>
+                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
+                            <div class="frame-amount-payable-99000">Shipping charge :  ₹40</div>
+                        </div>
+                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
+                            <div class="frame-amount-payable-99000">Subtotal :  ₹<%= order.totalAmount - 40 %></div>
+                        </div>
                         <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-between align-center">
                             <% if (order.orderStatus !== 'cancelled') { %>
-                            <button class="cancel-btn-order" data-order-id="<%= order._id %>" style="color: #FF3B30;">
-                                Cancel Orders
-                                <lord-icon
-                                  src="https://cdn.lordicon.com/nqtddedc.json"
-                                  trigger="hover"
-                                  colors="primary:#FF3B30"
-                                  style="width:14px;height:14px; padding-left: 3px;">
-                                </lord-icon>
-                            </button>
-                            <% } %>
-                            <div class="frame-amount-payable-99000">Total :  ₹<%= order.totalAmount %></div>
+                                <button type="button" class="cancel-btn-order" onclick="cancelOrder('<%= order._id %>')" style="color: #FF3B30;">
+                                    Cancel Order
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/nqtddedc.json"
+                                        trigger="hover"
+                                        colors="primary:#FF3B30"
+                                        style="width:14px;height:14px; padding-left: 3px;">
+                                    </lord-icon>
+                                </button>
+                            <% } %>                            
+                            <div class="frame-amount-payable-99000">Total : ₹<%= order.totalAmount %></div>
                         </div>
                     </main>
                 <% }) %>
@@ -555,69 +564,51 @@
                     </nav>
                 </div>
             <% } else { %>
-                <div class="d-flex justify-content-center align-items-center vh-50">
-                    <div class="text-center">
-                        <h2 class="frame-order-history">No Orders Found</h2>
+                <div class="container-fluid mt-50">
+                    <div class="row">
+                        <div class="col-md-12" style="height: 600px;">
+                            <div class="card-body cart">
+                                <div class="col-sm-12 empty-cart-cls text-center">
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/evyuuwna.json"
+                                        trigger="in"
+                                        delay="200"
+                                        state="in-shopping-bag"
+                                        colors="primary:#000000"
+                                        style="width:100px;height:100px">
+                                    </lord-icon>
+                                    <h4 style="font-family: poppins; font-weight: 300;"><strong>No Order found</strong></h4>
+                                    <p>Browse our products and discover something you'll love.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <% } %>
     </div>
-    <!-- Vertically centered scrollable modal -->
+   <!-- Vertically centered scrollable modal -->
 <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cancelOrderModalLabel">Cancel Order</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="cancelOrderForm">
-            <div class="mb-3">
-              <label for="cancelReason" class="form-label">Select a reason for cancellation:</label>
-              <div id="cancelReason">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="reason" id="reason1" value="Product damaged">
-                  <label class="form-check-label" for="reason1">
-                    Product damaged
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="reason" id="reason2" value="Product not as described">
-                  <label class="form-check-label" for="reason2">
-                    Product not as described
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="reason" id="reason3" value="Shipping delay">
-                  <label class="form-check-label" for="reason3">
-                    Shipping delay
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="reason" id="reason4" value="Changed my mind">
-                  <label class="form-check-label" for="reason4">
-                    Changed my mind
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="reason" id="reason5" value="Other">
-                  <label class="form-check-label" for="reason5">
-                    Other
-                  </label>
-                </div>
-                <div class="form-group mt-2" id="otherReasonContainer" style="display: none;">
-                  <label for="otherReason">Please specify:</label>
-                  <input type="text" class="form-control" id="otherReason" name="otherReason">
-                </div>
-              </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelOrderModalLabel">Cancel Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+            <div class="modal-body">
+                <form id="cancelOrderForm">
+                    <div class="mb-3">
+                        <label for="cancelReason" class="form-label">Select a reason for cancellation:</label>
+                        <div id="cancelReason"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div id="success-message-container"></div>   
+</div>
+
+<div id="success-message-container"></div>  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/OrdersManage.js"></script>
 <script src="https://cdn.lordicon.com/lordicon.js"></script>
 <%- include('../layouts/addBrandsFooter') %>

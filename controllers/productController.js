@@ -32,7 +32,6 @@ const addProductLoad = async (req, res, next) => {
         next(error);
     }
 };
-
 const addProduct = async (req, res, next) => {
     try {
         const images = [];
@@ -43,9 +42,20 @@ const addProduct = async (req, res, next) => {
         if (req.files.productImage3) images.push(req.files.productImage3[0].filename);
         if (req.files.productImage4) images.push(req.files.productImage4[0].filename);
 
+        // Check if product already exists
+        const existingProduct = await Products.findOne({
+            productName: req.body.productName,
+            brandId: req.body.brandId,
+            model: req.body.model
+        });
+
+        if (existingProduct) {
+            return res.status(400).json({ success: false, error: 'ProductExists' });
+        }
+
         const product = new Products({
             productName: req.body.productName,
-            brandId: req.body.brandId, 
+            brandId: req.body.brandId,
             model: req.body.model,
             size: req.body.size,
             description: req.body.description,

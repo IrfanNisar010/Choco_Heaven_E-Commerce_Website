@@ -8,17 +8,24 @@ const BrandsPageLoad = async (req, res, next) => {
         const brandsPerPage = 8;
         const skip = (currentPage - 1) * brandsPerPage;
 
-        const brands = await Brands.find().skip(skip).limit(brandsPerPage);
+        const searchQuery = req.query.search || '';
 
-        const totalBrands = await Brands.countDocuments();
+        const brands = await Brands.find({
+            name: { $regex: searchQuery, $options: 'i' } // Case-insensitive search
+        }).skip(skip).limit(brandsPerPage);
+
+        const totalBrands = await Brands.countDocuments({
+            name: { $regex: searchQuery, $options: 'i' }
+        });
         const totalPages = Math.ceil(totalBrands / brandsPerPage);
 
-        res.render('brandsManage', { brands, currentPage, totalPages });
+        res.render('brandsManage', { brands, currentPage, totalPages, searchQuery });
     } catch (error) {
         console.log(error.message);
         next(error);
     }
-}
+};
+
 
 const addBrandPageLoad = async (req, res, next) => {
     try {
@@ -28,53 +35,47 @@ const addBrandPageLoad = async (req, res, next) => {
         next(error);
     }
 }
-
 const addBrands = async (req, res, next) => {
     try {
-      const { brandName, description, isAvailable } = req.body;
-      const image = req.file;
-      // Log the received data
+        const { brandName, description, isAvailable } = req.body;
+        const image = req.file;
 
-      if(!image ){
-        return res.send("fjashfkjafkjh")
-      }
-      console.log("Received data:", { brandName, description, isAvailable, image });
-  
-      if (!brandName || !description || !image) {
-        console.log("Missing fields:", { brandName, description, image });
-        return res.status(403).json({ message: "Please enter all brand details including an image!" });
-      }
-  
-      if (brandName.trim() === '' || description.trim() === '') {
-        console.log("Invalid fields:", { brandName, description });
-        return res.status(403).json({ message: "Please enter valid brand details!" });
-      }
-  
-      const brandsName = brandName.toLowerCase();
-      const brandsData = await Brands.findOne({ name: brandsName });
-  
-      if (brandsData) {
-        console.log("Brand already exists:", brandsData);
-        return res.status(403).json({ message: "This brand is already added!" });
-      }
-  
-      const imagePath = image ? image.filename : '';
-  
-      const newBrand = new Brands({
-        name: brandsName,
-        description,
-        status: !!isAvailable,
-        imageUrl: imagePath
-      });
-  
-      await newBrand.save();
-      res.status(200).json({ success: true });
+        if (!image) {
+            return res.status(403).json({ message: "Please upload an image for the brand!" });
+        }
+
+        if (!brandName || !description || !image) {
+            return res.status(403).json({ message: "Please enter all brand details including an image!" });
+        }
+
+        if (brandName.trim() === '' || description.trim() === '') {
+            return res.status(403).json({ message: "Please enter valid brand details!" });
+        }
+
+        const brandsName = brandName.toLowerCase();
+        const brandsData = await Brands.findOne({ name: brandsName });
+
+        if (brandsData) {
+            return res.status(403).json({ message: "This brand is already added!" });
+        }
+
+        const imagePath = image.filename;
+
+        const newBrand = new Brands({
+            name: brandsName,
+            description,
+            status: !!isAvailable,
+            imageUrl: imagePath
+        });
+
+        await newBrand.save();
+        res.status(200).json({ success: true });
     } catch (error) {
-      console.log("Error in addBrands:", error.message);
-      next(error);
+        console.log("Error in addBrands:", error.message);
+        next(error);
     }
-  };
-  
+};
+
 
 const searchBrands = async (req, res, next) => {
     try {

@@ -162,43 +162,81 @@ function brandsFormValidation() {
     return true;
 }
 
-
 function validateCouponForm() {
     var message = document.getElementById('validationMessages');
-    var discount = document.getElementById('discount').value.trim();
-    var minmPrchsAmt = document.getElementById('minmPrchsAmt').value.trim();
-    var maxRedeemableAmount = document.getElementById('maxRedeemableAmount').value.trim();
+    message.style.display = 'none';
+    message.textContent = '';
 
-    let couponCode = document.getElementById('couponCode').value.trim();  
+    var couponName = document.getElementById('couponName').value.trim();
+    var couponCode = document.getElementById('couponCode').value.trim();  
+    var discountPercentage = document.getElementById('discountPercentage').value.trim();
+    var minPurchaseAmt = document.getElementById('minPurchaseAmt').value.trim();
+    var maxRedeemAbelAmount = document.getElementById('maxRedeemAbelAmount').value.trim();
+    var expiredDate = document.getElementById('expiredDate').value;
+    var description = document.getElementById('description').value.trim();
+
     let codeRegex = /^[A-Za-z0-9]{5,10}$/;
 
-    if (!codeRegex.test(couponCode)) {
+    // Coupon Name Validation
+    if (!couponName) {
+        message.style.display = 'block';
+        message.textContent = "Coupon name is required.";
+        return false;
+    }
+
+    // Coupon Code Validation
+    if (!couponCode) {
+        message.style.display = 'block';
+        message.textContent = "Coupon code is required.";
+        return false;
+    } else if (!codeRegex.test(couponCode)) {
         message.style.display = 'block';
         message.textContent = "Coupon code must be 5-10 characters long and contain only letters and numbers.";
         return false;
     }
 
-    if (!discount) {
+    // Discount Percentage Validation
+    if (!discountPercentage || discountPercentage <= 0 || discountPercentage > 100) {
         message.style.display = 'block';
-        message.textContent = "Enter discount";
+        message.textContent = "Enter a valid discount percentage (1-100).";
         return false;
-    } else if (!minmPrchsAmt || minmPrchsAmt < 1) {
+    }
+
+    // Minimum Purchase Amount Validation
+    if (!minPurchaseAmt || isNaN(minPurchaseAmt) || minPurchaseAmt < 1) {
         message.style.display = 'block';
-        message.textContent = "Enter minimum purchase amount";
+        message.textContent = "Enter a valid minimum purchase amount.";
         return false;
-    } else if (!maxRedeemableAmount || maxRedeemableAmount < 100) {
+    }
+
+    // Maximum Redeemable Amount Validation
+    if (!maxRedeemAbelAmount || isNaN(maxRedeemAbelAmount) || maxRedeemAbelAmount < 100) {
         message.style.display = 'block';
-        message.textContent = "Maximum redeemable amount must be greater than 100";
+        message.textContent = "Maximum redeemable amount must be greater than 100.";
+        return false;
+    }
+
+    // Expiration Date Validation
+    if (!expiredDate) {
+        message.style.display = 'block';
+        message.textContent = "The expiration date is required.";
         return false;
     }
 
     let today = new Date();
     today.setHours(0, 0, 0, 0); 
-    let expiredDate = new Date(document.getElementById('expiredDate').value);
+    let expiryDate = new Date(expiredDate);
 
-    if (!expiredDate || expiredDate <= today) {
+    if (expiryDate <= today) {
         message.style.display = 'block';
         message.textContent = "The expiration date must be a future date.";
+        return false;
+    }
+
+    // Description Validation
+    if (!description) {
+        message.style.display = 'block';
+        message.textContent = "Description is required.";
         return false;
     }
 

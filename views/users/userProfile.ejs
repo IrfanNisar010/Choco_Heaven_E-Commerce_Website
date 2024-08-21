@@ -357,7 +357,7 @@
                         <a class="nav-link" href="/wishlist" onclick="setActive(this)">Wishlist</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/coupon" onclick="setActive(this)">Coupons</a>
+                        <a class="nav-link" href="/coupons" onclick="setActive(this)">Coupons</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
                         <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
@@ -463,7 +463,7 @@
                         </div>
                         <div class="mt-2">
                             <button style="border-radius: 7px;" type="submit" class="btn btn-primary me-2">
-                                <a href="/forgotPassword" style="color: white; text-decoration: none; font-family: poppins; font-weight: 300;">Change Password</a>
+                                <a href="/resetPasswordPageLoad" style="color: white; text-decoration: none; font-family: poppins; font-weight: 300;">Change Password</a>
                             </button>
                         </div>
                     </form>
@@ -495,6 +495,8 @@
         });
     });
 </script>
+
+<script src="/js/helperFunctions.js"></script>
 
 <%- include('../layouts/addBrandsFooter') %>
 <%- include('../layouts/homeFooter') %>

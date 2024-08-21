@@ -97,7 +97,7 @@
                                         </a>
                                     </li>
                                 <% } else { %>
-                                    <a href="/profile" class="account">
+                                    <a href="/profileDetails" class="account">
                                         <lord-icon
                                             src="https://cdn.lordicon.com/kthelypq.json"
                                             trigger="hover"
@@ -249,13 +249,13 @@
                                     </a>
                                     <ul class="submenu text-right">
                                         <% if (locals.user) { %>
-                                            <li><a href="login.html">My profile</a></li>
+                                            <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
-                                            <li><a href="login.html">My profile</a></li>
+                                            <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="/wishlist">Wishlist</a></li>
@@ -318,38 +318,25 @@
                 <div class="row">
                     <div class="col-xl-3 hidden-xl">
                         <!-- widget -->
-                        <div class="widget">
-                            <h4 class="mb-30">Brands Categories</h4>
-                            <div class="accordion" id="accordionExample">
-                                <% products.slice(0, 5).forEach((product, i) => { %>
-                                    <div class="list">
-                                        <a href="javascript:void(0)"><%= brands[i].name %>(<%= product.inStock %>)</a>
-                                        <button class="float-right text-right" type="button" data-toggle="collapse" data-target="#collapse-<%= product._id %>">
-                                            <span class="float-right"><i class="fas fa-angle-right" onclick="toggleBrands('<%= product._id %>')"></i></span>
-                                        </button>
-                                    </div>
-                                    <div id="collapse-<%= product._id %>" class="collapse">
-                                        <!-- Content to be collapsed -->
-                                    </div>
-                                <% }); %>
-                                
-                                <% if (products.length > 5) { %>
-                                    <div id="extra-products" style="display: none;">
-                                        <% products.slice(5).forEach((product, i) => { %>
-                                            <div class="list">
-                                                <a href="javascript:void(0)"><%= brands[i + 5].name %>(<%= product.inStock %>)</a>
-                                                <button class="float-right text-right" type="button" data-toggle="collapse" data-target="#collapse-<%= product._id %>">
-                                                    <span class="float-right"><i class="fas fa-angle-right" onclick="toggleBrands('<%= product._id %>')"></i></span>
-                                                </button>
-                                            </div>
-                                            <div id="collapse-<%= product._id %>" class="collapse">
-                                                <!-- Content to be collapsed -->
-                                            </div>
-                                        <% }); %>
-                                    </div>
-                                <% } %>                                
-                            </div>
-                        </div>
+                        <!-- widget -->
+<div class="widget">
+    <h4 class="mb-30">Brands Categories</h4>
+    <div class="accordion custom-scroll" id="accordionExample">
+        <form action="#" id="filterForm">
+            <% brands.forEach((brand) => { %>
+                <% const product = products.find(p => p.brandId.equals(brand._id)); %>
+                <div class="list">
+                    <input type="checkbox" id="brand-filter-<%= brand._id %>" name="brand-filter" value="<%= brand._id %>">
+                    <label for="brand-filter-<%= brand._id %>"><%= brand.name %>(<%= product ? product.inStock : 0 %>)</label>
+                </div>
+            <% }); %>
+        </div>
+        <div class="filter-form-submit mt-35">
+            <button type="submit" id="filterButton" >Filter</button>
+        </div>
+    </form>
+</div>
+
                         <div class="widget mt-50">
                             <h4 class="mb-30">Filter By Price</h4>
                             <form id="price-filter-form" action="#">
@@ -436,8 +423,8 @@
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                     <div class="filter-shown-item">
-                                        <p class="mb-0">Showing <span>1</span>–<span>24</span> of <span
-                                                class="total_count">56</span> results</p>
+                                        <p class="mb-0">Showing <span>1</span>–<span>6</span> of <span
+                                                class="total_count">18</span> results</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-12">

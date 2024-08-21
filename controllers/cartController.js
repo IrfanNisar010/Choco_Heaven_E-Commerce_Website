@@ -10,6 +10,10 @@ const cartLoad = async (req, res, next) => {
         const userId = req.session.userId;
         const userData = await User.findById({ _id: userId });
 
+        if (userData.is_block) {
+            return res.redirect('/logout');
+        }
+
         const userCart = await Cart.aggregate([
             { $match: { userId: new mongoose.Types.ObjectId(userId) } },
             { $unwind: '$cartItems' },
@@ -76,7 +80,7 @@ const addToCart = async (req, res, next) => {
             return res.status(400).json({ message: "Product ID is required." });
         }
 
-        // Find the product to ensure it exists (optional, but recommended)
+        // Find the product to ensure it exists
         const product = await Products.findById(productId);
         if (!product) {
             return res.status(404).json({ message: "Product not found." });
@@ -90,9 +94,22 @@ const addToCart = async (req, res, next) => {
             });
         } else {
             const existingItem = cart.cartItems.find(item => item.productId.equals(productId));
+
             if (existingItem) {
+                if (existingItem.quantity >= 5) {
+                    return res.status(400).json({ message: "You cannot add more than 5 units of this product.", warning: true });
+                }
+                
+                if (existingItem.quantity + 1 > product.inStock) {
+                    return res.status(400).json({ message: "Not enough stock. Only a few units left.", warning: true });
+                }
+                
                 existingItem.quantity += 1;
             } else {
+                if (product.inStock < 1) {
+                    return res.status(400).json({ message: "This product is out of stock.", warning: true });
+                }
+                
                 cart.cartItems.push({ productId: productId, quantity: 1 });
             }
         }
@@ -181,6 +198,10 @@ const wishlistLoad = async (req, res, next) => {
         const userId = req.session.userId
         const productId =  req.session.productId
         const userData = await User.findById({ _id: userId })
+
+        if (userData.is_block) {
+            return res.redirect('/logout');
+        }
 
         const userWishlist = await Wishlist.aggregate([
             { $match: { userId: new mongoose.Types.ObjectId(userId) } },

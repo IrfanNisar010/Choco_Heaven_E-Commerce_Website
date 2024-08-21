@@ -1,4 +1,12 @@
 const User = require('../models/userModel');
+const Products = require('../models/productModel')
+const Brands = require('../models/brandsModel')
+const Orders = require('../models/orderModel')
+
+const PDFDocument = require('pdfkit');
+const PDFTable = require('pdfkit-table')
+const ExcelJS = require('exceljs');
+const fs = require('fs')
 
 const loginLoad = async (req, res) => {
     try {
@@ -103,6 +111,119 @@ const searchUser = async (req, res, next) => {
     }
 }
 
+const orderStatuses = async (req, res, next) => {
+    try {
+        const orderCounts = await Orders.aggregate([
+            { $group: { _id: '$orderStatus', count: { $sum: 1 } } }
+        ]);
+
+        const dailyOrders = await Orders.aggregate([
+            {
+                $group: {
+                    _id: { $dateToString: { format: "%Y-%m-%d", date: "$orderDate" } },
+                    count: { $sum: 1 }
+                }
+            }, { $sort: { "_id": 1 } }
+        ]);
+
+        const topBrands = await Orders.aggregate([{ $unwind: "$orderItems" },
+        { $group: { _id: '$orderItems.brands', count: { $sum: 1 } } }, { $sort: { count: -1 } }, { $limit: 10 }
+        ]);
+
+        res.json({ status: orderCounts, perDay: dailyOrders, brands: topBrands});
+
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
+const salesReport = async (req, res, next) => {
+    try {
+        const { interval, startDate, endDate, page = 1, limit = 10 } = req.query;
+        const query = {};
+
+        if (interval === 'daily') {
+            query.orderDate = {
+                $gte: new Date(new Date().setHours(0, 0, 0, 0)),
+                $lt: new Date(new Date().setHours(23, 59, 59, 999))
+            };
+        } else if (interval === 'weekly') {
+            const endDate = new Date();
+            const startDate = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
+            query.orderDate = {
+                $gte: startDate,
+                $lt: endDate
+            };
+        } else if (interval === 'yearly') {
+            const yearStart = new Date(new Date().getFullYear(), 0, 1);
+            const yearEnd = new Date(new Date().getFullYear() + 1, 0, 0);
+            query.orderDate = {
+                $gte: yearStart,
+                $lt: yearEnd
+            };
+        } else if (startDate && endDate) {
+            query.orderDate = {
+                $gte: new Date(startDate),
+                $lte: new Date(endDate)
+            };
+        }
+
+        const salesReport = await Orders.find(query)
+            .skip((page - 1) * limit)
+            .limit(parseInt(limit));
+
+        const totalOrders = await Orders.countDocuments(query);
+        const totalPages = Math.ceil(totalOrders / limit);
+
+        // Convert _id and brandId to string and ensure productName is defined before sending to the frontend
+        const salesReportWithStringIds = salesReport.map(order => ({
+            ...order.toObject(),
+            _id: order._id.toString(),
+            orderItems: order.orderItems.map(item => ({
+                ...item,
+                brandId: item.brandId.toString(),
+                productName: item.productName || 'N/A' // Default to 'N/A' if productName is undefined
+            }))
+        }));
+
+        res.render('salesReport', { salesReport: salesReportWithStringIds, totalPages, currentPage: parseInt(page) });
+
+    } catch (error) {
+        console.log(error.message);
+        next(error);
+    }
+};
+const downloadExcel = async (req, res) => {
+    try {
+        const { data } = req.body;
+
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Sales Data');
+
+        worksheet.columns = [
+            { header: 'Order Id', key: 'orderId', width: 20 },
+            { header: 'Order Date', key: 'orderDate', width: 20 },
+            { header: 'User Name', key: 'userName', width: 20 },
+            { header: 'Phone', key: 'phone', width: 15 },
+            { header: 'Product Name', key: 'productName', width: 20 },
+            { header: 'Brands', key: 'brands', width: 20 }, 
+            { header: 'Status', key: 'status', width: 15 },
+            { header: 'Total Amount', key: 'totalAmount', width: 20 },
+        ];
+
+        worksheet.addRows(data);
+
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.setHeader('Content-Disposition', 'attachment; filename="salesReport.xlsx"');
+
+        await workbook.xlsx.write(res);
+        res.status(200).end();
+    } catch (error) {
+        console.log('Error:', error.message);
+        res.status(500).send('Error generating Excel file');
+    }
+}
+
 
 const logout = async (req, res) => {
     try {
@@ -113,6 +234,7 @@ const logout = async (req, res) => {
     }
 }
 
+
 module.exports = {
     loginLoad,
     verifyLogin,
@@ -120,5 +242,8 @@ module.exports = {
     loadUserManagement,
     blockAndUnblockUser,
     searchUser,
+    orderStatuses,
+    salesReport,
+    downloadExcel,
     logout
 };

@@ -357,83 +357,85 @@
                         <a class="nav-link" href="/wishlist" onclick="setActive(this)">Wishlist</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/coupon" onclick="setActive(this)">Coupons</a>
+                        <a class="nav-link" href="/coupons" onclick="setActive(this)">Coupons</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
+                        <a class="nav-link"  href="/logout" onclick="setActive(this)">Log out</a>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <!-- Main Content Column -->
-        <div class="col-md-9 pl-0">
-            <h4 class="col-md-6 profile-head p-0">Your, Wallet 💳</h4>
-            <p class="col-md-6 p-head p-0">Here's your Wallet details.</p>
+       <!-- Main Content Column -->
+<div class="col-md-9 pl-0">
+    <h4 class="profile-head p-0">Your Wallet 💳</h4>
+    <p class="p-head p-0">Here's your Wallet details.</p>
 
-            <!-- Main Wallet Start -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <div class="card shadow-custom" style="background-image: url('/assets/img/logo/card_bg.png');">
-                          <div class="card-details">
-                            <div class="card-logo">VISA</div>
-                            <div class="card-number">4312 5673 3389 4400</div>
-                            <div class="card-name">Irfan Nisar</div>
-                            <div class="card-expiry">07/30</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="balance-card shadow-custom">
-                            <div class="balance">₹2995.00</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="add-card shadow-custom">
-                            <div class="add-card-text">+ Add Card</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wallet-history">
-                    <h2>Wallet history</h2>
-                    <div class="history-item row mb-3">
-                        <div class="col-auto">
-                            <img src="whittakers.png" alt="">
-                        </div>
-                        <div class="col">
-                            <div class="item-details">
-                                <div class="item-name">Whittakers Dark Ghana Fruit & Nut</div>
-                                <div class="item-weight">250g</div>
-                            </div>
-                        </div>
-                        <div class="col-auto text-right">
-                            <div class="item-price">-₹995.00</div>
-                            <div class="item-qty">Qty: 1</div>
-                        </div>
-                    </div>
-                    <div class="history-item row mb-3">
-                        <div class="col-auto">
-                            <img src="ferrero_rocher.png" alt="">
-                        </div>
-                        <div class="col">
-                            <div class="item-details">
-                                <div class="item-name">Ferrero Rocher T30 375g</div>
-                                <div class="item-weight">375g</div>
-                            </div>
-                        </div>
-                        <div class="col-auto text-right">
-                            <div class="item-price">-₹2,155.00</div>
-                            <div class="item-qty">Qty: 1</div>
-                        </div>
+    <!-- Main Wallet Start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+               
+                <div class="card shadow-custom" style="border: none; border-radius: 10px;">
+                    <div class="card-details">
+                        <div class="card-logo"><img class="visa-logo" src="/assets/img/logo/visa_logo.png" alt=""></div>
+                        <div class="card-number">4312 5673 3389 4400</div>
+                        <div class="card-name"><%= user.firstName %> <%= user.lastName %></div>
+                        <div class="card-expiry">07/30</div>
                     </div>
                 </div>
             </div>
-            <!-- Main Wallet End -->
-
-            
+            <div class="col-md-4 mb-3">
+                <div class="balance-card shadow-custom">
+                    <div class="balance-header">
+                        <h3 class="head-balance">Balance</h3>
+                        <div class="icon-button">
+                            <button class="add-balance">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/xoaqvsym.json"
+                                trigger="hover"
+                                colors="primary:#ffffff"
+                                style="width:21px;height:21px;">
+                            </lord-icon>Top up</button>
+                        </div>
+                    </div>
+                    <div class="balance">₹  <%= wallet.walletAmount %></div>
+                </div>
+            </div>            
+            <div class="col-md-2 mb-3">
+                <div class="add-card shadow-custom">
+                    <div class="add-card-text">+ Add Card</div>
+                </div>
+            </div>
         </div>
+        <div class="wallet-history">
+            <h2>Wallet history</h2>
+            <% if (wallet.transactionHistory.length > 0) { %>
+                <% for (let i = 0 ; i < wallet.transactionHistory.length ; i++){ %> 
+                    <div class="history-item row mb-3 align-items-center">
+                        <div class="col-auto">
+                            <img src="<%= wallet.transactionHistory[i].productImage %>" alt="">
+                        </div>
+                        <div class="col">
+                            <div class="item-details">
+                                <div class="item-name"><%= wallet.transactionHistory[i].productName %></div>
+                                <div class="item-weight"><%= new Date(wallet.transactionHistory[i].date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) %></div>
+                            </div>
+                        </div>
+                        <div class="col-auto text-right">
+                            <div class="item-price">₹<%= wallet.transactionHistory[i].amount %></div>
+                            <div class="item-qty"><%= wallet.transactionHistory[i].paymentType %></div>
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <p>No transactions found in your wallet history.</p>
+            <% } %>
+        </div>        
+    </div>
+    <!-- Main Wallet End -->
+</div>
+
     </div>
 </div>
 

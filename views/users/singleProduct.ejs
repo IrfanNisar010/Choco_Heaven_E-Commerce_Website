@@ -431,6 +431,11 @@
                                         <% } else { %>
                                             <p><span>Availability</span><span class="text-danger"> : Out Of Stock</span></p>
                                         <% } %>
+                                        <% if(product.offer.length > 0){ %> 
+                                            <h6 class="l-through text-success"><%= offer.offer %>, Extra <%= offer.discount %>% Discount</h6>
+                                        <% }else{ %>
+                                            <h6 class="l-through text-success"><%= Math.abs(product.discount)%> % Discount</h6>
+                                        <% } %>
                                     </div>
                                     <div class="single-product-component mt-1">
                                         <div class="size">
@@ -603,14 +608,15 @@
     <!-- single product end -->
     <!-- sugession start -->
     <!-- sugession start -->
+<!-- suggestion-product start -->
 <section class="suggestion-product mt-120">
     <div class="container-fluid">
         <div class="generic-title text-center">
             <h2 class="mb-20">You May Also Like</h2>
         </div>
-        <% if (products.length > 0) { %>
+        <% if (suggestionProducts.length > 0) { %>
             <div class="main-product-carousel owl-carousel owl-theme red-nav mt-50">
-                <% products.forEach((product) => { %>
+                <% suggestionProducts.forEach((product) => { %>
                     <div class="item">
                         <div class="product-box">
                             <div class="product-box-wrapper">
@@ -644,7 +650,7 @@
         <% } %>
     </div>
 </section>
-<!-- sugession end -->
+<!-- suggestion end -->
 
 <!-- related product start -->
 <section class="related-product mt-120">
@@ -652,9 +658,9 @@
         <div class="generic-title text-center">
             <h2 class="mb-20">Related Product</h2>
         </div>
-        <% if (products.length > 0) { %>
+        <% if (relatedProducts.length > 0) { %>
             <div class="main-product-carousel owl-carousel owl-theme red-nav mt-50">
-                <% products.forEach((product) => { %>
+                <% relatedProducts.forEach((product) => { %>
                     <div class="item">
                         <div class="product-box">
                             <div class="product-box-wrapper">
@@ -688,6 +694,8 @@
         <% } %>
     </div>
 </section>
+<!-- related product end -->
+
 <!-- related product end -->
 
 

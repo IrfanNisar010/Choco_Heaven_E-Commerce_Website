@@ -420,6 +420,10 @@ input {
   color: white;
 }
 
+.frame-frame-2:hover {
+  background-color: #3d7dda;
+}
+
 .frame-north-direction {
   background-image: url(/assets/north-direction.png);
   flex-shrink: 0;

@@ -360,7 +360,7 @@
                                         </lord-icon>
                                         <h3><strong>Your Cart is Currently Empty</strong></h3>
                                         <h4>Browse our products and discover something you'll love.</h4>
-                                        <a href="/loadShop" class="btn btn-shopping" style="width: 200px; height: 50px; margin: 20px auto;">Continue Shopping</a>
+                                        <a href="/loadShop" class="btn btn-shopping" style="width: 200px; height: 50px; margin: 20px;">Continue Shopping</a>
                                     </div>
                                 </div>
                             </div>
@@ -467,8 +467,8 @@
                                                 <td class="cart-summary-price p-0 total-price" id="Subtotal">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].discountPrice, 0) %></td>
                                             </tr>
                                             <tr>
-                                                <th class="cart-summary-title pb-10" style="font-size: 22px;">Total</th>
-                                                <td class="cart-summary-price p-0" id="totalPrice">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].discountPrice, 0) + 40 %></td>
+                                                <th class="cart-summary-title pb-10" style="font-size: 22px;">Grand total</th>
+                                                <td class="cart-summary-price p-0" id="totalPrice"  style="font-size: 21px; font-weight: 500;">₹<%= userCart.reduce((acc, cartItem) => acc + cartItem.cartItems.quantity * cartItem.productDetails[0].discountPrice, 0) + 40 %></td>
                                             </tr>
                                         </tbody>
                                     </table>

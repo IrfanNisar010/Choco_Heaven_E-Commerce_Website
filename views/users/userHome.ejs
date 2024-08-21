@@ -287,7 +287,7 @@
                                             <li><a href="/addressManage">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
                                             <li><a href="/wishlist">Wishlist</a></li>
-                                            <li><a href="/logout">logout</a></li>
+                                            <li><a id="logoutButton" href="/logout">logout</a></li>
                                         <% } else { %>
                                             <li><a href="/login">My profile</a></li>
                                             <li><a href="/addressManage">My address</a></li>
@@ -934,5 +934,7 @@
    <audio id="wishlist-success-sound" src="path_to_your_success_sound_file.mp3" preload="auto"></audio>
 
     <script src="/js/helperFunctions.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <%- include('../layouts/homeFooter') %>

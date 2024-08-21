@@ -23,6 +23,7 @@ user_route.use(passport.session())
 const userController = require("../controllers/userController");
 const cartController = require("../controllers/cartController");
 const orderController = require("../controllers/orderController");
+const couponController = require("../controllers/couponController")
 
 // load Home
 user_route.get('/', userController.loadHome)
@@ -49,9 +50,11 @@ user_route.post('/updateProfile', userAuth.isLogin, uploads.upload.single('image
 
 // forgot password and reset
 user_route.get('/forgotPassword', userController.forgotPasswordPage);
+user_route.get('/resetPasswordPageLoad', userController.resetPasswordPageLoad);
 user_route.post('/verifyEmail',userController.verifyEmail);
 user_route.post('/forgotOtpVerify',userController.forgotOtpVerify);
 user_route.post('/resetPassword',userController.resetPassword);
+user_route.post('/resetPasswordForUser',userController.resetPasswordForUser);
 
 // Address Management
 user_route.get('/addressManage', userAuth.isLogin, userController.addressManageLoad);
@@ -61,9 +64,11 @@ user_route.get('/deleteAddress',userAuth.isLogin,userController.deleteAddress);
  
 // Order, Checkout Manage
 user_route.get('/ordersManage', userAuth.isLogin, orderController.ordersPageLoad);
+user_route.get('/getOrderStatus', userAuth.isLogin, orderController.getOrderStatus);
+user_route.get('/orderDetails', userAuth.isLogin, orderController.orderDetailsLoad);
 user_route.get('/checkout', userAuth.isLogin, orderController.checkoutPageLoad);
 user_route.post('/createOrder', userAuth.isLogin, orderController.createOrder);
-user_route.post('/cancelOrder', userAuth.isLogin, orderController.cancelOrder);
+user_route.get('/cancelOrder', userAuth.isLogin, orderController.cancelOrder);
 user_route.post('/verifyPayment', userAuth.isLogin, orderController.verifyPayment);
 user_route.post('/getPaymentDetails', userAuth.isLogin, orderController.getPaymentDetails);
 user_route.get('/wallet', userAuth.isLogin, orderController.walletLoad);
@@ -79,6 +84,11 @@ user_route.post('/updateQuantity', userAuth.isLogin, cartController.updateQuanti
 user_route.get('/wishlist', userAuth.isLogin, cartController.wishlistLoad);
 user_route.get('/addToWishlist', cartController.addToWishlist);
 user_route.get('/removeFromWishlist', userAuth.isLogin, cartController.removeFromWishlist);
+
+//Coupon Manage
+user_route.get('/coupons',userAuth.isLogin,couponController.showCouponForUser)
+user_route.post('/applyCoupon',userAuth.isLogin,couponController.applyCoupon)
+user_route.get('/removeCoupon',userAuth.isLogin,couponController.removeCoupon)
 
 
 // user Logout
