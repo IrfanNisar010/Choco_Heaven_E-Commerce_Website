@@ -319,23 +319,24 @@
                     <div class="col-xl-3 hidden-xl">
                         <!-- widget -->
                         <!-- widget -->
-<div class="widget">
-    <h4 class="mb-30">Brands Categories</h4>
-    <div class="accordion custom-scroll" id="accordionExample">
-        <form action="#" id="filterForm">
-            <% brands.forEach((brand) => { %>
-                <% const product = products.find(p => p.brandId.equals(brand._id)); %>
-                <div class="list">
-                    <input type="checkbox" id="brand-filter-<%= brand._id %>" name="brand-filter" value="<%= brand._id %>">
-                    <label for="brand-filter-<%= brand._id %>"><%= brand.name %>(<%= product ? product.inStock : 0 %>)</label>
-                </div>
-            <% }); %>
-        </div>
-        <div class="filter-form-submit mt-35">
-            <button type="submit" id="filterButton" >Filter</button>
-        </div>
-    </form>
-</div>
+                        <div class="widget">
+                            <h4 class="mb-30">Brands Categories</h4>
+                            <div class="accordion custom-scroll" id="accordionExample">
+                                <form action="#" id="filterForm">
+                                    <% brands.forEach((brand) => { %>
+                                        <% const product = products.find(p => p.brandId.equals(brand._id)); %>
+                                        <div class="list">
+                                            <input type="checkbox" id="brand-filter-<%= brand._id %>" name="brand-filter" value="<%= brand._id %>">
+                                            <label for="brand-filter-<%= brand._id %>"><%= brand.name %>(<%= product ? product.inStock : 0 %>)</label>
+                                        </div>
+                                    <% }); %>
+                                </div>
+                                <div class="filter-form-submit mt-35">
+                                    <button type="submit" id="filterButton" >Filter</button>
+                                </div>
+                            </form>
+                        </div>
+                        
 
                         <div class="widget mt-50">
                             <h4 class="mb-30">Filter By Price</h4>

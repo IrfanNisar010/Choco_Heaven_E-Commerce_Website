@@ -103,3 +103,29 @@ document.getElementById('search-form').addEventListener('submit', function(event
   window.location.href = `/loadShop?${queryParams.toString()}`;
 });
 
+
+document.querySelectorAll('input[name="brand-filter"]').forEach(function(checkbox) {
+  checkbox.addEventListener('change', function() {
+      let form = document.getElementById('filterForm');
+      let selectedBrands = Array.from(form.querySelectorAll('input[name="brand-filter"]:checked'))
+                          .map(cb => cb.value);
+      
+      let queryParams = new URLSearchParams(window.location.search);
+      queryParams.set("brands", selectedBrands.join(','));
+      queryParams.set("page", 1); // Reset to the first page on filter change
+      window.location.href = `/loadShop?${queryParams.toString()}`;
+  });
+});
+
+$("#price-filter-form").on("submit", function (event) {
+  event.preventDefault();
+  var minPrice = $("#slider-range").slider("values", 0);
+  var maxPrice = $("#slider-range").slider("values", 1);
+
+  let queryParams = new URLSearchParams(window.location.search);
+  queryParams.set("minPrice", minPrice);
+  queryParams.set("maxPrice", maxPrice);
+  queryParams.set("page", 1); // Reset to the first page on filter change
+
+  window.location.href = `/loadShop?${queryParams.toString()}`;
+});

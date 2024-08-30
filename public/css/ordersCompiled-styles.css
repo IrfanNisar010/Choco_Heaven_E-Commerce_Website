@@ -406,7 +406,7 @@ input {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   overflow: clip;
-  background-color: dodgerblue;
+  background-color: #007AFF;
   column-gap: 7px;
   padding-left: 10px;
   padding-right: 8px;
@@ -421,7 +421,7 @@ input {
 }
 
 .frame-frame-2:hover {
-  background-color: #3d7dda;
+  background-color: #007AFF;
 }
 
 .frame-north-direction {

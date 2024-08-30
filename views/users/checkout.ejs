@@ -1,6 +1,21 @@
 <%- include('../layouts/checkoutHeader') %>
 <%- include('../layouts/userHomeHeader') %>
 
+<% if (typeof message !== "undefined") { %>
+    <div class="msg msg-danger show d-flex align-items-center justify-content-center text-center" role="alert" id="message">
+        <div class="d-flex align-items-center justify-content-center">
+            <lord-icon
+            src="https://cdn.lordicon.com/nqtddedc.json"
+            trigger="in"
+            delay="100"
+            state="in-cross"
+            colors="primary:#e83a30"
+            style="width:50px;height:50px">
+            </lord-icon>
+        </div>
+        <%= message %>
+    </div>
+<% } %>
 
 
 
@@ -454,7 +469,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-2">
-                                                <button type="submit" class="btn btn-primary me-2" style="font-family: poppins; font-weight: 300; border-radius: 8px; height: 30px; font-size: 13px;">Save changes</button>
+                                                <button type="submit" class="btn btn-primary me-2" style="font-family: poppins; font-weight: 300; border-radius: 8px; height: 30px; font-size: 13px; background-color: black;">Save changes</button>
                                                 <button type="button" onclick="clearForm()" class="btn" style="font-family: poppins; border-radius: 8px; height: 30px; font-size: 13px;">Cancel</button>
                                             </div>
                                         </form>
@@ -877,7 +892,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.getElementById('confirmOrderBtn').addEventListener('click', function() {
+document.getElementById('confirmOrderBtn').addEventListener('click', function(event) {
+    let addressSelected = document.querySelector('input[name="address"]:checked');
+    let paymentSelected = document.querySelector('input[name="paymentMethod"]:checked');
+
+    if (!addressSelected || !paymentSelected) {
+        event.preventDefault(); // Prevent form submission
+        displayWarningMessage("Please select both address and payment method before placing the order.");
+    }
+});
+
+function displayWarningMessage(warning) {
+    const alertContainer = document.createElement('div');
+    alertContainer.className = 'msg msg-warning show d-flex align-items-center justify-content-center text-center';
+    alertContainer.setAttribute('role', 'alert');
+    alertContainer.style.color = 'black';
+    alertContainer.innerHTML = `
+        <div class="d-flex align-items-center justify-content-center">
+            <lord-icon
+                src="https://cdn.lordicon.com/ygvjgdmk.json"
+                trigger="in"
+                delay="100"
+                colors="primary:#e88c30"
+                style="width:50px;height:50px;">
+            </lord-icon>
+        </div>
+        ${warning}
+    `;
+    
+    // Append the alert to the body or a specific container
+    document.body.appendChild(alertContainer);
+
+    // Optionally, remove the alert after a few seconds
+    setTimeout(() => {
+        alertContainer.classList.remove('show');
+        alertContainer.remove();
+    }, 5000);
+}
+document.getElementById('confirmOrderBtn').addEventListener('click', function(event) {
+    const selectedAddress = document.querySelector('.address-card.selected');
+    const selectedPaymentMethod = document.querySelector('.payment-option.selected');
+    const totalAmount = parseFloat(document.getElementById('totalAmount').innerText.replace('₹', ''));
+
+    if (!selectedAddress || !selectedPaymentMethod) {
+        displayWarningMessage("Please select both address and payment method before placing the order.");
+        return;
+    }
+
+    // Check if payment method is COD and total amount exceeds ₹1000
+    if (selectedPaymentMethod.getAttribute('data-payment-method') === 'COD' && totalAmount > 1000) {
+        displayWarningMessage("COD is only available for orders below ₹1000!");
+        return;
+    }
+
+    // Proceed with showing the Swal confirmation dialog
     Swal.fire({
         title: "Confirm Order",
         text: "Are you sure you want to place this order?",
@@ -888,15 +956,42 @@ document.getElementById('confirmOrderBtn').addEventListener('click', function() 
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            const selectedAddressId = document.querySelector('.address-card.selected').getAttribute('data-address-id');
-            const selectedPaymentMethod = document.querySelector('.payment-option.selected').getAttribute('data-payment-method');
+            const selectedAddressId = selectedAddress.getAttribute('data-address-id');
+            const paymentMethod = selectedPaymentMethod.getAttribute('data-payment-method');
 
-            confirmOrder(selectedAddressId, selectedPaymentMethod);
+            confirmOrder(selectedAddressId, paymentMethod);
         } else {
             console.log("Order canceled.");
         }
     });
 });
+
+function displayWarningMessage(warning) {
+    const alertContainer = document.createElement('div');
+    alertContainer.className = 'msg msg-warning show d-flex align-items-center justify-content-center text-center';
+    alertContainer.setAttribute('role', 'alert');
+    alertContainer.style.color = 'black';
+    alertContainer.innerHTML = `
+        <div class="d-flex align-items-center justify-content-center">
+            <lord-icon
+                src="https://cdn.lordicon.com/ygvjgdmk.json"
+                trigger="in"
+                delay="100"
+                colors="primary:#e88c30"
+                style="width:50px;height:50px;">
+            </lord-icon>
+        </div>
+        ${warning}
+    `;
+
+    document.body.appendChild(alertContainer);
+
+    setTimeout(() => {
+        alertContainer.classList.remove('show');
+        alertContainer.remove();
+    }, 5000);
+}
+
 
 function confirmOrder(addressId, paymentMethod) {
     fetch('/createOrder', {
@@ -923,7 +1018,7 @@ function confirmOrder(addressId, paymentMethod) {
                 "currency": "INR",
                 "name": "Choco Heaven",
                 "description": "Transaction Description",
-                "image": "/assets/img/logo/logo1.png",
+                "image": "https://i.pinimg.com/736x/f9/c4/24/f9c4244ed90a942b2075104547b2bb92.jpg",
                 "order_id": data.razorpayOrderId,
                 "handler": function (response) {
                     verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, data.orderId, response.razorpay_signature);
@@ -938,7 +1033,7 @@ function confirmOrder(addressId, paymentMethod) {
                 },
                 "modal": {
                     "ondismiss": function () {
-                        window.location.href = '/orders';
+                        window.location.href = '/ordersManage';
                     }
                 }
             };
@@ -947,7 +1042,7 @@ function confirmOrder(addressId, paymentMethod) {
             paymentGateway.on('payment.failed', function (response) {
                 Swal.fire('Payment Failed', 'Your payment could not be processed. Please try again.', 'error')
                 .then(() => {
-                    window.location.href = '/orders';
+                    window.location.href = '/ordersManage';
                 });
             });
 

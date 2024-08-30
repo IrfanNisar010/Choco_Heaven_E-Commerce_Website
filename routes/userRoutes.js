@@ -69,6 +69,8 @@ user_route.get('/orderDetails', userAuth.isLogin, orderController.orderDetailsLo
 user_route.get('/checkout', userAuth.isLogin, orderController.checkoutPageLoad);
 user_route.post('/createOrder', userAuth.isLogin, orderController.createOrder);
 user_route.get('/cancelOrder', userAuth.isLogin, orderController.cancelOrder);
+user_route.post('/returnOrder',userAuth.isLogin,orderController.requestForReturn);
+user_route.get('/downloadInvoice',userAuth.isLogin, orderController.downloadInvoice);
 user_route.post('/verifyPayment', userAuth.isLogin, orderController.verifyPayment);
 user_route.post('/getPaymentDetails', userAuth.isLogin, orderController.getPaymentDetails);
 user_route.get('/wallet', userAuth.isLogin, orderController.walletLoad);

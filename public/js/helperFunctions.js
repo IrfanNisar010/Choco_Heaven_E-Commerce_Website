@@ -140,7 +140,7 @@ function addToWishlist(event, productId) {
     .then(data => {
         if (data) {
             console.log('Success:', data);
-            showWishlistSuccessAlert('Item added to wishlist successfully!');
+            showWishlistSuccessAlert('Item added to wishlist');
         }
     })
     .catch((error) => {
@@ -164,7 +164,7 @@ function showWishlistSuccessAlert(message) {
 
     // Create success message
     const successMessage = `
-        <div class="msg msg-success show d-flex align-items-center justify-content-center text-center fade-in" role="alert" style="color: black;">
+        <div class="msg msg-success show d-flex align-items-center justify-content-center text-center fade-in" role="alert" style="color: black; border-color:#ee7c9b ">
             <div class="d-flex align-items-center justify-content-center">
                 <lord-icon
                 src="https://cdn.lordicon.com/xyboiuok.json"
@@ -172,7 +172,7 @@ function showWishlistSuccessAlert(message) {
                 delay="100"
                 state="in-heart"
                 colors="primary:#ee7c9b"
-                style="width:50px;height:50px">
+                style="width:45px;height:45px">
             </lord-icon>
             </div style="color: black">
             ${message}

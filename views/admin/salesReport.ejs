@@ -302,12 +302,14 @@
         <div class="content-viewport">
             <div class="d-flex justify-content-between">
                 <div>
-                  <button class="btn btn-info dropdown-toggle custom-size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
-                  <div class="dropdown-menu" >
+                  <button class="btn btn-info dropdown-toggle custom-size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#" data-target="Daily" data-interval="daily">Daily</a>
                     <a class="dropdown-item" href="#" data-target="Weekly" data-interval="weekly">Weekly</a>
                     <a class="dropdown-item" href="#" data-target="Yearly" data-interval="yearly">Yearly</a>
-                  </div>
+                  </div>                 
                   <button type="button" class="btn btn-secondary custom-size" data-toggle="modal" data-target="#basicModal" data-whatever="@mdo">Costom</button>
                      <!-- modal -->
                   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -426,31 +428,31 @@
 <!-- CDN for Sales Report PDF Download End -->
 
 <script>
-     var currentDate = new Date();
+var currentDate = new Date();
 
 var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 var formattedDate = currentDate.toLocaleDateString('en-US', options);
 
 document.getElementById('currentDate').textContent = formattedDate;
-
-// drop down selection
 $(document).ready(function(){
   $('.dropdown-item').click(function(e){
-    e.preventDefault();  
+    e.preventDefault(); // Prevent default anchor click behavior
+    
     var selectedText = $(this).attr('data-target'); 
-    $('#dropdownMenuButton').text(selectedText); 
-    $('#dropdownMenuButton').dropdown('toggle');
+    $('#dropdownMenuButton').text(selectedText); // Update the button text
+    
+    var interval = $(this).attr('data-interval'); // Get the data-interval attribute
+    fetchSalesData(interval); // Call the function to change sales data
+    
+    $('#dropdownMenuButton').dropdown('toggle'); // Toggle the dropdown
   });
 });
 
-// changing sales report
-document.querySelectorAll('.dropdown-item').forEach(item => {
-  item.addEventListener('click', function(event) {
-    event.preventDefault();
-    const interval = this.getAttribute('data-interval');
-    fetchSalesData(interval);
-  });
-});
+// Function to fetch and update sales data
+function fetchSalesData(interval) {
+  // Placeholder function to simulate data fetching
+  console.log('Fetching sales data for:', interval);
+}
 
     // custom date
     document.getElementById('custom-date-form').addEventListener('submit', function(event) {
@@ -588,7 +590,10 @@ function downloadExcel() {
 
 
 </script>
-          
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <%- include('../layouts/addBrandsFooter') %>
   
       </div>

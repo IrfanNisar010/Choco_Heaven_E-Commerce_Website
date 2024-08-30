@@ -658,6 +658,42 @@
         </div>
     </div> -->
     <!-- main product sections end -->
+    <div class="container">
+        <div class="generic-title text-center">
+            <h2 class="mb-20">Explore Luxury Recipes</h2>
+            <p>Discover the art of creating exquisite chocolate dishes with our curated video collection,</p>
+            <p>showcasing premium chocolate brands and inspiring recipes.</p>
+        </div>
+        <div class="video-container">
+            <div class="video-scroll">
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
      <!-- Footer banner-price section start  -->
      <section class="shipping-price-section shipping-2 pt-10 mt-10 gray-border-top">
@@ -930,10 +966,22 @@
     </section>
    <div id="success-message-container"></div>
    <audio id="success-sound" src="/assets/addToCartSound.mp3" preload="auto"></audio>
+   <audio id="wishlist-success-sound" src="/assets/wishlist-sound.mp3" preload="auto"></audio>
    <!-- Wishlist Success Sound -->
    <audio id="wishlist-success-sound" src="path_to_your_success_sound_file.mp3" preload="auto"></audio>
 
     <script src="/js/helperFunctions.js"></script>
+    <script>
+        document.querySelectorAll('.video-item video').forEach(video => {
+            video.addEventListener('click', function() {
+                if (this.hasAttribute('controls')) {
+                    this.removeAttribute('controls');
+                } else {
+                    this.setAttribute('controls', 'controls');
+                }
+            });
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

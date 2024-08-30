@@ -56,6 +56,7 @@ admin_Route.post('/downloadExcel', adminAuth.isLogin, adminController.downloadEx
 admin_Route.get('/orderManage', adminAuth.isLogin, orderController.adminOrderPageLoad);
 admin_Route.patch('/updateOrderStatus', adminAuth.isLogin, orderController.updateOrderStatus);
 admin_Route.get('/adminCancelOrder', adminAuth.isLogin, orderController.cancelOrder);
+admin_Route.get('/approveReturn', adminAuth.isLogin, orderController.approveReturn)
 
 // offer Manage Routes
 admin_Route.get('/offerManage', adminAuth.isLogin, offerController.offerManagementLoad)

@@ -40,12 +40,62 @@ const verifyLogin = async (req, res) => {
 
 const loadHome = async (req, res) => {
     try {
-        console.log(req.session.loadHome)
-        res.render('dashboard');
+        const page = req.query.page || 1; // Get current page from query or default to 1
+        const limit = 10; // Define how many orders to display per page
+
+        // Get the count of users, products, and orders
+        const userCount = await User.find().countDocuments();
+        const productCount = await Products.find().countDocuments();
+        const orderCount = await Orders.find().countDocuments();
+
+        // Calculate total sales
+        const result = await Orders.aggregate([
+            { $match: { orderStatus: "completed" } },
+            { $group: { _id: null, totalSales: { $sum: "$totalAmount" } } }
+        ]);
+        const totalSales = result.length > 0 ? result[0].totalSales : 0;
+
+        // Get the count of returned orders
+        const returnedOrderCount = await Orders.find({ orderStatus: "returned" }).countDocuments();
+
+        const topProduct = await Orders.aggregate([
+            { $unwind: "$orderItems" },
+            { $group: { _id: '$orderItems.productName', count: { $sum: 1 } } },
+            { $sort: { count: -1 } },
+            { $limit: 10 }
+        ]);
+
+        const topBrand = await Orders.aggregate([{ $unwind: "$orderItems" },
+            { $group: { _id: '$orderItems.brandId', count: { $sum: 1 } } }, { $sort: { count: -1 } }, { $limit: 10 }
+            ]);
+
+        // Fetch paginated order details
+        const orders = await Orders.find()
+            .sort({ orderDate: -1 })
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .populate('orderItems.productId');
+
+        // Render the dashboard with all the gathered data, including paginated order details
+        res.render('dashboard', {
+            userCount,
+            productCount,
+            orderCount,
+            totalSales,
+            returnedOrderCount,
+            orders, 
+            topBrand,
+            topProduct,
+            currentPage: page,
+            totalPages: Math.ceil(orderCount / limit) // Calculate total pages for pagination
+        });
     } catch (error) {
         console.log(error.message);
+        res.status(500).send("Internal Server Error"); // Added error handling for response
     }
 };
+
+
 
 const loadUserManagement = async (req, res, next) => {
     try {

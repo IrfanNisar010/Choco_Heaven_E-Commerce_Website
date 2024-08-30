@@ -410,13 +410,20 @@ const loadShop = async (req, res) => {
         let { 
             sort = "createdAt-desc",
             page = 1,
-            search = ""
+            search = "",
+            brands = [],
+            minPrice = 0,       // New addition for min price filter
+            maxPrice = 5000     // New addition for max price filter
         } = req.query;
+
+        if (typeof brands === 'string') {
+            brands = [brands];
+        }
 
         const productPerPage = 6;
         let sortQuery = {};
         sort = sort.split('-');
-        sortQuery[sort[0]] = sort[1] == 'asc' ? 1 : -1;
+        sortQuery[sort[0]] = sort[1] === 'asc' ? 1 : -1;
 
         let wishlistItems = [];
         if (userId) {
@@ -426,12 +433,19 @@ const loadShop = async (req, res) => {
 
         const skip = (page - 1) * productPerPage;
 
-        let searchQuery = { isDeleted: false };
+        let searchQuery = { 
+            isDeleted: false,
+            price: { $gte: minPrice, $lte: maxPrice }  // Adding price filter to search query
+        };
         if (search) {
             searchQuery = { 
                 ...searchQuery,
                 productName: { $regex: search, $options: "i" }
             };
+        }
+
+        if (brands.length > 0) {
+            searchQuery.brandId = { $in: brands };
         }
 
         const totalProduct = await Products.countDocuments(searchQuery);
@@ -447,7 +461,6 @@ const loadShop = async (req, res) => {
         const allProduct = await Products.find({ isDeleted: false });
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
 
-        // Ensure that we only send relevant brands and products
         res.render('shop', { 
             user: req.session.userId ? await User.findById({ _id: userId }) : null,
             products: productData, 
@@ -458,13 +471,16 @@ const loadShop = async (req, res) => {
             wishlistItems,
             cartCount, 
             isLoggedIn: !!req.session.userId, 
-            search 
+            search,
+            minPrice,        // Pass minPrice to frontend
+            maxPrice         // Pass maxPrice to frontend
         });
 
     } catch (error) {
         console.log(error.message);
     }
 };
+
 
 
 const loadProduct = async (req, res, next) => {

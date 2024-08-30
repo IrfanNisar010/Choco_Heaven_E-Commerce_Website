@@ -357,7 +357,7 @@
                                     </select>
                                 <% } %>
                             <% } else if(order.orderStatus === "Requested for Return") { %> 
-                                <button type="button" class="btn-info btn-lg" onclick="approveReturn('<%= order._id %>')">Approve</button>
+                                <button type="button" class="btn-info btn-lg approve-btn" onclick="approveReturn('<%= order._id %>')">Approve</button>
                             <% } %>                            
                             </td>
                             <td>₹<%= order.totalAmount %></td>
@@ -480,6 +480,51 @@
     });
 }
 
+
+      // approve return
+      function approveReturn(orderId) {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes Approve",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/admin/approveReturn?orderId=${orderId}`, {
+              method: 'GET' 
+            })
+            .then(response => {
+              if (response.ok) {
+                Swal.fire({
+                  title: "Approved Return Request",
+                  text: "The Product Will be returned",
+                  icon: "success"
+                }).then(() => {
+                  window.location.reload();
+                });
+              } else {
+                Swal.fire({
+                  title: "Error",
+                  text: "An error occurred while Approving Request.",
+                  icon: "error"
+                });
+              }
+            })
+            .catch(error => {
+              
+              console.error("Error:", error);
+              Swal.fire({
+                title: "Error",
+                text: "An error occurred while Approving Request.",
+                icon: "error"
+              });
+            });
+          }
+        });
+      }
           </script>
           
         <%- include('../layouts/addBrandsFooter') %>

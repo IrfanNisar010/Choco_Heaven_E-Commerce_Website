@@ -366,22 +366,37 @@
             </div>
         </div>
           <!-- Main Content Column -->
-          <div class="col-md-6 pl-0">
+          <div class="col-md-9 pl-0">
             <h4 class="col-md-6 profile-head p-0">Your Orders 🛍️</h4>
             <p class="col-md-6 p-head p-0">Here's your Orders history.</p>
-            <% const statusColors = { 'cancelled': '#FF3B30', 'order confirmed': 'limegreen' }; %>
+            <% const statusColors = { 'cancelled': '#FF3B30', 'order confirmed': 'limegreen' , 'returned': '#ffad47', 'pending': '#ff4600' }; %>
             <% function capitalizeFirstLetter(string) { %>
             <%= string.charAt(0).toUpperCase() + string.slice(1) %>
             <% } %>
             <% if (orders.length > 0) { %>
                 <% orders.forEach((order, index) => { %>
                     <h1>Order <%= totalOrders - (ordersPerPage * (currentPage - 1) + index) %></h1>
-                    <h5 class="status" id="orderStatus-<%= order._id %>" data-order-id="<%= order._id %>">
-                        Status: 
-                        <span style="color: <%= statusColors[order.orderStatus] || 'defaultColor' %>;">
-                            <%= capitalizeFirstLetter(order.orderStatus) %>
-                        </span>
-                    </h5>                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-direction: row; width: 988px;">
+                        <h5 class="status" id="orderStatus-<%= order._id %>" data-order-id="<%= order._id %>">
+                            Status: 
+                            <span style="color: <%= statusColors[order.orderStatus] || 'defaultColor' %>;">
+                                <%= capitalizeFirstLetter(order.orderStatus) %>
+                            </span>
+                        </h5> 
+                        <% if (order.orderStatus === 'pending') { %>
+                            <!-- Pay again button -->
+                            <button type="button" class="payAgain-btn" data-order-id="<%= order._id %>">
+                                Pay again
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/mdmniuqr.json"
+                                    trigger="morph"
+                                    state="morph-card-cash-1"
+                                    colors="primary:white"
+                                    style="width:14px;height:14px; padding-left: 7px;">
+                                </lord-icon>
+                            </button>
+                        <% } %>          
+                    </div>                                      
                     <main class="frame-frame">
                         <div class="frame-tt-order-id-334902461tframe-2610325frame">
                             <section class="frame-t-order-id-334902461tframe-2610325frame d-flex justify-content-between">
@@ -414,7 +429,7 @@
                                         <button class="frame-frame-2">
                                             <div class="frame-t-track-order">
                                                 <div class="frame-track-order">
-                                                    <a href="/orderDetails?id=<%= order._id %>" style="text-decoration: none; color: white;">
+                                                    <a href="/orderDetails?orderId=<%= order._id %>" style="text-decoration: none; color: white;">
                                                     Track Order</a>
                                             </div>
                                             </div>
@@ -485,7 +500,7 @@
                         <div class="frame-tt-payment-delivery">
                             <section class="frame-t-payment-delivery">
                                 <div class="frame-payment">Payment</div>
-                                <div class="frame-delivery" style="padding-left: 300px;">Delivery</div>
+                                <div class="frame-delivery" style="padding-left: 645px;">Delivery</div>
                             </section>
                         </div>
                         <div class="frame-tttt-visa-56tframe-2610319address">
@@ -494,11 +509,21 @@
                                     <div class="frame-t-visa-56tframe">
                                         <div class="frame-visa"><%= order.paymentMethod %></div>
                                         <div class="frame-t-frame">
-                                            <object data="/assets/img/logo/cashondelivery_img.png" class="frame-frame-3"></object>
+                                            <% if (order.paymentMethod === 'RazorPay') { %>
+                                                <img src="/assets/img/logo/razroPay_img.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
+                                            <% } else if (order.paymentMethod === 'COD') { %>
+                                                <img src="/assets/img/logo/cashondelivery_img.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
+                                            <% } else if (order.paymentMethod === 'Wallet') { %>
+                                                <img src="/assets/img/logo/wallet_Icon.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
+                                            <% } else { %>
+                                                <!-- Fallback image if needed -->
+                                                <img src="/assets/img/logo/default_img.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
+                                            <% } %>
                                         </div>
-                                    </div>
+                                    </div>                                    
+                                    
                                 </div>
-                                <div class="frame-address" style="padding-left: 305px;">Address</div>
+                                <div class="frame-address" style="padding-left: 644px;">Address</div>
                             </div>
                         </div>
                         <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
@@ -519,26 +544,43 @@
                         <div class="frame-t-line-1">
                             <object data="/assets/Line2.svg" class="frame-line-2"></object>
                         </div>
+                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3 mt-3">
+                            <% order.orderItems.forEach(item => { %>
+                            <div class="frame-amount-payable-99000">Discount :  <%= item.discount %></div>
+                            <% }) %>
+                        </div>
                         <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
                             <div class="frame-amount-payable-99000">Shipping charge :  ₹40</div>
                         </div>
                         <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
                             <div class="frame-amount-payable-99000">Subtotal :  ₹<%= order.totalAmount - 40 %></div>
                         </div>
-                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-between align-center">
-                            <% if (order.orderStatus !== 'cancelled') { %>
-                                <button type="button" class="cancel-btn-order" onclick="cancelOrder('<%= order._id %>')" style="color: #FF3B30;">
-                                    Cancel Order
-                                    <lord-icon
-                                        src="https://cdn.lordicon.com/nqtddedc.json"
-                                        trigger="hover"
-                                        colors="primary:#FF3B30"
-                                        style="width:14px;height:14px; padding-left: 3px;">
-                                    </lord-icon>
-                                </button>
-                            <% } %>                            
+                        <div class="frame-t-amount-payable-99000 d-flex justify-content-between align-items-center">
+                            <div class="order-actions d-flex align-items-center">
+                                <% if (order.orderStatus === 'order confirmed') { %>
+                                    <button type="button" class="cancel-btn-order" onclick="cancelOrder('<%= order._id %>')" style="background: #eaeaea9e;">
+                                        Cancel Order
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/nqtddedc.json"
+                                            trigger="hover"
+                                            colors="primary:#FF3B30"
+                                            style="width:14px;height:14px; padding-left: 3px;">
+                                        </lord-icon>
+                                    </button>
+                                <% } else if (order.orderStatus === 'delivered') { %>
+                                    <button type="button" class="return-btn-order" onclick="returnOrder('<%= order._id %>')" style="background: rgb(0, 0, 0);">
+                                        Return
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/rsbokaso.json"
+                                            trigger="hover"
+                                            colors="primary:white"
+                                            style="width:14px;height:14px; padding-left: 7px;">
+                                        </lord-icon>
+                                    </button>
+                                <% } %>                                
+                            </div>                         
                             <div class="frame-amount-payable-99000">Total : ₹<%= order.totalAmount %></div>
-                        </div>
+                        </div>                        
                     </main>
                 <% }) %>
                 <!-- Pagination Controls -->
@@ -607,8 +649,109 @@
     </div>
 </div>
 
-<div id="success-message-container"></div>  
+<div id="success-message-container"></div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    
+// Continue Pending Order payment
+
+document.addEventListener("DOMContentLoaded", function() {
+    var payAgainButtons = document.querySelectorAll('.payAgain-btn');
+    payAgainButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var orderId = this.getAttribute('data-order-id');
+            initiatePayment(orderId);
+        });
+    });
+});
+
+function initiatePayment(orderId) {
+    fetch('/getPaymentDetails', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ orderId: orderId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            openRazorpay(data);
+        } else {
+            Swal.fire('Error', 'Failed to fetch payment details', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error', 'Network Error.  again.', 'error');
+    });
+}
+
+function openRazorpay(data) {
+    var options = {
+        "key": data.key_id,
+        "amount": data.amount,
+        "currency": "INR",
+        "name": "Choco Heaven",
+        "description": "Pending Order Payment",
+        "image": "https://i.pinimg.com/736x/f9/c4/24/f9c4244ed90a942b2075104547b2bb92.jpg",
+        "order_id": data.razorpayOrderId,
+        "handler": function (response) {
+            verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, data.orderId, response.razorpay_signature);
+        },
+        "prefill": {
+            "name": "Customer Name",
+            "email": "customer_email@example.com",
+            "contact": "customer_phone"
+        },
+        "theme": {
+            "color": "#ee7c9b"
+        },
+        "modal": {
+            "ondismiss": function () {
+                        window.location.href = '/ordersManage';
+            }
+        }
+    };
+    var rzp = new Razorpay(options);
+    rzp.open();
+}
+
+function verifyPayment(paymentId,razorpay_order_id, placed_orderId, signature) {
+    fetch('/verifyPayment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            paymentId: paymentId,
+            orderId: placed_orderId,
+            razorpaySignature: signature,
+            razorpay_order_id: razorpay_order_id
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                title: "Payment Successful",
+                text: "Your payment has been successfully processed.",
+                icon: "success"
+            }).then(() => {
+                window.location.href = `/orderDetails?orderId=${placed_orderId}`;
+            });
+        } else {
+            Swal.fire('Error', 'Payment verification failed. Please try again.', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('Error', 'Network Error. Try again.', 'error');
+    });
+}
+
+</script>
 <script src="/js/OrdersManage.js"></script>
 <script src="https://cdn.lordicon.com/lordicon.js"></script>
 <%- include('../layouts/addBrandsFooter') %>

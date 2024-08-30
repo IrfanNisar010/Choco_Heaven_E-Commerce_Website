@@ -471,7 +471,20 @@
                                 </div>
                                 <div class="frame-estimated-delivery-jul">
                                     Estimated delivery: 
-                                    
+                                    <%
+                                        // Function to calculate estimated delivery date
+                                        function getEstimatedDeliveryDate(orderDate) {
+                                            const minDays = 5;
+                                            const maxDays = 7;
+                                            const randomDays = Math.floor(Math.random() * (maxDays - minDays + 1)) + minDays;
+                                            const estimatedDate = new Date(orderDate);
+                                            estimatedDate.setDate(estimatedDate.getDate() + randomDays);
+                                            return estimatedDate.toDateString();
+                                        }
+        
+                                        const estimatedDelivery = getEstimatedDeliveryDate(order.orderDate);
+                                    %>
+                                    <%= estimatedDelivery %>
                                 </div>                            
                             </div>
                         </div>

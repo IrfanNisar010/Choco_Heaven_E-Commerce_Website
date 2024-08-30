@@ -8,7 +8,8 @@ const Coupon = require('../models/couponModel')
 const Wallet  = require('../models/walletModel')
 const Razorpay = require('razorpay')
 const crypto  = require('crypto')
-const Offer = require('../models/offerModel')
+const Offer = require('../models/offerModel');
+const puppeter = require('puppeteer')
 const { default: mongoose } = require('mongoose');
 const { render } = require('ejs')
 const { log } = require('console')
@@ -39,35 +40,26 @@ const ordersPageLoad = async (req, res, next) => {
         const id = req.session.userId;
         const userData = await User.findById(id);
 
-        // Define the number of orders per page
         const ordersPerPage = 3;
 
-        // Get the current page number from the query parameters, default to 1 if not specified
         const currentPage = parseInt(req.query.page) || 1;
 
-        // Calculate the total number of orders
         const totalOrders = await OrderModel.countDocuments({ userId: id });
 
-        // Calculate the number of pages
         const totalPages = Math.ceil(totalOrders / ordersPerPage);
 
-        // Fetch orders for the current page, sorted by latest first
         const orders = await OrderModel.find({ userId: id })
             .sort({ orderDate: -1 }) // Sort by latest first
             .populate('orderItems.productId')
             .skip((currentPage - 1) * ordersPerPage)
             .limit(ordersPerPage);
 
-
-        // Enhance orders with their corresponding cancellation reasons
         const enhancedOrders = orders.map(order => {
             return {
                 ...order._doc, // Spread the order document
-                cancelReasonMessage: getOrderStatus(order.orderStatus) // Add the cancellation reason message
             };
         });
 
-        // Render the orders page with enhanced order data
         res.render('orderManage', {
             user: userData,
             orders: enhancedOrders,
@@ -276,17 +268,19 @@ const createOrder = async (req, res, next) => {
 
         for (let product of products) {
             if (product.inStock <= 0) {
-                return res.status(403).json({ message: "Product is Out of Stock!!" });
+                req.session.message = "Product is Out of Stock!!";
+                return res.redirect('/checkout');
             }
         }
-
+        
         if (paymentMethod === 'COD' && cartTotal > 1000) {
-            return res.status(403).json({ message: "COD only available for orders below ₹1000!" });
+            req.session.message = "COD is only available for orders below ₹1000!";
+            return res.redirect('/checkout');
         }
-
         
         if (paymentMethod === 'Wallet' && wallet.walletAmount < req.session.totalAmount) {
-            return res.status(403).json({ message: "Uh-oh, your wallet's on a diet!" });
+            req.session.message = "Uh-oh, your wallet's on a diet!";
+            return res.redirect('/checkout');
         }
 
         const orderItems = cart.cartItems.map(item => {
@@ -419,6 +413,12 @@ const createOrder = async (req, res, next) => {
         // Clear the cart after order is placed
         await Cart.findOneAndDelete({ userId: userId });
 
+        if (!userAddress || !paymentMethod) {
+            return res.render('checkout', {
+                warning: "Please select both address and payment method before placing the order.",
+            });
+        }
+
         return res.json({
             success: true,
             message: "Order created successfully.",
@@ -430,6 +430,75 @@ const createOrder = async (req, res, next) => {
         next(error);
     }
 };
+
+const downloadInvoice = async (req, res, next) => {
+    try {
+        const invoiceNumber = generateInvoiceNumber();
+        const orderId = req.query.orderId;
+        const order = await OrderModel.findById(orderId);
+       
+        const doc = new PDFDocument();
+
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename="invoice.pdf"');
+        doc.pipe(res);
+
+
+        doc.font('Helvetica-Bold').fontSize(10).text('Zephyr', { align: 'center' }).moveDown();
+        doc.font('Helvetica').fontSize(15).text('INVOICE', { align: 'center' }).moveDown();
+
+        doc.font('Helvetica-Bold').fontSize(8).text(`Invoice Number: ${invoiceNumber}`, { align: 'start' })
+        doc.font('Helvetica-Bold').fontSize(8).text(`Order Date: ${order.orderDate.toDateString()}`, { align: 'start' }).moveDown();
+        doc.font('Helvetica-Bold').fontSize(8).text(`Order id: ${order._id}`, { align: 'start' })
+        doc.font('Helvetica-Bold').fontSize(8).text(`Product id: ${order.orderItems[0].productId}`, { align: 'start' }).moveDown().moveDown();
+
+
+
+        doc.font('Helvetica-Bold').fontSize(12).text('Address')
+        doc.font('Helvetica').fontSize(10).text(`Name: ${order.address.Name}`);
+        doc.font('Helvetica').fontSize(10).text(`Address: ${order.address.address}, ${order.address.city}, ${order.address.PIN}`).moveDown();
+
+        const tableHeaders = ['Product Name', 'Quantity', 'Unit Price'];
+
+        const startX = 50;
+        const startY = doc.y + 15;
+        const cellWidth = 120;
+        const headerHeight = 30;
+
+        doc.rect(startX, startY, cellWidth * tableHeaders.length, headerHeight).fillAndStroke('#CCCCCC', '#000000');
+        doc.font('Helvetica-Bold').fontSize(10).fillColor('#000000');
+        tableHeaders.forEach((header, index) => {
+            doc.text(header, startX + (cellWidth * index) + (cellWidth / 2), startY + (headerHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
+        });
+
+        const rowHeight = 50;
+        let yPos = startY + headerHeight;
+        let totalPrice = 0;
+        order.orderItems.forEach((item, rowIndex) => {
+            const fillColor = rowIndex % 2 === 0 ? '#FFFFFF' : '#EEEEEE';
+            doc.rect(startX, yPos, cellWidth * tableHeaders.length, rowHeight).fillAndStroke(fillColor, '#000000');
+            doc.fillColor('#000000');
+            doc.font('Helvetica').fontSize(10);
+            doc.text(item.productName || 'N/A', startX + (cellWidth / 2), yPos + (rowHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
+            doc.text(item.quantity.toString(), startX + cellWidth + (cellWidth / 2), yPos + (rowHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
+            doc.text(item.price !== undefined ? item.price.toString() : 'N/A', startX + (cellWidth * 2) + (cellWidth / 2), yPos + (rowHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
+            const itemTotalPrice = item.price !== undefined && item.quantity !== undefined ? item.price * item.quantity : 0;
+            totalPrice += itemTotalPrice;
+            yPos += rowHeight;
+        });
+
+        // Calculate discount
+        yPos += rowHeight;
+        const discount = totalPrice - order.totalAmount;
+
+        // Add the total amount and discount at the end
+        doc.font('Helvetica-Bold').text(`Total Amount: ${order.totalAmount.toFixed(2)}    Discount: ${discount.toFixed(2)}`, startX, yPos, { width: cellWidth * tableHeaders.length, align: 'start', valign: 'center' });
+        doc.end();
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+    }
+}
 
 
 const verifyPayment = async (req, res, next) => {
@@ -602,12 +671,15 @@ const cancelOrder = async (req, res, next) => {
                         transactionHistory: {
                             amount: orderData.totalAmount,
                             paymentType: "credit",
+                            productName: orderData.productName,
+                            productImage: orderData.image[0],
                             date: new Date()
                         }
                     }
                 },
                 { new: true, upsert: true })
         }
+        console.log("Product image: ", productImage);
 
         res.status(200).send({ message: 'Order Cancelled Successfully' });
     } catch (error) {
@@ -615,6 +687,77 @@ const cancelOrder = async (req, res, next) => {
         next(error)
     }
 }
+
+
+const requestForReturn = async (req, res, next) => {
+    try {
+        const { orderId, reason } = req.body;
+
+        const order = await OrderModel.findByIdAndUpdate(orderId,
+            { $set: { returnReason: reason, orderStatus: 'Requested for Return' } })
+
+        if (!order) {
+            return res.status(404).send({
+                message: "Order not found."
+            });
+        }
+
+        res.status(200).send({
+            message: "Return processed successfully.",
+            order: order
+        });
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+
+    }
+}
+
+const approveReturn = async (req, res, next) => {
+    try {
+        const orderId = req.query.orderId;
+
+        const order = await OrderModel.findByIdAndUpdate(orderId,
+            { $set: { orderStatus: 'returned' } })
+
+        if (!order) {
+            return res.status(404).send({
+                message: "Order not found."
+            });
+        }
+
+        // add to wallet
+        const orderData = await OrderModel.findById(orderId)
+        await Wallet.findOneAndUpdate(
+            { userId: orderData.userId },
+            {
+                $inc: { walletAmount: orderData.totalAmount },
+                $push: {
+                    transactionHistory: {
+                        amount: orderData.totalAmount,
+                        PaymentType: "credit",
+                        date: new Date()
+                    }
+                }
+            },
+            { new: true, upsert: true })
+
+        res.status(200).send({
+            message: "Return Approved successfully.",
+            order: order
+        });
+    } catch (error) {
+        console.log(error.message);
+        next(error)
+
+    }
+}
+
+function generateInvoiceNumber() {
+    return Math.floor(Math.random() * 1000000) + 1;
+}
+
+
 
 const walletLoad = async (req, res, next) => {
     try {
@@ -648,6 +791,9 @@ module.exports = {
     verifyPayment,
     getOrderStatus,
     getPaymentDetails,
+    requestForReturn,
+    approveReturn,
+    downloadInvoice,
     walletLoad
 
 }
