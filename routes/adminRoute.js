@@ -7,6 +7,8 @@ const adminController = require('../controllers/adminController');
 const brandsController = require('../controllers/brandsController');
 const productController = require('../controllers/productController');
 const orderController = require('../controllers/orderController');
+const couponController =  require('../controllers/couponController');
+const offerController = require('../controllers/offerController')
 
 const uploads = require('../middlewares/multer');
 
@@ -39,13 +41,33 @@ admin_Route.get('/restoreBrands', adminAuth.isLogin, brandsController.restoreBra
 admin_Route.get('/productManage', adminAuth.isLogin, productController.productsLoad)
 admin_Route.get('/addProduct', adminAuth.isLogin, productController.addProductLoad)
 admin_Route.post('/addProduct', adminAuth.isLogin, uploads.productUpload, productController.addProduct)
-admin_Route.get('/searchProduct', adminAuth.isLogin, productController.searchProduct)
+admin_Route.get('/searchProduct', adminAuth.isLogin, productController.searchProduct);
 admin_Route.get('/listAndUnlistProduct', adminAuth.isLogin, productController.listAndUnlistProduct)
 admin_Route.get('/editProduct', adminAuth.isLogin, productController.editProductLoad)
 admin_Route.get('/removeProductImage', adminAuth.isLogin, productController.deleteImage)
 admin_Route.post('/editProduct', adminAuth.isLogin, uploads.productUpload, productController.editProduct)
 
+//Sales Report 
+admin_Route.get('/salesReport', adminAuth.isLogin, adminController.salesReport);
+admin_Route.post('/downloadExcel', adminAuth.isLogin, adminController.downloadExcel);
+
+
 // Order Management Routes
-admin_Route.get('/orderManage', adminAuth.isLogin, orderController.adminOrderPageLoad)
+admin_Route.get('/orderManage', adminAuth.isLogin, orderController.adminOrderPageLoad);
+admin_Route.patch('/updateOrderStatus', adminAuth.isLogin, orderController.updateOrderStatus);
+admin_Route.get('/adminCancelOrder', adminAuth.isLogin, orderController.cancelOrder);
+admin_Route.get('/approveReturn', adminAuth.isLogin, orderController.approveReturn)
+
+// offer Manage Routes
+admin_Route.get('/offerManage', adminAuth.isLogin, offerController.offerManagementLoad)
+admin_Route.get('/addOffer', adminAuth.isLogin, offerController.addOfferLoad)
+admin_Route.post('/addOffer', adminAuth.isLogin, offerController.addOffer)
+admin_Route.get('/offerStatusChange', adminAuth.isLogin, offerController.offerStatusChange)
+
+// Coupon Manage Routes
+admin_Route.get('/couponManage', adminAuth.isLogin, couponController.couponManageLoad);
+admin_Route.get('/addCouponPage', adminAuth.isLogin, couponController.addCouponLoad);
+admin_Route.post('/addCoupon', adminAuth.isLogin, couponController.addCoupon);
+admin_Route.get('/couponStatusChange', adminAuth.isLogin, couponController.couponStatusChange);
 
 module.exports = admin_Route;

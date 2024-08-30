@@ -1,0 +1,501 @@
+<%- include('../layouts/addProductHeader') %>
+
+<nav class="t-header">
+  <div class="t-header-brand-wrapper">
+    <a href="/admin/dashboard">
+      <img class="logo" src="/assets/logo.png" >
+      <img class="logo-mini" src="/assets/images/logo_mini.png" >
+    </a>
+  </div>
+  <div class="t-header-content-wrapper">
+    <div class="t-header-content">
+      <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+        <i class="mdi mdi-menu"></i>
+      </button>
+      <form action="#" class="t-header-search-box">
+        <div class="input-group">
+          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+          <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+        </div>
+      </form>
+      <ul class="nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-bell-outline mdi-1x"></i>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Notifications</h6>
+              <p class="dropdown-title-text">You have 4 unread notifications</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-primary text-primary">
+                  <i class="mdi mdi-alert"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Storage Full</small>
+                  <small class="content-text">Server storage almost full</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-success text-success">
+                  <i class="mdi mdi-cloud-upload"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Upload Completed</small>
+                  <small class="content-text">3 Files uploaded successfully</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-warning text-warning">
+                  <i class="mdi mdi-security"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Authentication Required</small>
+                  <small class="content-text">Please verify your password to continue using cloud services</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-message-outline mdi-1x"></i>
+            <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Messages</h6>
+              <p class="dropdown-title-text">You have 4 unread messages</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/male/image_1.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Clifford Gordon</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/female/image_2.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Rachel Doyle</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/public/assets/images/profile/male/image_3.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-warning"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Lewis Guzman</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-apps mdi-1x"></i>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Apps</h6>
+              <p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
+            </div>
+            <div class="dropdown-body border-top pt-0">
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-jira mdi-2x"></i>
+                <span class="grid-title">Jira</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-trello mdi-2x"></i>
+                <span class="grid-title">Trello</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-artstation mdi-2x"></i>
+                <span class="grid-title">Artstation</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-bitbucket mdi-2x"></i>
+                <span class="grid-title">Bitbucket</span>
+              </a>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- partial -->
+<div class="page-body">
+  <!-- partial:partials/_sidebar.html -->
+  <div class="sidebar">
+    <div class="user-profile">
+      <div class="display-avatar animated-avatar">
+        <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
+      </div>
+      <div class="info-wrapper">
+        <p class="user-name">Irfan Nisar</p>
+        <h6 class="display-income">₹3,400,00</h6>
+      </div>
+    </div>
+    <ul class="navigation-menu">
+      <li class="nav-category-divider">MAIN</li>
+      <li>
+        <a href="/admin/userManage">
+          <span class="link-title">Users</span>
+          <i class="mdi mdi-account-multiple link-icon"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#brands" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Brands</span>
+            <i class="mdi mdi-tag-multiple link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="brands">
+            <li>
+                <a href="/admin/brandsManage">List brands</a>
+            </li>
+            <li>
+                <a href="/admin/addBrands">Add brands</a>
+            </li>
+            <li>
+                <a href="/admin/editBrands">Edit brands</a>
+            </li>
+        </ul>
+    </li>        
+      <li>
+        <a href="#orders" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Orders</span>
+          <i class="mdi mdi-cart link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="orders">
+          <li>
+            <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
+          </li>
+          <li>
+            <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#offers" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Offers</span>
+          <i class="mdi mdi-cart link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="offers">
+          <li>
+            <a href="/admin/offerManage" target="_blank">Offer Manage</a>
+          </li>
+          <li>
+            <a href="/admin/addOffer" target="_blank">Add Offer</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#return" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Return</span>
+          <i class="mdi mdi-undo-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="return">
+          <li>
+            <a href="pages/ui-components/buttons.html">Return Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Return Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Dropdowns</span>
+          <i class="mdi mdi-menu-down link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="dropdowns">
+          <li>
+            <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Dropdown Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#products" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Products</span>
+          <i class="mdi mdi-package-variant-closed link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="products">
+          <li>
+            <a href="pages/ui-components/buttons.html">Product Unlisted</a>
+          </li>
+          <li>
+            <a href="/admin/productManage">Product Listed</a>
+          </li>
+          <li>
+            <a href="/admin/editProduct">Product Edit</a>
+          </li>
+          <li>
+            <a href="/admin/addProduct">Product Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#banners" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Banners</span>
+          <i class="mdi mdi-flag-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="banners">
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Add</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Edit</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#coupons" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Coupons</span>
+          <i class="mdi mdi-ticket-percent link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="coupons">
+          <li>
+            <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Coupons Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="pages/charts/chartjs.html">
+          <span class="link-title">Reports</span>
+          <i class="mdi mdi-chart-bar link-icon"></i>
+        </a>
+      </li>
+      <!-- Logout button -->
+  <li>
+    <a href="/admin/logout">
+      <span class="link-title">Logout</span>
+      <i class="mdi mdi-logout link-icon"></i>
+    </a>
+  </li>
+    </ul>
+  </div>
+  <!-- partial -->
+          <div class="page-content-wrapper">
+            <div class="page-content-wrapper-inner">
+              <div class="content-viewport">
+                <div class="row">
+                  <div class="col-12 pb-3">
+                    <h4>Add Offer</h4>
+                    <p class="text-gray">Please enter the details of Offer to add</p>
+                  </div>
+                </div>
+      <!-- partial -->
+
+<div class="card mb-4">
+    <h5 class="card-header">Offer info</h5>
+    <!-- Account -->
+    <form action="/admin/addOffer" method="post" id="myForm" enctype="multipart/form-data" >
+    <hr class="my-0" />
+    <div class="card-body">
+        <div class="row">
+          <div class="mb-3 col-md-6">
+            <label for="OfferName" class="form-label">Offer Name</label>
+            <input
+              class="form-control"
+              type="text"
+              id="offer"
+              name="offer"
+              placeholder="Summer Sale off"
+              autofocus
+            />
+          </div>
+          <div class="mb-3 col-md-6">
+            <label for="discountPrice" class="form-label">Expire Date</label>
+            <input class="form-control" type="date"  id="expireDate" name="expireDate" placeholder="Enter Expiry Date" />
+          </div>
+        
+          <div class="mb-3 col-md-12">
+            <label for="offerType">Offer Type</label>
+                  <select class="form-control" name="offerType" id="offerType" aria-label="Default select" onchange="toggleVisibility(this.value)">
+                    <option value="" selected>Select Offer Type</option>
+                    <option value="Product Offer">Product Offer</option>
+                    <option value="Brands Offer">Brands Offer</option>
+                  </select>
+          </div>
+          <div class="form-group" id="productList" style="display: none;">
+            <label for="Pname">Product Name</label>
+            <select class="form-control" name="Pname" id="Pname" aria-label="Default select example" >
+              <% for(let i=0; i< products.length; i++){ %> 
+                <option value="<%= products[i].productName %>"><%= products[i].productName %></option>
+           <% } %>
+            </select>
+          </div>
+          <div class="form-groups" id="brandsList" style="display: none;">
+            <label for="brands">Brands</label>
+            <select name="brands" class="form-control" id="brands" >
+                <% for(let i=0; i< brands.length; i++){ %> 
+                    <option value="<%= brands[i].name %>"><%=brands[i].name %></option>
+               <% } %>
+            </select>
+          </div>
+          <div class="mb-3 col-md-6">
+            <label for="organization" class="form-label">Discount (%)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="discount"
+              name="discount"
+              placeholder="Discount"
+            />
+          </div>
+          <div class="mb-3 col-md-6">
+            <label for="discountPrice" class="form-label">Maximum Redeemable Amount</label>
+            <div class="input-group">
+              <span class="input-group-text">₹</span>
+              <input
+                type="text"
+                class="form-control"
+                id="maxRedeemAbelAmount"  
+                name="maxRedeemAbelAmount" 
+                placeholder="Enter Max Redeemable Amount"
+                aria-label="Amount (to the nearest dollar)"
+              />
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+        <div class="mt-2">
+          <button type="submit" class="btn btn-primary me-2">Add Offer</button>
+          <button type="button" onclick="clearForm()" class="btn btn-outline-secondary">Cancel</button>
+        </div>
+        <div id="validationMessages" style="display: none; color: red;"></div>
+      </form>
+    </div>
+    <% if (typeof message !== "undefined" && message) { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= message %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>    
+    <!-- /Account -->
+  </div>
+</div>
+</div>
+<!-- partial -->
+</div>
+<!-- page content ends -->
+</div>
+<!--page body ends -->
+
+
+<script>
+ function toggleVisibility(selectedValue) {
+    var productList = document.getElementById('productList');
+    var brandsList = document.getElementById('brandsList');
+
+    productList.style.display = 'none';
+    brandsList.style.display = 'none';
+
+    if (selectedValue === 'Product Offer') {
+        productList.style.display = 'block';
+    } else if (selectedValue === 'Brands Offer') {
+        brandsList.style.display = 'block';
+    }
+}
+
+
+          document.getElementById('myForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+            const jsonObject = {};
+            formData.forEach((value, key) => {
+              jsonObject[key] = value;
+            });
+
+            fetch('/admin/addOffer', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                  Swal.fire({
+                      title: "New Offer Added",
+                      text: "New Offer Added Successfully",
+                      icon: "success"
+                  }).then(() => {
+                      window.location.href = `/admin/offerManage`; 
+                  });
+              } else {
+                const validationMessage = document.getElementById('validationMessages')
+                validationMessage.style.display = 'block'
+                validationMessage.innerHTML = `${data.message}`
+              }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error Adding Offer');
+            });
+      });
+
+      function offerFormValidation(){
+        const validationMessage = document.getElementById('validationMessages')
+        var expiredDate = document.getElementById('expiredDate').value;
+        var discount = document.getElementById('discount').value
+
+        var currentDate = new Date().toISOString().split('T')[0]; 
+
+            
+            if (expiredDate < currentDate) {
+                validationMessage.style.display = 'block'
+                validationMessage.innerHTML += 'Dates cannot be in the future.';
+                return false;
+            }else if(discount > 99 || discount < 5){
+                validationMessage.style.display = 'block'
+                validationMessage.innerHTML += 'Discount must be greater than 5 and less than 99';
+                return false;
+            }
+
+            return true 
+
+    }
+
+
+</script>
+
+<script src="/js/adminFormValidation.js"></script>
+    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="/assets/vendors/js/core.js"></script>
+
+<%- include('../layouts/addBrandsFooter') %>

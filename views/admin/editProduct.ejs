@@ -336,164 +336,108 @@
                   <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                       <span class="d-none d-sm-block">Upload new photo</span>
                       <i class="bx bx-upload d-block d-sm-none"></i>
-                      <input id="file-input-1" type="file" name="productImage1" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-1')" required/>
-                      <input id="file-input-2" type="file" name="productImage2" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-2')" required/>
-                      <input id="file-input-3" type="file" name="productImage3" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-3')" required/>
-                      <input id="file-input-4" type="file" name="productImage4" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-4')" required/>
+                      <input id="file-input-1" type="file" name="productImage1" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-1')"/>
+                      <input id="file-input-2" type="file" name="productImage2" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-2')"/>
+                      <input id="file-input-3" type="file" name="productImage3" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-3')"/>
+                      <input id="file-input-4" type="file" name="productImage4" class="account-file-input" hidden accept="image/png, image/jpeg, image/webp" onchange="openCropper(event, 'preview-4')"/>
                   </label>
-                    <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="resetImages()">
-                        <i class="bx bx-reset d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Reset</span>
-                    </button>
-                    <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                    <% if(typeof message !== "undefined"){ %>
-                
-                        <p style="color: brown;"><%=message%></p> 
-                        
-                        <% }  %>
-                </div>
-            </div>
-        </div>
-        <!-- Cropper Modal -->
-        <div id="cropperModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
-            <div style="background:#fff; padding:20px; border-radius:14px; position:relative;">
-                <img id="image-to-crop" style="max-width:100%; max-height:80vh; margin-bottom: 20px;">
-                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="cropImage()">
-                    <i class="bx bx-reset d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Crop</span>
-                </button>
-                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="closeCropper()">
-                    <i class="bx bx-reset d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Cancel</span>
-                </button>
-            </div>
-        </div>
-    <hr class="my-0" />
-    <div class="card-body">
-        <div class="row">
-          <div class="mb-3 col-md-6">
-            <label for="firstName" class="form-label">Product Name</label>
-            <input
-              class="form-control"
-              type="text"
-              id="productName"
-              name="productName"
-              value="<%=product.productName %>" 
-              autofocus
-            />
-          </div>
-          <div class="mb-3 col-md-6">
-            <label for="brands" class="form-label">Brands</label>
-            <select id="brands" name="brandId" class="select2 form-select">
-              <% if (brands && brands.length > 0) { %>
-                  <% for(let i = 0; i < brands.length; i++) { %> 
-                      <option value="<%= brands[i]._id %>"><%= brands[i].name %></option>
+                  <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="resetImages()">
+                      <i class="bx bx-reset d-block d-sm-none"></i>
+                      <span class="d-none d-sm-block">Reset</span>
+                  </button>
+                  <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                  <% if (typeof message !== "undefined") { %>
+                      <p style="color: brown;"><%= message %></p>
                   <% } %>
-              <% } else { %>
-                  <option value="">No brands available</option>
-              <% } %>
-          </select>
-          
-        </div>
-        
-          <div class="mb-3 col-md-6">
-            <label for="organization" class="form-label">Model</label>
-            <input
-              type="text"
-              class="form-control"
-              id="model"
-              name="model"
-              value="<%=product.model %>"
-            />
+              </div>
           </div>
-          <div class="mb-3 col-md-6">
-            <label for="organization" class="form-label">Size</label>
-            <input
-              type="text"
-              class="form-control"
-              id="size"
-              name="size"
-              value="<%=product.size %>"
-            />
+      </div>
+      <!-- Cropper Modal -->
+      <div id="cropperModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
+          <div style="background:#fff; padding:20px; border-radius:14px; position:relative;">
+              <img id="image-to-crop" style="max-width:100%; max-height:80vh; margin-bottom: 20px;">
+              <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="cropImage()">
+                  <i class="bx bx-reset d-block d-sm-none"></i>
+                  <span class="d-none d-sm-block">Crop</span>
+              </button>
+              <button type="button" class="btn btn-outline-secondary account-image-reset mb-4" onclick="closeCropper()">
+                  <i class="bx bx-reset d-block d-sm-none"></i>
+                  <span class="d-none d-sm-block">Cancel</span>
+              </button>
           </div>
-          <div class="mb-3 col-md-6">
-          <div class="input-group">
-            <span class="input-group-text">₹</span>
-            <input
-              type="text"
-              class="form-control"
-              id="mrp"  
-              name="mrp" 
-              value="<%=product.price %>"
-            />
-            <span class="input-group-text">.00</span>
+      </div>
+      <hr class="my-0" />
+      <div class="card-body">
+          <div class="row">
+              <div class="mb-3 col-md-6">
+                  <label for="firstName" class="form-label">Product Name</label>
+                  <input class="form-control" type="text" id="productName" name="productName" value="<%=product.productName %>" autofocus />
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="brands" class="form-label">Brands</label>
+                  <select id="brands" name="brandId" class="select2 form-select">
+                      <% if (brands && brands.length > 0) { %>
+                          <% for (let i = 0; i < brands.length; i++) { %> 
+                              <option value="<%= brands[i]._id %>" <%= product.brandId.toString() === brands[i]._id.toString() ? 'selected' : '' %>><%= brands[i].name %></option>
+                          <% } %>
+                      <% } else { %>
+                          <option value="">No brands available</option>
+                      <% } %>
+                  </select>
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="organization" class="form-label">Model</label>
+                  <input type="text" class="form-control" id="model" name="model" value="<%=product.model %>" />
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="organization" class="form-label">Size</label>
+                  <input type="text" class="form-control" id="size" name="size" value="<%=product.size %>" />
+              </div>
+              <div class="mb-3 col-md-6">
+                  <div class="input-group">
+                      <span class="input-group-text">₹</span>
+                      <input type="text" class="form-control" id="mrp" name="mrp" value="<%=product.price %>" />
+                      <span class="input-group-text">.00</span>
+                  </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                  <div class="input-group">
+                      <span class="input-group-text">₹</span>
+                      <input type="text" class="form-control" id="discountPrice" name="discountPrice" value="<%=product.discountPrice %>" />
+                      <span class="input-group-text">.00</span>
+                  </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                  <div class="input-group">
+                      <span class="input-group-text">%</span>
+                      <input type="text" class="form-control" id="discount" name="discount" value="<%=product.discount %>" />
+                  </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                  <div class="input-group">
+                      <span class="input-group-text">Qty</span>
+                      <input type="text" class="form-control" id="inStock" name="inStock" value="<%=product.inStock %>" />
+                  </div>
+              </div>
+              <div class="mb-3 col-md-12">
+                  <label for="bestSellerProduct" class="form-label">Best Seller Product</label>
+                  <input type="checkbox" class="form-check-input" id="bestSellerProduct" name="bestSellerProduct" <%= product.bestSellerProduct ? 'checked' : '' %>>
+              </div>
+              <div class="mb-3 col-md-12">
+                  <label for="popularProduct" class="form-label">Popular Product</label>
+                  <input type="checkbox" class="form-check-input" id="popularProduct" name="popularProduct" <%= product.popularProduct ? 'checked' : '' %>>
+              </div>
+              <div class="mb-3 col-md-12">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" id="description" name="description" rows="3"><%= product.description %></textarea>
+              </div>
           </div>
-        </div>
-          <div class="mb-3 col-md-6">
-            <div class="input-group">
-                <span class="input-group-text">₹</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="discountPrice" 
-                  name="discountPrice" 
-                  value="<%=product.discountPrice %>" 
-                  onkeyup="calculateDiscount()"
-                  aria-label="Amount (to the nearest Indian Rupee)"
-                />
-                <span class="input-group-text">.00</span>
-              </div>          
-            </div>
-          <div class="mb-3 col-md-6">
-            <label for="discountPrice" class="form-label">Discount(%)</label>
-            <input class="form-control" type="text"  id="discount" name="discount" value="<%=product.discount %>" readonly/>
-          </div>
-          <div class="mb-3 col-md-6">
-            <label for="inStock" class="form-label">Stock</label>
-            <input
-            type="number"
-            class="form-control"
-            id="inStock"
-            name="inStock"
-            placeholder="Stock"
-          />
-          </div>
-          <label for="description" class="form-label">Description</label>
-
-          <div class="input-group input-group-merge speech-to-text">
-            <input class="form-control" id="description" value="<%= product.description %>" name="description" placeholder="Luxury brands handcrafted" rows="2"></input>
-          </div>
-          <div class="mb-3 col-md-6 mt-3">
-            <div class="form-check">
-                <input
-                    type="radio"
-                    class="form-check-input"
-                    id="bestSellerProduct"
-                    name="productType"
-                    value="bestSellerProduct"
-                />
-                <label for="bestSellerProduct" class="form-check-label">Best seller</label>
-            </div>
-        </div>
-        <div class="mb-3 col-md-6 mt-3">
-            <div class="form-check">
-                <input
-                    type="radio"
-                    class="form-check-input"
-                    id="popularProduct"
-                    name="productType"
-                    value="popularProduct"
-                />
-                <label for="popularProduct" class="form-check-label">Popular product</label>
-            </div>
-        </div>
-        
-        <div class="mt-2">
-          <button type="submit"  id="sbmtbtn" class="btn btn-primary me-2">Add product</button>
-          <button type="button" onclick="clearForm()" class="btn btn-outline-secondary">Cancel</button>
-        </div>
-        
-      </form>
+      </div>
+      <hr class="my-0" />
+      <div class="card-body">
+          <button type="submit" class="btn btn-primary me-2">Save changes</button>
+      </div>
+  </form>  
     </div>
     <!-- /Account -->
   </div>
@@ -575,35 +519,41 @@ function triggerInput(inputId) {
 
 // edit product
 document.getElementById('myForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const form = document.getElementById('myForm');
-                const formData = new FormData(form);
-            
-                fetch('/admin/editProduct', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            title: "Product Updated",
-                            text: "Product modified successful",
-                            icon: "success"
-                        }).then(() => {
-                            window.location.href = '/admin/productManage';
-                        });
-                    } else {
-                        const validationMessage = document.getElementById('validationMessages');
-                        validationMessage.style.display = 'block';
-                        validationMessage.innerHTML = data.message;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error Adding Brand');
-                });
+    event.preventDefault();
+    
+    const form = document.getElementById('myForm');
+    const formData = new FormData(form);
+    
+    fetch('/admin/editProduct', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                title: "Product Updated",
+                text: "Product modified successfully",
+                icon: "success"
+            }).then(() => {
+                window.location.href = '/admin/productManage';
             });
+        } else {
+            const validationMessage = document.getElementById('validationMessages');
+            validationMessage.style.display = 'block';
+            validationMessage.innerHTML = data.message || 'Failed to update the product. Please try again.';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+            title: "Error",
+            text: "There was an error updating the product.",
+            icon: "error"
+        });
+    });
+});
+
             
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

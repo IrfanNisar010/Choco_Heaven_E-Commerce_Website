@@ -415,3 +415,164 @@ video {
 [hidden] {
   display: none;
 }
+
+.cancel-btn-order {
+  display: flex; 
+  justify-content: center; 
+  width: 100px; 
+  align-items: center;
+  margin-top: 3px;
+  height: 25px;
+  border-radius: 7px;
+  font-size: 10px;
+}
+.return-btn-order {
+  display: flex; 
+  justify-content: center; 
+  width: 100px; 
+  align-items: center;
+  margin-top: 3px;
+  height: 25px;
+  border-radius: 7px;
+  font-size: 10px;
+}
+.payAgain-btn {
+  display: flex; 
+  background: #34C759; 
+  color: white;
+  justify-content: center; 
+  width: 100px;
+  align-items: center;
+  margin-top: 3px;
+  height: 25px;
+  border-radius: 7px;
+  font-size: 10px;
+}
+.payAgain-btn:hover {
+  background: #30D158;
+}
+
+.frame-t-amount-payable-99000 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-actions {
+  display: flex;
+  gap: 7px; /* Minimal gap between buttons */
+}
+
+.cancel-btn-order,
+.return-btn-order {
+  color: #FF3B30; 
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.cancel-btn-order {
+  color: #FF3B30; /* Specific color for cancel button */
+}
+
+.return-btn-order {
+  color: #ffffff;
+}
+
+.frame-amount-payable-99000 {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.swal2-container {
+  backdrop-filter: blur(3px); /* Apply blur to the entire modal backdrop */
+}
+
+
+.swal2-popup {
+  background-color: rgba(255, 255, 255, 0.911) !important; /* Semi-transparent background */
+  border-radius: 20px !important; /* Rounded corners */
+  padding: 20px !important;
+  width: 500px !important;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1) !important; /* Soft shadow */
+}
+
+
+.return-order-title {
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.return-order-message {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.return-order-textarea {
+  width: 320px !important;
+  height: 110px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  resize: none;
+  color: black;
+  outline: none;
+  box-shadow: none;
+  display: block;
+  margin: 0 auto; /* Center the textarea horizontally */
+}
+
+
+.return-order-textarea:focus,
+.return-order-textarea:active {
+  border: 1px solid #ccc !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+.return-order-confirm-btn {
+  background-color: #000000 !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px !important;
+  padding: 10px 20px !important;
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.return-order-confirm-btn:focus,
+.return-order-confirm-btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+.return-order-cancel-btn {
+  background-color: #c4c4c481 !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px !important;
+  padding: 10px 20px !important;
+}
+
+.swal2-textarea {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}

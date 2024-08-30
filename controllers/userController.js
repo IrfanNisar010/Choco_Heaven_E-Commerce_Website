@@ -4,7 +4,9 @@ const OTP = require('../models/Otp')
 const Address = require('../models/addressModel')
 const crypto = require('crypto');
 const Cart = require('../models/cartModel')
+const Offer = require('../models/offerModel')
 const mailgen = require('mailgen');
+const Wishlist = require('../models/wishlistModel')
 const cartController = require('../controllers/cartController');
 const bcrypt = require('bcrypt');
 const { default: mongoose } = require("mongoose");
@@ -302,22 +304,89 @@ const resetPassword = async (req, res, next) => {
     }
 }
 
+// Route to render the change password page
+const resetPasswordPageLoad = async (req, res, next) => {
+    try {
+        if (!req.session.userId) {
+            return res.status(400).send("Invalid session. Please log in again.");
+        }
+
+        res.render('changePasswordUser'); 
+    } catch (error) {
+        console.error(error.message);
+        next(error);
+    }
+};
+
+// Function to compare passwords
+const comparePassword = async (enteredPassword, hashedPassword) => {
+    try {
+        return await bcrypt.compare(enteredPassword, hashedPassword);
+    } catch (error) {
+        throw new Error('Error comparing passwords');
+    }
+};
+
+const resetPasswordForUser = async (req, res, next) => {
+    try {
+        const userId = req.session.userId; // Use session userId
+        const { currentPassword, newPassword, confirmPassword } = req.body;
+
+        if (newPassword !== confirmPassword) {
+            return res.status(400).json({ error: "Passwords do not match." });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: "User not found." });
+        }
+
+        // Compare the current password with the hashed password in the database
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ error: "Current password is incorrect." });
+        }
+
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update password in the database
+        user.password = hashedPassword;
+        await user.save();
+
+        // Respond with success and redirect URL
+        res.status(200).json({ success: "Password updated successfully", redirectUrl: "/profileDetails" });
+
+    } catch (error) {
+        console.error(error.message);
+        next(error);
+    }
+};
+
+
 const loadHome = async (req, res) => {
     try {
         let userId = req.session.userId ? req.session.userId : '';
         const productData = await Products.find({ isDeleted: false })
-            .sort({ createdAt: -1 })
-            .populate('brandId', 'name');
-
+        .sort({ createdAt: -1 })
+        .populate('brandId', 'name');
+        
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
+
+
+        let wishlistItems = [];
+        if (userId) {
+            const wishlist = await Wishlist.findOne({ userId: userId });
+            wishlistItems = wishlist ? wishlist.wishlistItems.map(item => item.toString()) : [];
+        }        
 
         const brands = await Brands.find({}); // Fetch all brands
 
         if (userId) {
             const userData = await User.findById({ _id: userId });
-            res.render('userHome', { user: userData, products: productData, cartCount, brands, isLoggedIn: true });
+            res.render('userHome', { user: userData, products: productData, cartCount, wishlistItems,brands, isLoggedIn: true });
         } else {
-            res.render('userHome', { products: productData, cartCount, brands, isLoggedIn: false });
+            res.render('userHome', { products: productData, cartCount, brands, wishlistItems, isLoggedIn: false });
         }
     } catch (error) {
         console.log(error.message);
@@ -334,60 +403,140 @@ const securePassword = async (password) => {
 
     }
 }
+
 const loadShop = async (req, res) => {
     try {
-        let userId = req.session.userId
+        let userId = req.session.userId;
+        let { 
+            sort = "createdAt-desc",
+            page = 1,
+            search = "",
+            brands = [],
+            minPrice = 0,       // New addition for min price filter
+            maxPrice = 5000     // New addition for max price filter
+        } = req.query;
 
-        const productData = await Products.find({ isDeleted: false })
-            .sort({ createdAt: -1 })
-            .populate('brandId', 'name');
-            
-        const brandsData = await Brands.find({ isDeleted: false })
-        const allProduct = await Products.find({ isDeleted: false })
+        if (typeof brands === 'string') {
+            brands = [brands];
+        }
+
+        const productPerPage = 6;
+        let sortQuery = {};
+        sort = sort.split('-');
+        sortQuery[sort[0]] = sort[1] === 'asc' ? 1 : -1;
+
+        let wishlistItems = [];
+        if (userId) {
+            const wishlist = await Wishlist.findOne({ userId: userId });
+            wishlistItems = wishlist ? wishlist.wishlistItems.map(item => item.toString()) : [];
+        }
+
+        const skip = (page - 1) * productPerPage;
+
+        let searchQuery = { 
+            isDeleted: false,
+            price: { $gte: minPrice, $lte: maxPrice }  // Adding price filter to search query
+        };
+        if (search) {
+            searchQuery = { 
+                ...searchQuery,
+                productName: { $regex: search, $options: "i" }
+            };
+        }
+
+        if (brands.length > 0) {
+            searchQuery.brandId = { $in: brands };
+        }
+
+        const totalProduct = await Products.countDocuments(searchQuery);
+        const totalPages = Math.ceil(totalProduct / productPerPage);
+
+        const productData = await Products.find(searchQuery)
+            .sort(sortQuery)
+            .populate('brandId', 'name')
+            .skip(skip)
+            .limit(productPerPage);
+
+        const brandsData = await Brands.find({ isDeleted: false });
+        const allProduct = await Products.find({ isDeleted: false });
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
 
-        const brands = await Brands.find({});
-
-
-
-        if (req.session.userId) {
-            const userData = await User.findById({ _id: userId })
-            res.render('shop', { user: userData, products: productData, brands:brandsData,allProduct, cartCount, brands,isLoggedIn: true })
-        } else {
-            res.render('shop', { products: productData, allProduct, brands:brandsData, allProduct, cartCount,brands, isLoggedIn: false })
-        }
+        res.render('shop', { 
+            user: req.session.userId ? await User.findById({ _id: userId }) : null,
+            products: productData, 
+            brands: brandsData,
+            allProduct,
+            page, 
+            totalPages, 
+            wishlistItems,
+            cartCount, 
+            isLoggedIn: !!req.session.userId, 
+            search,
+            minPrice,        // Pass minPrice to frontend
+            maxPrice         // Pass maxPrice to frontend
+        });
 
     } catch (error) {
         console.log(error.message);
     }
-}
+};
+
+
 
 const loadProduct = async (req, res, next) => {
     try {
-        let userId = req.session.userId
+        let userId = req.session.userId;
         const id = req.query.id;
-        const productData = await Products.findOne({ _id: id, isDeleted: false })
-        .sort({ createdAt: -1 })
-        .populate('brandId', 'name');
 
-        const products = await Products.find({ isDeleted: false });
+        // Fetch the specific product
+        const productData = await Products.findOne({ _id: id, isDeleted: false })
+            .populate('brandId', 'name');
+
+        let wishlistItems = [];
+        if (userId) {
+            const wishlist = await Wishlist.findOne({ userId: userId });
+            wishlistItems = wishlist ? wishlist.wishlistItems.map(item => item.toString()) : [];
+        }
+
+        // Fetch related products sorted by discountPrice in descending order
+        const relatedProducts = await Products.find({ isDeleted: false }).sort({ discountPrice: -1 });
+
+        // Fetch suggestion products sorted by discountPrice in ascending order or any other criteria
+        const suggestionProducts = await Products.find({ isDeleted: false }).sort({ discountPrice: 1 });
+
+        const popularProducts = await Products.find({ isDeleted: false, popularProduct: true });
         const brandsList = await Brands.find({ isDeleted: false }); 
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
         let price = productData.discountPrice;
 
         const brands = await Brands.find({});
 
+        let offer = null;
+
+        if (productData.offer.length > 0) {
+            const offerIndex = productData.offer.length - 1;
+            const offerId = productData.offer[offerIndex];
+
+            offer = await Offer.findById(offerId);
+            price = price - (price * offer.discount) / 100;
+
+            if (price > offer.maxRedeemAbelAmount) {
+                price = offer.maxRedeemAbelAmount;
+            }
+        }
+
         if (req.session.userId) {
             const userData = await User.findById({ _id: req.session.userId });
-            res.render('singleProduct', { user: userData, product: productData, brands:brandsList,brands, price, products, cartCount, isLoggedIn: true });
+            res.render('singleProduct', { user: userData, product: productData, popularProducts, wishlistItems, brands: brandsList, brands, price, relatedProducts, suggestionProducts, offer, cartCount, isLoggedIn: true });
         } else {
-            res.render('singleProduct', { product: productData,brands:brandsList, price,brands, products, cartCount, isLoggedIn: false });
+            res.render('singleProduct', { product: productData, brands: brandsList, popularProducts, wishlistItems, price, brands, relatedProducts, suggestionProducts, offer, cartCount, isLoggedIn: false });
         }
     } catch (error) {
         console.log(error.message);
         next(error);
     }
 };
+
 
 const generateOTP = () => {
     return crypto.randomBytes(3).toString('hex'); 
@@ -579,11 +728,16 @@ const googleAuth = async (req, res) => {
     }
 };
 
-const userProfileLoad = async (req, res) => {
+const userProfileLoad = async (req, res, next) => {
     try {
         let userId = req.session.userId;
-        const address = await Address.findOne({ user_id: userId }).sort({ _id: 1 });
         const userData = await User.findById({ _id: userId });
+
+        if (userData.is_block) {
+            return res.redirect('/logout');
+        }
+
+        const address = await Address.findOne({ user_id: userId }).sort({ _id: 1 });
 
         res.render('userProfile', { user: userData, address: address });
     } catch (error) {
@@ -729,6 +883,8 @@ module.exports = {
     addressManageLoad,
     saveAddress,
     editAddress,
+    resetPasswordPageLoad,
+    resetPasswordForUser,
     deleteAddress,
     userLogout,
     addUser

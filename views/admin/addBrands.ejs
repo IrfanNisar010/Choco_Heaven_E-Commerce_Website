@@ -340,40 +340,51 @@
             </div>
           </div>
 
-          <script>
-            document.getElementById('myForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const form = document.getElementById('myForm');
-                const formData = new FormData(form);
-            
-                fetch('/admin/addBrands', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            title: "New Brand Added",
-                            text: "New Brand Added Successfully",
-                            icon: "success"
-                        }).then(() => {
-                            window.location.href = '/admin/brandsManage';
-                        });
-                    } else {
-                        const validationMessage = document.getElementById('validationMessages');
-                        validationMessage.style.display = 'block';
-                        validationMessage.innerHTML = data.message;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error Adding Brand');
-                });
-            });
-            </script>
-            
-          
-          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const form = document.getElementById('myForm');
+    const formData = new FormData(form);
 
-          <%- include('../layouts/addBrandsFooter') %>  
+    fetch('/admin/addBrands', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                title: "New Brand Added",
+                text: "New Brand Added Successfully",
+                icon: "success"
+            }).then(() => {
+                window.location.href = '/admin/brandsManage';
+            });
+        } else if (data.message === "This brand is already added!") {
+            Swal.fire({
+                title: "Brand Already Exists",
+                text: "The brand you are trying to add already exists in the database.",
+                icon: "warning"
+            });
+        } else {
+            Swal.fire({
+                title: "Error Adding Brand",
+                text: data.message || "An error occurred while adding the brand.",
+                icon: "error"
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+            title: "Error",
+            text: "An unexpected error occurred while adding the brand.",
+            icon: "error"
+        });
+    });
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<%- include('../layouts/addBrandsFooter') %>  

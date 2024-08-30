@@ -1,0 +1,433 @@
+<%- include('../layouts/offerManageHeader') %>
+<%- include('../layouts/addProductHeader') %>
+
+<nav class="t-header">
+  <div class="t-header-brand-wrapper">
+    <a href="/admin/dashboard">
+      <img class="logo" src="/assets/logo.png" >
+      <img class="logo-mini" src="/assets/images/logo_mini.png" >
+    </a>
+  </div>
+  <div class="t-header-content-wrapper">
+    <div class="t-header-content">
+      <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+        <i class="mdi mdi-menu"></i>
+      </button>
+      <form action="#" class="t-header-search-box">
+        <div class="input-group">
+          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+          <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+        </div>
+      </form>
+      <ul class="nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-bell-outline mdi-1x"></i>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="notificationDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Notifications</h6>
+              <p class="dropdown-title-text">You have 4 unread notifications</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-primary text-primary">
+                  <i class="mdi mdi-alert"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Storage Full</small>
+                  <small class="content-text">Server storage almost full</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-success text-success">
+                  <i class="mdi mdi-cloud-upload"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Upload Completed</small>
+                  <small class="content-text">3 Files uploaded successfully</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="icon-wrapper rounded-circle bg-inverse-warning text-warning">
+                  <i class="mdi mdi-security"></i>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Authentication Required</small>
+                  <small class="content-text">Please verify your password to continue using cloud services</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-message-outline mdi-1x"></i>
+            <span class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Messages</h6>
+              <p class="dropdown-title-text">You have 4 unread messages</p>
+            </div>
+            <div class="dropdown-body">
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/male/image_1.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Clifford Gordon</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/assets/images/profile/female/image_2.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-success"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Rachel Doyle</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+              <div class="dropdown-list">
+                <div class="image-wrapper">
+                  <img class="profile-img" src="/public/assets/images/profile/male/image_3.png" alt="profile image">
+                  <div class="status-indicator rounded-indicator bg-warning"></div>
+                </div>
+                <div class="content-wrapper">
+                  <small class="name">Lewis Guzman</small>
+                  <small class="content-text">Lorem ipsum dolor sit amet.</small>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="appsDropdown" data-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-apps mdi-1x"></i>
+          </a>
+          <div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="appsDropdown">
+            <div class="dropdown-header">
+              <h6 class="dropdown-title">Apps</h6>
+              <p class="dropdown-title-text mt-2">Authentication required for 3 apps</p>
+            </div>
+            <div class="dropdown-body border-top pt-0">
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-jira mdi-2x"></i>
+                <span class="grid-title">Jira</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-trello mdi-2x"></i>
+                <span class="grid-title">Trello</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-artstation mdi-2x"></i>
+                <span class="grid-title">Artstation</span>
+              </a>
+              <a class="dropdown-grid">
+                <i class="grid-icon mdi mdi-bitbucket mdi-2x"></i>
+                <span class="grid-title">Bitbucket</span>
+              </a>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#">View All</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- partial -->
+<div class="page-body">
+  <!-- partial:partials/_sidebar.html -->
+  <div class="sidebar">
+    <div class="user-profile">
+      <div class="display-avatar animated-avatar">
+        <img class="profile-img img-lg rounded-circle" src="/assets/images/profile/male/image_1.png" alt="profile image">
+      </div>
+      <div class="info-wrapper">
+        <p class="user-name">Irfan Nisar</p>
+        <h6 class="display-income">₹3,400,00</h6>
+      </div>
+    </div>
+    <ul class="navigation-menu">
+      <li class="nav-category-divider">MAIN</li>
+      <li>
+        <a href="/admin/userManage">
+          <span class="link-title">Users</span>
+          <i class="mdi mdi-account-multiple link-icon"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#brands" data-toggle="collapse" aria-expanded="false">
+            <span class="link-title">Brands</span>
+            <i class="mdi mdi-tag-multiple link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="brands">
+            <li>
+                <a href="/admin/brandsManage">List brands</a>
+            </li>
+            <li>
+                <a href="/admin/addBrands">Add brands</a>
+            </li>
+            <li>
+                <a href="/admin/editBrands">Edit brands</a>
+            </li>
+        </ul>
+    </li>        
+      <li>
+        <a href="#orders" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Orders</span>
+          <i class="mdi mdi-cart link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="orders">
+          <li>
+            <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
+          </li>
+          <li>
+            <a href="pages/sample-pages/error_2.html" target="_blank">Order Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#offers" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Offers</span>
+          <i class="mdi mdi-cart link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="offers">
+          <li>
+            <a href="/admin/offerManage" target="_blank">Offer Manage</a>
+          </li>
+          <li>
+            <a href="/admin/addOffer" target="_blank">Add Offer</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#return" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Return</span>
+          <i class="mdi mdi-undo-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="return">
+          <li>
+            <a href="pages/ui-components/buttons.html">Return Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Return Details</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#dropdowns" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Dropdowns</span>
+          <i class="mdi mdi-menu-down link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="dropdowns">
+          <li>
+            <a href="pages/ui-components/buttons.html">Dropdowns Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Dropdown Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#products" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Products</span>
+          <i class="mdi mdi-package-variant-closed link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="products">
+          <li>
+            <a href="pages/ui-components/buttons.html">Product Unlisted</a>
+          </li>
+          <li>
+            <a href="/admin/productManage">Product Listed</a>
+          </li>
+          <li>
+            <a href="/admin/editProduct">Product Edit</a>
+          </li>
+          <li>
+            <a href="/admin/addProduct">Product Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#banners" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Banners</span>
+          <i class="mdi mdi-flag-variant link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="banners">
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Add</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/buttons.html">Banners Unlisted</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Banners Edit</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#coupons" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Coupons</span>
+          <i class="mdi mdi-ticket-percent link-icon"></i>
+        </a>
+        <ul class="collapse navigation-submenu" id="coupons">
+          <li>
+            <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+          </li>
+          <li>
+            <a href="pages/ui-components/tables.html">Coupons Add</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="pages/charts/chartjs.html">
+          <span class="link-title">Reports</span>
+          <i class="mdi mdi-chart-bar link-icon"></i>
+        </a>
+      </li>
+      <!-- Logout button -->
+  <li>
+    <a href="/admin/logout">
+      <span class="link-title">Logout</span>
+      <i class="mdi mdi-logout link-icon"></i>
+    </a>
+  </li>
+    </ul>
+  </div>
+  <!-- partial -->
+          <div class="page-content-wrapper">
+            <div class="page-content-wrapper-inner">
+              <div class="content-viewport">
+                <div class="row">
+                  <div class="col-12 pb-3">
+                    <h4>Manage Coupon</h4>
+                    <p class="text-gray">Here's the Details of your coupon</p>
+                  </div>
+                </div>
+        <!-- partial -->
+        <!-- Start offer list -->
+        <div class="row">
+            <% if (offers.length > 0 ){ %> 
+                <% for (let i = 0 ; i < offers.length ; i++ ){ %> 
+                    <div class="col-sm-6 mb-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <h3 class="card-title mb-3 large-content">
+                                    <%= offers[i].offer %> 
+                                    <span class="text-muted">(<%= offers[i].offerType %>)</span>
+                                </h3>
+                                <p class="card-text mb-2">
+                                    <span class="badge bg-success text-white p-2"><%= offers[i].discount %>% Off</span> 
+                                    on <%= offers[i].Pname || offers[i].brands + " Lindt" %>
+                                </p>
+                                <p class="card-text">
+                                    Expiry Date: 
+                                    <span class="text-danger font-italic">
+                                        <%= new Date(offers[i].expireDate ).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) %>
+                                    </span>
+                                </p>
+                                <% if(offers[i].status){ %>
+                                    <button type="button" class="btn btn-secondary btn-lg btn-block mt-4 rounded-pill" onclick="offerStatusChange('<%= offers[i]._id %>',true)">
+                                        Inactivate
+                                    </button>
+                                <% }else{ %>
+                                    <button type="button" class="btn btn-info btn-lg btn-block mt-4 rounded-pill" onclick="offerStatusChange('<%= offers[i]._id %>',false)">
+                                        Activate
+                                    </button>
+                                <%} %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            <% }else{ %>
+                <h4 class="text-center text-muted">No Offer Found!</h4>
+            <% } %>
+        </div>        
+        <!-- End offer list -->
+        
+        <% if (typeof message !== "undefined" && message) { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%= message %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% } %>
+        <!-- Table end -->
+              </table>
+            </div>
+          </div>
+  </div>
+</div>
+</div>
+<!-- partial -->
+</div>
+<!-- page content ends -->
+</div>
+<!--page body ends -->
+
+
+<script>
+   function offerStatusChange(offerId,status) {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: status ? "Yes, inactivate Offer!" : "Yes, Activate Offer!",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/admin/offerStatusChange?offerId=${offerId}`, {
+              method: 'GET' 
+            })
+            .then(response => {
+              if (response.ok) {
+                Swal.fire({
+                  title: status ? "User Inactivated!" : "User Activated!",
+                  text: status ? "The Offer has been Inactivated." : "The Offer has been Activated.",
+                  icon: "success"
+                }).then(() => {
+                  window.location.reload();
+                });
+              } else {
+                Swal.fire({
+                  title: "Error",
+                  text: "An error occurred while changing offer status.",
+                  icon: "error"
+                });
+              }
+            })
+            .catch(error => {
+              
+              console.error("Error:", error);
+              Swal.fire({
+                title: "Error",
+                text: "An error occurred while changing offer status.",
+                icon: "error"
+              });
+            });
+          }
+        });
+      }
+
+</script>
+
+<script src="/js/adminFormValidation.js"></script>
+    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="/assets/vendors/js/core.js"></script>
+
+<%- include('../layouts/addBrandsFooter') %>

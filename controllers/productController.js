@@ -6,22 +6,20 @@ const sharp = require('sharp');
 
 const productsLoad = async (req, res, next) => {
     try {
-
-        const currentPage = parseInt(req.query.page) || 1
-        const productPerPage = 10
+        const currentPage = parseInt(req.query.page) || 1;
+        const productPerPage = 10;
         const skip = (currentPage - 1) * productPerPage;
 
-        const product = await Products.find().skip(skip).limit(productPerPage)
+        const product = await Products.find().skip(skip).limit(productPerPage);
+        const totalProduct = await Products.countDocuments();
+        const totalPages = Math.ceil(totalProduct / productPerPage);
 
-        const totalProduct = await Products.countDocuments()
-        const totalPages = Math.ceil(totalProduct / productPerPage)
-
-        res.render('productManage', { product, currentPage, totalPages })
+        res.render('productManage', { product, currentPage, totalPages });
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
 
 
 
@@ -34,7 +32,6 @@ const addProductLoad = async (req, res, next) => {
         next(error);
     }
 };
-
 const addProduct = async (req, res, next) => {
     try {
         const images = [];
@@ -45,9 +42,20 @@ const addProduct = async (req, res, next) => {
         if (req.files.productImage3) images.push(req.files.productImage3[0].filename);
         if (req.files.productImage4) images.push(req.files.productImage4[0].filename);
 
+        // Check if product already exists
+        const existingProduct = await Products.findOne({
+            productName: req.body.productName,
+            brandId: req.body.brandId,
+            model: req.body.model
+        });
+
+        if (existingProduct) {
+            return res.status(400).json({ success: false, error: 'ProductExists' });
+        }
+
         const product = new Products({
             productName: req.body.productName,
-            brandId: req.body.brandId, 
+            brandId: req.body.brandId,
             model: req.body.model,
             size: req.body.size,
             description: req.body.description,
@@ -69,26 +77,26 @@ const addProduct = async (req, res, next) => {
 
 const searchProduct = async (req, res, next) => {
     try {
-        let productData = []
-
-        const currentPage = parseInt(req.query.page) || 1
-        const productPerPage = 10
+        const currentPage = parseInt(req.query.page) || 1;
+        const productPerPage = 10;
         const skip = (currentPage - 1) * productPerPage;
+        const searchQuery = req.query.search ? req.query.search.trim() : '';
 
-        const totalProduct = await Products.countDocuments()
-        const totalPages = Math.ceil(totalProduct / productPerPage)
-
-        if (req.query.search && req.query.search.trim() !== "") { 
-            productData = await Products.find({ productName: { $regex: req.query.search, $options: 'i' } }).skip(skip).limit(productPerPage)
-        } else {
-            productData = await Products.find().skip(skip).limit(productPerPage)
+        let query = {};
+        if (searchQuery) {
+            query = { productName: { $regex: searchQuery, $options: 'i' } };
         }
-        res.render('productManage', { product: productData, currentPage, totalPages })
+
+        const totalProduct = await Products.countDocuments(query);
+        const totalPages = Math.ceil(totalProduct / productPerPage);
+        const productData = await Products.find(query).skip(skip).limit(productPerPage);
+
+        res.render('productManage', { product: productData, currentPage, totalPages, searchQuery });
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
 
 const listAndUnlistProduct = async (req, res, next) => {
     try {
@@ -166,7 +174,7 @@ const editProduct = async (req, res, next) => {
             return res.status(404).json({ success: false, message: 'Product not found.' });
         }
 
-        let images = [];
+        let images = product.image; // Initialize with existing images
 
         if (req.files) {
             const bodyImages = req.files;
@@ -174,8 +182,6 @@ const editProduct = async (req, res, next) => {
             fields.forEach((field, index) => {
                 if (bodyImages[field] && bodyImages[field][0]) {
                     images[index] = bodyImages[field][0].filename;
-                } else if (product.image[index]) {
-                    images[index] = product.image[index];
                 }
             });
         }
@@ -191,7 +197,7 @@ const editProduct = async (req, res, next) => {
             discount: req.body.discount,
             inStock: req.body.inStock,
             bestSellerProduct: req.body.bestSellerProduct,
-            popularProduct:req.body.popularProduct,
+            popularProduct: req.body.popularProduct,
             image: images
         });
 
@@ -202,6 +208,7 @@ const editProduct = async (req, res, next) => {
         next(error);
     }
 };
+
 
 
 module.exports = {

@@ -12,12 +12,12 @@
       <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
         <i class="mdi mdi-menu"></i>
       </button>
-      <form action="#" class="t-header-search-box">
+      <form action="/admin/brandsManage" method="GET" class="t-header-search-box">
         <div class="input-group">
-          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+          <input type="text" name="search" class="form-control" id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
           <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
         </div>
-      </form>
+      </form>      
       <ul class="nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
@@ -318,10 +318,10 @@
                               <img src="/assets/img/brands/<%= brands[i].imageUrl %>" alt="<%= brands[i].name %>" class="img-fluid rounded" style="max-height: 350px;">
                               <p class="card-text mt-3 text-truncate-3"><%= brands[i].description %></p>
                               <% if (brands[i].isDeleted) { %>
-                                <a href="/admin/restoreBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary btn-block" style="border-radius: 50px;" >Restore</a>
+                                <a href="/admin/restoreBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary btn-block" style="border-radius: 50px;">Restore</a>
                               <% } else { %>
-                                <a href="/admin/editBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary btn-block"  style="border-radius: 50px;"  >Edit</a>
-                                <a href="/admin/softDeleteBrands?brandId=<%= brands[i]._id %>" class="btn btn-danger btn-block"  style="border-radius: 50px;"  >Delete</a>
+                                <a href="/admin/editBrands?brandId=<%= brands[i]._id %>" class="btn btn-primary btn-block" style="border-radius: 50px;">Edit</a>
+                                <a href="/admin/softDeleteBrands?brandId=<%= brands[i]._id %>" class="btn btn-danger btn-block" style="border-radius: 50px;">Delete</a>
                               <% } %>
                             </div>
                           </div>
@@ -333,10 +333,43 @@
                       </div>
                     <% } %>
                   </div>
+          
+                  <!-- Pagination Controls -->
+                  <div class="row">
+                    <div class="col-12">
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                          <% if (currentPage > 1) { %>
+                            <li class="page-item">
+                              <a class="page-link" href="?page=<%= currentPage - 1 %>&search=<%= searchQuery %>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                          <% } %>
+          
+                          <% for (let i = 1; i <= totalPages; i++) { %>
+                            <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                              <a class="page-link" href="?page=<%= i %>&search=<%= searchQuery %>"><%= i %></a>
+                            </li>
+                          <% } %>
+          
+                          <% if (currentPage < totalPages) { %>
+                            <li class="page-item">
+                              <a class="page-link" href="?page=<%= currentPage + 1 %>&search=<%= searchQuery %>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          <% } %>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+          
                 </div>
               </div>
             </div>
           </div>
+          
           
           <style>
           .text-truncate-3 {

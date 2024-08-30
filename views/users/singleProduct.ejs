@@ -14,7 +14,7 @@
                         <div class="header-nav header-nav-2 pl-100">
                             <nav class="d-flex justify-content-center align-content-center"> 
                                 <ul>
-                                    <li><a href="javascript:void(0)" ><span>Home </span></a></li>
+                                    <li><a href="/home" ><span>Home </span></a></li>
                                     <li><a href="/loadShop" class="active"><span>Shop <i class="fas fa-angle-down"></i></span></a>
                                             <div class="submenu" style="border-radius: 13px;">
                                                 <ul>
@@ -187,7 +187,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                                <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                         title="view wishlist"><lord-icon
                                         src="https://cdn.lordicon.com/xyboiuok.json"
                                         trigger="hover"
@@ -281,13 +281,13 @@
                                             <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="checkout.html">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/logout">logout</a></li>
                                         <% } else { %>
                                             <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="/manageAddress">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/login">Sign in</a></li>
                                         <% } %>
                                     </ul>
@@ -346,10 +346,9 @@
                             <div class="shop-img">
                                 <div class="row">
                                     <div class="col-2">
-                                        <div class="nav nav-pills" id="v-pills-tab" role="tablist"
-                                            aria-orientation="vertical">
-                                            <a class="active" data-toggle="pill" href="#tab-1">
-                                                <img src="/assets/img/brands/<%= product.image[0] %>" class="w-100" alt="">
+                                        <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                            <a class="active" data-toggle="pill" href="#tab-1" >
+                                                <img src="/assets/img/brands/<%= product.image[0] %>" class="w-100" alt="" >
                                             </a>
                                             <a class="popup-images" data-toggle="pill" href="#tab-2">
                                                 <img src="/assets/img/brands/<%= product.image[1] %>" class="w-100" alt="">
@@ -365,15 +364,15 @@
                                     <div class="col-10">
                                         <div class="tab-content" id="v-pills-tabContent">
                                             <div class="tab-pane fade show active" id="tab-1">
-                                                <div class="product-img">
+                                                <div class="product-img" id="img-contain">
                                                     <a class="popup-image" href="img/product/farniture-7.jpg"><img
-                                                            src="/assets/img/brands/<%= product.image[0] %>" class="w-100" alt=""></a>
+                                                            src="/assets/img/brands/<%= product.image[0] %>" class="w-100" alt="" id="image"></a>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab-2">
-                                                <div class="product-img">
+                                                <div class="product-img" id="img-contain2">
                                                     <a class="popup-image" href="img/product/farniture-8.jpg"><img
-                                                            src="/assets/img/brands/<%= product.image[1] %>" class="w-100" alt=""></a>
+                                                            src="/assets/img/brands/<%= product.image[1] %>" class="w-100" alt=""  id="image1"></a>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab-3">
@@ -391,9 +390,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
+                        </div>                        
                         <div class="col-xl-6 col-lg-6 col-12">
                             <div class="single-product-sidebar">
                                 <div class="product-content">
@@ -432,6 +430,11 @@
                                             <% } %>
                                         <% } else { %>
                                             <p><span>Availability</span><span class="text-danger"> : Out Of Stock</span></p>
+                                        <% } %>
+                                        <% if(product.offer.length > 0){ %> 
+                                            <h6 class="l-through text-success"><%= offer.offer %>, Extra <%= offer.discount %>% Discount</h6>
+                                        <% }else{ %>
+                                            <h6 class="l-through text-success"><%= Math.abs(product.discount)%> % Discount</h6>
                                         <% } %>
                                     </div>
                                     <div class="single-product-component mt-1">
@@ -605,14 +608,15 @@
     <!-- single product end -->
     <!-- sugession start -->
     <!-- sugession start -->
+<!-- suggestion-product start -->
 <section class="suggestion-product mt-120">
     <div class="container-fluid">
         <div class="generic-title text-center">
             <h2 class="mb-20">You May Also Like</h2>
         </div>
-        <% if (products.length > 0) { %>
+        <% if (suggestionProducts.length > 0) { %>
             <div class="main-product-carousel owl-carousel owl-theme red-nav mt-50">
-                <% products.forEach((product) => { %>
+                <% suggestionProducts.forEach((product) => { %>
                     <div class="item">
                         <div class="product-box">
                             <div class="product-box-wrapper">
@@ -630,7 +634,7 @@
                                         <div class="categories">
                                             <a href="shop3.html" class="product-category"><span><%= product.brand %></span></a>
                                         </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i class="fas fa-heart"></i></span></a>
+                                        <a href="/wishlist" class="wishlist float-right"><span><i class="fas fa-heart"></i></span></a>
                                     </div>
                                     <a href="/singleProduct?id=<%= product._id %>" class="product-title"><%= product.productName %></a>
                                     <div class="price-switcher">
@@ -646,7 +650,7 @@
         <% } %>
     </div>
 </section>
-<!-- sugession end -->
+<!-- suggestion end -->
 
 <!-- related product start -->
 <section class="related-product mt-120">
@@ -654,9 +658,9 @@
         <div class="generic-title text-center">
             <h2 class="mb-20">Related Product</h2>
         </div>
-        <% if (products.length > 0) { %>
+        <% if (relatedProducts.length > 0) { %>
             <div class="main-product-carousel owl-carousel owl-theme red-nav mt-50">
-                <% products.forEach((product) => { %>
+                <% relatedProducts.forEach((product) => { %>
                     <div class="item">
                         <div class="product-box">
                             <div class="product-box-wrapper">
@@ -674,7 +678,7 @@
                                         <div class="categories">
                                             <a href="shop3.html" class="product-category"><span><%= product.brand %></span></a>
                                         </div>
-                                        <a href="wishlist.html" class="wishlist float-right"><span><i class="fas fa-heart"></i></span></a>
+                                        <a href="/wishlist" class="wishlist float-right"><span><i class="fas fa-heart"></i></span></a>
                                     </div>
                                     <a href="/singleProduct?id=<%= product._id %>" class="product-title"><%= product.productName %></a>
                                     <div class="price-switcher">
@@ -690,6 +694,8 @@
         <% } %>
     </div>
 </section>
+<!-- related product end -->
+
 <!-- related product end -->
 
 
@@ -789,7 +795,7 @@
                                                 <li><a href="login.html">My account</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
                                                 <li><a href="shop2.html">Shop</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="/wishlist">Wishlist</a></li>
                                                 <li><a href="question.html">Frequently</a></li>
                                             </ul>
                                         </div>
@@ -954,6 +960,34 @@
         </div>
     </section>
     <div id="success-message-container"></div>
+    <script>
+        const containers = [
+            document.getElementById("img-contain"),
+            document.getElementById("img-contain2")
+        ];
+        
+        const imgs = [
+            document.getElementById("image"),
+            document.getElementById("image1")
+        ];
+        
+        containers.forEach((container, index) => {
+            const img = imgs[index];
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                img.style.transformOrigin = `${x}px ${y}px`;
+                img.style.transform = "scale(1.6)";
+            });
+        
+            container.addEventListener('mouseleave', () => {
+                img.style.transformOrigin = "center center";
+                img.style.transform = "scale(1)";
+            });
+        });
+    </script>
+    
     <!-- startup popup end -->
     <script src="/js/helperFunctions.js"></script>
     <%- include('../layouts/singleProductFooter') %>

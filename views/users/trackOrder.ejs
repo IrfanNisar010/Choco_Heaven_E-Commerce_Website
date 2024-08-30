@@ -1,0 +1,599 @@
+  
+  <%- include('../layouts/userOrderHeader') %>
+  <%- include('../layouts/userHomeHeader') %>
+
+  
+   <!-- header section start -->
+   <header class="header pt-3 pb-4 header-sticky" style="height: 4.5rem;">
+    <div class="container-fluid">
+        <div class="header-nav  position-relative">
+            <div class="row align-items-center">
+                <div class="col-xl-2 col-lg-1 col-md-6 col-sm-6 col-3">
+                    <div class="logo">
+                        <a href="/home"><img src="/assets/img/logo/logo1.png" alt="" style="width: 100%; height: 100%;"></a>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-8 hidden-md position-static">
+                    <div class="header-nav header-nav-2 pl-100">
+                        <nav class="d-flex justify-content-center align-content-center"> 
+                            <ul>
+                                <li><a href="javascript:void(0)" ><span>Home </span></a></li>
+                                <li><a href="/loadShop"><span>Shop <i class="fas fa-angle-down"></i></span></a>
+                                        <div class="submenu" style="border-radius: 13px;">
+                                            <ul>
+                                                <li><a href="#">All Products </a></li>
+                                                <li><a href="#">Trending</a></li>
+                                                <li><a href="#">Best Seller</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                <li><a href="javascript:void(0)"><span>Best Deals</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:void(0)"><span>Top Brands <i
+                                                class="fas fa-angle-down"></i></span> </a>
+                                    <ul class="submenu" style="border-radius: 13px;">
+                                        <li><a href="portfolio.html">Lindt</a></li>
+                                        <li><a href="portfolio2.html">Whittaker's</a></li>
+                                        <li><a href="portfolio3.html">Buttlers's</a></li>
+                                        <li><a href="portfolio3.html">Milka</a></li>
+                                        <li><a href="portfolio3.html">Ferrero</a></li>
+                                        <li><a href="portfolio3.html">Cadbury</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:void(0)"><span>Gifting</span> <i
+                                            class="fas fa-angle-down"></i></a>
+                                    <ul class="submenu" style="border-radius: 13px;">
+                                        <li><a href="about.html">Gift Hampers</a></li>
+                                        <li><a href="contact.html">Bulk Orders</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-3 col-6 col-md-6 col-sm-6 col-9 hidden-md">
+                    <div class="header-right">
+                        <ul class="text-right">
+                            <% if (!locals.user) { %>
+                                <li>
+                                    <a href="/login" class="account">
+                                        <button class="signup-button"> 
+                                            Sign up
+                                        </button>
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/kthelypq.json"
+                                            trigger="hover"
+                                            colors="primary:#000000"
+                                            style="width:22px;height:22px; padding-top: 6px;">
+                                        </lord-icon>
+                                    </a>
+                                </li>
+                            <% } else { %>
+                                <a href="/profileDetails" class="account">
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/kthelypq.json"
+                                        trigger="hover"
+                                        colors="primary:#ef829f"
+                                        style="width:23px;height:23px; padding-top: 6px;">
+                                    </lord-icon>
+                                </a>
+                            <% } %>                                
+                            <li><a href="javascript:void(0)"><lord-icon
+                                src="https://cdn.lordicon.com/kkvxgpti.json"
+                                trigger="hover"
+                                colors="primary:#000000"
+                                style="width:22px;height:22px; padding-top: 4.5px; padding-left: 2px;">
+                            </lord-icon>
+
+                                <!-- search popup -->
+                                <div id="search-popup">
+                                    <div class="close-search-popup">
+                                        <lord-icon
+                                        src="https://cdn.lordicon.com/kkvxgpti.json"
+                                        trigger="hover"
+                                        colors="primary:#000000"
+                                        style="width:20px;height:20px;">
+                                    </lord-icon>
+                                    </div>
+                                    <div class="search-popup-inner mt-135">
+                                        <div class="search-title text-center">
+                                            <h2>Search</h2>
+                                        </div>
+
+                                        <div class="search-content pt-55">
+                                            <ul class="text-center">
+                                                <li><a href="javascript:void(0)" class="active">All categories</a>
+                                                </li>
+                                                <li><a href="javascript:void(0)">Clothing</a></li>
+                                                <li><a href="javascript:void(0)">Gift Cards</a></li>
+                                                <li><a href="javascript:void(0)">Handbag</a></li>
+                                                <li><a href="javascript:void(0)">Kids</a></li>
+                                                <li><a href="javascript:void(0)">Shoes</a></li>
+                                                <li><a href="javascript:void(0)">Sneaker</a></li>
+                                                <li><a href="javascript:void(0)">Women</a></li>
+                                            </ul>
+
+                                            <div class="search-form mt-35">
+                                                <form action="#" method="post">
+                                                    <input type="text" placeholder="Search Products...">
+                                                    <button type="submit"> <img src="/assets/Vector1.svg" style="width: 22px; height: 20px;"></button>                                                    </form>
+                                            </div>
+
+                                            <div class="search-result-list">
+                                                <ul class="text-left">
+                                                    <li class="d-block d-flex align-items-center">
+                                                        <div class="search-result-img">
+                                                            <img src="/assets/img/product/1.jpg" class="w-100" alt="">
+                                                        </div>
+                                                        <div class="search-result-desc pl-10">
+                                                            <a href="/loadShop" class="title px-0">ELLE - Recliner syntheti
+                                                                chair</a>
+                                                            <div class="price">$<span>399</span></div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-block d-flex align-items-center">
+                                                        <div class="search-result-img">
+                                                            <img src="/assets/img/product/2.jpg" class="w-100" alt="">
+                                                        </div>
+                                                        <div class="search-result-desc pl-10">
+                                                            <a href="/loadShop" class="title px-0">RIMINI - Folding leather
+                                                                deck chair</a>
+                                                            <div class="price">$<span>399</span></div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-block d-flex align-items-center">
+                                                        <div class="search-result-img">
+                                                            <img src="/assets/img/product/3.jpg" class="w-100" alt="">
+                                                        </div>
+                                                        <div class="search-result-desc pl-10">
+                                                            <a href="/loadShop" class="title px-0">LANDSCAPE - Folding
+                                                                fabric deck chair</a>
+                                                            <div class="price">$<span>399</span></div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-block d-flex align-items-center">
+                                                        <div class="search-result-img">
+                                                            <img src="/assets/img/product/1.jpg" class="w-100" alt="">
+                                                        </div>
+                                                        <div class="search-result-desc pl-10">
+                                                            <a href="/loadShop" class="title px-0">ELLE - Recliner syntheti
+                                                                chair</a>
+                                                            <div class="price">$<span>399</span></div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-block d-flex align-items-center">
+                                                        <div class="search-result-img">
+                                                            <img src="/assets/img/product/2.jpg" class="w-100" alt="">
+                                                        </div>
+                                                        <div class="search-result-desc pl-10">
+                                                            <a href="/loadShop" class="title px-0">RIMINI - Folding leather
+                                                                deck chair</a>
+                                                            <div class="price">$<span>399</span></div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="d-block d-flex align-items-center">
+                                                        <div class="search-result-img">
+                                                            <img src="/assets/img/product/3.jpg" class="w-100" alt="">
+                                                        </div>
+                                                        <div class="search-result-desc pl-10">
+                                                            <a href="/loadShop" class="title px-0">LANDSCAPE - Folding
+                                                                fabric deck chair</a>
+                                                            <div class="price">$<span>399</span></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                                    title="view wishlist"><lord-icon
+                                    src="https://cdn.lordicon.com/xyboiuok.json"
+                                    trigger="hover"
+                                    colors="primary:#000000"
+                                    style="width:24px;height:24px; padding-top: 4.8px;">
+                                </lord-icon></a></li>
+                            <li><a href="/cart"> <lord-icon
+                                src="https://cdn.lordicon.com/mfmkufkr.json"
+                                trigger="hover"
+                                colors="primary:#000000"
+                                style="width:23px;height:23px; padding-top: 4.2px;">
+                            </lord-icon><span></span></i></a>
+                                <!-- <div class="minicart">
+                                    <div class="minicart-body">
+                                        <div class="minicart-content">
+                                            <ul class="text-left">
+                                                <li>
+                                                    <div class="minicart-img">
+                                                        <a href="/product-1" class="p-0"><img src="/assets/img/product/P-1.webp"
+                                                                class="w-100" alt=""></a>
+                                                    </div>
+                                                    <div class="minicart-desc">
+                                                        <a href="/product-1" class="p-0">Capitalize on low hanging fruit
+                                                            t</a>
+                                                        <strong>1 × $250.00</strong>
+                                                    </div>
+                                                    <div class="remove">
+                                                        <i class="fas fa-times"></i>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="minicart-img">
+                                                        <a href="/product-1" class="p-0"><img src="/assets/img/product/2.jpg"
+                                                                class="w-100" alt=""></a>
+                                                    </div>
+                                                    <div class="minicart-desc">
+                                                        <a href="/product-1" class="p-0">Leather Courriere duffle ba</a>
+                                                        <strong>1 × $150.00</strong>
+                                                    </div>
+                                                    <div class="remove">
+                                                        <i class="fas fa-times"></i>
+                                                    </div>
+                                                </li>
+
+
+                                                <li>
+                                                    <div class="minicart-img">
+                                                        <a href="/product-1" class="p-0"><img src="/assets/img/product/3.jpg"
+                                                                class="w-100" alt=""></a>
+                                                    </div>
+                                                    <div class="minicart-desc">
+                                                        <a href="/product-1" class="p-0">Party Supplies Around Cupcake</a>
+                                                        <strong>1 × $150.00</strong>
+                                                    </div>
+                                                    <div class="remove">
+                                                        <i class="fas fa-times"></i>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="minicart-checkout">
+                                        <div class="minicart-checkout-heading mt-8 mb-25 overflow-hidden">
+                                            <strong class="float-left">Subtotal:</strong>
+                                            <span class="price float-right">503.00</span>
+                                        </div>
+                                        <div class="minicart-checkout-links">
+                                            <a href="cart.html"
+                                                class="generic-btn black-hover-btn text-uppercase w-100 mb-20">View
+                                                cart</a>
+                                            <a href="checkout.html"
+                                                class="generic-btn black-hover-btn text-uppercase w-100 mb-20">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li> -->
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="/assets/Icon4.svg" style="width: 30px; height: 28px;">
+                                </a>
+                                <ul class="submenu text-right" style="border-radius: 13px;">
+                                    <% if (locals.user) { %>
+                                        <li><a href="/profileDetails">My profile</a></li>
+                                        <li><a href="checkout.html">My address</a></li>
+                                        <li><a href="/loadShop">Orders</a></li>
+                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/logout">logout</a></li>
+                                    <% } else { %>
+                                        <li><a href="/login">My profile</a></li>
+                                        <li><a href="checkout.html">My address</a></li>
+                                        <li><a href="/loadShop">Orders</a></li>
+                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/login">Sign in</a></li>
+                                    <% } %>
+                                </ul>
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu visible-sm">
+            <div id="mobile-menu">
+                <ul>
+                    <li><a class="pl-3" href="javascript:void(0)">Home</a></li>
+                    <li><a class="pl-3" href="javascript:void(0)">Shop</a>
+                        <ul>
+                            <li><a href="#">All Products </a></li>
+                            <li><a href="#">Trending</a></li>
+                            <li><a href="#">Best Seller</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0)">Best Deals</a>
+                    </li>
+                    <li><a href="javascript:void(0)">Gifting</a>
+                        <ul>
+                            <li><a href="portfolio.html">Gifting</a></li>
+                            <li><a href="portfolio2.html">Bundle Hamper</a></li>
+                            <li><a href="portfolio3.html">Bulk Orders</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /. mobile nav -->
+    </div>
+</header>
+<!-- header section end -->
+<div class="has-breadcrumb-bg m-0" data-background="img/bg/3.jpg">
+    <div class="breadcrumb-content d-flex justify-content-center align-items-center hidden-md p-sm-0" style="flex-direction: column;">
+        <h3 class="title">
+            <img src="/assets/img/logo/Orders_Icon.png" style="width: 50px; height: 50px; padding-bottom: 6px; padding-right: 3px;">My Orders
+        </h3>
+        <nav aria-label="breadcrumb" class="mb-">
+            <ol class="breadcrumb p-0 m-0">
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Orders</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container-xxl flex-grow-1 container-p-y pt-md-">
+    <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-md-3 mb-5 hidden-md">
+            <div class="sidebar pl-5 pr-0 sidebar-text">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/profileDetails" onclick="setActive(this)">Personal info</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/ordersManage" onclick="setActive(this)">Orders</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/wallet" onclick="setActive(this)">Wallet</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/addressManage" onclick="setActive(this)">Address</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/accountDetails" onclick="setActive(this)">Account details</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+          <!-- Main Content Column -->
+          <div class="col-md-6 pl-0">
+            <h4 class="col-md-12 profile-head p-0 align-items-center" >
+                <lord-icon
+                src="https://cdn.lordicon.com/oqdmuxru.json"
+                trigger="in"
+                delay="500"
+                state="morph-check-in-1"
+                colors="primary:limegreen"
+                style="width:43px;height:43px; padding-top: 10px;">
+            </lord-icon>Order Placed Successfully</h4>
+            <p class="col-md-6 p-head p-0">Here's your Orders Details.</p>
+            <div class="row shop-tracking-status">
+    
+                <div class="col-md-12">
+                    <div class="well">
+                        <h4>Your order status:</h4>
+                        <div class="order-status">
+                            <div class="order-status-timeline">
+                                <!-- Adjust the class based on the order status -->
+                            <div class="order-status-timeline-completion 
+                            <%= order.orderStatus === 'order confirmed' ? 'c1' : '' %>
+                            <%= order.orderStatus === 'delivered' ? 'c2' : '' %>
+                            <%= order.orderStatus === 'completed' ? 'c3' : '' %>">
+                            </div>
+
+                            <div class="image-order-status image-order-status-new 
+                            <%= order.orderStatus === 'order confirmed' ? 'active' : '' %> img-circle">
+                            <span class="status">Order Confirmed</span>
+                            <div class="icon"></div>
+                            </div>
+
+                            <div class="image-order-status image-order-status-active 
+                            <%= ['order confirmed', 'delivered', 'completed'].includes(order.orderStatus) ? 'active' : '' %> img-circle">
+                            <span class="status">In progress</span>
+                            <div class="icon"></div>
+                            </div>
+
+                            <div class="image-order-status image-order-status-intransit 
+                            <%= ['delivered', 'completed'].includes(order.orderStatus) ? 'active' : '' %> img-circle">
+                            <span class="status">Shipped</span>
+                            <div class="icon"></div>
+                            </div>
+
+                            <div class="image-order-status image-order-status-delivered 
+                            <%= order.orderStatus === 'completed' ? 'active' : '' %> img-circle">
+                            <span class="status">Delivered</span>
+                            <div class="icon"></div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            <% const statusColors = { 'cancelled': '#FF3B30', 'order confirmed': 'limegreen' }; %>
+            <% function capitalizeFirstLetter(string) { %>
+            <%= string.charAt(0).toUpperCase() + string.slice(1) %>
+            <% } %>   
+                    <main class="frame-frame">
+                        <div class="frame-tt-order-id-334902461tframe-2610325frame">
+                            <section class="frame-t-order-id-334902461tframe-2610325frame d-flex justify-content-between">
+                                <%
+                                // Function to convert string to array, splice it, and join back to string
+                                function reduceOrderId(orderId, length) {
+                                    let arr = orderId.split(''); 
+                                    if (arr.length > length) {
+                                        arr.splice(length); 
+                                    }
+                                    return arr.join(''); 
+                                }
+        
+                                const shortenedOrderId = reduceOrderId(order._id.toString(), 10);
+                                %>
+                                <div class="frame-order-id">
+                                    Order ID: <%= shortenedOrderId %>
+                                </div>
+                                                          
+                                <div class="frame-t-frame-2610325frame">
+                                    <div class="frame-wrapper">
+                                        <div class="frame-frame-1">
+                                            <div class="frame-create-order"></div>
+                                            <div class="frame-t-invoice">
+                                                <div class="frame-invoice">Invoice</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="frame-wrapper-1">
+                                        <button class="frame-frame-2">
+                                            <div class="frame-t-track-order">
+                                                <div class="frame-track-order">Track Order</div>
+                                            </div>
+                                            <div class="frame-north-direction"></div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="frame-ttt-order-date-jun-262024line-8estimated-delivery-jul">
+                            <div class="frame-tt-order-date-jun-262024line-8estimated-delivery-jul d-flex justify-content-start">
+                                <div class="frame-t-order-date-jun-262024line">
+                                    <div class="frame-order-date-jun">Order date: <% if(order) { %>
+                                        <%= new Date(order.orderDate).toDateString() %>
+                                    <% } %>
+                                    </div>
+                                    <object data="/assets/Line.svg" class="frame-line"></object>
+                                </div>
+                                <div class="frame-estimated-delivery-jul">
+                                    Estimated delivery: 
+                                    <%
+                                        // Function to calculate estimated delivery date
+                                        function getEstimatedDeliveryDate(orderDate) {
+                                            const minDays = 5;
+                                            const maxDays = 7;
+                                            const randomDays = Math.floor(Math.random() * (maxDays - minDays + 1)) + minDays;
+                                            const estimatedDate = new Date(orderDate);
+                                            estimatedDate.setDate(estimatedDate.getDate() + randomDays);
+                                            return estimatedDate.toDateString();
+                                        }
+        
+                                        const estimatedDelivery = getEstimatedDeliveryDate(order.orderDate);
+                                    %>
+                                    <%= estimatedDelivery %>
+                                </div>                            
+                            </div>
+                        </div>
+                        <div class="frame-t-line">
+                            <object data="/assets/Line1.svg" class="frame-line-1"></object>
+                        </div>
+
+                        <% if (order) { %>
+                                            <% order.orderItems.forEach(item => { %> 
+                                                <div class="frame-ttt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty-1tproduct-ttttwhittakers-berry-biscuit-bar-250g-t99500tqty">
+                                                    <section class="frame-tt-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                        <div class="frame-t-product-ttttwhittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                            <div class="p">
+                                                                <div class="frame-product">
+                                                                    <img src="/assets/img/brands/<%= item.image[0] %>" loading="lazy" class="frame-jpg"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="frame-tttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                                <div class="frame-ttt-whittakers-dark-ghana-fruit-nut-250g-t99500tqty">
+                                                                    <div class="frame-t-whittakers-dark-ghana-fruit-nut-250g">
+                                                                        <div><a href="/singleProduct?id=<%= item.productId %>"><%= item.productName %></a></div>
+                                                                        <div class="frame-g">Model: <%= item.model %></div>
+                                                                    </div>
+                                                                    <div class="frame-t-99500tqty">
+                                                                        <div class="frame-component">₹<%= item.price %></div>
+                                                                        <div class="frame-t-qty">
+                                                                            <div class="frame-qty">Qty: <%= item.quantity %></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                                <% }) %>
+                                                <div class="frame-t-line-1">
+                                                    <object data="/assets/Line1.svg" class="frame-line-2"></object>
+                                                </div>
+                                                <div class="frame-tt-payment-delivery">
+                                                    <section class="frame-t-payment-delivery">
+                                                        <div class="frame-payment">Payment</div>
+                                                        <div class="frame-delivery" style="padding-left: 360px;">Delivery</div>
+                                                    </section>
+                                                </div>
+                                                <div class="frame-tttt-visa-56tframe-2610319address">
+                                                    <div class="frame-ttt-visa-56tframe-2610319address">
+                                                        <div class="frame-tt-visa-56tframe">
+                                                            <div class="frame-t-visa-56tframe">
+                                                                <div class="frame-visa"><%= order.paymentMethod %></div>
+                                                                <div class="frame-t-frame">
+                                                                    <object data="/assets/img/logo/cashondelivery_img.png" class="frame-frame-3"></object>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="frame-address" style="padding-left: 370px;">Address</div>
+                                                    </div>
+                                                </div>
+                                                <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
+                                                    <div class="frame-kozhikode-skyline-apt"><%= order.address.address %></div>
+                                                </div>
+                                                <div class="frame-t-847kozhikode-skyline-apt d-flex justify-content-end pe-0">
+                                                    <div class="frame-kozhikode-skyline-apt"><%= order.address.street %></div>
+                                                </div>
+                                                <div class="frame-t-kozhikode-in d-flex justify-content-end">
+                                                    <div class="frame-kozhikode-in"><%= order.address.city %>, <%= order.address.state %></div>
+                                                </div>
+                                                <div class="frame-t d-flex justify-content-end">
+                                                    <div class="frame-component-2 d-flex justify-content-end"><%= order.address.Mobile %></div>
+                                                </div>
+                                                <div class="frame-t-delivery-method d-flex justify-content-end">
+                                                    <div class="frame-delivery-method">Delivery method: Standard</div>
+                                                </div>
+                                                <div class="frame-t-line-1">
+                                                    <object data="/assets/Line2.svg" class="frame-line-2"></object>
+                                                </div>
+                                                <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
+                                                    <div class="frame-amount-payable-99000">Shipping charge :  ₹40</div>
+                                                </div>
+                                                <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
+                                                    <div class="frame-amount-payable-99000">Subtotal :  ₹<%= order.totalAmount - 40 %></div>
+                                                </div>
+                                                <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-between align-center">
+                                                    <% if (order.orderStatus !== 'cancelled') { %>
+                                                    <button class="cancel-btn-order" data-order-id="<%= order._id %>" style="color: #FF3B30;">
+                                                        Cancel Orders
+                                                        <lord-icon
+                                                          src="https://cdn.lordicon.com/nqtddedc.json"
+                                                          trigger="hover"
+                                                          colors="primary:#FF3B30"
+                                                          style="width:14px;height:14px; padding-left: 3px;">
+                                                        </lord-icon>
+                                                    </button>
+                                                    <% } %>
+                                                    <div class="frame-amount-payable-99000">Total :  ₹<%= order.totalAmount %></div>
+                                                </div>
+                                            </main>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="3">No order found.</td>
+                                            </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+    </div>
+  <div id="success-message-container"></div>   
+<script src="/js/OrdersManage.js"></script>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<%- include('../layouts/addBrandsFooter') %>
+<%- include('../layouts/homeFooter') %>

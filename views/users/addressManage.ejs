@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                            <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                     title="view wishlist"><lord-icon
                                     src="https://cdn.lordicon.com/xyboiuok.json"
                                     trigger="hover"
@@ -320,13 +320,13 @@
                                         <li><a href="/profileDetails">My profile</a></li>
                                         <li><a href="checkout.html">My address</a></li>
                                         <li><a href="/loadShop">Orders</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/wishlist">Wishlist</a></li>
                                         <li><a href="/logout">logout</a></li>
                                     <% } else { %>
                                         <li><a href="/login">My profile</a></li>
                                         <li><a href="checkout.html">My address</a></li>
                                         <li><a href="/loadShop">Orders</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="/wishlist">Wishlist</a></li>
                                         <li><a href="/login">Sign in</a></li>
                                     <% } %>
                                 </ul>
@@ -412,7 +412,10 @@
                         <a class="nav-link" href="/wishlist" onclick="setActive(this)">Wishlist</a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 25px;">
-                        <a class="nav-link" href="/logout" onclick="setActive(this)">Log out</a>
+                        <a class="nav-link" href="/coupons" onclick="setActive(this)">Coupons</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 25px;">
+                        <a class="nav-link"  href="/logout" onclick="setActive(this)">Log out</a>
                     </li>
                 </ul>
             </div>
@@ -420,7 +423,7 @@
         
        <!-- Start Add Address -->
        <div class="col-md-9 pl-0" style="display: none;" id="newAddressForm">
-        <h4 class="col-md-6 profile-head p-0">Hey, <%= locals.user.firstName %> 👋</h4>
+        <h4 class="col-md-6 profile-head p-0">Your, Addresses 📍</h4>
         <p class="col-md-6 p-head p-0">Add a new address</p>
         <div class="card mb-4">
             <h5 class="card-header">New address</h5>
@@ -497,7 +500,7 @@
 <!-- Main Content Column -->
 <!-- Start Manage Address -->
 <div class="col-md-9" id="manageAddress" style="display: block;">
-    <h4 class="col-md-6 profile-head p-0">Hey, <%= locals.user.firstName %> 👋</h4>
+    <h4 class="col-md-6 profile-head p-0">Your, Addresses 📍</h4>
     <p class="col-md-6 p-head p-0">Manage your address..</p>
     <main class="frame-frame overflow-hidden">
         <section class="frame-t-manage-address-frame">
@@ -687,8 +690,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             formData.forEach((value, key) => {
               jsonObject[key] = value;
             });
-
-			
             
 			jsonObject.is_Home = document.getElementById('home').checked;
 			jsonObject.is_Work = document.getElementById('work').checked;

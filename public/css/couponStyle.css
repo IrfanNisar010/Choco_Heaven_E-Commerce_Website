@@ -1,0 +1,112 @@
+.coupon-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Space between the cards */
+    justify-items: center;
+    padding: 20px; /* Add some padding to the container */
+}
+
+.coupon-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Adjust the width to be 100% of its grid cell */
+    max-width: 300px; /* Maximum width for the cards */
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.coupon-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.coupon-header {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+.coupon-body {
+    padding: 20px 0;
+    font-size: 1.1em;
+}
+
+.coupon-code {
+    background-color: #f8f8f8;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0;
+}
+
+.coupon-footer {
+    background-color: #f4f4f4;
+    padding: 15px 0;
+    font-size: 0.9em;
+    color: #777;
+    border-radius: 0 0 10px 10px;
+}
+
+.coupon-footer span {
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+.ribbon {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.ribbon::before,
+.ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #ff6f61;
+}
+
+.ribbon::before {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    top: 0;
+    right: 0;
+}
+
+.ribbon::after {
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    bottom: 0;
+    left: 0;
+}
+
+.ribbon span {
+    position: absolute;
+    display: block;
+    width: 100px;
+    background: #ff6f61;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.75em;
+    font-weight: bold;
+    line-height: 20px;
+    transform: rotate(45deg);
+    top: 25px;
+    right: -25px;
+}

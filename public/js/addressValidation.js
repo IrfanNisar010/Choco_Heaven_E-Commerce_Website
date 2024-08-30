@@ -3,11 +3,21 @@ function showError(input, msg) {
     input.placeholder = msg;
     input.classList.add('error');
     input.style.borderColor = 'red';
+    // Show error message below the input field
+    let errorSpan = input.nextElementSibling;
+    if (errorSpan && errorSpan.classList.contains('error-message')) {
+        errorSpan.textContent = msg;
+    }
 }
 
 function clearError(input) {
     input.style.borderColor = '';
     input.placeholder = '';
+    // Clear error message below the input field
+    let errorSpan = input.nextElementSibling;
+    if (errorSpan && errorSpan.classList.contains('error-message')) {
+        errorSpan.textContent = '';
+    }
 }
 
 function addressValidation() {
@@ -20,7 +30,7 @@ function addressValidation() {
     let state = document.getElementById("state");
 
     const nameRegex = /^[a-zA-Z\s]+$/;
-    const phoneRegex = /^\d{10}$/; 
+    const phoneRegex = /^(?:\+?\d{1,3})?[-.\s]?(\d{10}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})$/;
     const pinCodeRegex = /^\d{6}$/;
 
     let valid = true;
@@ -33,15 +43,16 @@ function addressValidation() {
         valid = false;
     } else {
         Name.classList.remove('error');
-        clearError(Name)
+        clearError(Name);
     }
 
-    if (!phoneRegex.test(Phone.value)) {
-        showError(Phone, "Enter a valid 10-digit phone number.");
+    let phoneValue = Phone.value.replace(/\s+/g, ''); // Remove spaces for validation
+    if (!phoneRegex.test(phoneValue) || phoneValue.startsWith('0')) {
+        showError(Phone, "Enter a valid 10-digit phone number without leading zeros.");
         valid = false;
     } else {
         Phone.classList.remove('error');
-        clearError(Phone)
+        clearError(Phone);
     }
 
     if (!pinCodeRegex.test(PinCode.value)) {
@@ -49,7 +60,7 @@ function addressValidation() {
         valid = false;
     } else {
         PinCode.classList.remove('error');
-        clearError(PinCode)
+        clearError(PinCode);
     }
 
     if (!locality.value || locality.value.trim().length === 0) {
@@ -57,7 +68,7 @@ function addressValidation() {
         valid = false;
     } else {
         locality.classList.remove('error');
-        clearError(locality)
+        clearError(locality);
     }
 
     if (!address.value || address.value.trim().length === 0) {
@@ -65,7 +76,7 @@ function addressValidation() {
         valid = false;
     } else {
         address.classList.remove('error');
-        clearError(address)
+        clearError(address);
     }
 
     if (!city.value || city.value.trim().length === 0) {
@@ -73,7 +84,7 @@ function addressValidation() {
         valid = false;
     } else {
         city.classList.remove('error');
-        clearError(city)
+        clearError(city);
     }
 
     if (!state.value || state.value.trim().length === 0) {
@@ -81,7 +92,7 @@ function addressValidation() {
         valid = false;
     } else {
         state.classList.remove('error');
-        clearError(state)
+        clearError(state);
     }
 
     return valid;

@@ -192,7 +192,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="wishlist.html" data-toggle="tooltip" data-placement="bottom"
+                                <li><a href="/wishlist" data-toggle="tooltip" data-placement="bottom"
                                         title="view wishlist"><lord-icon
                                         src="https://cdn.lordicon.com/xyboiuok.json"
                                         trigger="hover"
@@ -286,13 +286,13 @@
                                             <li><a href="/profileDetails">My profile</a></li>
                                             <li><a href="/addressManage">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="/logout">logout</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
+                                            <li><a id="logoutButton" href="/logout">logout</a></li>
                                         <% } else { %>
                                             <li><a href="/login">My profile</a></li>
                                             <li><a href="/addressManage">My address</a></li>
                                             <li><a href="/loadShop">Orders</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="/wishlist">Wishlist</a></li>
                                             <li><a href="/login">Sign in</a></li>
                                         <% } %>
                                     </ul>
@@ -407,11 +407,11 @@
                     <div class="category-box">
                         <div class="category-wrapper">
                             <div class="category-img">
-                                <img src="https://i.pinimg.com/564x/6d/ec/da/6decdafab9623c0066aa1924090b721c.jpg" class="w-100" style="height: 637px; border-radius: 16px;">
+                                <img src="/assets/img/banner/categorie_1.png" class="w-100" style="height: 637px; border-radius: 16px;">
                             </div>
                             <div class="category-content">
-                                <a href="#" class="title">New Bites</a>
-                                <p class="category-item">(<span>8</span> items)</p>
+                                <a href="/loadShop" class="title">Galaxy Valentine's special</a>
+                                <p class="category-item">(<span>Coming</span> soon)</p>
                             </div>
                         </div>
                     </div>
@@ -427,8 +427,8 @@
                                                 <img src="/assets/img/banner/categorie_2.gif" class="w-100" style="height: 307px; border-radius: 16px;">
                                             </div>
                                             <div class="category-content">
-                                                <a href="#" class="title">Cocoa Balls</a>
-                                                <p class="category-item">(<span>5</span> items)</p>
+                                                <a href="#" class="title">New bites</a>
+                                                <p class="category-item">(<span>try</span> our new...)</p>
                                             </div>
                                         </div>
                                     </div>
@@ -440,7 +440,7 @@
                                                 <img src="/assets/img/banner/categorie_3.png" class="w-100" style="height: 307px; border-radius: 16px;">
                                             </div>
                                             <div class="category-content">
-                                                <a href="/loadShop" class="title">Authentic Cocoa</a>
+                                                <a href="/loadShop" class="title">Gifting</a>
                                                 <p class="category-item">(<span>11</span> items)</p>
                                             </div>
                                         </div>
@@ -540,7 +540,7 @@
                                                     <img src="/assets/img/brands/<%= products[index].image[1] %>" alt="" class="w-100">
                                                 </div>
                                             </a>
-                                            <a href="javascript:void(0)" class="product-img-link quick-view-1 text-capitalize">Quick view</a>
+                                            <a href="/loadShop" class="product-img-link quick-view-1 text-capitalize">Quick view</a>
                                         </div>
                                         <div class="product-desc pb-20">
                                             <div class="product-desc-top">
@@ -549,16 +549,28 @@
                                                         <span><%= products[index].brandId ? products[index].brandId.name : 'Unknown Brand' %></span>
                                                     </a>
                                                 </div>
-                                                <a href="wishlist.html" class="wishlist float-right">
-                                                    <span><lord-icon
+                                                <a onclick="addToWishlist(event, '<%= products[index]._id %>')" class="wishlist float-right">
+                                                <span>
+                                                    <% if (wishlistItems.includes(products[index]._id.toString())) { %>
+                                                        <lord-icon
                                                         src="https://cdn.lordicon.com/xyboiuok.json"
-                                                        trigger="click"
-                                                        delay="1000"
+                                                        trigger="in"
+                                                        delay="1"
                                                         state="morph-heart"
                                                         colors="primary:#ee7c9b"
                                                         style="width:30px;height:30px">
-                                                    </lord-icon></span>
-                                                </a>
+                                                        </lord-icon>
+                                                        <% } else { %>
+                                                            <lord-icon
+                                                            src="https://cdn.lordicon.com/xyboiuok.json"
+                                                                trigger="click"
+                                                                state="morph-heart"
+                                                                colors="primary:#ee7c9b"
+                                                                style="width:30px;height:30px">
+                                                            </lord-icon>
+                                                    <% } %>
+                                                </span>
+                                            </a>
                                             </div>
                                             <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title">
                                                 <%= products[index].productName %>
@@ -578,7 +590,7 @@
                 <% } %>                
             </div>            
                     <div class="text-center mt-10  load-btn">
-                        <a href="shop.html" class="load-more">Load more</a>
+                        <a href="/loadShop" class="load-more">Load more</a>
                     </div>
                 </div>
                 <!-- /. tab content 1
@@ -615,13 +627,14 @@
                                                                 </a>
                                                             </div>
                                                             <a href="wishlist.html" class="wishlist float-right">
-                                                                <span><lord-icon
-    src="https://cdn.lordicon.com/xyboiuok.json"
-    trigger="click"
-    state="morph-heart"
-    colors="primary:#000000"
-    style="width:23px;height:23px">
-</lord-icon></span>
+                                                                <span>
+                                                            <lord-icon
+                                                                src="https://cdn.lordicon.com/xyboiuok.json"
+                                                                trigger="click"
+                                                                state="morph-heart"
+                                                                colors="primary:#000000"
+                                                                style="width:23px;height:23px">
+                                                            </lord-icon></span>
                                                             </a>
                                                         </div>
                                                         <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title">
@@ -645,14 +658,50 @@
         </div>
     </div> -->
     <!-- main product sections end -->
+    <div class="container">
+        <div class="generic-title text-center">
+            <h2 class="mb-20">Explore Luxury Recipes</h2>
+            <p>Discover the art of creating exquisite chocolate dishes with our curated video collection,</p>
+            <p>showcasing premium chocolate brands and inspiring recipes.</p>
+        </div>
+        <div class="video-container">
+            <div class="video-scroll">
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay muted playsinline loop>
+                        <source src="/assets/video-4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
      <!-- Footer banner-price section start  -->
-    <section class="shipping-price-section shipping-2 pt-130 mt-120 gray-border-top">
-        <div class="container">
-            <img src="/assets/img/banner/footerBanner-1.png" alt="Banner 1" class="responsive-banner">
-            <img src="/assets/img/banner/footerBanner-2.png" alt="Banner 2" class="responsive-banner">
-        </div>
-    </section>
+     <section class="shipping-price-section shipping-2 pt-10 mt-10 gray-border-top">
+    <div class="container">
+        <img src="/assets/img/banner/footerBanner-1.png" alt="Banner 1" class="responsive-banner">
+        <img src="/assets/img/banner/footerBanner-2.png" alt="Banner 2" class="responsive-banner responsive2">
+    </div>
+</section>
     <!-- Footer banner section end -->
 
 
@@ -915,8 +964,25 @@
             </div>
         </div>
     </section>
-    <div id="success-message-container"></div>
+   <div id="success-message-container"></div>
+   <audio id="success-sound" src="/assets/addToCartSound.mp3" preload="auto"></audio>
+   <audio id="wishlist-success-sound" src="/assets/wishlist-sound.mp3" preload="auto"></audio>
+   <!-- Wishlist Success Sound -->
+   <audio id="wishlist-success-sound" src="path_to_your_success_sound_file.mp3" preload="auto"></audio>
 
-    <!-- startup popup end -->
+    <script src="/js/helperFunctions.js"></script>
+    <script>
+        document.querySelectorAll('.video-item video').forEach(video => {
+            video.addEventListener('click', function() {
+                if (this.hasAttribute('controls')) {
+                    this.removeAttribute('controls');
+                } else {
+                    this.setAttribute('controls', 'controls');
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <%- include('../layouts/homeFooter') %>
