@@ -27,8 +27,8 @@ a.meanmenu-reveal {
 	cursor: pointer;
 	display: block;
 	font-family: "poppins",sans-serif;
-	font-size: 1px;
-	font-weight: 300;
+	font-size: 0.8px;
+	font-weight: 200;
 	height: 22px;
 	line-height: 22px;
 	margin-top: -32px;
@@ -36,6 +36,7 @@ a.meanmenu-reveal {
 	position: absolute;
 	right: 0;
 	text-decoration: none;
+	padding-top: 22px;
 	top: 0;
 	width: 22px;
 }

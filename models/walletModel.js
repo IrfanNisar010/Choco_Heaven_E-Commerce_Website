@@ -14,13 +14,6 @@ const walletSchema = mongoose.Schema({
             type: Number,
             default: 0 
         },
-        productName: {
-            type: String,
-        },
-        productImage: [{
-            type: String,
-            
-        }],
         paymentType: { 
             type: String,
             default: null

@@ -40,13 +40,14 @@ const verifyLogin = async (req, res) => {
 
 const loadHome = async (req, res) => {
     try {
-        const page = req.query.page || 1; // Get current page from query or default to 1
-        const limit = 10; // Define how many orders to display per page
+        const page = req.query.page || 1;
+        const limit = 10; 
 
         // Get the count of users, products, and orders
         const userCount = await User.find().countDocuments();
         const productCount = await Products.find().countDocuments();
         const orderCount = await Orders.find().countDocuments();
+
 
         // Calculate total sales
         const result = await Orders.aggregate([
@@ -190,8 +191,10 @@ const orderStatuses = async (req, res, next) => {
 const salesReport = async (req, res, next) => {
     try {
         const { interval, startDate, endDate, page = 1, limit = 10 } = req.query;
-        const query = {};
+        let query = {};
+        let salesReport;
 
+        // Determine the query based on the interval or specific dates
         if (interval === 'daily') {
             query.orderDate = {
                 $gte: new Date(new Date().setHours(0, 0, 0, 0)),
@@ -206,7 +209,7 @@ const salesReport = async (req, res, next) => {
             };
         } else if (interval === 'yearly') {
             const yearStart = new Date(new Date().getFullYear(), 0, 1);
-            const yearEnd = new Date(new Date().getFullYear() + 1, 0, 0);
+            const yearEnd = new Date(new Date().getFullYear() + 1, 0, 1);
             query.orderDate = {
                 $gte: yearStart,
                 $lt: yearEnd
@@ -218,7 +221,8 @@ const salesReport = async (req, res, next) => {
             };
         }
 
-        const salesReport = await Orders.find(query)
+        // Fetching data with pagination
+        salesReport = await Orders.find(query)
             .skip((page - 1) * limit)
             .limit(parseInt(limit));
 
@@ -236,13 +240,15 @@ const salesReport = async (req, res, next) => {
             }))
         }));
 
+        // Render the sales report template with the fetched data
         res.render('salesReport', { salesReport: salesReportWithStringIds, totalPages, currentPage: parseInt(page) });
 
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
         next(error);
     }
 };
+
 const downloadExcel = async (req, res) => {
     try {
         const { data } = req.body;

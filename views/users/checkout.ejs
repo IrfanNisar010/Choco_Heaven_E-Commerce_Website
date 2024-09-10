@@ -622,20 +622,23 @@
                                     </tr>                                    
                                     <tr class="border-bottom">
                                         <th class="cart-summary-title">Discount</th>
-                                        <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);">₹ <%=totalPrice  - productData[0].price %></td>
-                                    </tr>                                                                   
+                                        <td class="cart-summary-price p-0 total-discount" style="color: rgb(92, 173, 92);">
+                                            ₹ <%= Math.max(Math.round(totalPrice - productData[0].price + couponDiscount)) %>
+                                          </td>                                                                                                                                                   
                                     <tr>
                                         <th class="cart-summary-title pb-10">Shipping <p>(4-6 Business days)</p></th>
                                         <td class="cart-summary-price p-0 shipping">₹40</td>
                                     </tr>
                                     <tr>
                                         <th class="cart-summary-title pb-10 border-bottom">Tax <p>(estimated for India (IN))</p></th>
-                                        <td class="cart-summary-price p-0 border-bottom">₹0</td>
+                                        <td class="cart-summary-price p-0 border-bottom">18%</td>
                                     </tr>
                                     <tr>
                                         <th class="cart-summary-title pb-10" style="font-size: 21px;">Grand total</th>
-                                        <td class="cart-summary-price p-0" id="totalAmount"  style="font-size: 21px; font-weight: 500;">₹<%= totalPrice + 40 - couponDiscount %></td>
-                                    </tr>
+                                        <td class="cart-summary-price p-0" id="totalAmount" style="font-size: 21px; font-weight: 500;">
+                                            ₹<%= Math.round(totalPrice + 40 - couponDiscount) %>
+                                          </td>
+                                        </tr>
                                 </tbody>
                             </table>
                             <% } %>

@@ -326,9 +326,18 @@
                                     <% brands.forEach((brand) => { %>
                                         <% const product = products.find(p => p.brandId.equals(brand._id)); %>
                                         <div class="list">
-                                            <input type="checkbox" id="brand-filter-<%= brand._id %>" name="brand-filter" value="<%= brand._id %>">
-                                            <label for="brand-filter-<%= brand._id %>"><%= brand.name %>(<%= product ? product.inStock : 0 %>)</label>
-                                        </div>
+                                            <input 
+                                                type="checkbox" 
+                                                id="brand-filter-<%= brand._id %>" 
+                                                name="brand-filter" 
+                                                value="<%= brand._id %>" 
+                                                <%= selectedBrands && selectedBrands.includes(brand._id.toString()) ? 'checked' : '' %>
+                                            >
+                                            <label for="brand-filter-<%= brand._id %>">
+                                                <%= brand.name %> 
+                                                (<%= brandProductCounts[brand._id.toString()] || 0 %>) <!-- Display product count for the brand -->
+                                            </label>
+                                        </div>                                        
                                     <% }); %>
                                 </div>
                                 <div class="filter-form-submit mt-35">

@@ -3,72 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallet Page</title>
+    <title>Responsive 50-50 Horizontal Layout</title>
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="test.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body, html {
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container-fluid {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+        }
+        .video-wrapper {
+            width: 50%;
+            height: 100%;
+            padding: 50px;
+            border-radius: 14px;
+            position: relative;
+        }
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+        }
+        .content {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            text-align: start;
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .content h4 {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+        /* Overlay content on top of video for sm screens */
+        @media (max-width: 576px) {
+            .video-wrapper {
+                width: 100%;
+            }
+            .content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+                display: flex;
+                color: #1a1a1a;
+                width: 90%;
+                padding: 20px;
+                align-items: center;
+                border-radius: 10px;
+            }
+            .video-wrapper video {
+                opacity: 0.7;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <div class="card shadow-custom" style="background-image: url('card-bg.jpg');">
-                    <div class="card-details">
-                        <div class="card-logo">VISA</div>
-                        <div class="card-number">4312 5673 3389 4400</div>
-                        <div class="card-name">Irfan Nisar</div>
-                        <div class="card-expiry">07/30</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="balance-card shadow-custom">
-                    <div class="balance">₹2995.00</div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="add-card shadow-custom">
-                    <div class="add-card-text">+ Add Card</div>
-                </div>
-            </div>
+    <section class="container-fluid">
+        <!-- Left side with Video -->
+        <div class="video-wrapper">
+            <video autoplay muted loop>
+                <source src="/public/assets/bg_v2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
-        <div class="wallet-history">
-            <h2>Wallet history</h2>
-            <div class="history-item row mb-3">
-                <div class="col-auto">
-                    <img src="whittakers.png" alt="">
-                </div>
-                <div class="col">
-                    <div class="item-details">
-                        <div class="item-name">Whittakers Dark Ghana Fruit & Nut</div>
-                        <div class="item-weight">250g</div>
-                    </div>
-                </div>
-                <div class="col-auto text-right">
-                    <div class="item-price">-₹995.00</div>
-                    <div class="item-qty">Qty: 1</div>
-                </div>
-            </div>
-            <div class="history-item row mb-3">
-                <div class="col-auto">
-                    <img src="ferrero_rocher.png" alt="">
-                </div>
-                <div class="col">
-                    <div class="item-details">
-                        <div class="item-name">Ferrero Rocher T30 375g</div>
-                        <div class="item-weight">375g</div>
-                    </div>
-                </div>
-                <div class="col-auto text-right">
-                    <div class="item-price">-₹2,155.00</div>
-                    <div class="item-qty">Qty: 1</div>
-                </div>
-            </div>
+
+        <!-- Right side with Title and Text (or Overlay on Mobile) -->
+        <div class="content">
+            <h1>Your Main Title</h1>
+            <h4>This is the first line of text. This is the second line of text that appears under the title.</h4>
         </div>
-    </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </section>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

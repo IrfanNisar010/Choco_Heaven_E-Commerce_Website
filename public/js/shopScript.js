@@ -103,16 +103,32 @@ document.getElementById('search-form').addEventListener('submit', function(event
   window.location.href = `/loadShop?${queryParams.toString()}`;
 });
 
+// Get current URL params and retain selected brands after page load
+document.addEventListener('DOMContentLoaded', function () {
+  let queryParams = new URLSearchParams(window.location.search);
+  let selectedBrands = queryParams.get('brands') ? queryParams.get('brands').split(',') : [];
 
-document.querySelectorAll('input[name="brand-filter"]').forEach(function(checkbox) {
-  checkbox.addEventListener('change', function() {
+  // Re-check checkboxes based on selected brands in URL
+  selectedBrands.forEach(function(brandId) {
+      let checkbox = document.querySelector(`input[name="brand-filter"][value="${encodeURIComponent(brandId)}"]`);
+      if (checkbox) {
+          checkbox.checked = true; // Keep previously selected brands checked
+      }
+  });
+});
+
+// Handle brand filter change event
+document.querySelectorAll('input[name="brand-filter"]').forEach(function (checkbox) {
+  checkbox.addEventListener('change', function () {
       let form = document.getElementById('filterForm');
       let selectedBrands = Array.from(form.querySelectorAll('input[name="brand-filter"]:checked'))
-                          .map(cb => cb.value);
-      
+          .map(cb => encodeURIComponent(cb.value));  // Collect selected brands
+
       let queryParams = new URLSearchParams(window.location.search);
-      queryParams.set("brands", selectedBrands.join(','));
-      queryParams.set("page", 1); // Reset to the first page on filter change
+      queryParams.set("brands", selectedBrands.join(',')); // Update URL with selected brands
+      queryParams.set("page", 1);  // Reset to page 1 on filter change
+
+      // Redirect with updated query parameters
       window.location.href = `/loadShop?${queryParams.toString()}`;
   });
 });

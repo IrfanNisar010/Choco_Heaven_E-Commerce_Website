@@ -418,24 +418,30 @@
                                                           
                                 <div class="frame-t-frame-2610325frame">
                                     <div class="frame-wrapper">
+                                        <% if(order.orderStatus === 'completed' || order.orderStatus === 'delivered' ){ %> 
                                         <div class="frame-frame-1">
                                             <div class="frame-create-order"></div>
                                             <div class="frame-t-invoice">
+                                                <button type="button" onclick="downloadInvoice('<%= order._id %>')">
                                                 <div class="frame-invoice">Invoice</div>
                                             </div>
+                                        </button>
                                         </div>
+                                        <% } %>     
                                     </div>
                                     <div class="frame-wrapper-1">
-                                        <button class="frame-frame-2">
-                                            <div class="frame-t-track-order">
-                                                <div class="frame-track-order">
-                                                    <a href="/orderDetails?orderId=<%= order._id %>" style="text-decoration: none; color: white;">
-                                                    Track Order</a>
-                                            </div>
-                                            </div>
-                                            <div class="frame-north-direction"></div>
-                                        </button>
-                                    </div>
+                                            <% if (order.orderStatus !== 'cancelled' && order.orderStatus !== 'completed' && order.orderStatus !== 'returned') { %>
+                                            <button class="frame-frame-2">
+                                                <div class="frame-t-track-order">
+                                                    <div class="frame-track-order">
+                                                        <a href="/orderDetails?orderId=<%= order._id %>" style="text-decoration: none; color: white;">
+                                                        Track Order</a>
+                                                    </div>
+                                                </div>
+                                                <div class="frame-north-direction"></div>
+                                            </button>
+                                        </div>
+                                        <% } %>                                        
                                 </div>
                             </section>
                         </div>
@@ -515,6 +521,8 @@
                                                 <img src="/assets/img/logo/cashondelivery_img.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
                                             <% } else if (order.paymentMethod === 'Wallet') { %>
                                                 <img src="/assets/img/logo/wallet_Icon.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
+                                            <% } else if (order.paymentMethod === 'visa') { %>
+                                                <img src="/assets/img/logo/visa_img.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
                                             <% } else { %>
                                                 <!-- Fallback image if needed -->
                                                 <img src="/assets/img/logo/default_img.png" class="paymentMethod-img" style="width: 90px; height: 37px; padding-top: 5px" />
@@ -545,10 +553,15 @@
                             <object data="/assets/Line2.svg" class="frame-line-2"></object>
                         </div>
                         <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3 mt-3">
-                            <% order.orderItems.forEach(item => { %>
-                            <div class="frame-amount-payable-99000">Discount :  <%= item.discount %></div>
-                            <% }) %>
+                            <% if (order.couponDiscount && order.couponDiscount > 0) { %>
+                                <div class="frame-amount-payable-99000">Coupon discount: ₹<%= order.couponDiscount %></div>
+                            <% } %>
                         </div>
+                        <div class="frame-t-amount-payable-99000 d-flex justify-content-end align-center mb-3 mt-3">
+                            <div class="frame-amount-payable-99000">
+                                Total Discount: ₹<%= order.totalDiscount %>
+                            </div>
+                        </div>                        
                         <div class="frame-t-amount-payable-99000 d-flex justify-content-end justify-content-end align-center mb-3">
                             <div class="frame-amount-payable-99000">Shipping charge :  ₹40</div>
                         </div>
@@ -652,6 +665,8 @@
 <div id="success-message-container"></div>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/easyinvoice/dist/easyinvoice.min.js"></script>
+
 <script>
     
 // Continue Pending Order payment
@@ -749,6 +764,30 @@ function verifyPayment(paymentId,razorpay_order_id, placed_orderId, signature) {
         console.error('Error:', error);
         Swal.fire('Error', 'Network Error. Try again.', 'error');
     });
+}
+
+function downloadInvoice(orderId) {
+    fetch(`/downloadInvoice?orderId=${orderId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `invoice_${orderId}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        })
+        .catch(error => {
+            console.error('Error downloading invoice:', error.message);
+            alert('There was an issue downloading the invoice. Please try again later.');
+        });
 }
 
 </script>
