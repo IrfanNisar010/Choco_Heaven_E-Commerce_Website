@@ -11,6 +11,7 @@ const crypto  = require('crypto')
 const Offer = require('../models/offerModel');
 const puppeter = require('puppeteer')
 const { default: mongoose } = require('mongoose');
+const PDFDocument = require('pdfkit');
 const { render } = require('ejs')
 const { log } = require('console')
 
@@ -41,11 +42,9 @@ const ordersPageLoad = async (req, res, next) => {
         const userData = await User.findById(id);
 
         const ordersPerPage = 3;
-
         const currentPage = parseInt(req.query.page) || 1;
 
         const totalOrders = await OrderModel.countDocuments({ userId: id });
-
         const totalPages = Math.ceil(totalOrders / ordersPerPage);
 
         const orders = await OrderModel.find({ userId: id })
@@ -54,9 +53,18 @@ const ordersPageLoad = async (req, res, next) => {
             .skip((currentPage - 1) * ordersPerPage)
             .limit(ordersPerPage);
 
+        // Enhancing the orders with the total discount calculation
         const enhancedOrders = orders.map(order => {
+            let totalDiscount = 0;
+
+            // Summing up the discount from each order item
+            order.orderItems.forEach(item => {
+                totalDiscount += item.discount || 0;
+            });
+
             return {
                 ...order._doc, // Spread the order document
+                totalDiscount  // Add total discount to the order object
             };
         });
 
@@ -436,30 +444,44 @@ const downloadInvoice = async (req, res, next) => {
         const invoiceNumber = generateInvoiceNumber();
         const orderId = req.query.orderId;
         const order = await OrderModel.findById(orderId);
-       
+
+        if (!order) {
+            throw new Error('Order not found');
+        }
+
         const doc = new PDFDocument();
 
         res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename="invoice.pdf"');
+        res.setHeader('Content-Disposition', `attachment; filename="invoice_Choco_Heaven.pdf"`);
         doc.pipe(res);
 
+        // Add fonts (ensure paths are correct)
+        doc.font('Helvetica-Bold')
+            .fontSize(10)
+            .text('Choco Heaven', { align: 'center' })
+            .moveDown();
 
-        doc.font('Helvetica-Bold').fontSize(10).text('Zephyr', { align: 'center' }).moveDown();
-        doc.font('Helvetica').fontSize(15).text('INVOICE', { align: 'center' }).moveDown();
+        doc.font('Helvetica-Bold')
+            .fontSize(15)
+            .text('INVOICE', { align: 'center' })
+            .moveDown();
 
-        doc.font('Helvetica-Bold').fontSize(8).text(`Invoice Number: ${invoiceNumber}`, { align: 'start' })
-        doc.font('Helvetica-Bold').fontSize(8).text(`Order Date: ${order.orderDate.toDateString()}`, { align: 'start' }).moveDown();
-        doc.font('Helvetica-Bold').fontSize(8).text(`Order id: ${order._id}`, { align: 'start' })
-        doc.font('Helvetica-Bold').fontSize(8).text(`Product id: ${order.orderItems[0].productId}`, { align: 'start' }).moveDown().moveDown();
+        doc.font('Helvetica-Bold')
+            .fontSize(8)
+            .text(`Invoice Number: ${invoiceNumber}`, { align: 'left' })
+            .text(`Order Date: ${order.orderDate.toDateString()}`, { align: 'left' })
+            .moveDown()
+            .text(`Order ID: ${order._id}`, { align: 'left' })
+            .text(`Product ID: ${order.orderItems[0]?.productId || 'N/A'}`, { align: 'left' })
+            .moveDown();
 
+        // Address section
+        doc.fontSize(12).text('Address');
+        doc.fontSize(10).text(`Name: ${order.address.Name}`);
+        doc.text(`Address: ${order.address.address}, ${order.address.city}, ${order.address.PIN}`).moveDown();
 
-
-        doc.font('Helvetica-Bold').fontSize(12).text('Address')
-        doc.font('Helvetica').fontSize(10).text(`Name: ${order.address.Name}`);
-        doc.font('Helvetica').fontSize(10).text(`Address: ${order.address.address}, ${order.address.city}, ${order.address.PIN}`).moveDown();
-
+        // Table headers
         const tableHeaders = ['Product Name', 'Quantity', 'Unit Price'];
-
         const startX = 50;
         const startY = doc.y + 15;
         const cellWidth = 120;
@@ -468,37 +490,42 @@ const downloadInvoice = async (req, res, next) => {
         doc.rect(startX, startY, cellWidth * tableHeaders.length, headerHeight).fillAndStroke('#CCCCCC', '#000000');
         doc.font('Helvetica-Bold').fontSize(10).fillColor('#000000');
         tableHeaders.forEach((header, index) => {
-            doc.text(header, startX + (cellWidth * index) + (cellWidth / 2), startY + (headerHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
+            doc.text(header, startX + (cellWidth * index) + 10, startY + 10, { width: cellWidth, align: 'left' });
         });
 
-        const rowHeight = 50;
+        // Table rows
+        const rowHeight = 25;
         let yPos = startY + headerHeight;
         let totalPrice = 0;
+
         order.orderItems.forEach((item, rowIndex) => {
-            const fillColor = rowIndex % 2 === 0 ? '#FFFFFF' : '#EEEEEE';
+            const fillColor = rowIndex % 2 === 0 ? '#FAF9F6' : '#EEEEEE';
             doc.rect(startX, yPos, cellWidth * tableHeaders.length, rowHeight).fillAndStroke(fillColor, '#000000');
-            doc.fillColor('#000000');
-            doc.font('Helvetica').fontSize(10);
-            doc.text(item.productName || 'N/A', startX + (cellWidth / 2), yPos + (rowHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
-            doc.text(item.quantity.toString(), startX + cellWidth + (cellWidth / 2), yPos + (rowHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
-            doc.text(item.price !== undefined ? item.price.toString() : 'N/A', startX + (cellWidth * 2) + (cellWidth / 2), yPos + (rowHeight / 2), { width: cellWidth, align: 'start', valign: 'start' });
+            doc.fillColor('#000000').font('Helvetica-Bold').fontSize(10);
+            doc.text(item.productName || 'N/A', startX + 10, yPos + 5, { width: cellWidth, align: 'left' });
+            doc.text(item.quantity.toString(), startX + cellWidth + 10, yPos + 5, { width: cellWidth, align: 'left' });
+            doc.text(item.price !== undefined ? item.price.toFixed(2) : 'N/A', startX + (cellWidth * 2) + 10, yPos + 5, { width: cellWidth, align: 'left' });
+
             const itemTotalPrice = item.price !== undefined && item.quantity !== undefined ? item.price * item.quantity : 0;
             totalPrice += itemTotalPrice;
             yPos += rowHeight;
         });
 
         // Calculate discount
-        yPos += rowHeight;
         const discount = totalPrice - order.totalAmount;
 
-        // Add the total amount and discount at the end
-        doc.font('Helvetica-Bold').text(`Total Amount: ${order.totalAmount.toFixed(2)}    Discount: ${discount.toFixed(2)}`, startX, yPos, { width: cellWidth * tableHeaders.length, align: 'start', valign: 'center' });
+        // Total and discount
+        yPos += 10;
+        doc.font('Helvetica-Bold').fontSize(10);
+        doc.text(`Total Amount: ${order.totalAmount.toFixed(2)}`, startX, yPos);
+        doc.text(`Discount: ${discount.toFixed(2)}`, startX + 200, yPos);
         doc.end();
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
+
 
 
 const verifyPayment = async (req, res, next) => {
@@ -662,7 +689,7 @@ const cancelOrder = async (req, res, next) => {
 
         }
 
-        if (orderData.paymentMethod === 'RazorPay' || orderData.paymentMethod === 'Wallet') {
+        if (orderData.paymentMethod === 'RazorPay'|| orderData.paymentMethod === 'COD' || orderData.paymentMethod === 'Wallet') {
             await Wallet.findOneAndUpdate(
                 { userId: req.session.userId },
                 {
@@ -671,15 +698,12 @@ const cancelOrder = async (req, res, next) => {
                         transactionHistory: {
                             amount: orderData.totalAmount,
                             paymentType: "credit",
-                            productName: orderData.productName,
-                            productImage: orderData.image[0],
                             date: new Date()
                         }
                     }
                 },
                 { new: true, upsert: true })
         }
-        console.log("Product image: ", productImage);
 
         res.status(200).send({ message: 'Order Cancelled Successfully' });
     } catch (error) {
@@ -758,24 +782,44 @@ function generateInvoiceNumber() {
 }
 
 
-
 const walletLoad = async (req, res, next) => {
     try {
-        const userId = req.session.userId
+        const userId = req.session.userId;
         if (!userId) {
             return res.status(403).json({ message: "User is not authenticated." });
         }
 
-        const wallet = await Wallet.findOneAndUpdate({ userId: userId }, { $setOnInsert: { userId: userId } }, { new: true, upsert: true })
-        const user = await User.findById(userId)
+        const { page = 1, limit = 8 } = req.query; // Default to page 1, 5 transactions per page
 
-        res.render('wallet', { user, wallet , title: 'Wallet' })
+        const wallet = await Wallet.findOneAndUpdate(
+            { userId: userId },
+            { $setOnInsert: { userId: userId } },
+            { new: true, upsert: true }
+        );
+
+        const totalTransactions = wallet.transactionHistory.length;
+        const totalPages = Math.ceil(totalTransactions / limit);
+
+        const paginatedTransactions = wallet.transactionHistory
+            .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date, latest first
+            .slice((page - 1) * limit, page * limit); // Paginate transactions
+
+        const user = await User.findById(userId);
+
+        res.render('wallet', {
+            user,
+            wallet: { ...wallet._doc, transactionHistory: paginatedTransactions },
+            currentPage: parseInt(page),
+            totalPages,
+            limit,  // Pass limit to the view
+            title: 'Wallet'
+        });
 
     } catch (error) {
         console.log(error.message);
-        next(error)
+        next(error);
     }
-}
+};
 
 
 

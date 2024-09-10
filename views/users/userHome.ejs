@@ -13,18 +13,19 @@
                             <a href="/home"><img src="/assets/img/logo/logo1.png" alt=""></a>
                         </div>
                     </div>
+                 
 
                     <div class="col-xl-6 col-lg-8 hidden-md position-static">
                         <div class="header-nav header-nav-2 pl-100">
                             <nav class="d-flex justify-content-center align-content-center"> 
                                 <ul>
-                                    <li><a href="javascript:void(0)" class="active"><span>Home </span></a></li>
+                                    <li><a href="/Home" class="active"><span>Home </span></a></li>
                                     <li><a href="/loadShop"><span>Shop <i class="fas fa-angle-down"></i></span></a>
                                             <div class="submenu" style="border-radius: 13px;">
                                                 <ul>
-                                                    <li><a href="#">All Products </a></li>
-                                                    <li><a href="#">Trending</a></li>
-                                                    <li><a href="#">Best Seller</a></li>
+                                                    <li><a href="/loadShop">All Products </a></li>
+                                                    <li><a href="/loadShop">Trending</a></li>
+                                                    <li><a href="/loadShop">Best Seller</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -34,12 +35,12 @@
                                     <li><a href="javascript:void(0)"><span>Top Brands <i
                                                     class="fas fa-angle-down"></i></span> </a>
                                         <ul class="submenu" style="border-radius: 13px;">
-                                            <li><a href="portfolio.html">Lindt</a></li>
-                                            <li><a href="portfolio2.html">Whittaker's</a></li>
-                                            <li><a href="portfolio3.html">Buttlers's</a></li>
-                                            <li><a href="portfolio3.html">Milka</a></li>
-                                            <li><a href="portfolio3.html">Ferrero</a></li>
-                                            <li><a href="portfolio3.html">Cadbury</a></li>
+                                            <li><a href="/home">Lindt</a></li>
+                                            <li><a href="/home">Whittaker's</a></li>
+                                            <li><a href="/home">Buttlers's</a></li>
+                                            <li><a href="/home">Milka</a></li>
+                                            <li><a href="/home">Ferrero</a></li>
+                                            <li><a href="/home">Cadbury</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="javascript:void(0)"><span>Gifting</span> <i
@@ -305,24 +306,24 @@
             <div class="mobile-menu visible-sm">
                 <div id="mobile-menu">
                     <ul>
-                        <li><a class="pl-3" href="javascript:void(0)">Home</a></li>
-                        <li><a class="pl-3" href="javascript:void(0)">Shop</a>
+                        <li><a class="pl-3" href="/home">Home</a></li>
+                        <li><a class="pl-3" href="/loadShop">Shop</a>
                             <ul>
-                                <li><a href="#">All Products </a></li>
-                                <li><a href="#">Trending</a></li>
-                                <li><a href="#">Best Seller</a></li>
+                                <li><a href="/loadShop">All Products </a></li>
+                                <li><a href="/loadShop">Trending</a></li>
+                                <li><a href="/loadShop">Best Seller</a></li>
                             </ul>
                         </li>
-                        <li><a href="javascript:void(0)">Best Deals</a>
+                        <li><a href="/wishlist">Wishlist</a>
                         </li>
-                        <li><a href="javascript:void(0)">Gifting</a>
-                            <ul>
-                                <li><a href="portfolio.html">Gifting</a></li>
-                                <li><a href="portfolio2.html">Bundle Hamper</a></li>
-                                <li><a href="portfolio3.html">Bulk Orders</a></li>
-                            </ul>
+                        <li>
+                            <a href="/cart">Cart</a>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <% if (locals.user) { %>
+                        <li><a href="/logout">Logout</a></li>
+                        <% } else { %>
+                            <li><a href="/login">Sign in</a></li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
@@ -339,7 +340,7 @@
         <div class="slider-active">
             <div class="single-slider d-flex align-items-center h-950" data-background="/assets/img/slider/1.jpg">
                 <div class="container">
-                    <div class="single-slider-inner d-flex align-items-center justify-content-center pt-190">
+                    <div class="single-slider-inner d-flex align-items-center justify-content-center">
                         <div class="single-slider-content text-center light-content">
                             <div class="slider-heading">
                                 <h2 class="mb-0" data-animation="fadeInUp" data-delay=".2s">Handcrafted</h2>
@@ -403,7 +404,7 @@
     <section class="category mt-100">
         <div class="container">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 left-category">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 left-category hidden-sm">
                     <div class="category-box">
                         <div class="category-wrapper">
                             <div class="category-img">
@@ -433,7 +434,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <!-- Original Code: Hidden on phone-sized screens -->
+                                <div class="col-12 d-none d-sm-block">
                                     <div class="category-box">
                                         <div class="category-wrapper">
                                             <div class="category-img">
@@ -446,6 +448,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- New Code: Visible only on phone-sized screens -->
+                                <div class="col-12 d-block d-sm-none">
+                                    <div class="category-box">
+                                        <div class="category-wrapper">
+                                            <div class="category-img">
+                                                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/0c424463612045.5ab65a6d209a8.jpg" class="w-100" style="height: 200px; border-radius: 12px;">
+                                            </div>
+                                            <div class="category-content">
+                                                <a href="/loadShop" class="title">Gifting</a>
+                                                <p class="category-item">(<span>11</span> items)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 category-right">
@@ -470,12 +488,12 @@
     
     <!-- Brands Slider section Start -->
     <div class="container mt-5">
-        <div class="generic-title text-center">
+        <div class="generic-title text-center hidden-sm">
             <h2 class="mb-20">Top Brands</h2>
             <p>Indulge in the finest selection of premium chocolates from world-renowned luxury brands.</p>
             <p>we offer an exclusive range of exquisite, high-end chocolates that epitomize sophistication and taste.</p>
         </div>
-        <div class="container mt-5">
+        <div class="container mt-5 hidden-sm">
             <% if (brands.length > 0){ %>
               <div id="cardSlider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -530,7 +548,7 @@
                                 let index = row * 4 + col;
                                 if(index >= products.length) break;
                             %>
-                            <div class="col-3">
+                            <div class="col-6 col-md-3"> <!-- Adjusted this line -->
                                 <div class="product-box mb-40">
                                     <div class="product-box-wrapper">
                                         <div class="product-img">
@@ -550,27 +568,27 @@
                                                     </a>
                                                 </div>
                                                 <a onclick="addToWishlist(event, '<%= products[index]._id %>')" class="wishlist float-right">
-                                                <span>
-                                                    <% if (wishlistItems.includes(products[index]._id.toString())) { %>
-                                                        <lord-icon
-                                                        src="https://cdn.lordicon.com/xyboiuok.json"
-                                                        trigger="in"
-                                                        delay="1"
-                                                        state="morph-heart"
-                                                        colors="primary:#ee7c9b"
-                                                        style="width:30px;height:30px">
-                                                        </lord-icon>
-                                                        <% } else { %>
+                                                    <span>
+                                                        <% if (wishlistItems.includes(products[index]._id.toString())) { %>
                                                             <lord-icon
                                                             src="https://cdn.lordicon.com/xyboiuok.json"
-                                                                trigger="click"
-                                                                state="morph-heart"
-                                                                colors="primary:#ee7c9b"
-                                                                style="width:30px;height:30px">
+                                                            trigger="in"
+                                                            delay="1"
+                                                            state="morph-heart"
+                                                            colors="primary:#ee7c9b"
+                                                            style="width:30px;height:30px">
                                                             </lord-icon>
-                                                    <% } %>
-                                                </span>
-                                            </a>
+                                                            <% } else { %>
+                                                                <lord-icon
+                                                                src="https://cdn.lordicon.com/xyboiuok.json"
+                                                                    trigger="click"
+                                                                    state="morph-heart"
+                                                                    colors="primary:#ee7c9b"
+                                                                    style="width:30px;height:30px">
+                                                                </lord-icon>
+                                                        <% } %>
+                                                    </span>
+                                                </a>
                                             </div>
                                             <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title">
                                                 <%= products[index].productName %>
@@ -588,7 +606,7 @@
                         <% } %>
                     </div>
                 <% } %>                
-            </div>            
+            </div>                       
                     <div class="text-center mt-10  load-btn">
                         <a href="/loadShop" class="load-more">Load more</a>
                     </div>

@@ -403,7 +403,6 @@ const securePassword = async (password) => {
 
     }
 }
-
 const loadShop = async (req, res) => {
     try {
         let userId = req.session.userId;
@@ -412,13 +411,15 @@ const loadShop = async (req, res) => {
             page = 1,
             search = "",
             brands = [],
-            minPrice = 0,       // New addition for min price filter
-            maxPrice = 5000     // New addition for max price filter
+            minPrice = 0,
+            maxPrice = 5000 
         } = req.query;
 
         if (typeof brands === 'string') {
-            brands = [brands];
+            brands = brands.split(',');
         }
+
+        brands = brands.map(brand => new mongoose.Types.ObjectId(brand));
 
         const productPerPage = 6;
         let sortQuery = {};
@@ -435,8 +436,9 @@ const loadShop = async (req, res) => {
 
         let searchQuery = { 
             isDeleted: false,
-            price: { $gte: minPrice, $lte: maxPrice }  // Adding price filter to search query
+            price: { $gte: minPrice, $lte: maxPrice }  
         };
+
         if (search) {
             searchQuery = { 
                 ...searchQuery,
@@ -448,6 +450,22 @@ const loadShop = async (req, res) => {
             searchQuery.brandId = { $in: brands };
         }
 
+        // Fetch the product count for each brand
+        const brandsData = await Brands.find({ isDeleted: false });
+        const allProduct = await Products.find({ isDeleted: false });
+
+        // Calculate product count for each brand
+        const brandProductCount = await Products.aggregate([
+            { $match: searchQuery },
+            { $group: { _id: "$brandId", count: { $sum: 1 } } }
+        ]);
+
+        // Create a map for brand product counts
+        const brandCountMap = brandProductCount.reduce((map, obj) => {
+            map[obj._id.toString()] = obj.count;
+            return map;
+        }, {});
+
         const totalProduct = await Products.countDocuments(searchQuery);
         const totalPages = Math.ceil(totalProduct / productPerPage);
 
@@ -457,8 +475,6 @@ const loadShop = async (req, res) => {
             .skip(skip)
             .limit(productPerPage);
 
-        const brandsData = await Brands.find({ isDeleted: false });
-        const allProduct = await Products.find({ isDeleted: false });
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
 
         res.render('shop', { 
@@ -472,8 +488,10 @@ const loadShop = async (req, res) => {
             cartCount, 
             isLoggedIn: !!req.session.userId, 
             search,
-            minPrice,        // Pass minPrice to frontend
-            maxPrice         // Pass maxPrice to frontend
+            minPrice,
+            maxPrice,
+            selectedBrands: brands.map(id => id.toString()), // Convert ObjectId back to string for rendering
+            brandProductCounts: brandCountMap // Pass brand product counts to view
         });
 
     } catch (error) {

@@ -1,5 +1,8 @@
 <%- include('../layouts/salesReportHeader') %>
 <%- include('../layouts/addProductHeader') %>
+<!-- Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
 <nav class="t-header">
   <div class="t-header-brand-wrapper">
@@ -191,6 +194,9 @@
         </a>
         <ul class="collapse navigation-submenu" id="orders">
           <li>
+            <a href="/admin/orderManage" target="_blank">Order Manage</a>
+          </li>
+          <li>
             <a href="pages/sample-pages/login_1.html" target="_blank">Order Status Edit</a>
           </li>
           <li>
@@ -199,16 +205,16 @@
         </ul>
       </li>
       <li>
-        <a href="#return" data-toggle="collapse" aria-expanded="false">
-          <span class="link-title">Return</span>
-          <i class="mdi mdi-undo-variant link-icon"></i>
+        <a href="#offers" data-toggle="collapse" aria-expanded="false">
+          <span class="link-title">Offers</span>
+          <i class="mdi mdi-cart link-icon"></i>
         </a>
-        <ul class="collapse navigation-submenu" id="return">
+        <ul class="collapse navigation-submenu" id="offers">
           <li>
-            <a href="pages/ui-components/buttons.html">Return Edit</a>
+            <a href="/admin/offerManage" target="_blank">Offer Manage</a>
           </li>
           <li>
-            <a href="pages/ui-components/tables.html">Return Details</a>
+            <a href="/admin/addOffer" target="_blank">Add Offer</a>
           </li>
         </ul>
       </li>
@@ -232,9 +238,6 @@
           <i class="mdi mdi-package-variant-closed link-icon"></i>
         </a>
         <ul class="collapse navigation-submenu" id="products">
-          <li>
-            <a href="pages/ui-components/buttons.html">Product Unlisted</a>
-          </li>
           <li>
             <a href="/admin/productManage">Product Listed</a>
           </li>
@@ -270,15 +273,15 @@
         </a>
         <ul class="collapse navigation-submenu" id="coupons">
           <li>
-            <a href="pages/ui-components/buttons.html">Coupons Edit</a>
+            <a href="/admin/couponManage">Coupons Manage</a>
           </li>
           <li>
-            <a href="pages/ui-components/tables.html">Coupons Add</a>
+            <a href="/admin/addCouponPage">Coupons Add</a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="pages/charts/chartjs.html">
+        <a href="/admin/salesReport">
           <span class="link-title">Reports</span>
           <i class="mdi mdi-chart-bar link-icon"></i>
         </a>
@@ -302,61 +305,75 @@
         <div class="content-viewport">
             <div class="d-flex justify-content-between">
                 <div>
-                  <button class="btn btn-info dropdown-toggle custom-size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <!-- <button class="btn btn-info dropdown-toggle custom-size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Select
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#" data-target="Daily" data-interval="daily">Daily</a>
                     <a class="dropdown-item" href="#" data-target="Weekly" data-interval="weekly">Weekly</a>
+                    <a class="dropdown-item" href="#" data-target="Monthly" data-interval="monthly">Monthly</a>
                     <a class="dropdown-item" href="#" data-target="Yearly" data-interval="yearly">Yearly</a>
-                  </div>                 
-                  <button type="button" class="btn btn-secondary custom-size" data-toggle="modal" data-target="#basicModal" data-whatever="@mdo">Costom</button>
+                </div>-->
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                    Select
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#" data-target="Daily" data-interval="daily">Daily</a></li>
+                    <li><a class="dropdown-item" href="#" data-target="Weekly" data-interval="weekly">Weekly</a></li>
+                    <li><a class="dropdown-item" href="#" data-target="Monthly" data-interval="monthly">Monthly</a></li>
+                    <li><a class="dropdown-item" href="#" data-target="Yearly" data-interval="yearly">Yearly</a></li>
+                  </ul>
+                <div id="dropdown-error-message" style="display:none; color: red;"></div>
+                <button type="button" class="btn btn-secondary custom-size" data-toggle="modal" data-target="#basicModal" data-whatever="@mdo">Custom</button>
                      <!-- modal -->
-                  <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <h4 class="text-center" id="">Select Custom Date</h4>
-                          <form id="custom-date-form">
-                            <div class="row justify-content-center">
-                                <div class="form-group col-sm-4" style="padding: 0;">
-                                    <input type="date" class="form-control" id="start-date">
-                                </div>
-                                <div class="form-group col-sm-4" style="padding: 0; margin-left: 4px;" >
-                                    <input type="date" class="form-control" id="end-date">
-                                </div>
-                                <div class="form-group col-sm-2" >
-                                    <button type="submit" class="btn btn-info custom-size">Search</button>
-                                </div>
-                            </div>  
-                        </form>
-                        <div id="error-message" class="alert alert-danger" style="display:none;"></div>
+                     <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h4 class="text-center" id="">Select Costom Date</h4>
+                            <form id="custom-date-form">
+                              <div class="row justify-content-center">
+                                  <div class="form-group col-sm-4" style="padding: 0;">
+                                      <input type="date" class="form-control" id="start-date">
+                                  </div>
+                                  <div class="form-group col-sm-4" style="padding: 0; margin-left: 4px;" >
+                                      <input type="date" class="form-control" id="end-date">
+                                  </div>
+                                  <div class="form-group col-sm-2" >
+                                      <button type="submit" class="btn btn-info custom-size">Search</button>
+                                  </div>
+                              </div>  
+                          </form>
+                          <div id="error-message" class="alert alert-danger" style="display:none;"></div>
+                          </div>
                         </div>
                       </div>
-                    </div>
                   </div>
-                    <button type="button" class="btn custom-size" id="downloadPdfBtn" onclick="downloadPDF('salesReport')">
-                      <lord-icon
-                      src="https://cdn.lordicon.com/lyrrgrsl.json"
-                      trigger="hover"
-                      colors="primary:#000000"
-                      style="width:23px;height:23px">
-                  </lord-icon></button>
-                    <button type="button" class="btn custom-size" id="excelDownloadBtn" onclick="downloadExcel()">
-                      <lord-icon
-                      src="https://cdn.lordicon.com/zrtfxghu.json"
-                      trigger="hover"
-                      colors="primary:#000000"
-                      style="width:23px;height:23px">
-                    </lord-icon>
+                  <div class="d-flex justify-content-end align-items-center">
+                    <button type="button" class="btn custom-size d-flex align-items-center mr-2" id="downloadPdfBtn" onclick="downloadPDF('salesReport')">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/lyrrgrsl.json"
+                            trigger="hover"
+                            colors="primary:#000000"
+                            style="width:23px;height:23px">
+                        </lord-icon> 
+                        <span class="ml-1">PDF</span>
                     </button>
-                </div>
-            </div>
+                    <button type="button" class="btn custom-size d-flex align-items-center" id="excelDownloadBtn" onclick="downloadExcel()">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/zrtfxghu.json"
+                            trigger="hover"
+                            colors="primary:#000000"
+                            style="width:23px;height:23px">
+                        </lord-icon>
+                        <span class="ml-1">Excel</span>
+                    </button>
+                </div>                
             <br>
             <div class="row" id="salesReport">
               <div class="col-md-12 grid-margin stretch-card">
@@ -366,7 +383,7 @@
                           <% if (salesReport && salesReport.length > 0) { %>
                               <div id="sales-legend" class="chartjs-legend mt-1 mb-2">
                                   <div class="table-responsive">
-                                      <table class="table table-striped cart-table">
+                                      <table class="table table-striped">
                                           <thead class="cart-table-head">
                                               <tr>
                                                   <th>Order Id</th>
@@ -380,26 +397,26 @@
                                               </tr>
                                           </thead>
                                           <tbody>
-                                              <% salesReport.forEach(order => { %>
+                                            <% for (let i =0 ; i < salesReport.length ; i++){ %>
                                                   <tr>
-                                                      <td><%= order._id.slice(-8) %></td>
-                                                      <td><%= new Date(order.orderDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) %></td>
-                                                      <td><%= order.address.Name %></td>
-                                                      <td><%= order.address.Mobile %></td>
-                                                      <td>
-                                                          <% order.orderItems.forEach(item => { %>
-                                                              <p><%= item.productName.length > 20 ? item.productName.slice(0, 20) + '...' : item.productName %></p>
-                                                          <% }) %>
+                                                      <td class="" data-label="Order Id"><%= salesReport[i]._id.slice(-8) %></td>
+                                                      <td class="" data-label="Order Date"> <%= new Date(salesReport[i].orderDate ).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                                                      <td class="" data-label="User Name"><%= salesReport[i].address.Name %></td>
+                                                      <td class="" data-label="Phone"> <%= salesReport[i].address.Mobile %></td>
+                                                      <td class="" data-label="Product Name">
+                                                        <% for (let j = 0; j < salesReport[i].orderItems.length; j++) { %> 
+                                                          <p><%= salesReport[i].orderItems[j].productName.substring(0, 40) + (salesReport[i].orderItems[j].productName.length > 10 ? "..." : "") %></p>
+                                                        <% } %>
+                                                      </td>                                                      
+                                                      <td class="" data-label="Brand ID">
+                                                        <% for (let j =0 ; j < salesReport[i].orderItems.length ; j++ ){ %> 
+                                                          <p><%= salesReport[i].orderItems[j].brandId.slice(-9) +"..." %></p>
+                                                        <% } %>
                                                       </td>
-                                                      <td>
-                                                          <% order.orderItems.forEach(item => { %>
-                                                              <p><%= item.brandId.slice(-8) %></p>
-                                                          <% }) %>
-                                                      </td>
-                                                      <td><%= order.orderStatus %></td>
-                                                      <td>₹<%= order.totalAmount %></td>
+                                                      <td  class="" data-label="Status"><%= salesReport[i].orderStatus %></td>
+                                                      <td class="" data-label="Total Amount">₹<%= salesReport[i].totalAmount %></td>
                                                   </tr>
-                                              <% }) %>
+                                                  <% } %>
                                           </tbody>
                                       </table>
                                   </div>
@@ -420,114 +437,129 @@
                   </div>
               </div>
           </div>          
-          
-
-<!-- CDN for Sales Report PDF Download Start -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<!-- CDN for Sales Report PDF Download End -->
+         
+<!-- jQuery (full version) -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-var currentDate = new Date();
+  var currentDate = new Date();
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  var formattedDate = currentDate.toLocaleDateString('en-US', options);
 
-var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-var formattedDate = currentDate.toLocaleDateString('en-US', options);
-
-document.getElementById('currentDate').textContent = formattedDate;
-$(document).ready(function(){
-  $('.dropdown-item').click(function(e){
-    e.preventDefault(); // Prevent default anchor click behavior
-    
-    var selectedText = $(this).attr('data-target'); 
-    $('#dropdownMenuButton').text(selectedText); // Update the button text
-    
-    var interval = $(this).attr('data-interval'); // Get the data-interval attribute
-    fetchSalesData(interval); // Call the function to change sales data
-    
-    $('#dropdownMenuButton').dropdown('toggle'); // Toggle the dropdown
-  });
-});
-
-// Function to fetch and update sales data
-function fetchSalesData(interval) {
-  // Placeholder function to simulate data fetching
-  console.log('Fetching sales data for:', interval);
+var currentDateElement = document.getElementById('currentDate');
+if (currentDateElement) {
+    currentDateElement.textContent = formattedDate;
 }
 
-    // custom date
-    document.getElementById('custom-date-form').addEventListener('submit', function(event) {
+$(document).ready(function() {
+      // Handle dropdown selection
+      $('.dropdown-item').click(function(e) {
+          e.preventDefault();  
+          var selectedText = $(this).attr('data-target'); 
+          $('#dropdownMenuButton').text(selectedText); 
+          $('#dropdownMenuButton').dropdown('toggle');
+
+          // Fetch sales data based on the selected interval
+          const interval = $(this).attr('data-interval');
+          fetchSalesData(interval);
+      });
+  // changing sales report
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', function(event) {
           event.preventDefault();
-          if(!validDate(event)){
-            return;
+          const interval = this.getAttribute('data-interval');
+          fetchSalesData(interval);
+        });
+      });
+
+
+      // Handle custom date form submission
+      document.getElementById('custom-date-form').addEventListener('submit', function(event) {
+          event.preventDefault();
+          if (!validDate(event)) {
+              return;
           }
           const startDate = document.getElementById('start-date').value;
           const endDate = document.getElementById('end-date').value;
           fetchSalesDataByDate(startDate, endDate);
       });
 
+      function fetchSalesDataByDate(startDate, endDate) {
+        fetch(`/admin/salesReport?startDate=${startDate}&endDate=${endDate}`)
+          .then(response => response.json())
+          .then(data => {
+              updateSalesTable(data.salesReport);
+          }).then(()=>{ 
+            $('#basicModal').modal('hide');
+          })
+          .catch(error => console.error('Error:', error));
+      }
 
-function fetchSalesData(interval) {
-    const page = new URLSearchParams(window.location.search).get('page') || 1;
-    fetch(`/admin/salesReport?interval=${interval}&page=${page}`)
-        .then(response => response.json())
-        .then(data => {
-            updateSalesTable(data.salesReport, data.totalPages, data.currentPage);
-        })
-        .catch(error => console.error('Error:', error));
-}
+      function fetchSalesData(interval) {
+        fetch(`/admin/salesReport?interval=${interval}`)
+          .then(response => response.json())
+          .then(data => {
+            updateSalesTable(data.salesReport);
+          })
+          .catch(error => console.error('Error:', error));
+      }
 
-function fetchSalesDataByDate(startDate, endDate) {
-    const page = new URLSearchParams(window.location.search).get('page') || 1;
-    fetch(`/admin/salesReport?startDate=${startDate}&endDate=${endDate}&page=${page}`)
-        .then(response => response.json())
-        .then(data => {
-            updateSalesTable(data.salesReport, data.totalPages, data.currentPage);
-        }).then(() => {
-            $('#customDateModal').modal('hide');
-        })
-        .catch(error => console.error('Error:', error));
-}
 
-function updateSalesTable(salesReport, totalPages, currentPage) {
-    const tbody = document.querySelector('table tbody');
-    tbody.innerHTML = ''; // Clear existing rows
-    salesReport.forEach(order => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${order._id.slice(-8)}</td>
-            <td>${new Date(order.orderDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</td>
-            <td>${order.address.Name}</td>
-            <td>${order.address.Mobile}</td>
-            <td>${order.orderItems.map(item => `<p>${item.productName.length > 20 ? item.productName.slice(0, 20) + '...' : item.productName}</p>`).join('')}</td>
-            <td>${order.orderItems.map(item => `<p>${item.brandId}</p>`).join('')}</td>
-            <td>${order.orderStatus}</td>
-            <td>₹${order.totalAmount}</td>
+      // Validate custom date input
+      function validDate(event) {
+          event.preventDefault(); 
+
+          var startDate = document.getElementById('start-date').value;
+          var endDate = document.getElementById('end-date').value;
+          var currentDate = new Date().toISOString().split('T')[0]; 
+
+          var errorMessage = '';
+          if (startDate > currentDate || endDate > currentDate) {
+              errorMessage = 'Dates cannot be in the future.';
+          } else if (startDate > endDate) {
+              errorMessage = 'Start date cannot be later than end date.';
+          }
+
+          if (errorMessage) {
+              document.getElementById('error-message').style.display = 'block';
+              document.getElementById('error-message').textContent = errorMessage;
+              return false;
+          } else {
+              document.getElementById('error-message').style.display = 'none';
+              return true;
+          }
+      }
+
+      // Update sales table (stub function, replace with your actual implementation)
+      function updateSalesTable(salesReport, totalPages, currentPage) {
+          // Your code to update the table goes here
+      }
+  });
+
+  function updateSalesTable(salesReport) {
+    const tbody = document.querySelector('. table tbody');
+    tbody.innerHTML = ''; // Clear existing table rows
+
+    // Loop through salesReport to generate table rows
+    salesReport.forEach(report => {
+        const row = `
+            <tr class="table-body-row">
+                <td data-label="Order Id">${report._id.slice(-8)}</td>
+                <td data-label="Order Date">${new Date(report.orderDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                <td data-label="User Name">${report.address.Name}</td>
+                <td data-label="Phone">${report.address.Mobile}</td>
+                <td data-label="Product Name">${report.orderItems.map(item => `<p>${item.productName.length > 20 ? item.productName.slice(0, 20) + '...' : item.productName}</p>`).join('')}</td>
+                <td data-label="Brand ID">${report.orderItems.map(item => `<p>${item.brandId.slice(-8)}</p>`).join('')}</td>
+                <td data-label="Status">${report.orderStatus}</td>
+                <td data-label="Total Amount">₹${report.totalAmount}</td>
+            </tr>
         `;
-        tbody.appendChild(row);
+        tbody.innerHTML += row; // Append the row to the table body
     });
-
-    const pagination = document.querySelector('.pagination');
-    pagination.innerHTML = '';
-    for (let i = 1; i <= totalPages; i++) {
-        const pageItem = document.createElement('li');
-        pageItem.classList.add('page-item', currentPage === i ? 'active' : '');
-        pageItem.innerHTML = `<a class="page-link" href="?page=${i}">${i}</a>`;
-        pagination.appendChild(pageItem);
-    }
-}
-
-function validDate(event) {
-    const startDate = new Date(document.getElementById('start-date').value);
-    const endDate = new Date(document.getElementById('end-date').value);
-    const currentDate = new Date();
-    if (startDate > currentDate || endDate > currentDate || startDate > endDate) {
-        document.getElementById('error-message').style.display = 'block';
-        document.getElementById('error-message').textContent = 'Invalid Date Selection';
-        return false;
-    } else {
-        document.getElementById('error-message').style.display = 'none';
-        return true;
-    }
 }
 
   // pdf
@@ -588,11 +620,17 @@ function downloadExcel() {
     .catch(error => console.error('Error downloading Excel:', error));
 }
 
-
 </script>
-<!-- Include jQuery and Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- CDN for Sales Report PDF Download Start -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<!-- CDN for Sales Report PDF Download End -->
+
+
+
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <%- include('../layouts/addBrandsFooter') %>
   

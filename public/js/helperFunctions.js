@@ -75,16 +75,6 @@ function showSuccessAlert(message) {
 
 function showWarningAlert(message) {
     const container = document.getElementById('success-message-container');
-    const warningSound = document.getElementById('warning-sound');
-
-    // Play warning sound
-    if (warningSound) {
-        warningSound.play().catch(error => {
-            console.error('Audio play failed:', error);
-        });
-    } else {
-        console.error('Warning sound element not found.');
-    }
 
     // Create warning message
     const warningMessage = `
@@ -167,11 +157,11 @@ function showWishlistSuccessAlert(message) {
         <div class="msg msg-success show d-flex align-items-center justify-content-center text-center fade-in" role="alert" style="color: black; border-color:#ee7c9b ">
             <div class="d-flex align-items-center justify-content-center">
                 <lord-icon
-                src="https://cdn.lordicon.com/xyboiuok.json"
+                src="https://cdn.lordicon.com/etgnxeer.json"
                 trigger="in"
                 delay="100"
-                state="in-heart"
-                colors="primary:#ee7c9b"
+                stroke="bold"
+                colors="primary:#f49cc8,secondary:#c69cf4"
                 style="width:45px;height:45px">
             </lord-icon>
             </div style="color: black">

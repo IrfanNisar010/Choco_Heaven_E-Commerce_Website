@@ -296,24 +296,24 @@
         <div class="mobile-menu visible-sm">
             <div id="mobile-menu">
                 <ul>
-                    <li><a class="pl-3" href="javascript:void(0)">Home</a></li>
-                    <li><a class="pl-3" href="javascript:void(0)">Shop</a>
+                    <li><a class="pl-3" href="/home">Home</a></li>
+                    <li><a class="pl-3" href="/loadShop">Shop</a>
                         <ul>
-                            <li><a href="#">All Products </a></li>
-                            <li><a href="#">Trending</a></li>
-                            <li><a href="#">Best Seller</a></li>
+                            <li><a href="/loadShop">All Products </a></li>
+                            <li><a href="/loadShop">Trending</a></li>
+                            <li><a href="/loadShop">Best Seller</a></li>
                         </ul>
                     </li>
-                    <li><a href="javascript:void(0)">Best Deals</a>
+                    <li><a href="/wishlist">Wishlist</a>
                     </li>
-                    <li><a href="javascript:void(0)">Gifting</a>
-                        <ul>
-                            <li><a href="portfolio.html">Gifting</a></li>
-                            <li><a href="portfolio2.html">Bundle Hamper</a></li>
-                            <li><a href="portfolio3.html">Bulk Orders</a></li>
-                        </ul>
+                    <li>
+                        <a href="/cart">Cart</a>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <% if (locals.user) { %>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Sign in</a></li>
+                    <% } %>
                 </ul>
             </div>
         </div>

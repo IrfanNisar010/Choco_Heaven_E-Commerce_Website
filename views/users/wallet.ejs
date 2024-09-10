@@ -411,15 +411,19 @@
         <div class="wallet-history">
             <h2>Wallet history</h2>
             <% if (wallet.transactionHistory.length > 0) { %>
-                <% for (let i = 0 ; i < wallet.transactionHistory.length ; i++){ %> 
+                <% for (let i = 0; i < wallet.transactionHistory.length; i++){ %>
                     <div class="history-item row mb-3 align-items-center">
                         <div class="col-auto">
-                            <img src="/assets/img/brands/<%= wallet.transactionHistory[i].productImage[0] %>" alt="">
+                            <img src="" alt="">
                         </div>
                         <div class="col">
                             <div class="item-details">
-                                <div class="item-name"><%= wallet.transactionHistory[i].productName %></div>
-                                <div class="item-weight"><%= new Date(wallet.transactionHistory[i].date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) %></div>
+                                <div class="item-name"></div>
+                                <div class="item-weight">
+                                    <%= new Date(wallet.transactionHistory[i].date).toLocaleDateString('en-US', {
+                                        weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
+                                    }) %>
+                                </div>
                             </div>
                         </div>
                         <div class="col-auto text-right">
@@ -431,14 +435,56 @@
             <% } else { %>
                 <p>No transactions found in your wallet history.</p>
             <% } %>
-        </div>        
+        
+            <!-- Pagination Links -->
+            <div class="pagination">
+                <% if (currentPage > 1) { %>
+                    <a href="?page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+                <% } %>
+        
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <a href="?page=<%= i %>&limit=<%= limit %>" class="<%= currentPage === i ? 'active' : '' %>">
+                        <%= i %>
+                    </a>
+                <% } %>
+        
+                <% if (currentPage < totalPages) { %>
+                    <a href="?page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+                <% } %>
+            </div>
+        </div>                
     </div>
     <!-- Main Wallet End -->
 </div>
 
     </div>
 </div>
+<style>
+    .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
+.pagination a {
+    margin: 0 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #f1f1f1;
+    color: #333;
+    border-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: #e0879f;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+</style>
 <script>
     function setActive(link) {
         const links = document.querySelectorAll('.sidebar .nav-link');

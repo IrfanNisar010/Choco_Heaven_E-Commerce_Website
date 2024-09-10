@@ -1,6 +1,10 @@
 <%- include('../layouts/dashboardHeader') %>
 <%- include('../layouts/brandsHeader') %>
     <!-- partial:partials/_header.html -->
+     <!-- Chart CDN Script link -->
+      <!-- Chart.js CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <nav class="t-header">
       <div class="t-header-brand-wrapper">
         <a href="/admin/dashboard">
@@ -271,8 +275,30 @@
                       <canvas height="45" id="stat-line_3"></canvas>
                     </div>
                   </div>
-                </div>
+                </div>                
               </div>
+              <div class="col-md-3 col-sm-6 col-6 equel-grid">
+                <div class="grid">
+                  <div class="grid-body text-gray">
+                    <div class="d-flex justify-content-between">
+                      <p><%= productCount %></p>
+                      <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                      <lord-icon
+                      src="https://cdn.lordicon.com/rmjnvgsm.json"
+                      trigger="in"
+                      delay="100"
+                      stroke="bold"
+                      colors="primary:#121331,secondary:#5f61de"
+                      style="width:30px;height:30px">
+                    </lord-icon>
+                    </div>
+                    <p class="text-black">Total Products</p>
+                    <div class="wrapper w-50 mt-4">
+                      <canvas height="45" id="stat-line_4"></canvas>
+                    </div>
+                  </div>
+                </div>                
+              </div>             
               <!-- Order Statistics -->
               <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
                 <div class="card h-100">
@@ -419,47 +445,50 @@
                 </div>
               </div>              
             </div>
-              <!--/ Order Statistics -->
-              <div class="row">
-              <div class="col-lg-4 col-md-6 equel-grid">
-                <div class="grid">
-                  <div class="grid-body">
-                    <p class="card-title">Revenue</p>
-                    <div id="radial-chart"></div>
-                    <h4 class="text-center">₹<%= totalSales %></h4>
-                    <p class="text-center text-muted">Used balance this Revenue cycle</p>
+              <div class="row"> <!-- Start of Row -->
+
+                <!-- Pie Chart Section -->
+                <div class="col-md-6"> <!-- Column for Pie Chart -->
+                  <div class="card">
+                    <div class="card-body">
+                      <canvas id="orderStatusPieChart" style="width:100%; max-width:550px; height: 310px;"></canvas>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-8 col-md-12 equel-grid">
-                <div class="grid widget-revenue-card">
-                  <div class="grid-body d-flex flex-column h-100">
-                    <div class="split-header">
-                      <p class="card-title">Server Load</p>
-                      <div class="content-wrapper v-centered">
-                        <small class="text-muted">2h ago</small>
-                        <span class="btn action-btn btn-refresh btn-xs component-flat">
-                          <i class="mdi mdi-autorenew text-muted mdi-2x"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="mt-auto">
-                      <canvas id="cpu-performance" height="80"></canvas>
-                      <h3 class="font-weight-medium mt-4">69.05%</h3>
-                      <p class="text-gray">Storage is getting full</p>
-                      <div class="w-50">
-                        <div class="d-flex justify-content-between text-muted mt-3">
-                          <small>Usage</small> <small>35.62 GB / 2TB</small>
+              
+                <!-- Server Load Section -->
+                <div class="col-md-6"> <!-- Column for Server Load -->
+                  <div class="card widget-revenue-card">
+                    <div class="card-body d-flex flex-column h-100">
+                      <div class="split-header">
+                        <p class="card-title">Server Load</p>
+                        <div class="content-wrapper v-centered">
+                          <small class="text-muted">2h ago</small>
+                          <span class="btn action-btn btn-refresh btn-xs component-flat">
+                            <i class="mdi mdi-autorenew text-muted mdi-2x"></i>
+                          </span>
                         </div>
-                        <div class="progress progress-slim mt-2">
-                          <div class="progress-bar bg-primary" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">
+                      </div>
+                      <div class="mt-auto">
+                        <canvas id="cpu-performance" height="80"></canvas>
+                        <h3 class="font-weight-medium mt-4">69.05%</h3>
+                        <p class="text-gray">Storage is getting full</p>
+                        <div class="w-50">
+                          <div class="d-flex justify-content-between text-muted mt-3">
+                            <small>Usage</small> <small>35.62 GB / 2TB</small>
+                          </div>
+                          <div class="progress progress-slim mt-2">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              
+              </div> <!-- End of Row -->
+              
               </div>
             </div>
           </div>
@@ -470,9 +499,131 @@
     </div>
     <!--page body ends -->
     <!-- SCRIPT LOADING START FORM HERE /////////////-->
-     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <!-- Page JS -->
      <script>
+  // Pie Chart script Start
+  const usersCount = 150;
+      const totalOrders = 200;
+      const completedOrders = 120;
+      const returnedOrders = 30;
+
+      // Get the canvas context
+      const ctx = document.getElementById('orderStatusPieChart').getContext('2d');
+
+      // Create gradient colors for each segment
+      const blueGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      blueGradient.addColorStop(0, 'rgba(58, 123, 213, 0.5)');
+      blueGradient.addColorStop(1, 'rgba(58, 123, 213, 0.9)');
+
+      const orangeGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      orangeGradient.addColorStop(0, 'rgba(255, 159, 64, 0.5)');
+      orangeGradient.addColorStop(1, 'rgba(255, 159, 64, 0.9)');
+
+      const greenGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      greenGradient.addColorStop(0, 'rgba(76, 175, 80, 0.5)');
+      greenGradient.addColorStop(1, 'rgba(76, 175, 80, 0.9)');
+
+      const redGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      redGradient.addColorStop(0, 'rgba(255, 87, 34, 0.5)');
+      redGradient.addColorStop(1, 'rgba(255, 87, 34, 0.9)');
+
+      // Create gradients for hover effect
+      const blueHoverGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      blueHoverGradient.addColorStop(0, 'rgba(58, 123, 213, 0.7)');
+      blueHoverGradient.addColorStop(1, 'rgba(58, 123, 213, 1)');
+
+      const orangeHoverGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      orangeHoverGradient.addColorStop(0, 'rgba(255, 159, 64, 0.7)');
+      orangeHoverGradient.addColorStop(1, 'rgba(255, 159, 64, 1)');
+
+      const greenHoverGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      greenHoverGradient.addColorStop(0, 'rgba(76, 175, 80, 0.7)');
+      greenHoverGradient.addColorStop(1, 'rgba(76, 175, 80, 1)');
+
+      const redHoverGradient = ctx.createLinearGradient(0, 0, 0, 400);
+      redHoverGradient.addColorStop(0, 'rgba(255, 87, 34, 0.7)');
+      redHoverGradient.addColorStop(1, 'rgba(255, 87, 34, 1)');
+
+      // Data for the pie chart
+      const data = {
+        labels: ["Users", "Total Orders", "Completed Orders", "Returned Orders"],
+        datasets: [{
+          label: "Choco Heaven Dashboard Statistics",
+          data: [usersCount, totalOrders, completedOrders, returnedOrders],
+          backgroundColor: [
+            blueGradient,  // Users - Blue gradient
+            orangeGradient,  // Total Orders - Orange gradient
+            greenGradient,   // Completed Orders - Green gradient
+            redGradient    // Returned Orders - Red gradient
+          ],
+          hoverBackgroundColor: [
+            blueHoverGradient,  // Users - Blue gradient on hover
+            orangeHoverGradient,  // Total Orders - Orange gradient on hover
+            greenHoverGradient,   // Completed Orders - Green gradient on hover
+            redHoverGradient    // Returned Orders - Red gradient on hover
+          ],
+          hoverBorderColor: "#ffffff", // White border on hover for pop effect
+          hoverBorderWidth: 4,
+          hoverOffset: 20, // Offset on hover for 3D effect
+          borderWidth: 2, // Thinner borders for a sleek look
+        }]
+      };
+
+      // Configurations for the pie chart with animation and shadow effects
+      const config = {
+        type: 'pie',
+        data: data,
+        options: {
+          responsive: true,
+          animation: {
+            animateScale: true, // Adds scale animation
+            animateRotate: true, // Adds rotation animation
+            duration: 2000,  // Animation duration
+            easing: 'easeOutCubic', // Smooth cubic easing effect
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                font: {
+                  size: 14,
+                  weight: '600'
+                },
+                color: '#333'
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255, 0.9)', // Light background for tooltips
+              titleColor: '#000',
+              bodyColor: '#000',
+              borderWidth: 1,
+              borderColor: '#ddd',
+              displayColors: false,
+              bodyFont: {
+                size: 14,
+                weight: 'bold'
+              }
+            },
+          },
+          elements: {
+            arc: {
+              borderWidth: 2,
+              borderColor: 'rgba(0, 0, 0, 0.1)', // Subtle shadow effect for depth
+              hoverBorderWidth: 4,
+              hoverBorderColor: '#ffffff', // White border on hover for 3D effect
+              hoverOffset: 15, // Adds 3D effect on hover
+            }
+          },
+          layout: {
+            padding: 20
+          }
+        }
+      };
+
+      // Render the pie chart
+      new Chart(ctx, config);
+  // Pie Chart script End
        document.addEventListener('DOMContentLoaded', function() {
       showTable('category');
       fetchOrderStatusCounts();
@@ -484,115 +635,6 @@
           .catch(error => console.error('Error:', error));
         }
       });
-
-      //! Dahboard Chart Updations >>
-
-function updatePieChart(orderStatusData, categoryData, perDay) {
-    const xValues = orderStatusData.map(item => item._id);
-    const yValues = orderStatusData.map(item => item.count);
-    const barColors = ["#4e73df", "#1cc88a", "#36b9cc", "#f6c23e", "#e74a3b", "#858796"];
-
-    new Chart("myChart", {
-        type: "doughnut",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors.slice(0, xValues.length),
-                data: yValues
-            }]
-        },
-        options: {
-            responsive: true,
-            title: {
-              display: true,
-              text: 'Order Status', 
-              fontSize: 15,
-              fontColor: '#111', 
-              fontStyle: 'bold',
-              position: 'top'
-            },
-            plugins: {
-                legend: {
-                    position: 'right'
-                },
-                tooltip: {
-                    enabled: true
-                }
-            }
-        }
-    });
-
-    // chart 2
-    const XV = categoryData.map(item => item._id);
-    const YV = categoryData.map(item => item.count);
-    const CL = ["red", "green", "blue", "orange", "yellow", "brown"];
-
-    new Chart("categoryChart", {
-        type: "bar",
-        data: {
-            labels: XV,
-            datasets: [{
-                backgroundColor: CL.slice(0, XV.length),
-                data: YV
-            }]
-        },
-        options: {
-            responsive: true,
-            title: {
-              display: true,
-              text: 'category wise Orders', 
-              fontSize: 15,
-              fontColor: '#111', 
-              fontStyle: 'bold',
-              position: 'top'
-            },
-            plugins: {
-                legend: {
-                    position: 'right'
-                },
-                tooltip: {
-                    enabled: true
-                }
-            }
-        }
-    });
-
-    // chart 3
-
-    const Dates = perDay.map(item => {
-      const date = new Date(item._id); 
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric', month: 'short', day: '2-digit' });
-    });
-    const count = perDay.map(item => item.count);
-    const colour = ["red", "green", "blue", "orange", "yellow", "brown"];
-
-    new Chart("perDayChart", {
-      type: "line",
-      data: {
-        labels: Dates,
-        datasets: [{
-          data: count,
-          borderColor: "red",
-          fill: false
-        }]
-      },
-      options: {
-        legend: {display: false},
-        title: {
-          display: true,
-          text: 'Daily Order Counts', 
-          fontSize: 15,
-          fontColor: '#111', 
-          fontStyle: 'bold',
-          // padding: 20,
-          position: 'top'
-        }
-      }
-    });
-  }
-
-
 
 //! top selling table show >>>
 function showTable(tableType) {
@@ -612,7 +654,6 @@ function showTable(tableType) {
 document.addEventListener('DOMContentLoaded', function() {
   showTable('product');
 });
-
      </script>
     <script src="/assets/js/dashboards-analytics.js"></script>
     <script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>
