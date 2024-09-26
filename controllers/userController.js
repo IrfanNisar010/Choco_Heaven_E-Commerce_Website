@@ -403,6 +403,7 @@ const securePassword = async (password) => {
 
     }
 }
+
 const loadShop = async (req, res) => {
     try {
         let userId = req.session.userId;
@@ -419,7 +420,8 @@ const loadShop = async (req, res) => {
             brands = brands.split(',');
         }
 
-        brands = brands.map(brand => new mongoose.Types.ObjectId(brand));
+        // Validate each brandId to ensure it's a valid MongoDB ObjectId
+        brands = brands.filter(brand => mongoose.Types.ObjectId.isValid(brand)).map(brand => new mongoose.Types.ObjectId(brand));
 
         const productPerPage = 6;
         let sortQuery = {};
@@ -434,33 +436,34 @@ const loadShop = async (req, res) => {
 
         const skip = (page - 1) * productPerPage;
 
+        // Base query for filtering products by price
         let searchQuery = { 
             isDeleted: false,
-            price: { $gte: minPrice, $lte: maxPrice }  
+            price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice) }  // Ensure minPrice and maxPrice are numbers
         };
 
+        // Enhanced search logic for "exact", "starts with", and "contains"
         if (search) {
-            searchQuery = { 
-                ...searchQuery,
-                productName: { $regex: search, $options: "i" }
-            };
+            searchQuery.$or = [
+                { productName: { $regex: `^${search}$`, $options: "i" } },  // Exact match
+                { productName: { $regex: `^${search}`, $options: "i" } },   // Starts with
+                { productName: { $regex: search, $options: "i" } }          // Contains
+            ];
         }
 
         if (brands.length > 0) {
             searchQuery.brandId = { $in: brands };
         }
 
-        // Fetch the product count for each brand
         const brandsData = await Brands.find({ isDeleted: false });
         const allProduct = await Products.find({ isDeleted: false });
 
-        // Calculate product count for each brand
+        // Fetch product count for each brand
         const brandProductCount = await Products.aggregate([
             { $match: searchQuery },
             { $group: { _id: "$brandId", count: { $sum: 1 } } }
         ]);
 
-        // Create a map for brand product counts
         const brandCountMap = brandProductCount.reduce((map, obj) => {
             map[obj._id.toString()] = obj.count;
             return map;
@@ -469,6 +472,7 @@ const loadShop = async (req, res) => {
         const totalProduct = await Products.countDocuments(searchQuery);
         const totalPages = Math.ceil(totalProduct / productPerPage);
 
+        // Fetch the product data, and apply the sorting based on the priority
         const productData = await Products.find(searchQuery)
             .sort(sortQuery)
             .populate('brandId', 'name')
@@ -477,6 +481,7 @@ const loadShop = async (req, res) => {
 
         let cartCount = userId ? await cartController.getCartCount(userId) : 0;
 
+        // Render the response with the updated data
         res.render('shop', { 
             user: req.session.userId ? await User.findById({ _id: userId }) : null,
             products: productData, 
@@ -488,17 +493,15 @@ const loadShop = async (req, res) => {
             cartCount, 
             isLoggedIn: !!req.session.userId, 
             search,
-            minPrice,
-            maxPrice,
-            selectedBrands: brands.map(id => id.toString()), // Convert ObjectId back to string for rendering
-            brandProductCounts: brandCountMap // Pass brand product counts to view
+            minPrice: minPrice,  
+            maxPrice: maxPrice,
+            selectedBrands: brands.map(id => id.toString())
         });
 
     } catch (error) {
         console.log(error.message);
     }
 };
-
 
 
 const loadProduct = async (req, res, next) => {
@@ -570,38 +573,48 @@ const loadSignUp = async (req, res) => {
 
 const addUser = async (req, res, next) => {
     try {
-       // Server-side validation can still be useful for other checks
-       if (!req.body.email || !req.body.password || !req.body.confirmPassword) {
-        return res.render('userSignUp', { warning: "Please enter all details to sign up" });
-    }
+        const { firstName, lastName, email, password, confirmPassword } = req.body;
+
+        // Server-side validation for empty fields
+        if (!firstName || !lastName || !email || !password || !confirmPassword) {
+            return res.render('userSignUp', { warning: "Please enter all details to sign up" });
+        }
+
+        // Check if first and last names are valid
+        const nameRegex = /^[a-zA-Z]+$/;
+        if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+            return res.render('userSignUp', { message: "Please enter a valid name. Only alphabetic characters are allowed." });
+        }
 
         // Check if email format is valid
-        if (!validateEmail(req.body.email)) {
+        if (!validateEmail(email)) {
             return res.render('userSignUp', { message: "Please enter a valid email address" });
         }
 
         // Check if passwords match
-        if (req.body.password !== req.body.confirmPassword) {
-            return res.render('userSignUp', { password: "Passwords do not match, please try again" });
+        if (password !== confirmPassword) {
+            return res.render('userSignUp', { message: "Passwords do not match, please try again" });
         }
 
         // Check if email is already taken
-        const isExistingUser = await User.findOne({ email: req.body.email });
+        const isExistingUser = await User.findOne({ email });
         if (isExistingUser) {
-            return res.render('userSignUp', { message: "This email is already taken, please try with another email" });
+            return res.render('userSignUp', { warning: "This email is already taken, please try with another email" });
         }
 
-        const spassword = await securePassword(req.body.password);
+        // Hash the password and create a new user
+        const spassword = await securePassword(password);
         const user = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
+            firstName,
+            lastName,
+            email,
             password: spassword,
             is_is_Admin: false
         });
 
+        // Save the user session and send OTP
         req.session.userData = user;
-        req.session.user = req.body.email;
+        req.session.user = email;
         const userEmail = req.session.user;
 
         await sendOtp(req, res);
@@ -613,11 +626,11 @@ const addUser = async (req, res, next) => {
     }
 }
 
+// Email validation function
 function validateEmail(email) {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(String(email).toLowerCase());
 }
-
 
 
     
@@ -663,14 +676,15 @@ const verifyOtp = async (req, res, next) => {
         }
 
         if (otp == otpUser) {
-            const userData = req.session.userData
-            userData.is_Verified = true
-            await User.create(userData)
-
-            res.render('userLogin' , {success: "OTP verified! You can now log in."})
+            const userData = req.session.userData;
+            userData.is_Verified = true;
+            await User.create(userData);
+        
+            res.render('userLogin', { success: "OTP verified! You can now log in." });
         } else {
+            // When OTP is incorrect, send the incorrectOtp flag
             return res.status(400).render('verifyOtp', { userEmail, incorrectOtp: true });
-        }
+        }              
     } catch (error) {
         console.error(error.message);
         next(error);

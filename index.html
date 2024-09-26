@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive 404 Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /*--------------------
+        Body & Page Style
+        --------------------*/
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(0, #202239, #8595AC);
+        }
+
+        .page {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            height: auto;
+            background: #0D0C1E;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /*--------------------
+        Header & Navigation
+        --------------------*/
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo svg {
+            width: 61px;
+            height: 14px;
+        }
+
+        nav {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        nav::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #565c73;
+            border-radius: 2px;
+            top: 0;
+            left: 0;
+            box-shadow: 0 5px 0 #565c73, 0 10px 0 #565c73;
+        }
+
+        .search svg {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /*--------------------
+        Content Styling
+        --------------------*/
+        .content {
+            color: white;
+            margin-top: 60px;
+        }
+
+        h1 {
+            font-weight: 900;
+            font-size: 100px;
+            line-height: 1;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 30px;
+            margin-bottom: 6px;
+            opacity: 0.9;
+        }
+
+        p {
+            font-weight: 300;
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 40px;
+        }
+
+        a {
+            display: inline-block;
+            font-weight: 300;
+            font-size: 12px;
+            text-transform: uppercase;
+            border: 1px solid #CDD4DE;
+            padding: 8px 14px;
+            border-radius: 4px;
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 1;
+        }
+
+        /*--------------------
+        Image Styling
+        --------------------*/
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: -1;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Adjustments */
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 70px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+
+            .page {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="logo">
+                <svg><use xlink:href="#logo-dailyui"></use></svg>
+            </div>
+            <nav></nav>
+            <div class="search">
+                <svg><use xlink:href="#ico-search"></use></svg>
+            </div>
+        </header>
+        <div class="content">
+            <h1>404</h1>
+            <h2>Page not found</h2>
+            <p>I tried to catch some fog, but I mist.</p>
+            <a href="#">Back to home</a>
+        </div>
+        <img src="path_to_your_image.jpg" alt="Background image" />
+    </div>
+
+    <!-- Logo -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+        <symbol id="logo-dailyui" viewBox="0 0 61 14">
+            <!-- Your logo's SVG path here -->
+        </symbol>
+        <symbol id="ico-search">
+            <path fill-rule="evenodd" clip-rule="evenodd" fill="#4F5269" d="M14.769,14.769..."/>
+        </symbol>
+    </svg>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var lFollowX = 0,
+            lFollowY = 0,
+            x = 0,
+            y = 0,
+            friction = 1 / 30;
+
+        function animate() {
+            x += (lFollowX - x) * friction;
+            y += (lFollowY - y) * friction;
+            var translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+
+            $('img').css({
+                '-webkit-transform': translate,
+                '-moz-transform': translate,
+                'transform': translate
+            });
+
+            window.requestAnimationFrame(animate);
+        }
+
+        $(window).on('mousemove click', function (e) {
+            var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+            var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+            lFollowX = (20 * lMouseX) / 100;
+            lFollowY = (10 * lMouseY) / 100;
+        });
+
+        animate();
+    </script>
+</body>
+</html>

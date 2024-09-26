@@ -146,7 +146,7 @@ function validateForm() {
 }
 
 function brandsFormValidation() {
-    var BrandsName = document.getElementById('BrandsName').value.trim();
+    var BrandsName = document.getElementById('brandsName').value.trim();
     const validationMessage = document.getElementById('validationMessages');
 
     if (BrandsName === '') {

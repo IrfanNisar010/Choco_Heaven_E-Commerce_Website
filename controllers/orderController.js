@@ -281,11 +281,6 @@ const createOrder = async (req, res, next) => {
             }
         }
         
-        if (paymentMethod === 'COD' && cartTotal > 1000) {
-            req.session.message = "COD is only available for orders below ₹1000!";
-            return res.redirect('/checkout');
-        }
-        
         if (paymentMethod === 'Wallet' && wallet.walletAmount < req.session.totalAmount) {
             req.session.message = "Uh-oh, your wallet's on a diet!";
             return res.redirect('/checkout');

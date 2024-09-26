@@ -565,7 +565,7 @@
 
                         <!-- Start Edit Address -->
                         <div class="col-md-9 pl-0" id="editAddress<%= i %>" style="display: none;">
-                            <div class="card mb-4">
+                            <div class="card mb-4 ml-4" style="border-radius: 10px;">
                                 <h5 class="card-header">Edit address</h5>
                                 <div class="card-body">
                                     <form id="editAddressForm<%= i %>" action="/editAddress" method="post" onsubmit="submitEditForm(event, '<%= i %>')">
@@ -613,7 +613,7 @@
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label" for="country">Country/Region</label>
                                                 <select id="country<%= i %>" class="select2 form-select" name="country">
-                                                    <option value=""><%= address[i].country %></option>
+                                                    <option value= ""><%= address[i].country %></option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-6 mb-3">
@@ -634,7 +634,6 @@
                                 </div>
                             </div>
                         </div>
-                        <script src="/js/countries.js"></script>
                         <!-- End Edit Address -->
                     <% } %>
                 </div>
@@ -646,7 +645,10 @@
     </main>            
 </div>
 <!-- End Manage Address -->
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/countries.js"></script>
+<script src="/js/addressValidation.js"></script>
+<script src="/js/editAddressValidation.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
     <% for (let i = 0; i < address.length; i++) { %>
@@ -676,6 +678,53 @@ document.addEventListener('DOMContentLoaded', (event) => {
         addAddressNav.style.display = 'block';
     });
 });
+
+	// edit address
+	function submitEditForm(event, index) {
+		event.preventDefault()
+
+		if(!editAddressValidation(index)){
+			return
+		}
+		const form = document.getElementById(`editAddressForm${index}`);
+		const formData = new FormData(form);
+		const url = '/editAddress'; 
+
+		const jsonObject = {};
+		formData.forEach((value, key) => {
+			jsonObject[key] = value;
+		});
+
+		jsonObject.is_Home = document.getElementById(`home${index}`).checked;
+		jsonObject.is_Work = document.getElementById(`work${index}`).checked;
+
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(jsonObject)
+		})
+		.then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        title: "Address Edited",
+                        text: "Address Edited successfully!",
+                        icon: "success"
+                    }).then(() => {
+						window.location.reload();; 
+                    });
+                } else {
+					let message = document.getElementById(`message${index}`);
+					message.style.color = "red";
+					message.innerText = `${data.message}`
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
 
  // add address form submission
  document.getElementById('myForm').addEventListener('submit', function(event) {
@@ -722,8 +771,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     });
             });        
 </script>
- 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/countries.js"></script>
-  <script src="/js/addressValidation.js"></script>
+
 <%- include('../layouts/homeFooter') %>
