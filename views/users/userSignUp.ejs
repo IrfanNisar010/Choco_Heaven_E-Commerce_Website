@@ -190,32 +190,6 @@
   togglePasswordVisibility('password', 'showPassword', 'hidePassword');
   togglePasswordVisibility('confirmPassword', 'showConfirmPassword', 'hideConfirmPassword');
 });
-
-
-         // checking email
-    document.getElementById('signupForm').addEventListener('submit', function(event) {
-            let firstName = document.getElementById("firstName").value.trim();
-            let lastName = document.getElementById("lastName").value.trim();
-            const nameRegex = /^[a-zA-Z]+$/;
-            const message = document.getElementById("message");
-
-            // Clear previous messages
-            message.textContent = "";
-
-            // Check if names are empty or contain invalid characters
-            if (firstName.length === 0 || lastName.length === 0) {
-                message.textContent = "Name cannot be empty.";
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-
-            if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
-                message.textContent = "Please enter a valid Name.";
-                event.preventDefault(); // Prevent form submission
-                return;
-            }
-        });
-
     $(document).ready(function() {
     if ($('.msg').length) {
       $('.msg').addClass('show');

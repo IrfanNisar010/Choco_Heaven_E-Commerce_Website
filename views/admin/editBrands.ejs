@@ -309,77 +309,82 @@
               <div class="card-body">
                   <div class="mb-3">
                     <form action="/admin/editBrands" method="post" id="myForm" enctype="multipart/form-data">
-                        <div class="mb-3">
-                          <label class="form-label" for="brandName"><%= brand.name %></label>
+                      <div class="mb-3">
+                          <label class="form-label" for="brandName">Brand Name</label>
                           <div class="form-group">
-                            <div class="input-group input-group-merge">
-                              <span id="brandNameIcon" class="input-group-text"><i class="bx bx-buildings"></i></span>
-                              <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Lindt" aria-describedby="brandNameIcon" />
-                            </div>
+                              <div class="input-group input-group-merge">
+                                  <span id="brandNameIcon" class="input-group-text"><i class="bx bx-buildings"></i></span>
+                                  <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Lindt"
+                                      aria-describedby="brandNameIcon" value="<%= brand.name %>" />
+                              </div>
                           </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="image" class="form-label"><%= brand.imageUrl %></label>
-                          <input class="form-control" type="file" id="formFile" name="brandsImage" accept="image/png, image/jpeg, image/webp" onchange="updateLabelImg(this)" />
-                        </div>
-                        <div class="form-check">
+                      </div>
+                      <div class="mb-3">
+                          <label for="image" class="form-label">Brand Image</label>
+                          <input class="form-control" type="file" id="formFile" name="brandsImage" value="<%= brand.imageUrl %>"
+                              accept="image/png, image/jpeg, image/webp" onchange="updateLabelImg(this)" />
+                      </div>
+                      <div class="form-check">
                           <input type="checkbox" class="form-check-input" name="isAvailable" value="1" id="isAvailable" <%= brand.status ? 'checked' : '' %>>
-                          <label class="form-check-label" for="isAvailable" >Is Available</label>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label" for="description"><%= brand.description %></label>
+                          <label class="form-check-label" for="isAvailable">Is Available</label>
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label" for="description">Description</label>
                           <div class="input-group input-group-merge">
-                            <span id="descriptionIcon" class="input-group-text"><i class="bx bx-comment"></i></span>
-                            <textarea class="form-control" id="description" name="description" placeholder="Most luxury Chocolate brand" aria-describedby="descriptionIcon"></textarea>
+                              <span id="descriptionIcon" class="input-group-text"><i class="bx bx-comment"></i></span>
+                              <input class="form-control" id="description" name="description" value="<%= brand.description %>"
+                                  placeholder="Most luxury Chocolate brand" aria-describedby="descriptionIcon"></input>
                           </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 169px;">Add</button>
-                        <button type="button" class="btn btn-white" style="width: 140px;" onclick="clearForm()">Cancel</button>
-                        <% if(typeof message !== "undefined"){
-                            %>
-                            <p style="color: brown;"><%=message%></p> 
-                            <%
-                          }
-                          %>
-                      </form>                      
-            </div>
-            </div>
-          </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary" style="width: 169px;">Save Changes</button>
+                      <button type="button" class="btn btn-white" style="width: 140px;" onclick="clearForm()">Cancel</button>
+                  
+                      <% if (typeof message !== "undefined") { %>
+                      <p style="color: brown;"><%=message%></p>
+                      <% } %>
+                  
+                      <!-- Add Validation Message Section -->
+                      <div id="validationMessages" style="display: none; color: red;"></div>
+                  </form>
+                  
+                  <script>
+                      document.getElementById('myForm').addEventListener('submit', function (event) {
+                          event.preventDefault(); 
+                          // Fetch form data and submit via fetch API
+                          const form = document.getElementById('myForm');
+                          const formData = new FormData(form);
+                  
+                          fetch('/admin/editBrands', {
+                              method: 'POST',
+                              body: formData
+                          })
+                          .then(response => response.json())
+                          .then(data => {
+                              if (data.success) {
+                                  Swal.fire({
+                                      title: "Brand updated",
+                                      text: "Brand updated Successfully",
+                                      icon: "success"
+                                  }).then(() => {
+                                      window.location.href = '/admin/brandsManage';
+                                  });
+                              } else {
+                                  const validationMessage = document.getElementById('validationMessages');
+                                  validationMessage.style.display = 'block';
+                                  validationMessage.innerHTML = data.message;
+                              }
+                          })
+                          .catch(error => {
+                              console.error('Error:', error);
+                              alert('Error Editing Brand');
+                          });
+                      });
 
-          <script>
-            document.getElementById('myForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const form = document.getElementById('myForm');
-                const formData = new FormData(form);
-            
-                fetch('/admin/editBrands', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            title: "Brand updated",
-                            text: "Brand updated Successfully",
-                            icon: "success"
-                        }).then(() => {
-                            window.location.href = '/admin/brandsManage';
-                        });
-                    } else {
-                        const validationMessage = document.getElementById('validationMessages');
-                        validationMessage.style.display = 'block';
-                        validationMessage.innerHTML = data.message;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error Editing Brand');
-                });
-            });
-            </script>
-            
-          
-          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+                      function clearForm() {
+                          document.getElementById('myForm').reset();
+                      }
+                  </script>
+                  
+                  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                  
           <%- include('../layouts/addBrandsFooter') %>  

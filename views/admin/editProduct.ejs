@@ -437,6 +437,12 @@
       <div class="card-body">
           <button type="submit" class="btn btn-primary me-2">Save changes</button>
       </div>
+      <div id="validationMessages" class="alert alert-danger" role="alert" style="display: none;"></div><br>
+              <% if(typeof message !== "undefined"){ %>
+                
+                <p style="color: brown;"><%=message%></p> 
+                
+                <% }  %>
   </form>  
     </div>
     <!-- /Account -->
@@ -520,7 +526,9 @@ function triggerInput(inputId) {
 // edit product
 document.getElementById('myForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    
+    if(!validateForm()){
+                    return;
+                  }
     const form = document.getElementById('myForm');
     const formData = new FormData(form);
     
@@ -553,6 +561,65 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
         });
     });
 });
+
+function validateForm() {
+    var productName = document.getElementById('productName').value.trim();
+    var brands = document.getElementById('brands').value.trim();
+    var model = document.getElementById('model').value.trim();
+    var inStock = document.getElementById('inStock').value.trim();
+    var mrp = document.getElementById('mrp').value.trim();
+    var discountPrice = document.getElementById('discountPrice').value.trim();
+    const validationMessage = document.getElementById('validationMessages');
+    
+    // Clear previous error messages
+    validationMessage.style.display = 'none';
+    validationMessage.innerHTML = '';
+
+    // Check if Product Name is entered
+    if (!productName) {
+        validationMessage.style.display = 'block';
+        validationMessage.innerHTML = 'Please enter a valid Product Name.';
+        return false;
+    }
+
+    // Check if a brand is selected
+    if (!brands) {
+        validationMessage.style.display = 'block';
+        validationMessage.innerHTML = 'Please select a valid Brand.';
+        return false;
+    }
+
+    // Check if Model is entered
+    if (!model) {
+        validationMessage.style.display = 'block';
+        validationMessage.innerHTML = 'Please enter a valid Model.';
+        return false;
+    }
+
+    // Check if stock quantity is valid
+    if (!inStock || isNaN(inStock) || inStock < 0) {
+        validationMessage.style.display = 'block';
+        validationMessage.innerHTML = 'Please enter a valid Stock Quantity.';
+        return false;
+    }
+
+    // Check if MRP is valid
+    if (!mrp || isNaN(mrp) || mrp <= 0) {
+        validationMessage.style.display = 'block';
+        validationMessage.innerHTML = 'Please enter a valid MRP.';
+        return false;
+    }
+
+    // Check if Discount Price is valid
+    if (!discountPrice || isNaN(discountPrice) || discountPrice < 0) {
+        validationMessage.style.display = 'block';
+        validationMessage.innerHTML = 'Please enter a valid Discount Price.';
+        return false;
+    }
+
+    // If all fields are valid, return true
+    return true;
+}
 
             
 </script>
