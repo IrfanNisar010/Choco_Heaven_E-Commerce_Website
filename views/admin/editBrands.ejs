@@ -297,14 +297,14 @@
         <div class="content-viewport">
           <div class="row">
             <div class="col-12 pb-3">
-              <h4>Add Brands</h4>
-              <p class="text-gray">Input details of new Brands</p>
+              <h4>Edit Brands</h4>
+              <p class="text-gray">Edit details of existing Brands</p>
             </div>
           </div>
           <div class="col-xl">
             <div class="card mb-4">
               <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Add Info</h5>
+                <h5 class="mb-0">Edit Info</h5>
               </div>
               <div class="card-body">
                   <div class="mb-3">
@@ -319,15 +319,24 @@
                               </div>
                           </div>
                       </div>
+                  
                       <div class="mb-3">
                           <label for="image" class="form-label">Brand Image</label>
-                          <input class="form-control" type="file" id="formFile" name="brandsImage" value="<%= brand.imageUrl %>"
+                          <!-- Display the currently uploaded image -->
+                          <div class="mb-2">
+                              <img src="<%= brand.imageUrl %>" alt="Current Brand Image" id="currentImage" style="max-width: 150px; max-height: 150px; display: block;"/>
+                          </div>
+                          <!-- File input with a label for selected file -->
+                          <input class="form-control" type="file" id="formFile" name="brandsImage"
                               accept="image/png, image/jpeg, image/webp" onchange="updateLabelImg(this)" />
+                          <small id="fileLabel">No file selected</small>
                       </div>
+                  
                       <div class="form-check">
                           <input type="checkbox" class="form-check-input" name="isAvailable" value="1" id="isAvailable" <%= brand.status ? 'checked' : '' %>>
                           <label class="form-check-label" for="isAvailable">Is Available</label>
                       </div>
+                  
                       <div class="mb-3">
                           <label class="form-label" for="description">Description</label>
                           <div class="input-group input-group-merge">
@@ -336,6 +345,7 @@
                                   placeholder="Most luxury Chocolate brand" aria-describedby="descriptionIcon"></input>
                           </div>
                       </div>
+                  
                       <button type="submit" class="btn btn-primary" style="width: 169px;">Save Changes</button>
                       <button type="button" class="btn btn-white" style="width: 140px;" onclick="clearForm()">Cancel</button>
                   
@@ -349,7 +359,7 @@
                   
                   <script>
                       document.getElementById('myForm').addEventListener('submit', function (event) {
-                          event.preventDefault(); 
+                          event.preventDefault();
                           // Fetch form data and submit via fetch API
                           const form = document.getElementById('myForm');
                           const formData = new FormData(form);
@@ -379,9 +389,19 @@
                               alert('Error Editing Brand');
                           });
                       });
-
+                  
+                      function updateLabelImg(input) {
+                          const label = document.getElementById('fileLabel');
+                          if (input.files && input.files[0]) {
+                              label.textContent = input.files[0].name;  // Show selected file name
+                          } else {
+                              label.textContent = 'No file selected';  // If no file is selected
+                          }
+                      }
+                  
                       function clearForm() {
                           document.getElementById('myForm').reset();
+                          document.getElementById('fileLabel').textContent = 'No file selected';
                       }
                   </script>
                   
