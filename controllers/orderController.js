@@ -628,6 +628,7 @@ const adminOrderPageLoad = async (req, res, next) => {
       // Fetch total count of orders for pagination calculation
       const totalOrders = await OrderModel.countDocuments();
   
+      
       const totalPages = Math.ceil(totalOrders / limit);
   
       res.render('adminOrderManage', { orders, currentPage: page, totalPages, totalOrders });
