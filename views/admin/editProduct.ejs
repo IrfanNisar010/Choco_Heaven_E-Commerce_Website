@@ -526,9 +526,7 @@ function triggerInput(inputId) {
 // edit product
 document.getElementById('myForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    if(!validateForm()){
-                    return;
-                  }
+    
     const form = document.getElementById('myForm');
     const formData = new FormData(form);
     
