@@ -397,13 +397,10 @@
             <% if (wallet.transactionHistory.length > 0) { %>
                 <% for (let i = 0; i < wallet.transactionHistory.length; i++){ %>
                     <div class="history-item row mb-3 align-items-center">
-                        <div class="col-auto">
-                            <img src="" alt="">
-                        </div>
                         <div class="col">
                             <div class="item-details">
                                 <div class="item-name"></div>
-                                <div class="item-weight">
+                                <div class="item-weight black-color">
                                     <%= new Date(wallet.transactionHistory[i].date).toLocaleDateString('en-US', {
                                         weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
                                     }) %>

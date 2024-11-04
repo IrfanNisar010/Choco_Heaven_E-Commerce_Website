@@ -386,12 +386,13 @@ const loadHome = async (req, res) => {
             const userData = await User.findById({ _id: userId });
             res.render('userHome', { user: userData, products: productData, cartCount, wishlistItems,brands, isLoggedIn: true });
         } else {
-            res.render('userHome', { products: productData, cartCount, brands, wishlistItems, isLoggedIn: false });
+            res.render('userHome', { userId: userId, products: productData, cartCount, brands, wishlistItems, isLoggedIn: false });
         }
     } catch (error) {
         console.log(error.message);
     }
 };
+
 
 const securePassword = async (password) => {
     try {
@@ -436,13 +437,11 @@ const loadShop = async (req, res) => {
 
         const skip = (page - 1) * productPerPage;
 
-        // Base query for filtering products by price
         let searchQuery = { 
             isDeleted: false,
             price: { $gte: parseInt(minPrice), $lte: parseInt(maxPrice) }  // Ensure minPrice and maxPrice are numbers
         };
 
-        // Enhanced search logic for "exact", "starts with", and "contains"
         if (search) {
             searchQuery.$or = [
                 { productName: { $regex: `^${search}$`, $options: "i" } },  // Exact match

@@ -339,7 +339,11 @@
                   <% } else { %>
                       <td><p class="text-danger">Out of Stock</p></td>
                   <% } %>
-                  <td>₹ <%= product[i].discountPrice %></td>
+                  <% if(product[i].discountPrice < 0) { %>
+                    <td>₹ <%= product[i].discountPrice %></td>
+                    <% } else { %>
+                      <td>₹ <%= product[i].price %></td>
+                <% } %>
                   <td class="text-success"><%= product[i].discount %> %</td>
                   <% if(product[i].isDeleted) { %>
                       <td>
@@ -349,9 +353,15 @@
                       </td>
                   <% } else { %>
                       <td>
-                          <a href="/admin/editProduct?id=<%= product[i]._id %>" class="btn btn-primary w-25 p-0 h-25 me-2"  style="width: 50px;">
-                              <i class="fas fa-edit"></i> Edit
-                          </a>
+                       <a  href="/admin/editProduct?id=<%= product[i]._id %>">
+                        <lord-icon
+                        src="https://cdn.lordicon.com/exymduqj.json"
+                        trigger="hover"
+                        state="hover-line"
+                        colors="primary:#000000,secondary:#000000"
+                        style="width:22px;height:22px; padding-top: 10px;">
+                    </lord-icon></a>
+               
                           <button type="button" class="btn btn-outline-danger unlist-button" data-product-id="<%= product[i]._id %>">
                               Unlist 
                           </button>
