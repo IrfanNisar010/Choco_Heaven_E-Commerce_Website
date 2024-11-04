@@ -56,7 +56,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-lg-3 col-6 col-md-6 col-sm-6 col-9 hidden-md">
+                    <div class="col-xl-4 col-xl-4 col-lg-3 col-6 col-md-6 col-sm-6 col-9 hidden-md">
                         <div class="header-right">
                             <ul class="text-right">
                                 <% if (!locals.user) { %>
@@ -80,10 +80,12 @@
                                             src="https://cdn.lordicon.com/kthelypq.json"
                                             trigger="hover"
                                             colors="primary:#000000"
-                                            style="width:23px;height:23px; padding-top: 6px;">
+                                            style="width:23px;height:23px; padding-top: 6px;">                              
                                         </lord-icon>
                                     </a>
-                                <% } %>                                
+                                    <li><a href="javascript:void(0)"><%= user.firstName %></a></li>
+                                <% } %> 
+                              
                                 <li><a href="javascript:void(0)"><lord-icon
                                     src="https://cdn.lordicon.com/kkvxgpti.json"
                                     trigger="hover"
@@ -188,6 +190,7 @@
                                                             </div>
                                                         </li>
                                                     </ul>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -594,7 +597,13 @@
                                                 <%= products[index].productName %>
                                             </a>
                                             <div class="price-switcher">
+                                            <% if (products[index].discountPrice && products[index].discountPrice > 0) { %>
+                                                <!-- Show discounted price if available -->
                                                 <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
+                                            <% } else { %>
+                                                <!-- Show regular price if no discount is available -->
+                                                <span class="price switcher-item">₹<%= products[index].price %></span>
+                                            <% } %>
                                                 <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">+add to cart</a>
                                             </div>
                                         </div>

@@ -529,7 +529,13 @@
                                                                 </div>
                                                                 <a href="/singleProduct?id=<%= products[index]._id %>" class="product-title"> <%= products[index].productName %></a>
                                                                 <div class="price-switcher">
-                                                                    <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
+                                                                    <% if (products[index].discountPrice && products[index].discountPrice > 0) { %>
+                                                                        <!-- Show discounted price if available -->
+                                                                        <span class="price switcher-item">₹<%= products[index].discountPrice %></span>
+                                                                    <% } else { %>
+                                                                        <!-- Show regular price if no discount is available -->
+                                                                        <span class="price switcher-item">₹<%= products[index].price %></span>
+                                                                    <% } %>
                                                                     <a onclick="addToCart(event, '<%= products[index]._id %>')" class="add-cart text-capitalize switcher-item">Add to cart</a>
                                                                 </div>
                                                             </div>

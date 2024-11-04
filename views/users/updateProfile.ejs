@@ -391,7 +391,7 @@
                 </div>
             </div>
         
-            <form action="/updateProfile" method="post" id="myForm" enctype="multipart/form-data">
+            <form id="myForm" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="row">
                         <div class="mb-3 col-md-6">
@@ -428,7 +428,7 @@
     <!-- Add Cropper.js JavaScript -->
     <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
     <!-- Add SweetAlert JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Add your custom JavaScript -->
     <script>
         let cropper;
@@ -488,53 +488,52 @@
             }
         }
 
-        async function updateUserProfile(event) {
-            event.preventDefault();
+        document.getElementById('myForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
 
-            if (!updateProfileValidation()) {
-                return;
-            }
-
-            const formData = new FormData(event.target);
-
-            try {
-                const response = await fetch(`/updateProfile`, {
-                    method: 'POST',
-                    body: formData
-                });
-                const data = await response.json();
-
-                if (data.success) {
-                    Swal.fire({
-                        title: 'Do you want to save the changes?',
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: 'Save',
-                        denyButtonText: `Don't save`
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire('Saved!', '', 'success').then(() => {
-                                window.location.reload();
-                            });
-                        } else if (result.isDenied) {
-                            Swal.fire('Changes are not saved', '', 'info');
-                        }
-                    });
-                } else {
-                    Swal.fire('Failed!', 'Changes could not be saved', 'error');
-                }
-            } catch (error) {
-                Swal.fire('Failed!', 'Changes could not be saved: ' + error.message, 'error');
-            }
+        if (!updateProfileValidation()) {
+            return;
         }
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch(`/updateProfile`, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                Swal.fire({
+                    title: 'Do you want to save the changes?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Save',
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire('Saved!', '', 'success').then(() => {
+                            window.location.href = '/profileDetails';
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved', '', 'info');
+                    }
+                });
+            } else {
+                Swal.fire('Failed!', 'Changes could not be saved', 'error');
+            }
+        } catch (error) {
+            Swal.fire('Failed!', 'Changes could not be saved: ' + error.message, 'error');
+        }
+    });
+
 
         function updateProfileValidation() {
             // Add your validation logic here
             return true;
         }
     </script>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
 <%- include('../layouts/addBrandsFooter') %>
 <%- include('../layouts/homeFooter') %>

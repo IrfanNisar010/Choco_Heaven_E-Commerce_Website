@@ -353,38 +353,21 @@
                                             <a class="popup-images" data-toggle="pill" href="#tab-2">
                                                 <img src="/assets/img/brands/<%= product.image[1] %>" class="w-100" alt="">
                                             </a>
-                                            <a class="popup-images" data-toggle="pill" href="#tab-3">
-                                                <img src="" class="w-100 mt-5-px" alt="">
-                                            </a>
-                                            <a class="popup-images" data-toggle="pill" href="#tab-4">
-                                                <img src="" class="w-100 mt-5-px" alt="">
-                                            </a>
+                                           
                                         </div>
                                     </div>
                                     <div class="col-10">
                                         <div class="tab-content" id="v-pills-tabContent">
                                             <div class="tab-pane fade show active" id="tab-1">
                                                 <div class="product-img" id="img-contain">
-                                                    <a class="popup-image" href="img/product/farniture-7.jpg"><img
+                                                    <a class="popup-image" href="/assets/img/brands/<%= product.image[0] %>"><img
                                                             src="/assets/img/brands/<%= product.image[0] %>" class="w-100" alt="" id="image"></a>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab-2">
                                                 <div class="product-img" id="img-contain2">
-                                                    <a class="popup-image" href="img/product/farniture-8.jpg"><img
+                                                    <a class="popup-image" href="/assets/img/brands/<%= product.image[1] %>"><img
                                                             src="/assets/img/brands/<%= product.image[1] %>" class="w-100" alt=""  id="image1"></a>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab-3">
-                                                <div class="product-img">
-                                                    <a class="popup-image" href="img/product/farniture-9.jpg"><img
-                                                            src="" class="w-100" alt=""></a>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab-4">
-                                                <div class="product-img">
-                                                    <a class="popup-image" href="img/product/farniture-10.jpg"><img
-                                                            src="" class="w-100" alt=""></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -408,7 +391,7 @@
                                         </div>
                                     </div>
                                     <div class="single-product-price">
-                                        <% if (product.discount > 0) { %>
+                                        <% if (product.discountPrice > 0) { %>
                                             <span style="color: #c09844;">₹</span>
                                             <span style="color: #c09844;"><%= product.discountPrice %></span>
                                             <span style="color: #9c9c9c;"> – </span>
@@ -638,7 +621,11 @@
                                     </div>
                                     <a href="/singleProduct?id=<%= product._id %>" class="product-title"><%= product.productName %></a>
                                     <div class="price-switcher">
-                                        <span class="price switcher-item">₹<%= product.discountPrice %></span>
+                                        <% if (product.discountPrice > 0) { %>
+                                            <span class="price switcher-item">₹<%= product.discountPrice %></span>
+                                            <% } else { %>
+                                                <span class="price switcher-item">₹<%= product.price %></span>
+                                        <% } %>
                                         <a onclick="addToCart(event, '<%= product._id %>')" class="add-cart text-capitalize switcher-item">+add to cart</a>
                                     </div>
                                 </div>
